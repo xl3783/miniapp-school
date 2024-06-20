@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header-image {
+  width: 100%;
+  height: auto;
+}
+
+.title, .subtitle {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.college-info {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.college-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.announcement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-item {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.menu-item image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.footer-menu {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+}

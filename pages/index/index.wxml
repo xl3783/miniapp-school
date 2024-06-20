@@ -1,0 +1,30 @@
+<view class="container">
+  <image class="header-image" src="/images/header.png"></image>
+  <view class="title">
+    <text>荆州职业技术学院招生</text>
+  </view>
+  <view class="subtitle">
+    <text>智慧招生平台</text>
+  </view>
+  <view class="main-content">
+    <view class="college-info">
+      <image class="college-logo" src="/images/college_logo.png"></image>
+      <text>荆州职业技术学院</text>
+    </view>
+    <view class="announcement">
+      <text>荆州职业技术学院 2024年高职单招考试成</text>
+      <navigator url="/pages/enrollment/enrollment">></navigator>
+    </view>
+    <view class="menu">
+      <view class="menu-item" wx:for="{{menuItems}}" wx:key="index">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="footer-menu">
+    <navigator url="/pages/home/home">首页</navigator>
+    <navigator url="/pages/departments/departments">院系专业</navigator>
+    <navigator url="/pages/profile/profile">个人中心</navigator>
+  </view>
+</view>
