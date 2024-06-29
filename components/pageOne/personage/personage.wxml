@@ -1,0 +1,43 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view class="saas-bottom">
+        <view class="top-nav" wx:if="{{types.length>1}}">
+            <scroll-view class="scrool-view" scrollX="true" showScrollbar="{{false}}">
+                <view bindtap="chooseNav" class="cate {{index==active?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{types}}" wx:key="index">
+                    <view>{{item.name}}</view>
+                    <view class="border" style="background-color:{{globalColor}}"></view>
+                </view>
+            </scroll-view>
+        </view>
+        <block wx:if="{{active==1&&isShowList&&column.length==0}}">
+            <view wx:if="{{currentList&&currentList.length>0}}">
+                <view bindtap="goTeacherDetail" class="{{characterClass}}" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{currentList}}" wx:key="id">
+                    <view class="img-box">
+                        <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.photo_url}}" wx:if="{{isShowListImg}}"></image>
+                    </view>
+                    <view class="info-box">
+                        <view class="title">
+                            <view class="name">{{item.name}}<view wx:if="{{isColon&&item.title}}">:</view>
+                            </view>
+                            <view class="occupation">{{item.title}}</view>
+                        </view>
+                        <view class="content" wx:if="{{isShowListInfo}}">{{item.intro}}</view>
+                    </view>
+                </view>
+            </view>
+            <no-data-comp wx:else></no-data-comp>
+            <bottom-comp isBottom="{{currentList.length>0&&isBottom}}"></bottom-comp>
+        </block>
+        <view class="mp-img-box" style="margin:32rpx" wx:if="{{active==0&&isShowIntro}}">
+            <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}" wx:if="{{intro}}"></mp>
+            <no-data-comp wx:else></no-data-comp>
+        </view>
+        <block wx:if="{{active==1&&isShowList&&column.length>0}}">
+            <view bindtap="lookColumnDetail" class="re-item" data-item="{{item}}" wx:for="{{column}}" wx:key="index">
+                <view class="re-name">{{item.name}}</view>
+                <view class="re-right">
+                    <image class="right-img" showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </view>
+        </block>
+    </view>
+</scroll-view>

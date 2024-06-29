@@ -1,73 +1,181 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.main-view {
+  overflow: hidden;
   width: 100%;
 }
 
-.header-image {
+.mourn-view {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1) !important;
+  height: 100vh;
   width: 100%;
-  height: auto;
 }
 
-.title, .subtitle {
-  text-align: center;
-  margin: 10px 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.college-info {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-}
-
-.college-logo {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
+.contact-icon {
   border-radius: 50%;
+  bottom: calc(65px + env(safe-area-inset-bottom)) !important;
+  height: 104rpx;
+  line-height: 104rpx;
+  position: fixed;
+  right: 32rpx;
+  text-align: center;
+  width: 104rpx;
+  z-index: 100;
 }
 
-.announcement {
+.contact-icon image {
+  height: 88rpx;
+  vertical-align: middle;
+  width: 88rpx;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, .5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 101;
+}
+
+.mask .contact-content {
+  background-color: #fafafa;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 0 38rpx 0 32rpx;
+  position: fixed;
+  width: 100%;
+}
+
+.mask .contact-content .contactus {
+  color: #000;
+  font-size: 34rpx;
+  font-weight: 600;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-top: 38rpx;
+  padding-left: 10rpx;
+  text-align: left;
+}
+
+.mask .contact-content .contact-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  background-color: #f8f8f8;
-  padding: 10px;
-  margin: 20px 0;
+  line-height: 56rpx;
+  padding: 40rpx 40rpx 40rpx 32rpx;
 }
 
-.menu {
+.mask .contact-content .contact-item .contact-left {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex: 1;
 }
 
-.menu-item {
-  width: 80px;
-  height: 80px;
+.mask .contact-content .contact-item .contact-left .contact-text {
+  flex: 1;
+  font-size: 30rpx;
+  line-height: 52rpx;
+}
+
+.mask .contact-content .contact-item .contact-left image {
+  height: 40rpx;
+  margin-right: 32rpx;
+  margin-top: 6rpx;
+  width: 40rpx;
+}
+
+.mask .contact-content .contact-other .contact-item .contact-right {
+  border: 2rpx solid #909399;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  color: #909399;
+  font-size: 26rpx;
+  height: 56rpx;
+  text-align: center;
+  width: 108rpx;
+}
+
+.contact-cancel {
+  height: 64rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 30rpx;
+  width: 64rpx;
+}
+
+.contact-cancel image {
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+}
+
+.all-btn {
+  background-color: #0000006b;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  width: 100vw !important;
+}
+
+.contact-content .contact-top .contact-item {
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 40rpx 0 rgba(0, 0, 0, .04);
+  margin: 40rpx 0 0;
+  padding: 32rpx;
+}
+
+.mask .contact-content .contact-top .contact-item .contact-right,
+.mask .contact-content .contact-top .contact-item .contact-right image {
+  height: 24rpx;
+  width: 24rpx;
+}
+
+.contact-content .contact-flex .contact-item .contact-left image {
+  height: 64rpx;
+  margin-bottom: 16rpx;
+  width: 64rpx;
+}
+
+.contact-other {
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 40rpx 0 rgba(0, 0, 0, .04);
+  margin: 32rpx 0 60rpx;
+  padding: 0 32rpx;
+}
+
+.contact-content .contact-other .contact-item {
+  border-bottom: 1px solid #f0efef;
+  padding: 40rpx 0;
+}
+
+.contact-other view:last-child .contact-item {
+  border-bottom: none;
+}
+
+.contact-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-flex .contact-left {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 10px;
 }
 
-.menu-item image {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 5px;
+.mask .contact-content .contact-flex .contact-left image {
+  flex-shrink: 0;
+  margin-right: 0;
 }
 
-.footer-menu {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  background-color: #f8f8f8;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
+.mask .contact-content .contact-flex .contact-item {
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  height: auto;
+  width: 328rpx;
+}
+
+.contact-flex .contact-right {
+  display: none;
 }

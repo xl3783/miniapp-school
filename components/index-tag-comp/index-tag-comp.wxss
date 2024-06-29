@@ -1,0 +1,78 @@
+.flex-left {
+    justify-content: flex-start;
+}
+
+.flex-center,.flex-left {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.index-tag {
+    border-radius: 50rpx;
+    margin-bottom: 10rpx;
+    margin-right: 16rpx;
+    margin-top: 10rpx;
+    padding: 6rpx 24rpx;
+    position: relative;
+}
+
+.index-tag .bg {
+    border-radius: 50rpx;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.index-tag .item {
+    font-size: 26rpx;
+    line-height: 37rpx;
+    text-align: center;
+}
+
+.tag_container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15rpx;
+    padding-left: 50rpx;
+    padding-right: 50rpx;
+    width: 100%;
+}
+
+.tag_line {
+    color: #333;
+    font-size: 26rpx;
+    margin-bottom: 10rpx;
+    width: 260rpx;
+}
+
+.index-intro {
+    box-sizing: border-box;
+    width: 40%;
+}
+
+.index-intro,.index-intro1 {
+    display: inline-block;
+    font-size: 26rpx;
+    line-height: 34rpx;
+    margin-bottom: 12rpx;
+    overflow: hidden;
+}
+
+.index-intro1 {
+    width: 100%;
+}

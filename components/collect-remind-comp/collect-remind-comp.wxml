@@ -1,0 +1,8 @@
+<view class="collect-fixed" wx:if="{{showCollect}}">
+    <view class="collect-container">
+        <view class="collect-title">点击<image class="dot-img" showMenuByLongpress="true" src="../../assets/image/collect-more.png"></image>设置快捷入口</view>
+        <view class="collect-item">1. 添加到我的小程序</view>
+        <view class="collect-item">2. 添加到桌面（仅安卓手机）</view>
+        <image bindtap="closeCollect" class="close-collect-img" showMenuByLongpress="true" src="../../assets/image/collect-close.png"></image>
+    </view>
+</view>

@@ -1,0 +1,185 @@
+<view class="top-search-box" id="top-search" style="background:#fff;height:152rpx;padding-top:32rpx;padding-bottom:32rpx;box-sizing:border-box;display:flex;border-bottom:12rpx solid #fafafa;" wx:if="{{showSearch}}">
+    <view bindtap="goSearch" class="top-search">
+        <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+        <view class="search-text">输入想要查询的专业</view>
+    </view>
+</view>
+<view style="overflow:hidden">
+    <scroll-view bindscroll="handleScroll" scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height-80}}px;background-color:{{pageColor}};">
+        <view class="select-item" wx:if="{{tools.idInStr(2,option)&&provinces.length>0}}">
+            <view>区域</view>
+            <picker bindchange="bindAreaChange" range="{{provinces}}" rangeKey="province" value="{{index}}">
+                <view class="picker">
+                    <view class="picker-text" style="color:{{province_id?'#333333':'#999999'}}">{{province_id?province_name:'请选择'}} </view>
+                    <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </picker>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(18,option)&&yzqyList.length>0}}">
+            <view>研招区域</view>
+            <view bindtap="openPickerMask" class="picker" data-type="yzqy">
+                <view class="picker-text" style="color:{{yzqy?'#333333':'#999999'}}">{{yzqy?yzqy:'请选择'}} </view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(3,option)&&yearList.length>0}}">
+            <view>年份</view>
+            <view bindtap="openPickerMask" class="picker" data-type="year">
+                <view class="picker-text" style="color:{{year?'#333333':'#999999'}}">{{year?year+'年':'请选择'}} </view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(4,option)&&campusList.length>0}}">
+            <view>校区</view>
+            <view bindtap="openPickerMask" class="picker" data-type="campus">
+                <view class="picker-text" style="color:{{campus?'#333333':'#999999'}}"> {{campus?campus:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(5,option)&&batchList.length>0}}">
+            <view>批次</view>
+            <view bindtap="openPickerMask" class="picker" data-type="batch">
+                <view class="picker-text" style="color:{{batch?'#333333':'#999999'}}">{{batch?batch:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(6,option)&&divitionList.length>0}}">
+            <view>科类</view>
+            <view bindtap="openPickerMask" class="picker" data-type="divition">
+                <view class="picker-text" style="color:{{divition_name?'#333333':'#999999'}}">{{divition_name?divition_name:'请选择'}} </view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(7,option)&&subjectList.length>0}}">
+            <view>学科</view>
+            <view bindtap="openPickerMask" class="picker" data-type="subject">
+                <view class="picker-text" style="color:{{subject_id?'#333333':'#999999'}}"> {{subject_id?subject_name:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(8,option)&&bxdList.length>0}}">
+            <view>办学点</view>
+            <view bindtap="openPickerMask" class="picker" data-type="bxd">
+                <view class="picker-text" style="color:{{bxd?'#333333':'#999999'}}"> {{bxd?bxd:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(9,option)&&xzList.length>0}}">
+            <view>学制</view>
+            <view bindtap="openPickerMask" class="picker" data-type="xz">
+                <view class="picker-text" style="color:{{xz?'#333333':'#999999'}}"> {{xz?xz:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(10,option)&&majorList.length>0}}">
+            <view>专业</view>
+            <view bindtap="openPickerMask" class="picker" data-type="major">
+                <view class="picker-text" style="color:{{major?'#333333':'#999999'}}"> {{major?major:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(11,option)&&ccList.length>0}}">
+            <view>层次</view>
+            <view bindtap="openPickerMask" class="picker" data-type="cc">
+                <view class="picker-text" style="color:{{cc?'#333333':'#999999'}}"> {{cc?cc:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(12,option)&&zsdxList.length>0}}">
+            <view>招生对象</view>
+            <view bindtap="openPickerMask" class="picker" data-type="zsdx">
+                <view class="picker-text" style="color:{{zsdx?'#333333':'#999999'}}"> {{zsdx?zsdx:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(13,option)&&fzxxList.length>0}}">
+            <view>发证学校</view>
+            <view bindtap="openPickerMask" class="picker" data-type="fzxx">
+                <view class="picker-text" style="color:{{fzxx?'#333333':'#999999'}}"> {{fzxx?fzxx:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(14,option)&&pydList.length>0}}">
+            <view>培养点</view>
+            <view bindtap="openPickerMask" class="picker" data-type="pyd">
+                <view class="picker-text" style="color:{{pyd?'#333333':'#999999'}}"> {{pyd?pyd:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(15,option)&&lxList.length>0}}">
+            <view>类型</view>
+            <view bindtap="openPickerMask" class="picker" data-type="lx">
+                <view class="picker-text" style="color:{{lx?'#333333':'#999999'}}"> {{lx?lx:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(16,option)&&xxfsList.length>0}}">
+            <view>学习方式</view>
+            <view bindtap="openPickerMask" class="picker" data-type="xxfs">
+                <view class="picker-text" style="color:{{xxfs?'#333333':'#999999'}}"> {{xxfs?xxfs:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(17,option)&&tdxlList.length>0}}">
+            <view>同等学力</view>
+            <view bindtap="openPickerMask" class="picker" data-type="tdxl">
+                <view class="picker-text" style="color:{{tdxl?'#333333':'#999999'}}"> {{tdxl?tdxl:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="select-item" wx:if="{{tools.idInStr(19,option)&&yzsubjectList.length>0}}">
+            <view>研招学科</view>
+            <view bindtap="openPickerMask" class="picker" data-type="yzsubject">
+                <view class="picker-text" style="color:{{yzsubject?'#333333':'#999999'}}"> {{yzsubject?yzsubject:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+        <view class="result-flex">
+            <view style="position:relative;width:100%;height:800rpx;" wx:if="{{allList.length==0}}">
+                <no-data-comp></no-data-comp>
+            </view>
+            <block wx:else>
+                <scroll-view class="table" scrollX="true" wx:if="{{searchType==1}}">
+                    <view class="scroll-view-item_H">
+                        <view class="tr bg-w">
+                            <view class="th max-w" style="background-color: {{diyConfig.color}};" wx:for="{{plan_key}}" wx:key="*this">{{item}}</view>
+                        </view>
+                        <view class="tr  bg-g" wx:for="{{allList}}" wx:key="*this">
+                            <view class="td max-w" wx:for="{{plan_key}}" wx:for-index="idx" wx:for-item="item1" wx:key="*this">{{item[item1]?item[item1]:'-'}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+                <scroll-view class="table" scrollX="true" wx:if="{{searchType==2}}">
+                    <view class="scroll-view-item_H">
+                        <view class="tr bg-w">
+                            <view class="th max-w" style="background-color: {{diyConfig.color}};" wx:for="{{score_key}}" wx:key="*this">{{item}}</view>
+                        </view>
+                        <view class="tr  bg-g" wx:for="{{admissionLineList}}" wx:key="*this">
+                            <view class="td max-w" wx:for="{{score_key}}" wx:for-index="idx" wx:for-item="item1" wx:key="*this">{{item[item1]?item[item1]:'-'}}</view>
+                        </view>
+                        <view class="tr  bg-g" wx:for="{{majorList}}" wx:key="*this">
+                            <view class="td max-w" wx:for="{{score_key}}" wx:for-index="idx" wx:for-item="item1" wx:key="*this">{{item[item1]?item[item1]:'-'}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </block>
+        </view>
+    </scroll-view>
+</view>
+<view bindtap="handlePickerCancel" class="picker-mask" wx:if="{{showPickerMask}}">
+    <view catchtap="ss" class="picker-content">
+        <view class="top-btn">
+            <view bindtap="handlePickerCancel" class="cancel">取消</view>
+            <view bindtap="handlePickerSure" class="sure">确定</view>
+        </view>
+        <picker-view bindchange="bindSearchChange" bindpickend="bindSearchEnd" bindpickstart="bindSearchStart" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{searchVal}}">
+            <picker-view-column wx:if="{{pickerType=='subject'||pickerType=='province'||pickerType=='divition'}}">
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{searchList}}" wx:key="item"> {{item.name}} </view>
+            </picker-view-column>
+            <picker-view-column wx:else>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{searchList}}" wx:key="item"> {{item}} </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

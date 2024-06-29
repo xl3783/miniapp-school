@@ -1,0 +1,51 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <block wx:if="{{cateList.length>0}}">
+        <block wx:if="{{style==1}}">
+            <view wx:for="{{cateList}}" wx:key="index">
+                <navigator class="cate-item" hoverClass="none" url="/pages/campus-faq-cate/campus-faq-cate?type={{item.id}}">
+                    <view class="left">
+                        <view class="circle" style="background:{{colorList[index]}}"></view>
+                        <view class="text">{{item.name}}</view>
+                    </view>
+                    <view class="right">
+                        <image class="icon-right" showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+        <block wx:if="{{style==2}}">
+            <view wx:for="{{cateList}}" wx:key="index">
+                <navigator class="cate-item" hoverClass="none" url="/pages/campus-faq-cate-detail/campus-faq-cate-detail?id={{item.id}}">
+                    <view class="left">
+                        <view class="text">{{item.title}}</view>
+                    </view>
+                    <view class="right">
+                        <image class="icon-right" showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+        <block wx:if="{{style==3}}">
+            <view bindtap="openQuestion" data-index="{{index}}" data-type="{{item.id}}" wx:for="{{cateList}}" wx:key="index">
+                <view class="cate-item">
+                    <view class="left">
+                        <view class="circle" style="background:{{colorList[index]}}"></view>
+                        <view class="text">{{item.name}}</view>
+                    </view>
+                    <view class="right">
+                        <image class="icon-right" showMenuByLongpress="true" src="../../../assets/image/icon_top.png" wx:if="{{activeIndex==index}}"></image>
+                        <image class="icon-right" showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="transform:rotate(180deg)" wx:else></image>
+                    </view>
+                </view>
+                <view style="background:#F3F5F8" wx:if="{{activeIndex==index}}">
+                    <view class="question-item" wx:for="{{secQuestionList}}" wx:key="index">
+                        <view class="question-name">{{item.title}}</view>
+                        <view class="question-text">{{item.answer}}</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </block>
+    <no-data-comp wx:if="{{cateList.length===0&&dataIsLoad}}"></no-data-comp>
+    <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>

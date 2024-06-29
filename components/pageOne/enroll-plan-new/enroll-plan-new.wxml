@@ -1,0 +1,128 @@
+<view style="overflow:hidden">
+    <view id="top-search" style="background:#fff;height:{{showSearch?'220rpx':'110rpx'}};padding-top:{{showSearch?'32rpx':'0rpx'}};box-sizing:border-box">
+        <view bindtap="goMajorSearch" class="top-search" wx:if="{{showSearch}}">
+            <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+            <view class="search-text">输入想要查询的专业</view>
+        </view>
+        <view class="default-search">
+            <view class="enroll-plan-default">
+                <view class="enroll-plan-item">{{areaText?areaText:'省份'}}</view>
+                <view class="enroll-plan-item">{{divitionText?divitionText:'科类'}}</view>
+                <view class="enroll-plan-item">{{yearId>0?yearId+'年':'年份'}}</view>
+            </view>
+            <view bindtap="goPlanSearch" class="enroll-plan-search">
+                <view>筛选</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+    </view>
+    <scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{showSearch?height-110:height-60}}px;background-color:{{showSearch?pageColor:'#fff'}};">
+        <view class="blue-bg">
+            <view class="blue-item">
+                <view class="blue-item-num">{{total_num}}</view>
+                <view class="blue-item-name">计划人数</view>
+            </view>
+            <view class="blue-item">
+                <view class="blue-item-num">{{major_num}}</view>
+                <view class="blue-item-name">专业数</view>
+            </view>
+            <view class="blue-item">
+                <view class="blue-item-num">{{province_num}}</view>
+                <view class="blue-item-name">省份</view>
+            </view>
+        </view>
+        <view class="plan-list" wx:for="{{list}}" wx:key="*this">
+            <view bindtap="tapItem" class="plan-item" data-index="{{index}}">
+                <view class="plan-item-text">{{item.major_name}}</view>
+                <image class="top-icon" showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style=" transform:{{activeIndex1==index?'rotate(0deg)':'rotate(180deg)'}} ; "></image>
+            </view>
+            <view class="plan-item-detail" wx:if="{{activeIndex1==index}}">
+                <view class="plan-num" wx:if="{{item.batch}}">批次：{{item.batch}}</view>
+                <view class="plan-num" wx:if="{{item.num}}">计划人数：{{item.num}}</view>
+                <view class="plan-num" wx:if="{{value}}" wx:for="{{item.custom}}" wx:for-index="key" wx:for-item="value" wx:key="key">{{key}}：{{value}}</view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<view class="choose-mask" style="bottom:{{isFullScreen?'0rpx':isIphoneX?'178rpx':'110rpx'}}" wx:if="{{showModel}}">
+    <view class="choose-content" style="height:920rpx">
+        <view class="search-title">筛选</view>
+        <scroll-view scrollY="true" style="height:616rpx;">
+            <view class="select-item" wx:if="{{showArea}}">
+                <view>区域</view>
+                <picker bindchange="bindAreaChange" range="{{areaList}}" rangeKey="province" value="{{index}}">
+                    <view class="picker">
+                        <view class="picker-text" style="color:{{areaId!=-1?'#333333':'#999999'}}">{{areaId!=-1?areaText:'请选择'}} </view>
+                        <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                    </view>
+                </picker>
+            </view>
+            <view class="select-item" wx:if="{{showYear}}">
+                <view>年份</view>
+                <view bindtap="openPickerMask" class="picker" data-type="year">
+                    <view class="picker-text" style="color:{{yearId>0?'#333333':'#999999'}}">{{yearId>0?yearId+'年':'请选择'}} </view>
+                    <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </view>
+            <view class="select-item" wx:if="{{showCampus}}">
+                <view>校区</view>
+                <view bindtap="openPickerMask" class="picker" data-type="campus">
+                    <view class="picker-text" style="color:{{campusId!=-1?'#333333':'#999999'}}"> {{campusId!=-1?campusText:'请选择'}}</view>
+                    <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </view>
+            <view class="select-item" wx:if="{{showBatch}}">
+                <view>批次</view>
+                <view bindtap="openPickerMask" class="picker" data-type="batch">
+                    <view class="picker-text" style="color:{{batch?'#333333':'#999999'}}">{{batch?batch:'请选择'}}</view>
+                    <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </view>
+            <view class="subject" wx:if="{{showEnrollType&&enrollTypeList.length>0}}">
+                <view style="margin:40rpx 0;">类型</view>
+                <view class="subject-box">
+                    <view bindtap="handleEnroll" class="subject-item1 " data-item="{{item}}" style="background:{{enroll_type==item.id?globalColor?globalColor:'#1487FF':'#F6F7F9'}};color:{{enroll_type==item.id?'#fff':'#333'}}" wx:for="{{enrollTypeList}}" wx:key="index">{{item.name}} </view>
+                </view>
+            </view>
+            <view class="subject" wx:if="{{showDivition&&divitionList.length>0}}">
+                <view style="margin:40rpx 0;">科类</view>
+                <view class="subject-box">
+                    <view bindtap="handleDivition" class="subject-item1 " data-item="{{item}}" style="background:{{divitionId==item.divition_id?globalColor?globalColor:'#1487FF':'#F6F7F9'}};color:{{divitionId==item.divition_id?'#fff':'#333'}}" wx:for="{{divitionList}}" wx:key="index">{{item.name}} </view>
+                </view>
+            </view>
+            <view class="subject" wx:if="{{showSubject&&divitionText=='新高考'&&subjectList.length>0}}">
+                <view style="margin:40rpx 0;">学科</view>
+                <view class="subject-box">
+                    <view bindtap="handleSubject" class="subject-item1 " data-item="{{item}}" style="background:{{subjectId==item.id?globalColor?globalColor:'#1487FF':'#F6F7F9'}};color:{{subjectId==item.id?'#fff':'#333'}}" wx:for="{{subjectList}}" wx:key="index">{{item.name}} </view>
+                </view>
+            </view>
+        </scroll-view>
+        <view style="display:flex;justify-content:space-between">
+            <view bindtap="handleReset" class="reset-btn">重置</view>
+            <view bindtap="handleSure" class="sure-btn" style="background:{{globalColor?globalColor:'#1487FF'}}">确定</view>
+        </view>
+    </view>
+</view>
+<view bindtap="handlePickerCancel" class="picker-mask" wx:if="{{showPickerMask}}">
+    <view catchtap="ss" class="picker-content">
+        <view class="top-btn">
+            <view bindtap="handlePickerCancel" class="cancel">取消</view>
+            <view bindtap="handlePickerSure" class="sure">确定</view>
+        </view>
+        <picker-view bindchange="bindYearChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{yearVal}}" wx:if="{{pickerType=='year'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{yearList}}" wx:key="item">{{item}} </view>
+            </picker-view-column>
+        </picker-view>
+        <picker-view bindchange="bindCampusChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{campusVal}}" wx:if="{{pickerType=='campus'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{campusList}}" wx:key="item"> {{item.name}} </view>
+            </picker-view-column>
+        </picker-view>
+        <picker-view bindchange="bindBatchChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{batchVal}}" wx:if="{{pickerType=='batch'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{batchList}}" wx:key="item">{{item}} </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>

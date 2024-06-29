@@ -1,0 +1,89 @@
+<view style="overflow:hidden;padding-top: 10px;">
+    <scroll-view bindscroll="handleScroll" scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:100vh;background-color:{{pageColor}};">
+        <block wx:if="{{style==1}}">
+            <view class="select-item" wx:for="{{filterData}}" wx:key="index">
+                <view class="select-item-name">{{item.name}}</view>
+                <view bindtap="openPicker" class="picker" data-type="{{item.name}}">
+                    <view class="picker-text" style="color:{{item.val?'#333333':'#999999'}}">{{item.val?item.val:'请选择'}}</view>
+                    <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{style==2}}">
+            <block wx:for="{{radioData}}" wx:key="*this">
+                <view class="radio-item" wx:if="{{item1.name==item&&item1.children.length!=0}}" wx:for="{{selectList}}" wx:for-item="item1" wx:key="index">
+                    <view class="radio-title" wx:if="{{item1.name==item}}">{{item1.name==item?item1.name:''}}</view>
+                    <view class="radio-content" wx:if="{{item1.name==item}}">
+                        <view bindtap="chooseRadio" class="{{item2.check?'active':''}}" data-idx="{{idx}}" data-index="{{index}}" data-item="{{item2}}" data-title="{{item}}" style="background-color: {{item2.check?diyConfig.color:''}}" wx:for="{{item1.children}}" wx:for-index="idx" wx:for-item="item2" wx:key="idx">{{item2.name}}</view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{style==3}}">
+            <block wx:for="{{radioData}}" wx:key="*this">
+                <view class="radio-item" wx:if="{{item1.name==item&&item1.children.length!=0}}" wx:for="{{selectList}}" wx:for-item="item1" wx:key="index">
+                    <view class="radio-title" wx:if="{{item1.name==item}}">{{item1.name==item?item1.name:''}}</view>
+                    <scroll-view class="scroll-item" scrollX="true" wx:if="{{item1.name==item}}">
+                        <view class="scroll-view-item_H">
+                            <view class="radio-content" wx:if="{{item1.name==item}}">
+                                <view bindtap="chooseRadio" class="{{item2.check?'active':''}}" data-idx="{{idx}}" data-index="{{index}}" data-item="{{item2}}" data-title="{{item}}" style="background-color: {{item2.check?diyConfig.color:''}}" wx:for="{{item1.children}}" wx:for-index="idx" wx:for-item="item2" wx:key="idx">{{item2.name}}</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </block>
+        </block>
+        <view class="result-flex">
+            <view style="position:relative;width:100%;height:800rpx;" wx:if="{{allList.length==0&&allDataList.length==0&&dataIsLoad}}">
+                <no-data-comp></no-data-comp>
+            </view>
+            <block wx:if="{{allDataList.length!=0}}">
+                <view class="table-title"> {{hit_title}} <view style="color: #555;font-size: 30rpx;font-weight: 400;margin-left: 10rpx;display: inline-block;" wx:if="{{all_DataKey.length>3}}"> ( 向左/向下滑动查看更多 ) </view>
+                </view>
+                <scroll-view class="table" scrollX="true">
+                    <view class="scroll-view-item_H">
+                        <view class="tr bg-w">
+                            <view class="th max-w" style="background-color: {{diyConfig.color}};" wx:for="{{all_DataKey}}" wx:key="*this">{{item}}</view>
+                        </view>
+                        <view class="tr bg-g" wx:for="{{allDataList}}" wx:for-index="idx" wx:key="*this">
+                            <view class="td max-w" wx:for="{{all_DataKey}}" wx:for-index="idx" wx:for-item="item1" wx:key="*this">{{item[item1]?item[item1]:'-'}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </block>
+            <block wx:if="{{allList.length!=0}}">
+                <view class="table-title"> {{searchType==1?'分专业计划':'专业线'}} <view style="color: #555;font-size: 30rpx;font-weight: 400;margin-left: 10rpx;display: inline-block;" wx:if="{{all_key.length>3}}"> ( 向左/向下滑动查看更多 ) </view>
+                </view>
+                <scroll-view class="table" scrollX="true">
+                    <view class="scroll-view-item_H">
+                        <view class="tr bg-w">
+                            <view class="th max-w" style="background-color: {{diyConfig.color}};" wx:for="{{all_key}}" wx:key="*this">{{item}}</view>
+                        </view>
+                        <view class="tr bg-g" wx:for="{{allList}}" wx:for-index="idx" wx:key="*this">
+                            <view class="td max-w" style="{{countColorType&&idx===allList.length-1?'background-color:'+diyConfig.color+';color:#fff;':''}}" wx:for="{{all_key}}" wx:for-index="idx1" wx:for-item="item1" wx:key="*this">{{item[item1]?item[item1]:'-'}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </block>
+        </view>
+        <view class="remark" wx:if="{{remark}}">
+            <view>备注：</view>
+            <mp class="remark-mp" content="{{remark}}" copyLink="{{true}}"></mp>
+        </view>
+        <view class="is_bottom">已经到底了哦～</view>
+    </scroll-view>
+</view>
+<view bindtap="handlePickerCancel" class="picker-mask" wx:if="{{showPickerMask}}">
+    <view class="picker-content">
+        <view class="top-btn">
+            <view bindtap="handlePickerCancel" class="cancel">取消</view>
+            <view bindtap="handlePickerSure" class="sure">确定</view>
+        </view>
+        <picker-view bindchange="bindSearchChange" bindpickend="bindSearchEnd" bindpickstart="bindSearchStart" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{pickerList[0]}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{pickerList}}" wx:key="item"> {{item}} </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

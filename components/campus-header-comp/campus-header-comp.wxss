@@ -1,0 +1,82 @@
+.logo-box {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 30rpx;
+    display: flex;
+    padding: 40rpx 32rpx;
+}
+
+.logo-box .logo-bg {
+    margin-right: 24rpx;
+}
+
+.logo-box .logo-bg,.logo-box .logo-bg .logo {
+    border-radius: 50%;
+    height: 120rpx;
+}
+
+.logo {
+    border-radius: 50%;
+    height: 100%;
+}
+
+.logo-name {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 36rpx;
+    font-weight: 600;
+    line-height: 50rpx;
+}
+
+.logo-box .tag-box,.logo-center-box .tag-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logo-center-box .tag-box {
+    justify-content: center;
+}
+
+.logo-right-box .tag-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.tag-box .tag {
+    background: rgba(199,207,216,.35);
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    color: #666;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 22rpx;
+    font-weight: 400;
+    line-height: 30rpx;
+    margin-right: 16rpx;
+    margin-top: 16rpx;
+    padding: 6rpx 12rpx;
+}
+
+.logo-right-box .tag-box .tag {
+    margin-left: 16rpx;
+    margin-right: 0;
+    text-align: right;
+}
+
+.logo-center-box {
+    background: hsla(0,0%,100%,.8);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 40rpx;
+    text-align: center;
+}
+
+.logo-center-box .logo-bg .logo {
+    height: 120rpx;
+    margin-bottom: 12rpx;
+    width: 120rpx;
+}
+
+.right .logo-name {
+    text-align: right;
+}

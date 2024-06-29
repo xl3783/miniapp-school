@@ -1,0 +1,35 @@
+<view style="background: #F3F5F8;width:100%;padding:32rpx 32rpx 0;box-sizing:border-box">
+    <view class="logo-box" wx:if="{{position==1}}">
+        <view class="logo-bg" wx:if="{{showLogo==1}}">
+            <image class="logo" mode="widthFix" showMenuByLongpress="true" src="{{logo}}" style="width: 120rpx;"></image>
+        </view>
+        <view style="flex:1;overflow:hidden">
+            <view class="logo-name">{{name}}</view>
+            <view class="tag-box">
+                <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="logo-center-box center" wx:if="{{position==2}}">
+        <view class="logo-bg" wx:if="{{showLogo==1}}">
+            <image class="logo" mode="widthFix" showMenuByLongpress="true" src="{{logo}}"></image>
+        </view>
+        <view style="margin:0 10px;">
+            <view class="logo-name">{{name}}</view>
+            <view class="tag-box">
+                <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="logo-box logo-right-box right" wx:if="{{position==3}}">
+        <view style="margin:0 24rpx 0 0rpx;flex:1;overflow:hidden">
+            <view class="logo-name">{{name}}</view>
+            <view class="tag-box">
+                <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+            </view>
+        </view>
+        <view class="logo-bg" style="margin-right:0" wx:if="{{showLogo==1}}">
+            <image class="logo" mode="widthFix" showMenuByLongpress="true" src="{{logo}}" style="width: 120rpx;"></image>
+        </view>
+    </view>
+</view>

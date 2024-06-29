@@ -1,0 +1,7 @@
+.bottom {
+    color: #ccc;
+    font-size: 24rpx;
+    margin-top: 25rpx;
+    padding-bottom: 25rpx;
+    text-align: center;
+}

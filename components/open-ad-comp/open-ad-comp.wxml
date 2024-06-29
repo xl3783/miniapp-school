@@ -1,0 +1,19 @@
+<view bindtap="goDetail" class="open-ad" data-item="{{open_ad}}" data-type="open" wx:if="{{showOpen}}">
+    <view class="ad-banner">
+        <image lazyLoad="true" mode="aspectFit" showMenuByLongpress="true" src="{{open_ad.material_url}}" style="width:100%;height:100%" wx:if="{{open_ad.screen_type==1}}"></image>
+        <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{open_ad.material_url}}" style="width:100%;height:100%" wx:if="{{open_ad.screen_type==2}}"></image>
+        <view catchtap="skip" class="skip" wx:if="{{open_ad.is_skip}}"> 跳过 <text wx:if="{{is_countdown==0}}">{{count}}</text>
+        </view>
+    </view>
+    <view class="ad-content" wx:if="{{open_ad.style==1}}">
+        <image class="schoollogo" mode="widthFix" showMenuByLongpress="true" src="{{schoollogo}}"></image>
+        <view class="schoolname">{{schoolname}}</view>
+    </view>
+    <button bindgetphonenumber="initPhone" class="ad-get-phone" openType="getPhoneNumber" wx:if="{{is_get_phone==1&&is_countdown==1}}"></button>
+</view>
+<view class="popup-ad" wx:if="{{showPopup}}">
+    <view class="popup-ad-box">
+        <image bindtap="goDetail" class="ad-img" data-item="{{popup_ad}}" data-type="popup" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{popup_ad.material_url}}"></image>
+        <image catchtap="closePopup" class="close-img" showMenuByLongpress="true" src="../../assets/image/close.png"></image>
+    </view>
+</view>

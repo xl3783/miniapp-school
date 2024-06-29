@@ -1,0 +1,13 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background:#fff;" wx:if="{{list.length>0}}">
+    <view bindtap="goDetail" class="list-item" data-item="{{item}}" wx:for="{{list}}" wx:key="id">
+        <view class="left">
+            <view class="name">{{item.topic}}</view>
+            <view class="intro">{{item.intro}}</view>
+        </view>
+        <view class="btn" wx:if="{{item.status==1}}">{{item.status_txt}}</view>
+        <view class="btn plain" wx:if="{{item.status==0}}">{{item.status_txt}}</view>
+        <view class="btn gray" wx:if="{{item.status==2}}">{{item.status_txt}}</view>
+    </view>
+    <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+</scroll-view>
+<no-data-comp wx:else></no-data-comp>

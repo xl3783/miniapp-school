@@ -1,0 +1,84 @@
+.ad-box {
+    margin-top: 32rpx;
+}
+
+.navigator {
+    height: 100%;
+    width: 100%;
+}
+
+.ad-box-item {
+    margin-bottom: 12rpx;
+}
+
+.ad-box-item.one {
+    height: 240rpx;
+    width: 100%;
+}
+
+.ad-box-item.two {
+    height: 200rpx;
+    width: 372rpx;
+}
+
+.ad-box-item.three {
+    height: 240rpx;
+    width: 240rpx;
+    width: 246rpx;
+}
+
+.ad-box-item .image {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.ad-box.border {
+    margin: 32rpx auto 12rpx;
+    width: 686rpx;
+}
+
+.ad-box.border .ad-box-item.border.one {
+    height: 240rpx;
+    width: 100%;
+}
+
+.ad-box.border .ad-box-item.border.two {
+    height: 200rpx;
+    width: 338rpx;
+}
+
+.ad-box.border .ad-box-item.border.three {
+    height: 240rpx;
+    width: 224rpx;
+}
+
+.ad-box-item.one:nth-last-child(-n+1),.ad-box-item.three:nth-last-child(-n+3),.ad-box-item.two:nth-last-child(-n+2) {
+    margin-bottom: 0;
+}
+
+.ad-title {
+    align-items: center;
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 700;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+.ad-title,.item-box {
+    display: flex;
+}
+
+.item-box {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 12rpx;
+    margin-top: 32rpx;
+    overflow: hidden;
+}
+
+.border .item-box {
+    border-radius: 20rpx;
+}

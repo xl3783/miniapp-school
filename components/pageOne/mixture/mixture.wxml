@@ -1,0 +1,81 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollTop="{{top}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;">
+    <view class="saas-bottom" style="padding-top:100rpx;">
+        <view class="top-nav" style="top:{{top-1}}px" wx:if="{{navList.length>0}}">
+            <scroll-view class="scrool-view" scrollIntoView="{{toView}}" scrollX="true" showScrollbar="{{false}}">
+                <view bindtap="chooseNav" class="cate {{index==activeIndex?'active':''}}" data-index="{{index}}" data-item="{{item}}" id="row_{{item.id}}" wx:for="{{navList}}" wx:key="index">
+                    <view>{{item.name}}</view>
+                    <view class="border" style="background-color:{{globalColor}}"></view>
+                </view>
+            </scroll-view>
+        </view>
+        <block wx:if="{{currentList.length>0}}">
+            <block wx:if="{{currentType===1}}">
+                <view wx:for="{{currentList}}" wx:key="index">
+                    <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==1}}">
+                        <view class="left">
+                            <view class="title">{{item.title}}</view>
+                            <view class="time" wx:if="{{item.create_time}}">{{item.create_time}}</view>
+                        </view>
+                        <view class="right" wx:if="{{item.thumb_url}}">
+                            <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                        </view>
+                    </view>
+                    <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==2}}">
+                        <view class="left1" wx:if="{{item.thumb_url}}">
+                            <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                        </view>
+                        <view class="right1">
+                            <view class="title">{{item.title}}</view>
+                            <view class="time" wx:if="{{item.create_time}}">{{item.create_time}}</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{currentType===2}}">
+                <block wx:if="{{sceneryStyle==2}}">
+                    <view class="video-item" data-index="{{index}}" wx:for="{{currentList}}" wx:key="index">
+                        <view class="new_video">
+                            <image bindtap="previewImg" data-id="{{item.id}}" data-img="{{item.image_url}}" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+                        </view>
+                        <view class="title">{{item.title}}</view>
+                    </view>
+                </block>
+                <view class="video-grid" wx:else>
+                    <view class="video-item" data-index="{{index}}" wx:for="{{currentList}}" wx:key="index">
+                        <view class="new_video">
+                            <image bindtap="previewImg" data-id="{{item.id}}" data-img="{{item.image_url}}" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+                        </view>
+                        <view class="title">{{item.title}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{currentType===3}}">
+                <block wx:if="{{videoStyle==2}}">
+                    <view bindtap="goDetail1" class="video-item" data-id="{{item.id}}" wx:for="{{currentList}}" wx:key="index">
+                        <view class="new_video" style="background-image:url({{item.cover_url}});background-size:cover;">
+                            <view class="video_icon">
+                                <image showMenuByLongpress="true" src="../../assets/image/video_icon.png"></image>
+                            </view>
+                        </view>
+                        <view class="title">{{item.title}}</view>
+                    </view>
+                </block>
+                <view class="video-grid" wx:else>
+                    <view bindtap="goDetail1" class="video-item" data-id="{{item.id}}" wx:for="{{currentList}}" wx:key="index">
+                        <view class="new_video" style="background-image:url({{item.cover_url}});background-size:cover">
+                            <view class="video_icon">
+                                <image showMenuByLongpress="true" src="../../assets/image/video_icon.png"></image>
+                            </view>
+                        </view>
+                        <view class="title">{{item.title}}</view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <view style="margin-top: 900rpx;" wx:if="{{currentList.length==0&&dataIsLoad}}">
+            <no-data-comp></no-data-comp>
+        </view>
+        <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+        <view style="width: 100%;height: 200rpx;"></view>
+    </view>
+</scroll-view>

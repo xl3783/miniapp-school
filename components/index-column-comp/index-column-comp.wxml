@@ -1,0 +1,33 @@
+<view class="column-box">
+    <view class="column-top">
+        <view class="column-title">{{name}}</view>
+        <view class="column-more">
+            <view bindtap="lookMore" data-jumptype="{{jumpType}}">查看更多</view>
+            <image class="image" lazyLoad="true" showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+    <view class="column-content">
+        <block wx:for="{{columnList}}" wx:key="index">
+            <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==2}}">
+                <view class="left">
+                    <text class="title">
+                        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text>{{item.title}}</text>
+                    <view class="time">{{item.create_time}}</view>
+                </view>
+                <view class="right" wx:if="{{item.thumb_url}}">
+                    <image class="right-image" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                </view>
+            </view>
+            <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==1}}">
+                <view class="left1" wx:if="{{item.thumb_url}}">
+                    <image class="image1" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                </view>
+                <view class="right1">
+                    <text class="title">
+                        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text>{{item.title}}</text>
+                    <view class="time">{{item.create_time}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

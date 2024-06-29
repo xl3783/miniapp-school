@@ -1,0 +1,10 @@
+<view class="top" style="height:{{customBar+statusBarHeight}}px;background:{{bgColor}};color:{{color}}">
+  <view class="top_title" style="height:{{customBar+statusBarHeight}}px;background:{{bgColor}};">
+    <view bindtap="toBack" class="bacck" style="height:{{customBar}}px;top:{{statusBarHeight}}px;" wx:if="{{hasBack}}">
+      <image class="back_png" showMenuByLongpress="true" src="../../assets/image/back_fff.png" wx:if="{{color=='#ffffff'}}"></image>
+      <image class="back_png" showMenuByLongpress="true" src="../../assets/image/back.png" wx:else></image>
+    </view>
+    <view bindtap="scrollToTop" class="top_title_info" hidden="{{position!=1}}" style="color:{{color}};width:{{t_width}}px;height:{{customBar}}px;line-height:{{customBar}}px;margin-top:{{statusBarHeight}}px;margin-left:{{hasBack?40:20}}px;margin-right:{{left}}px;background:{{bgColor}};text-align: left;"> {{titleName}} </view>
+    <view bindtap="scrollToTop" class="top_title_info" hidden="{{position!=2}}" style="color:{{color}};height:{{customBar}}px;line-height:{{customBar}}px;margin-top:{{statusBarHeight}}px;background:{{bgColor}};text-align: center;"> {{titleName}} </view>
+  </view>
+</view>

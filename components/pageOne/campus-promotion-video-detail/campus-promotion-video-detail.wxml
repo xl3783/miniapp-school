@@ -1,0 +1,4 @@
+<view class="video-box">
+    <video autoplay="true" class="new_video" controls="{{true}}" id="myVideo" poster="{{content.cover_url}}" showCenterPlayBtn="{{false}}" showPlayBtn="{{true}}" src="{{content.video_url}}"></video>
+    <view>{{content.title}}</view>
+</view>

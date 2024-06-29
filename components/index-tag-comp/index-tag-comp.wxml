@@ -1,0 +1,11 @@
+<view style="margin:0 32rpx;">
+    <view class="{{flexStyle==1?'flex-left':flexStyle==2?'flex-center':'flex-right'}}" wx:if="{{tagList.length>0}}">
+        <view class="index-tag" wx:for="{{tagList}}" wx:key="*this">
+            <view class="bg" style="background:{{globalColor}};opacity:0.1"></view>
+            <view class="item" style="color:{{globalColor}};font-size: {{tagSize}}rpx;"> {{item}} </view>
+        </view>
+    </view>
+    <view class="tag_container">
+        <view class="tag_line" style="font-size:{{fontSize}}rpx;" wx:for="{{introList}}" wx:key="key"> {{item.key}}: {{item.value}} </view>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+._root {
+    -webkit-overflow-scrolling: touch;
+    line-height: 64rpx;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 0;
+}
+
+._root,._select {
+    word-break: break-all;
+}
+
+._select {
+    user-select: text;
+}
+
+._root video {
+    height: 180px!important;
+    object-fit: scale-down!important;
+    width: 100%!important;
+    word-break: break-all;
+}
+
+._root image {
+    border-radius: 14rpx;
+}

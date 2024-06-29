@@ -1,0 +1,48 @@
+.nav-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 32rpx 0 0rpx;
+}
+
+.nav-box .nav-item {
+    margin-bottom: 32rpx;
+    text-align: center;
+}
+
+.nav-item .img {
+    display: inline-block;
+    height: 96rpx;
+    margin-bottom: 10rpx;
+    width: 96rpx;
+}
+
+.nav-item .text {
+    color: #333;
+    font-size: 26rpx;
+    font-weight: 400;
+    height: 37rpx;
+    line-height: 37rpx;
+}
+
+.indicator {
+    bottom: 0rpx;
+    display: flex;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+}
+
+.indicator .indicator-item {
+    background: rgba(59,124,255,.2);
+    border-radius: 0rpx;
+    height: 6rpx;
+    margin: 0rpx 12rpx 0 0;
+    width: 24rpx;
+}
+
+.indicator .active {
+    background-color: #3b7cff;
+    border-radius: 0rpx;
+    height: 6rpx;
+    width: 24rpx;
+}

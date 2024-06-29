@@ -1,0 +1,11 @@
+<page-container closeOnSlideDown round bind:clickoverlay="onClose" show="{{needAuthorization}}" zIndex="9999">
+  <view class="content">
+    <view class="content-title">小程序隐私保护提示</view>
+    <view class="content-text"> 在你使用本【{{appName}}】服务之前，请仔细阅读<text bindtap="toPrivacyPage" style="font-weight: 500;color: rgb(140, 74, 202);font-size: 28rpx;">{{privacyContractName}}</text>。 如你同意{{privacyContractName}}，请点击 <text style="font-weight: 500;color: #666;">“同意”</text> 开始使用【{{appName}}】, 如 <text style="font-weight: 500;color:#666;">“拒绝”</text> 可能导致部分功能无法使用。 </view>
+    <view class="but-box">
+      <view bindtap="onClose" class="no-but">拒绝</view>
+      <view class="ok-but"> 同意 <button bindagreeprivacyauthorization="onOk" class="wx-but" id="agree-btn" openType="agreePrivacyAuthorization"></button>
+      </view>
+    </view>
+  </view>
+</page-container>

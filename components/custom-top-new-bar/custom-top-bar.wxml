@@ -1,0 +1,8 @@
+<view class="top" style="height:{{customBar+statusBarHeight}}px;background:{{bgColor}};color:{{color}};padding-top: {{statusBarHeight}}px;background:{{bgColor}};color:{{color}};">
+    <view class="top_title" style="height:{{customBar+statusBarHeight}}px;background:{{bgColor}};justify-content: {{position==1?'flex-start':'center'}};">
+        <view bindtap="toBack" class="bacck" style="height:{{customBar}}px;top:{{statusBarHeight}}px;" wx:if="{{hasBack}}">
+            <image class="back_png" showMenuByLongpress="true" src="{{color=='#ffffff'?'../../assets/image/back_fff.png':'../../assets/image/back.png'}}"></image>
+        </view>
+        <view class="top-nav" style="height: {{customBar}}px;line-height: {{customBar}}px;margin-top: {{statusBarHeight}}px; justify-content: {{position==1?'flex-start':'center'}};margin-left: {{position==2?'':hasBack?'100rpx':'50rpx'}};text-align: {{position==1?'left':'center'}};width: {{position==1?'63%':'55%'}};"> {{titleName}} </view>
+    </view>
+</view>

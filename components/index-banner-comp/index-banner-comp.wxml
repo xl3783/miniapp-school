@@ -1,0 +1,61 @@
+<view class="banner-box" style="padding-top:{{marginTop}}">
+  <view style="position:relative;height:{{height_type==1?'300rpx':height_type==2?'348rpx':'360rpx'}};width:{{bannerWidth}};margin:0 auto;border-radius:{{bannerRadius}}" wx:if="{{banner_style==1}}">
+    <swiper autoplay="{{autoplay}}" bindchange="changeSwiper" circular="{{circular}}" class="swiper-box" duration="{{duration}}" interval="{{interval}}" style="height:{{height_type==1?'300rpx':height_type==2?'348rpx':'360rpx'}};">
+      <swiper-item class="swiper-item" wx:for="{{bannerList}}" wx:key="*this">
+        <image bindtap="jump" class="image" data-item="{{item}}" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}" style="width:{{bannerWidth}};border-radius:{{bannerRadius}};"></image>
+      </swiper-item>
+    </swiper>
+    <view class="indicator" wx:if="{{indicatorDots&&bannerList.length>1}}">
+      <view class="indicator-item {{active==index?'active':''}}" wx:for="{{bannerList}}" wx:key="*this"></view>
+    </view>
+  </view>
+  <view style="position:relative;height:{{height_type==1?'320rpx':height_type==2?'360rpx':'400rpx'}};width:{{bannerWidth}};margin:0 auto;border-radius:{{bannerRadius}}" wx:if="{{banner_style==2}}">
+    <swiper autoplay="{{autoplay}}" bindchange="changeSwiper" circular="{{circular}}" class="swiper-box" duration="{{duration}}" interval="{{interval}}" style="height:{{height_type==1?'320rpx':height_type==2?'360rpx':'400rpx'}};">
+      <swiper-item class="swiper-item" wx:for="{{bannerList}}" wx:key="*this">
+        <image bindtap="jump" class="image" data-item="{{item}}" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}" style="width:{{bannerWidth}};border-radius:{{bannerRadius}};"></image>
+      </swiper-item>
+    </swiper>
+    <view class="indicator" wx:if="{{indicatorDots&&bannerList.length>1}}">
+      <view class="indicator-item {{active==index?'active':''}}" wx:for="{{bannerList}}" wx:key="*this"></view>
+    </view>
+  </view>
+  <block wx:if="{{showLogo==1}}">
+    <block wx:if="{{align==1}}">
+      <view class="logo-box left" wx:if="{{showLogo==1}}">
+        <image class="school-logo" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{logo}}"></image>
+        <block wx:if="{{is_show_name!=2}}">
+          <view style="padding: 9rpx 32rpx 0 196rpx" wx:if="{{titleType==2}}">
+            <image class="school-name-img" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{imgTitle}}"></image>
+          </view>
+          <view class="school-name" wx:else>{{schoolName}}</view>
+        </block>
+      </view>
+    </block>
+    <block wx:if="{{align==2}}">
+      <view class="logo-box center" wx:if="{{showLogo==1}}">
+        <image class="school-logo" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{logo}}"></image>
+        <block wx:if="{{is_show_name!=2}}">
+          <view style="padding: 72rpx 32rpx 0" wx:if="{{titleType==2}}">
+            <image class="school-name-img" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{imgTitle}}"></image>
+          </view>
+          <view class="school-name" wx:else>{{schoolName}}</view>
+        </block>
+      </view>
+    </block>
+    <block wx:if="{{align==3}}">
+      <view class="logo-box right" wx:if="{{showLogo==1}}">
+        <image class="school-logo" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{logo}}"></image>
+        <block wx:if="{{is_show_name!=2}}">
+          <view style="padding: 9rpx 196rpx 0 32rpx" wx:if="{{titleType==2}}">
+            <image class="school-name-img" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{imgTitle}}" wx:if="{{titleType==2}}"></image>
+          </view>
+          <view class="school-name" wx:else>{{schoolName}}</view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <view style="margin:0 32rpx;" wx:if="{{showLogo==2&&is_show_name!=2}}">
+    <image class="school-name-img" lazyLoad="true" mode="widthFix" showMenuByLongpress="true" src="{{imgTitle}}" style="width: 100%;" wx:if="{{titleType==2}}"></image>
+    <view class="center_school_name" style="text-align: center;" wx:else> {{schoolName}} </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view class="box saas-bottom mp-img-box">
+        <mp bindlinktap="linktap" content="{{content}}" copyLink="{{false}}"></mp>
+        <view style="width: 100%;height: 200rpx;"></view>
+    </view>
+</scroll-view>

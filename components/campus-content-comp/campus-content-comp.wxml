@@ -1,0 +1,15 @@
+<block wx:if="{{isGrid==1}}">
+    <view bindtap="jump" class="item" data-item="{{item}}" wx:for="{{navList}}" wx:key="index">
+        <view class="left">
+            <image class="icon" showMenuByLongpress="true" src="{{item.icon_url}}"></image>
+            <view class="campus-item-text">{{item.name}}</view>
+        </view>
+        <image class="icon-right" showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+    </view>
+</block>
+<view wx:if="{{isGrid==2}}">
+    <view bindtap="jump" class="grid-item" data-item="{{item}}" wx:for="{{navList}}" wx:key="index">
+        <image class="icon" showMenuByLongpress="true" src="{{item.icon_url}}"></image>
+        <view class="campus-item-text">{{item.name}}</view>
+    </view>
+</view>

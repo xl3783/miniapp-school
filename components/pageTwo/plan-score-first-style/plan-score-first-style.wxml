@@ -1,0 +1,83 @@
+<view id="top-search" style="background:#fff;height:{{showSearch?'220rpx':'110rpx'}};padding-top:{{showSearch?'32rpx':'0rpx'}};box-sizing:border-box">
+    <view bindtap="goMajorSearch" class="top-search" wx:if="{{showSearch}}">
+        <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+        <view class="search-text">输入想要查询的专业</view>
+    </view>
+    <view class="default-search">
+        <scroll-view class="enroll-plan-default" scrollX="true">
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(2,option)}}">{{province_name?province_name:'省份'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(3,option)}}">{{year>0?year+'年':'年份'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(4,option)}}">{{campus?campus:'校区'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(5,option)}}">{{batch?batch:'批次'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(6,option)}}">{{divition_name?divition_name:'科类'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(7,option)}}">{{subject_name?subject_name:'学科'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(8,option)}}">{{bxd?bxd:'办学点'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(9,option)}}">{{xz?xz:'学制'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(10,option)}}">{{major?major:'专业'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(11,option)}}">{{cc?cc:'层次'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(12,option)}}">{{zsdx?zsdx:'招生对象'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(13,option)}}">{{fzxx?fzxx:'发证学校'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(14,option)}}">{{pyd?pyd:'培养点'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(15,option)}}">{{lx?lx:'类型'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(16,option)}}">{{xxfs?xxfs:'学习方式'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(17,option)&&searchType==1}}">{{tdxl?tdxl:'同等学力'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(18,option)&&searchType==2}}">{{yzqy?yzqy:'研招区域'}}</view>
+            <view class="enroll-plan-item" wx:if="{{tools.idInStr(19,option)}}">{{yzsubject?yzsubject:'研招学科'}}</view>
+        </scroll-view>
+        <view bindtap="goSearch" class="enroll-plan-search">
+            <view>筛选</view>
+            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+</view>
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{showSearch?height-110:height-60}}px;background-color:{{showSearch?'#F3F5F8':'#fff'}};" wx:if="{{searchType==1}}">
+    <view class="blue-bg">
+        <view class="blue-item">
+            <view class="blue-item-name">计划人数</view>
+            <view class="blue-item-num">{{total_num}}</view>
+        </view>
+        <view class="blue-item">
+            <view class="blue-item-name">专业数</view>
+            <view class="blue-item-num">{{major_num}}</view>
+        </view>
+    </view>
+    <view class="help" style="background:#fff;" wx:for="{{allList}}" wx:key="index">
+        <view class="help_item" wx:if="{{value}}" wx:for="{{item}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+            <view catchtap="tapMajor" class="title" data-id="{{index}}" wx:if="{{key=='专业'}}">
+                <view class="title_1">{{value}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx" wx:if="{{tools.idInArr(index,activeIds)}}"></image>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx;transform:rotate(180deg)" wx:else></image>
+            </view>
+        </view>
+        <view class="score" style="padding:0 32rpx 32rpx;background: #F6F7F9;" wx:if="{{tools.idInArr(index,activeIds)}}">
+            <view wx:if="{{value&&key!='专业'}}" wx:for="{{allList[index]}}" wx:for-index="key" wx:for-item="value" wx:key="key">{{key}}：{{value}}</view>
+        </view>
+    </view>
+</scroll-view>
+<block wx:if="{{(admissionLineList.length>0||majorList.length>0)&&searchType==2}}">
+    <view class="admission-line" style="padding-top:{{showSearch?'32rpx':'140rpx'}}" wx:if="{{admissionLineList&&admissionLineList.length>0}}">
+        <view class="name">{{entrance_line_alias}}</view>
+        <view class="score" wx:for="{{admissionLineList}}" wx:key="index">
+            <view wx:if="{{value&&key!='专业'}}" wx:for="{{item}}" wx:for-index="key" wx:for-item="value" wx:key="key"> {{key}}：{{value}} </view>
+        </view>
+    </view>
+    <view class="help" wx:for="{{majorList}}" wx:key="index">
+        <view class="help_item" wx:if="{{value}}" wx:for="{{item}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+            <view catchtap="tapMajor" class="title" data-id="{{index}}" wx:if="{{key=='专业'}}">
+                <view class="title_1">{{value}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx" wx:if="{{tools.idInArr(index,activeIds)}}"></image>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx;transform:rotate(180deg)" wx:else></image>
+            </view>
+        </view>
+        <view class="score" style="padding:0 32rpx 32rpx;background: #F6F7F9;" wx:if="{{tools.idInArr(index,activeIds)}}">
+            <view wx:if="{{value&&key!='专业'}}" wx:for="{{majorList[index]}}" wx:for-index="key" wx:for-item="value" wx:key="key">{{key}}：{{value}}</view>
+        </view>
+    </view>
+</block>
+<view style="position:relative;width:100%;height:600rpx;" wx:if="{{allList.length==0&&searchType==1}}">
+    <no-data-comp></no-data-comp>
+</view>
+<view style="position:relative;width:100%;height:600rpx;" wx:if="{{majorList.length==0&&admissionLineList.length==0&&searchType==2}}">
+    <no-data-comp></no-data-comp>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

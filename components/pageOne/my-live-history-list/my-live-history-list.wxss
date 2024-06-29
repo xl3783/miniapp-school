@@ -1,0 +1,23 @@
+.history-item {
+    background-color: #fff;
+    border-radius: 33rpx;
+    box-sizing: border-box;
+    margin: 32rpx auto 0;
+    padding: 32rpx;
+    width: 686rpx;
+}
+
+.history-item .name {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    line-height: 50rpx;
+    margin-bottom: 12rpx;
+}
+
+.history-item .info {
+    color: #999;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    margin-bottom: 12rpx;
+}

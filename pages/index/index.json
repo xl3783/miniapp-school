@@ -1,4 +1,6 @@
 {
+  "navigationBarTitleText": "栅格布局",
   "usingComponents": {
+    "index-banner-comp": "/components/index-banner-comp/index-banner-comp"
   }
 }

@@ -1,0 +1,13 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollY="true" style="height:{{height}}px">
+    <view class="live-item" wx:for="{{list}}" wx:key="*this">
+        <image class="img" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+        <view class="flex">
+            <view style="flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;  display: flex;flex-direction: column;justify-content: center;">
+                <view class="live_name">{{item.name}}</view>
+            </view>
+            <view bindtap="goLive" class="live-column-btn" data-id="{{item.id}}" data-name="{{item.name}}"> 立即参与</view>
+        </view>
+    </view>
+    <no-data-comp wx:if="{{list.length==0}}"></no-data-comp>
+    <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>

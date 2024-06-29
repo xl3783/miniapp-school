@@ -1,0 +1,44 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollY="true" style="height:{{height-60}}px;background:#F6F7F8">
+    <block wx:if="{{list.length>0}}">
+        <view class="my-live-item" wx:for="{{list}}" wx:key="*this">
+            <view class="left-box">
+                <view class="time">{{item.today}}</view>
+                <view class="time1">{{item.week}}</view>
+            </view>
+            <view class="right-box">
+                <view class="title">{{item.name}}</view>
+                <view class="flex">
+                    <image class="time-icon" showMenuByLongpress="true" src="../../../assets/image/time.png"></image>
+                    <view class="live-time">开播时间：{{item.time}}</view>
+                </view>
+                <view class="flex-between" style=" margin-top: 30rpx;">
+                    <button bindtap="goMyLive" class="join-btn" data-id="{{item.id}}">进入直播间</button>
+                    <image bindtap="openMask" class="share" data-coverUrl="{{item.cover_url}}" data-id="{{item.id}}" data-name="{{item.name}}" data-type="{{item.type}}" showMenuByLongpress="true" src="../../../assets/image/live-share.png"></image>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="no-live" wx:else>
+        <image class="no-live-img" showMenuByLongpress="true" src="../../../assets/image/no-live.png"></image>
+        <view class="no-live-text">暂无直播内容</view>
+    </view>
+    <view bindtap="goHistory" class="look-history1" wx:if="{{list.length>0}}">查看历史直播记录</view>
+    <view bindtap="goHistory" class="look-history" wx:else>查看历史直播记录</view>
+</scroll-view>
+<view bindtap="hideMask" class="mask" wx:if="{{showShare}}">
+    <view catchtap="handle" class="sharefff" wx:if="{{showShare}}">
+        <view class="share-title">分享</view>
+        <view class="flex">
+            <button class="share-item" openType="share">
+                <image class="share-img" showMenuByLongpress="true" src="../../../assets/image/weixin.png"></image>
+                <view class="share-text">微信好友</view>
+            </button>
+            <view bindtap="copyLink" class="share-item">
+                <image class="share-img" showMenuByLongpress="true" src="../../../assets/image/link.png"></image>
+                <view class="share-text">复制链接</view>
+            </view>
+        </view>
+        <view bindtap="hideMask" class="cancel-btn">取消</view>
+    </view>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

@@ -1,0 +1,92 @@
+<scroll-view scrollY="true" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view class="content">
+        <view class="bg_swiper_box">
+            <swiper circular autoplay="{{autoplay}}" bindchange="bgChange" class="bg_swiper" current="{{bannerCurrent}}" duration="{{duration}}" indicatorActiveColor="#ffffff" indicatorColor="rgba(255,255,255,0.4)" indicatorDots="{{bannerList&&bannerList.length>1}}" interval="{{interval}}">
+                <block wx:if="{{bannerList&&bannerList.length>0}}">
+                    <swiper-item bindtap="gobannerDetails" data-item="{{item}}" wx:for="{{bannerList}}" wx:key="index">
+                        <image showMenuByLongpress class="banner_img" mode="aspectFill" src="{{item.image_url}}"></image>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="modular">
+            <view class="function_nav">
+                <view class="function_box">
+                    <index-nav-comp count="{{count}}" fontSize="{{fontSize?fontSize:26}}" hasBorder="{{false}}" isAlumni="{{true}}" isSwiper="{{line!=1}}" line="{{line==2?1:2}}" navList="{{navList}}" width="{{width}}"></index-nav-comp>
+                </view>
+            </view>
+            <view class="news modular_list" wx:if="{{newsList&&newsList.length>0}}">
+                <view bindtap="goNews" class="list_top">
+                    <view class="list_top_left">
+                        <image class="title_img" mode="widthFix" src="../../../assets/image/xwgg.png"></image>
+                        <text>新闻公告</text>
+                    </view>
+                    <view class="list_top_right">
+                        <text>更多</text>
+                        <image class="more" mode="widthFix" src="../../../assets/image/right_c.png"></image>
+                    </view>
+                </view>
+                <block wx:if="{{newsList&&newsList.length>0}}">
+                    <view bindtap="goNewsDetail" class="news_cnt" data-item="{{item}}" wx:for="{{newsList}}" wx:key="index">
+                        <view class="cnt_left">
+                            <view class="news_title">{{item.title}}</view>
+                            <view class="news_time">{{item.create_time}}</view>
+                        </view>
+                        <image class="news_img" mode="scaleToFill" src="{{item.thumb_url}}"></image>
+                    </view>
+                </block>
+            </view>
+            <view class="alumni_style modular_list" wx:if="{{alumniStyleList&&alumniStyleList.length>0}}">
+                <view bindtap="goCharacters" class="list_top">
+                    <view class="list_top_left">
+                        <image class="title_img" mode="widthFix" src="../../../assets/image/xyfc.png"></image>
+                        <text>校友风采</text>
+                    </view>
+                    <view class="list_top_right">
+                        <text>更多</text>
+                        <image class="more" mode="widthFix" src="../../../assets/image/right_c.png"></image>
+                    </view>
+                </view>
+                <scroll-view scrollX="true">
+                    <view class="style_box">
+                        <block wx:if="{{alumniStyleList&&alumniStyleList.length>0}}">
+                            <view bindtap="goCharacterDetail" class="character_box" data-item="{{item}}" wx:for="{{alumniStyleList}}" wx:key="index">
+                                <image showMenuByLongpress class="character_img" mode="aspectFill" src="{{item.photo_url}}"></image>
+                                <view class="character_text">
+                                    <view class="character_title">{{item.name}}</view>
+                                    <view class="character_info">{{item.title}}</view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="photo_album modular_list" wx:if="{{alumniAlbumList&&alumniAlbumList.length>0}}">
+                <view bindtap="goCampusScenery" class="list_top">
+                    <view class="list_top_left">
+                        <image class="title_img" mode="widthFix" src="../../../assets/image/album.png"></image>
+                        <text>校友相册</text>
+                    </view>
+                    <view class="list_top_right">
+                        <text>更多</text>
+                        <image class="more" mode="widthFix" src="../../../assets/image/right_c.png"></image>
+                    </view>
+                </view>
+                <swiper circular autoplay="{{autoplay}}" bindchange="photoChange" class="photo_swiper" current="{{photoCurrent}}" duration="{{duration}}" interval="{{interval}}" nextMargin="80rpx" previousMargin="80rpx">
+                    <block wx:if="{{alumniAlbumList&&alumniAlbumList.length>0}}">
+                        <swiper-item bindtap="previewImg" class="{{photoCurrent==index?'photo_active':''}}" data-img="{{item.image_url}}" wx:for="{{alumniAlbumList}}" wx:key="index">
+                            <image showMenuByLongpress mode="aspectFill" src="{{item.image_url}}"></image>
+                            <view class="swiper_text">{{item.title}}</view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+        </view>
+    </view>
+    <view style="position:relative;min-height:70rpx;padding-bottom:100rpx">
+        <view class="footer">
+            <image showMenuByLongpress="true" src="../../../assets/image/xiaopi.png"></image>
+            <view>校派提供技术支持</view>
+        </view>
+    </view>
+</scroll-view>

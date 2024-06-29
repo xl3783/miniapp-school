@@ -1,0 +1,68 @@
+.content {
+    background-color: #fff;
+    border-top-left-radius: 50rpx;
+    border-top-right-radius: 50rpx;
+    box-sizing: border-box;
+    min-height: 500rpx;
+    padding: 46rpx 36rpx 120rpx;
+    width: 100%;
+}
+
+.content-text {
+    color: #999;
+    font-size: 28rpx;
+    line-height: 46rpx;
+    margin-top: 36rpx;
+}
+
+.content-title {
+    color: #333;
+    font-size: 38rpx;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+}
+
+.but-box {
+    gap: 40rpx;
+    margin-top: 80rpx;
+    width: 100%;
+}
+
+.but-box,.no-but {
+    display: flex;
+    justify-content: center;
+}
+
+.no-but {
+    background-color: #f2f2f2;
+    border-radius: 15rpx;
+    color: #71bc73;
+    width: 280rpx;
+}
+
+.no-but,.ok-but {
+    align-items: center;
+    border: none;
+    font-size: 32rpx;
+    height: 85rpx;
+}
+
+.ok-but {
+    background-color: #71bc73;
+    border-radius: 15rpx;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    min-width: 280rpx;
+    position: relative;
+}
+
+.wx-but {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

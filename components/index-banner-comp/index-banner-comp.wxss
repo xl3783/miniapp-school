@@ -1,0 +1,119 @@
+.banner-box {
+    margin-bottom: 20rpx;
+}
+
+.indicator {
+    bottom: 18rpx;
+    display: flex;
+    position: absolute;
+    right: 18rpx;
+}
+
+.indicator .indicator-item {
+    background: hsla(0,0%,100%,.5);
+    border-radius: 50%;
+    height: 10rpx;
+    margin: 0 8rpx;
+    width: 10rpx;
+}
+
+.indicator .active {
+    background-color: #fff;
+    border-radius: 5rpx;
+    height: 10rpx;
+    width: 30rpx;
+}
+
+.swiper-item {
+    text-align: center;
+}
+
+.swiper-item .image {
+    height: 100%;
+}
+
+.logo-box {
+    position: relative;
+}
+
+.logo-box .school-logo {
+    border-radius: 50%;
+    display: line-block;
+    height: 120rpx;
+    position: absolute;
+    top: -60rpx;
+    width: 120rpx;
+}
+
+.center_school_name,.logo-box .school-name {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 700;
+    line-height: 50rpx;
+}
+
+.logo-box .school-name-img {
+    height: 50rpx;
+}
+
+.logo-box.left {
+    min-height: 60rpx;
+}
+
+.logo-box.left .school-logo {
+    left: 64rpx;
+    position: absolute;
+    top: -60rpx;
+}
+
+.logo-box.left .school-name {
+    padding: 9rpx 32rpx 0 196rpx;
+}
+
+.logo-box.left .school-name-img {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.logo-box.right {
+    min-height: 68rpx;
+}
+
+.logo-box.right .school-logo {
+    position: absolute;
+    right: 64rpx;
+    top: -60rpx;
+}
+
+.logo-box.right .school-name {
+    padding: 9rpx 196rpx 0 32rpx;
+}
+
+.logo-box.right .school-name-img {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.logo-box.center {
+    min-height: 60rpx;
+    position: relative;
+}
+
+.logo-box.center .school-logo {
+    left: 50%;
+    position: absolute;
+    top: -60rpx;
+    transform: translate(-50%,0);
+}
+
+.logo-box.center .school-name {
+    height: auto;
+    padding: 72rpx 32rpx 0;
+    text-align: center;
+}
+
+.logo-box.center .school-name-img {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+}

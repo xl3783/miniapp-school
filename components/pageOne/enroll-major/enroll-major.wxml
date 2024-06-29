@@ -1,0 +1,13 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view class="saas-bottom">
+        <block wx:if="{{list.length>0}}">
+            <view bindtap="goDetail" class="major-box" data-item="{{item}}" wx:for="{{list}}" wx:key="index">
+                <view class="item">
+                    <image alt="" class="item-img" showMenuByLongpress="true" src="{{colorList[index]}}"></image>
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </view>
+        </block>
+        <no-data-comp wx:else></no-data-comp>
+    </view>
+</scroll-view>

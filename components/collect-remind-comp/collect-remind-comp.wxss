@@ -1,0 +1,43 @@
+.collect-fixed {
+    position: fixed;
+    right: 3rpx;
+    top: 140rpx;
+    z-index: 103;
+}
+
+.collect-container {
+    background: rgba(0,0,0,.75);
+    border-radius: 13rpx;
+    box-sizing: border-box;
+    height: 146rpx;
+    padding: 20rpx 24rpx;
+    position: relative;
+    width: 380rpx;
+}
+
+.dot-img {
+    height: 26rpx;
+    margin: 0 6rpx;
+    width: 27rpx;
+}
+
+.collect-title {
+    color: #fff;
+    font-size: 28rpx;
+    font-weight: 600;
+    margin-bottom: 6rpx;
+}
+
+.collect-item {
+    color: hsla(0,0%,100%,.65);
+    font-size: 22rpx;
+    line-height: 30rpx;
+}
+
+.close-collect-img {
+    height: 22rpx;
+    position: absolute;
+    right: 13rpx;
+    top: 15rpx;
+    width: 22rpx;
+}

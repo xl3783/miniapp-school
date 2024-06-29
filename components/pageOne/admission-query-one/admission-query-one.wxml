@@ -1,0 +1,41 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <no-data-comp wx:if="{{isNoData&&dataIsLoad}}"></no-data-comp>
+    <block wx:else>
+        <view class="img-box">
+            <image mode="widthFix" showMenuByLongpress="true" src="../../../assets/image/admission.png" wx:if="{{show_illustration==0}}"></image>
+            <image mode="widthFix" showMenuByLongpress="true" src="{{illustration}}" wx:if="{{show_illustration==1}}"></image>
+        </view>
+        <view class="query-title">{{tipsTitle}}</view>
+        <form catchsubmit="formSubmit">
+            <input bindinput="inputItem" class="input-box" data-index="{{index}}" data-item="{{item}}" name="{{item}}" placeholder="{{item}}" placeholderStyle="color:#999;" style="color:#333" value="{{itemName}}" wx:for="{{nameFilter}}" wx:key="index"></input>
+            <button class="input-box btn" formType="submit" style="background-color:{{globalColor}}">查询</button>
+            <view class="saas-bottom" style="margin-top:48rpx;" wx:if="{{tips}}">
+                <view class="info">提示：</view>
+                <view class="info mp-img-box">
+                    <mp bindlinktap="linktap" content="{{tips}}" copyLink="{{false}}"></mp>
+                </view>
+            </view>
+        </form>
+        <view class="mask" wx:if="{{showResult}}">
+            <view class="bg">
+                <image class="result-img" showMenuByLongpress="true" src="{{bgUrl}}"></image>
+                <view class="result">
+                    <scroll-view class="scroll-view" scrollY="true" showScrollbar="false">
+                        <view wx:if="{{ksh}}">考生号：{{ksh}}</view>
+                        <view wx:if="{{name}}">姓名：{{name}}</view>
+                        <view wx:if="{{idcard}}">身份证号：{{idcard}}</view>
+                        <view wx:if="{{major}}">{{major_column}}{{major}}</view>
+                        <view wx:if="{{ems}}">EMS单号：{{ems}} <text bindtap="copyLink" style="color:#3B7CFF;margin-left:0rpx">复制</text>
+                        </view>
+                        <view wx:if="{{score}}">成绩：{{score}}</view>
+                        <view wx:for="{{custom}}" wx:key="*this">
+                            <text wx:if="{{item.value}}">{{item.name}}：{{item.value}}</text>
+                        </view>
+                    </scroll-view>
+                </view>
+                <image bindtap="close" class="close" showMenuByLongpress="true" src="../../../assets/image/close.png"></image>
+            </view>
+        </view>
+        <bottom-tabbar-comp></bottom-tabbar-comp>
+    </block>
+</scroll-view>

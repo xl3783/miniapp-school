@@ -1,0 +1,17 @@
+{
+  "component": true,
+  "usingComponents": {
+    "index-banner-comp": "../../index-banner-comp/index-banner-comp",
+    "index-notice-comp": "../../index-notice-comp/index-notice-comp",
+    "index-column-comp": "../../index-column-comp/index-column-comp",
+    "index-ad-comp": "../../index-ad-comp/index-ad-comp",
+    "index-nav-comp": "../../index-nav-comp/index-nav-comp",
+    "space-comp": "../../space-comp/space-comp",
+    "line-comp": "../../line-comp/line-comp",
+    "bottom-comp": "../../bottom-comp/bottom-comp",
+    "no-data-comp": "../../no-data-comp/no-data-comp",
+    "collect-remind-comp": "../../collect-remind-comp/collect-remind-comp",
+    "pic-column-comp": "../../pic-column-comp/pic-column-comp",
+    "index-tag-comp": "../../index-tag-comp/index-tag-comp"
+  }
+}

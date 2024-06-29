@@ -1,0 +1,11 @@
+<view class="notice-box" style="width:{{noticeW}};border-radius:{{noticeRadius}};height:{{noticeH}}rpx">
+    <image class="icon-notice" showMenuByLongpress="true" src="{{iconUrl}}" style="margin-top:{{(noticeH-48)/2}}rpx"></image>
+    <swiper autoplay="true" circular="true" style="flex:1;height:{{noticeH}}rpx;text-align:left" vertical="true">
+        <swiper-item bindtap="goDetail" class="newBox" data-item="{{item}}" style="" wx:for="{{noticeList}}" wx:key="index">
+            <view class="right-box">
+                <view class="notice-text" style="line-height:{{noticeH}}rpx">{{item.title}}</view>
+                <image class="icon-right" showMenuByLongpress="true" src="../../assets/image/icon_right.png" style="margin-top:{{(noticeH-24)/2}}rpx"></image>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>

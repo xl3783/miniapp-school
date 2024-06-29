@@ -1,0 +1,25 @@
+.title {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    margin: 32rpx;
+}
+
+.list-item {
+    align-items: center;
+    border-bottom: 1rpx solid #e7eef0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 32rpx;
+    padding: 32rpx 0;
+}
+
+.list-item .name {
+    color: #333;
+    font-size: 32rpx;
+}
+
+.list-item .icon {
+    height: 36rpx;
+    width: 36rpx;
+}

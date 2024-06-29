@@ -1,0 +1,16 @@
+<scroll-view bindscrolltolower="onReachBottom" class="scroll" scrollY="true" style="height:{{isIphoneX?height-50:height}}px;background:#F6F7F8">
+    <view style="padding-bottom:50px" wx:if="{{list.length>0}}">
+        <view class="live-item" wx:for="{{list}}" wx:key="*this">
+            <image class="image" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.thumb_url}}" wx:if="{{item.thumb_url}}"></image>
+            <image class="image" lazyLoad="true" mode="aspectFill" src="https://xiaopai-saas.oss-cn-hangzhou.aliyuncs.com/public/default1.png" wx:else></image>
+            <view class="flex">
+                <view style="flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    <view class="live_name">{{item.name}}</view>
+                </view>
+                <view bindtap="goAdmission" class="btn" data-id="{{item.id}}" data-status="{{item.is_open}}" style="background:{{item.is_open==1?'#1487FF':'#D8D8D8'}}"> {{item.is_open==1?'查询':'已关闭'}}</view>
+            </view>
+        </view>
+    </view>
+    <no-data-comp wx:if="{{load&&list.length==0}}"></no-data-comp>
+    <view style="width: 100%;height: 80rpx;"></view>
+</scroll-view>

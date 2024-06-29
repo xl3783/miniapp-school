@@ -1,0 +1,37 @@
+./app.wxssbody {
+    background: #f3f5f8;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sec-box {
+    background: #fff;
+    border-radius: 20rpx;
+    margin: 40rpx 32rpx 0;
+    overflow: hidden;
+    padding-top: 56rpx;
+}
+
+.footer {
+    color: #999;
+    display: flex;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 22rpx;
+    font-weight: 400;
+    height: 30rpx;
+    left: 50%;
+    line-height: 30rpx;
+    margin-bottom: 22rpx;
+    margin-top: 24rpx;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%,0);
+}
+
+.footer image {
+    height: 24rpx;
+    margin-right: 10rpx;
+    margin-top: 3rpx;
+    width: 30rpx;
+}

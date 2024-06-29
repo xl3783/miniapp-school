@@ -1,0 +1,38 @@
+./components/pageOne/live-list/live-list.wxssbody {
+    background-color: #f6f7f8;
+}
+
+.live-item {
+    background-color: #f6f7f8;
+    border-radius: 20rpx;
+    margin-top: 20rpx;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.live-item .img {
+    border-bottom-left-radius: 0rpx;
+    border-bottom-right-radius: 0rpx;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+}
+
+.flex {
+    background-color: #fff;
+    margin-top: 0!important;
+    padding: 32rpx;
+}
+
+.live-column-btn {
+    background: #1487ff;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 64rpx;
+    line-height: 64rpx;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 200rpx!important;
+}

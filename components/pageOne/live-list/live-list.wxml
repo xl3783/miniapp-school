@@ -1,0 +1,16 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollY="true" style="height:{{height}}px">
+    <view class="live-item" wx:for="{{list}}" wx:key="*this">
+        <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.cover_url}}"></image>
+        <view class="tag {{item.status==0?'red':item.status==1?'blue':'orange'}}"> {{item.status==0?'未开始':item.status==1?'直播中':'已结束'}}</view>
+        <view class="flex">
+            <view style="flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                <view class="live_name">{{item.name}}</view>
+                <view class="time">直播时间：{{item.start_time}}</view>
+            </view>
+            <button bindgetuserinfo="goLive" class="btn" data-id="{{item.id}}" data-status="{{item.status}}" data-type="{{item.type}}" openType="getUserInfo" wx:if="{{platform=='windows'}}">{{item.status==2?'回放':'进入'}} </button>
+            <view bindtap="goLive" class="btn" data-id="{{item.id}}" data-status="{{item.status}}" data-type="{{item.type}}" wx:else> {{item.status==2?'回放':'进入'}} </view>
+        </view>
+    </view>
+    <no-data-comp wx:if="{{list.length==0}}"></no-data-comp>
+    <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>

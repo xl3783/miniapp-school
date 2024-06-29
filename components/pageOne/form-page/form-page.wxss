@@ -1,0 +1,361 @@
+.banner {
+    background-color: #fff;
+    box-sizing: border-box;
+    height: 340rpx;
+    padding: 32rpx;
+    width: 100%;
+}
+
+.banner image {
+    background-color: #909399;
+    border-radius: 20rpx;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.phone-line {
+    align-items: center;
+    border-right: 3rpx solid #999;
+    height: 45rpx;
+    margin-right: 30rpx;
+    width: 120rpx;
+}
+
+.phone-line,.send-msg {
+    color: #999;
+    display: flex;
+    font-size: 28rpx;
+}
+
+.send-msg {
+    justify-content: flex-end;
+}
+
+.idcard-info {
+    color: #999;
+    font-size: 28rpx;
+    margin-bottom: 30rpx;
+}
+
+.pay-price {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-top: 25rpx;
+}
+
+.pay-info {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.imgae-line {
+    flex-wrap: wrap;
+    margin-top: 24rpx;
+    width: 100%;
+}
+
+.imgae-line,.imgae-line-con {
+    display: flex;
+}
+
+.imgae-line-con {
+    align-items: center;
+    background: #f6f7f9;
+    border-radius: 4rpx;
+    height: 180rpx;
+    justify-content: center;
+    margin-bottom: 24rpx;
+    margin-right: 24rpx;
+    width: 180rpx;
+}
+
+.topic-radio-title {
+    color: #333;
+    font-size: 32rpx;
+    margin-left: 28rpx;
+}
+
+.radio-line {
+    margin-top: 26rpx;
+    width: 100%;
+}
+
+.radio-line,.topic-multiple-icon {
+    align-items: center;
+    display: flex;
+}
+
+.topic-multiple-icon {
+    border: 2px solid #e9ecf0;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    height: 36rpx;
+    justify-content: center;
+    width: 36rpx;
+}
+
+.topic-multiple-icon view {
+    background-color: #007aff;
+    border-radius: 4rpx;
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.topic-radio-icon {
+    border: 2px solid #e9ecf0;
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 36rpx;
+    width: 36rpx;
+}
+
+.topic-but {
+    display: flex;
+    height: 160rpx;
+    justify-content: center;
+    margin-top: 86rpx;
+    width: 100%;
+}
+
+.topic-but .button {
+    background: #1487ff;
+    border-radius: 48rpx;
+    box-shadow: 0 8rpx 18rpx 0 rgba(20,135,255,.28);
+    color: #fff;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 500;
+    height: 96rpx;
+    text-shadow: 0 8rpx 18rpx rgba(20,135,255,.28);
+    width: 578rpx;
+}
+
+.topic-but .button,.topic-line-inp {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.topic-line-inp {
+    background: #f6f7f9;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    margin-top: 24rpx;
+    min-height: 104rpx;
+    padding-left: 36rpx;
+    padding-right: 36rpx;
+    width: 100%;
+}
+
+.topic-line-title {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.topic-line {
+    margin-bottom: 40rpx;
+}
+
+.topic {
+    width: 100%;
+}
+
+.form-info {
+    color: #666;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 30rpx;
+    font-weight: 400;
+    margin-top: 32rpx;
+}
+
+.form-title {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 43rpx;
+    font-weight: 500;
+    width: 100%;
+}
+
+.line {
+    background-color: #fff;
+    box-sizing: border-box;
+    min-height: 100rpx;
+    padding: 32rpx;
+    width: 100%;
+}
+
+.page {
+    background-color: #f3f5f8;
+    padding-bottom: 50rpx;
+    position: relative;
+    width: 100%;
+}
+
+.xia-container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.xia-bj,.xia-container {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.xia-bj {
+    background-color: rgba(0,0,0,.8);
+    height: 100%;
+    z-index: 1;
+}
+
+.xia-con {
+    border-radius: 10rpx;
+    bottom: 0;
+    height: 730rpx;
+    overflow: hidden;
+    position: fixed;
+    z-index: 1000;
+}
+
+.xia-con,.xia-content {
+    background-color: #fff;
+    width: 100%;
+}
+
+.xia-content {
+    display: flex;
+    height: 560rpx;
+}
+
+.xia-content-line {
+    align-items: center;
+    box-sizing: border-box;
+    color: #555;
+    cursor: pointer;
+    font-size: 28rpx;
+    height: 86rpx;
+    line-height: 86rpx;
+    overflow: hidden;
+    padding-right: 20rpx;
+    text-indent: 24rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.xia-content-item {
+    box-sizing: border-box;
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+}
+
+.xia-but {
+    align-items: center;
+    border-top: 1rpx solid #f0f0f0;
+    box-sizing: border-box;
+    display: flex;
+    height: 90rpx;
+    width: 100%;
+}
+
+.xia-hr {
+    background-color: #f0f0f0;
+    height: 30rpx;
+    width: 1rpx;
+}
+
+.xia-top {
+    align-items: center;
+    border-bottom: 1rpx solid #f0f0f0;
+    box-sizing: border-box;
+    display: flex;
+    height: 80rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    width: 100%;
+}
+
+.xia-top-line {
+    box-sizing: border-box;
+    color: #515151;
+    flex: 1;
+    font-size: 26rpx;
+    text-align: center;
+}
+
+.ad-con {
+    background-color: #fff;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    max-height: 900rpx;
+    min-height: 10rpx;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 40rpx 20rpx;
+    width: 600rpx;
+}
+
+.ad {
+    align-items: center;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.topic-line-info-text {
+    color: #999;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    width: 100%;
+}
+
+.pay-line {
+    align-items: center;
+    display: flex;
+    height: 120rpx;
+    justify-content: space-between;
+    margin-top: 26rpx;
+    width: 100%;
+}
+
+.pay-container {
+    color: #333;
+    font-size: 36rpx;
+    width: 280rpx;
+}
+
+.to-play {
+    background-color: #1487ff;
+    border-radius: 12rpx;
+    color: #fff;
+}
+
+.play-true,.to-play {
+    align-items: center;
+    display: flex;
+    font-size: 26rpx;
+    height: 68rpx;
+    justify-content: center;
+    width: 180rpx;
+}
+
+.play-true {
+    color: #007aff;
+}

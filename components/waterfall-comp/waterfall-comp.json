@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "aritcle-001": "../../style/article-01/article-01",
+        "aritcle-002": "../../style/article-02/article-02"
+    }
+}

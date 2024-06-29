@@ -1,0 +1,37 @@
+./app.wxss.re-item {
+    border-bottom: 1rpx solid #e7eef0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 32rpx;
+    padding: 36rpx 0rpx;
+}
+
+.re-item .re-name {
+    color: #333;
+    flex: 1;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 600;
+    height: 44rpx;
+    line-height: 44rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.re-item .re-right {
+    color: #999;
+    display: flex;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 26rpx;
+    font-weight: 400;
+    height: 36rpx;
+    line-height: 36rpx;
+    margin-top: 4rpx;
+}
+
+.re-item .re-right .right-img {
+    height: 36rpx;
+    margin-left: 6rpx;
+    width: 36rpx;
+}

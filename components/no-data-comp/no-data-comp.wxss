@@ -1,0 +1,19 @@
+.nodata {
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    width: 150rpx;
+}
+
+.none-img {
+    height: 136rpx;
+    margin: 0 auto 32rpx;
+    width: 136rpx;
+}
+
+.none-text {
+    color: #cdcdcd;
+    font-size: 28rpx;
+}

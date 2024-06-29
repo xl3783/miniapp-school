@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "campus-header-comp": "../../campus-header-comp/campus-header-comp",
+        "index-nav-comp": "../../index-nav-comp/index-nav-comp",
+        "campus-content-comp": "../../campus-content-comp/campus-content-comp",
+        "no-data-comp": "../../no-data-comp/no-data-comp"
+    }
+}

@@ -1,0 +1,11 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollY="true" style="height: {{height}}px;padding-bottom: 80rpx;">
+    <block wx:if="{{column.length>0}}">
+        <view bindtap="lookColumnDetail" class="re-item" data-item="{{item}}" wx:for="{{column}}" wx:key="index">
+            <view class="re-name">{{item.title}}</view>
+            <view class="re-right">
+                <image class="right-img" showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+    </block>
+    <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+</scroll-view>

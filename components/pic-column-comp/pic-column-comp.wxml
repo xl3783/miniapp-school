@@ -1,0 +1,21 @@
+<view class="column-box">
+    <view class="column-top">
+        <view class="column-title">{{name}}</view>
+        <view class="column-more">
+            <view bindtap="lookMore">查看更多</view>
+            <image class="more-image" lazyLoad="true" showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+    <scroll-view enableFlex class="scroll-view_H" scrollX="auto" style="height:{{num>1?'200rpx':'240rpx'}}">
+        <view class="line-contianer" wx:for="{{list}}" wx:key="*this">
+            <view bindtap="lookImg" class="scroll-item" data-id="{{item.id}}" data-img="{{item.image_url}}" style="width:{{num>1?'338rpx':'686rpx'}};height:{{num>1?'200rpx':'240rpx'}};" wx:if="{{item.data_type==1}}">
+                <image class="image" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+                <view class="scroll-item-title" wx:if="{{item.title}}">{{item.title}}</view>
+            </view>
+            <view bindtap="goVideoDetail" class="scroll-item" data-id="{{item.id}}" style="width:{{num>1?'338rpx':'686rpx'}};height:{{num>1?'200rpx':'240rpx'}}" wx:if="{{item.data_type==2}}">
+                <image class="image" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.cover_url}}"></image>
+                <image class="video_icon" showMenuByLongpress="true" src="../../assets/image/video_icon.png"></image>
+            </view>
+        </view>
+    </scroll-view>
+</view>

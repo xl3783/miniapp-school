@@ -1,0 +1,27 @@
+<scroll-view bindrefresherabort="refresherabort" bindrefresherpulling="refresherpulling" bindrefresherrefresh="refresherrefresh" bindrefresherrestore="refresherrestore" bindscrolltolower="onReachBottom" refresherEnabled="true" refresherTriggered="{{triggered}}" scrollTop="{{topNum}}" scrollY="true" showScrollbar="{{false}}" style="height:{{height}}px;background-color:{{pageColor}};">
+  <view class="transition-class">
+    <block wx:if="{{components.length>0}}">
+      <block wx:for="{{components}}" wx:key="index">
+        <index-banner-comp align="{{item.align}}" bannerList="{{item.content}}" bannerRadius="{{item.style==1?'20rpx':'0rpx'}}" bannerWidth="{{item.style==1?'686rpx':'750rpx'}}" banner_style="{{item.style}}" height_type="{{item.height_type}}" imgTitle="{{item.img_title}}" indicatorDots="{{true}}" is_show_name="{{item.is_show_name}}" logo="{{schoollogo}}" marginTop="{{item.style==1?'32rpx':'0rpx'}}" schoolName="{{item.title}}" showLogo="{{item.is_show_logo}}" titleType="{{item.title_type}}" wx:if="{{item.type==1}}"></index-banner-comp>
+        <index-notice-comp iconUrl="{{item.icon_url}}" noticeH="{{item.style==1?'72':'80'}}" noticeList="{{item.content}}" noticeRadius="{{item.style==1?'26rpx':'0rpx'}}" noticeW="{{item.style==1?'686rpx':'100%'}}" wx:if="{{item.type==2}}"></index-notice-comp>
+        <index-nav-comp count="{{item.line_num}}" fontSize="{{item.font_size?item.font_size:26}}" hasBorder="{{item.style==1?true:false}}" isSwiper="{{item.line_show_style!=1}}" line="{{item.line_show_style==2?1:2}}" navList="{{item.content}}" wx:if="{{item.type==3}}"></index-nav-comp>
+        <index-ad-comp adData="{{item}}" adList="{{item.content}}" borderRadius="{{item.style==1?'20rpx':'0rpx'}}" count="{{item.line_num==1?'one':item.line_num==2?'two':'three'}}" hasBorder="{{item.style==1?true:false}}" wx:if="{{item.type==4}}"></index-ad-comp>
+        <index-column-comp columnId="{{item.column_id}}" columnList="{{item.content}}" jumpType="{{item.jump_type}}" name="{{item.name}}" position="{{item.image_align}}" wx:if="{{item.type==5}}"></index-column-comp>
+        <space-comp bgColor="{{item.color}}" height="{{item.height}}" wx:if="{{item.type==7}}"></space-comp>
+        <line-comp color="{{item.color}}" hasBorder="{{item.style}}" height="{{item.height}}" lineStyle="{{item.line_style}}" lineheight="{{item.line_height}}" wx:if="{{item.type==8}}"></line-comp>
+        <waterfall-comp id="waterfall{{item.id}}" list="{{item.data}}" load_type="{{item.load_type}}" num="{{item.num}}" props_data="{{item}}" wx:if="{{item.type==9}}"></waterfall-comp>
+        <pic-column-comp componentid="{{item.id}}" list="{{item.content}}" name="{{item.name}}" num="{{item.num}}" wx:if="{{item.type==10}}"></pic-column-comp>
+        <view style="width:680rpx;height:168rpx;margin: 20rpx auto;" wx:if="{{item.type==11&&showOfficial}}">
+          <official-account :hidden="{{item.type!=11}}" binderror="officialError" bindload="loadOfficial"></official-account>
+        </view>
+        <index-tag-comp flexStyle="{{item.tags_position}}" fontSize="{{item.font_size?item.font_size:26}}" globalColor="{{item.color}}" introList="{{item.map}}" tagList="{{tools.splitToArr(item.tags)}}" tagSize="{{item.tag_size?item.tag_size:26}}" wx:if="{{item.type==12}}"></index-tag-comp>
+      </block>
+    </block>
+    <no-data-comp wx:if="{{components.length===0&&dataIsLoad}}"></no-data-comp>
+  </view>
+  <view class="saas-bottom" style="position:relative;min-height:20rpx;">
+    <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+  </view>
+  <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

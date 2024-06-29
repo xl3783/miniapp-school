@@ -1,0 +1,61 @@
+./app.wxss.top {
+    align-items: center;
+    background-color: #a84a4a;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    width: 750rpx;
+}
+
+.top_bj {
+    width: 100%;
+}
+
+.top_title {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.back_png {
+    height: 34rpx;
+    width: 34rpx;
+}
+
+.bacck {
+    align-items: center;
+    display: flex;
+    height: 48rpx;
+    justify-content: center;
+    left: 20rpx;
+    position: absolute;
+    width: 60rpx;
+    z-index: 1000;
+}
+
+.bacck .back_png {
+    height: 34rpx;
+    width: 18rpx;
+}
+
+.top_info {
+    display: flex;
+    height: 50rpx;
+    justify-content: center;
+    margin-top: 24rpx;
+    width: 100%;
+}
+
+.top-nav {
+    font-size: 34rpx;
+    font-weight: 600;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 55%;
+}

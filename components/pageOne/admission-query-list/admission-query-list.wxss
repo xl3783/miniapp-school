@@ -1,0 +1,77 @@
+.live-item {
+    background: #fff;
+    box-sizing: border-box;
+    margin-bottom: 32rpx;
+    padding: 32rpx;
+    position: relative;
+}
+
+.live-item .image {
+    border-radius: 20rpx;
+    display: block;
+    height: 320rpx;
+    margin: 0;
+    width: 100%;
+}
+
+.live-item .tag {
+    border-radius: 24rpx;
+    color: #fff;
+    font-size: 24rpx;
+    height: 48rpx;
+    left: 58rpx;
+    line-height: 48rpx;
+    position: absolute;
+    text-align: center;
+    top: 54rpx;
+    width: 116rpx;
+}
+
+.red {
+    background: #fb6d63;
+}
+
+.blue {
+    background: #21b9a2;
+}
+
+.gray {
+    background: silver;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16rpx;
+}
+
+.live_name {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    line-height: 64rpx;
+    margin-top: 16rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flex .time {
+    color: #999;
+    font-size: 26rpx;
+    line-height: 36rpx;
+}
+
+.flex .btn {
+    background: #1487ff;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 64rpx;
+    line-height: 64rpx;
+    margin: 16rpx 0 0;
+    padding: 0;
+    text-align: center;
+    width: 148rpx!important;
+}

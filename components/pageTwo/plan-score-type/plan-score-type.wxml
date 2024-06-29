@@ -1,0 +1,5 @@
+<view class="title">选择招生类型</view>
+<view bindtap="goTypeSearch" class="list-item" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{list}}" wx:key="index">
+    <view class="name">{{item.name}}</view>
+    <image class="icon" src="../../../assets/image/icon_right.png"></image>
+</view>

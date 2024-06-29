@@ -1,30 +1,7 @@
-<view class="container">
-  <image class="header-image" src="/images/header.png"></image>
-  <view class="title">
-    <text>荆州职业技术学院招生</text>
-  </view>
-  <view class="subtitle">
-    <text>智慧招生平台</text>
-  </view>
-  <view class="main-content">
-    <view class="college-info">
-      <image class="college-logo" src="/images/college_logo.png"></image>
-      <text>荆州职业技术学院</text>
-    </view>
-    <view class="announcement">
-      <text>荆州职业技术学院 2024年高职单招考试成</text>
-      <navigator url="/pages/enrollment/enrollment">></navigator>
-    </view>
-    <view class="menu">
-      <view class="menu-item" wx:for="{{menuItems}}" wx:key="index">
-        <image src="{{item.icon}}"></image>
-        <text>{{item.name}}</text>
-      </view>
-    </view>
-  </view>
-  <view class="footer-menu">
-    <navigator url="/pages/home/home">首页</navigator>
-    <navigator url="/pages/departments/departments">院系专业</navigator>
-    <navigator url="/pages/profile/profile">个人中心</navigator>
-  </view>
+<view class=".main-view">
+  <block wx:for="{{components}}" wx:key="index">
+    <index-banner-comp bannerList="{{item.content}}"></index-banner-comp>
+    <!-- <index-banner-comp align="{{item.align}}" bannerList="{{item.content}}" bannerRadius="{{item.style==1?'20rpx':'0rpx'}}" bannerWidth="{{item.style==1?'686rpx':'750rpx'}}" banner_style="{{item.style}}" height_type="{{item.height_type}}" imgTitle="{{item.img_title}}" indicatorDots="{{true}}" is_show_name="{{item.is_show_name}}" logo="{{schoollogo}}" marginTop="{{item.style==1?'32rpx':'0rpx'}}" schoolName="{{item.title}}" showLogo="{{item.is_show_logo}}" titleType="{{item.title_type}}" wx:if="{{item.type==1}}"></index-banner-comp> -->
+  </block>
 </view>
+<wxs module="tools" src="../../utils/tool.wxs" />

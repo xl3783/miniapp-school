@@ -1,0 +1,9 @@
+<scroll-view bindscrolltolower="onReachBottom" scrollY="true" style="height:{{height}}px;background:#F6F7F8">
+    <view bindtap="goLive" class="history-item" data-id="{{item.id}}" data-type="{{item.type}}" wx:for="{{list}}" wx:key="*this">
+        <view class="name">{{item.name}}</view>
+        <view class="info">开播时间：{{item.start_time}}</view>
+        <view class="info">直播时长：{{item.duration}}</view>
+        <view class="info">查看人数：{{item.view_num}}人</view>
+        <view class="info">累计聊天：{{item.msg_num}}条</view>
+    </view>
+</scroll-view>

@@ -1,0 +1,17 @@
+<scroll-view class="bgGray" scrollY="true" style="height:{{height+20}}px">
+    <view bindtap="clickItem" class="bgfff" data-id="{{item.id}}" wx:for="{{list}}" wx:key="*this">
+        <view class="flex-between">
+            <view class="flex leftItem">
+                <image alt="" class="item-img" showMenuByLongpress="true" src="{{colorList[index]}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+            <view class="iconfont icon-xiala3" style="transform:{{activeIndex==item.id?'rotate(180deg)':'rotate(0deg)'}};"></view>
+        </view>
+        <view style="border-top: 1rpx solid #E7EEF0;" wx:if="{{activeIndex==item.id}}">
+            <view class="sec-item" wx:for="{{item.major}}" wx:for-index="idx" wx:for-item="secItem" wx:key="*this">
+                <view class="dot"></view>
+                <view style="flex:1">{{secItem}}</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

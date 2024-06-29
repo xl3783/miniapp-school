@@ -1,0 +1,16 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view class="saas-bottom">
+        <block wx:if="{{list.length>0}}">
+            <view bindtap="goDetail" class="major-box" data-item="{{item}}" wx:for="{{list}}" wx:key="index">
+                <view class="item">
+                    <image alt="" class="item-img" showMenuByLongpress="true" src="{{colorList[index]}}"></image>
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </view>
+            <view bindtap="getMore" class="more" wx:if="{{!isBottom}}">加载更多</view>
+        </block>
+        <no-data-comp wx:if="{{list.length<=0&&show}}"></no-data-comp>
+        <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+    </view>
+    <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>

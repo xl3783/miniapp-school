@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "index-nav-comp": "../../index-nav-comp/index-nav-comp"
+    }
+}

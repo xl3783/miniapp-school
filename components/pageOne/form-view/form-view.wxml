@@ -1,0 +1,492 @@
+<view>
+    <view class="page" wx:if="{{show}}">
+        <view class="banner" mode="aspectFill" wx:if="{{dataInfo.cover_url}}">
+            <image mode="aspectFill" src="{{dataInfo.cover_url}}"></image>
+        </view>
+        <view class="line">
+            <view class="form-title">{{dataInfo.topic}}</view>
+            <view class="form-info">{{dataInfo.intro}}</view>
+        </view>
+        <view class="line" style="margin-top: 12rpx;">
+            <view class="topic" wx:for="{{dataInfo.questions}}" wx:for-index="questionIndex" wx:for-item="questionItem" wx:key="questionIndex">
+                <view class="topic-line" wx:if="{{questionItem.type==2&&questionItem.is_show==1}}">
+                    <view class="topic-line-title"> {{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view bindtap="selectRadio" class="radio-line" data-opt="{{optIndex}}" data-question="{{questionIndex}}" wx:for="{{questionItem.option}}" wx:for-index="optIndex" wx:for-item="optItem" wx:key="optIndex">
+                        <view class="topic-radio-icon" style="border:{{questionItem.select===optIndex?'12rpx solid rgba(59, 124, 255, 1)':''}}"></view>
+                        <view class="topic-radio-title">{{optItem.content}}</view>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==4&&questionItem.is_show==1}}">
+                    <view class="topic-line-title"> {{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="pay-line">
+                        <view class="pay-container">{{questionItem.amount}} 元</view>
+                        <view bindtap="toPay" class="to-play" data-id="{{questionItem.id}}" wx:if="{{questionItem.is_pay!==1}}">去支付</view>
+                        <view class="play-true" wx:if="{{questionItem.is_pay===1}}">支付成功</view>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==3&&questionItem.is_show==1}}">
+                    <view class="topic-line-title"> {{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view bindtap="selectMultiple" class="radio-line" data-id="{{optItem.id}}" data-index="{{optIndex}}" data-question="{{questionIndex}}" wx:for="{{questionItem.option}}" wx:for-index="optIndex" wx:for-item="optItem" wx:key="optIndex">
+                        <view class="topic-multiple-icon">
+                            <view wx:if="{{optItem.checkShow}}"></view>
+                        </view>
+                        <view class="topic-radio-title">{{optItem.content}}</view>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==8&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view bindtap="bindMultiOpen" class="topic-line-inp" data-index="{{questionIndex}}" data-item="{{questionItem}}" style="justify-content: space-between;">
+                        <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.selectStr?questionItem.selectStr:'请选择'}} </view>
+                        <image src="./icon/2.png" style="width: 35rpx;height: 35rpx;"></image>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==1&&questionItem.is_show==1}}">
+                    <view class="topic-line-title"> {{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="topic-line-inp">
+                        <input alwaysEmbed="{{true}}" bindblur="tiankongInputChange" data-index="{{questionIndex}}" maxlength="{{questionItem.is_length_limit==1?questionItem.max:-1}}" placeholder="请输入" style="width: 100%;font-size:28rpx;" value="{{questionItem.select}}" wx:if="{{!pullData}}"></input>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==6&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <picker bindchange="dateTimeChange" data-index="{{questionIndex}}" fields="day" mode="date" wx:if="{{questionItem.time_type==1}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.select?questionItem.select:'请选择'}} </view>
+                        </view>
+                    </picker>
+                    <picker bindchange="dateTimeChange" data-index="{{questionIndex}}" fields="month" mode="date" wx:if="{{questionItem.time_type==2}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.select?questionItem.select:'请选择'}} </view>
+                        </view>
+                    </picker>
+                    <picker bindchange="dateTimeChange" data-index="{{questionIndex}}" fields="year" mode="date" wx:if="{{questionItem.time_type==3}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.select?questionItem.select:'请选择'}} </view>
+                        </view>
+                    </picker>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==7&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <picker bindchange="addressChange" data-index="{{questionIndex}}" mode="region" wx:if="{{questionItem.address_type==1}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.select&&questionItem.select.length>0?questionItem.select[0]+'-'+questionItem.select[1]+'-'+questionItem.select[2]:'选择省市区'}} </view>
+                        </view>
+                    </picker>
+                    <picker bindchange="addressChange" data-index="{{questionIndex}}" level="city" mode="region" wx:if="{{questionItem.address_type==2}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;"> {{questionItem.select&&questionItem.select.length>0?questionItem.select[0]+'-'+questionItem.select[1]:'选择省市'}} </view>
+                        </view>
+                    </picker>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==5&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="imgae-line">
+                        <image bindtap="imgSheetUpadte" class="imgae-line-con" data-index="{{imgIndex}}" data-qindex="{{questionIndex}}" mode="aspectFill" src="{{imgItem.url_full}}" wx:for="{{questionItem.select?questionItem.select:[]}}" wx:for-index="imgIndex" wx:for-item="imgItem" wx:key="{{imgIndex}}"></image>
+                        <view bindtap="imageUpload" class="imgae-line-con" data-qindex="{{questionIndex}}">
+                            <image src="./icon/1.png" style="width: 36rpx;height: 36rpx;"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==9&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="imgae-line" style="justify-content: flex-start;">
+                        <view bindtap="idCardUpload" class="imgae-line-con" data-index="{{questionIndex}}" data-type="{{0}}" style="width: 300rpx;flex-direction: column;" wx:if="{{!(questionItem.select?questionItem.select[0]:false)}}">
+                            <view class="idcard-info">身份证正面</view>
+                            <image src="./icon/1.png" style="width: 36rpx;height: 36rpx;"></image>
+                        </view>
+                        <image bindtap="idCardGenduo" class="imgae-line-con" data-index="{{questionIndex}}" data-type="{{0}}" src="{{questionItem.select[0].url_full}}" style="width: 300rpx;" wx:if="{{questionItem.select?questionItem.select[0]:false}}"></image>
+                        <view bindtap="idCardUpload" class="imgae-line-con" data-index="{{questionIndex}}" data-type="{{1}}" style="width: 300rpx;flex-direction: column;" wx:if="{{!(questionItem.select?questionItem.select[1]:false)}}">
+                            <view class="idcard-info">身份证反面</view>
+                            <image src="./icon/1.png" style="width: 36rpx;height: 36rpx;"></image>
+                        </view>
+                        <image bindtap="idCardGenduo" class="imgae-line-con" data-index="{{questionIndex}}" data-type="{{1}}" src="{{questionItem.select[1].url_full}}" style="width: 300rpx;" wx:if="{{questionItem.select?questionItem.select[1]:false}}"></image>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==10&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="topic-line-inp">
+                        <input alwaysEmbed="{{true}}" bindinput="codeInputChange" data-index="{{questionIndex}}" maxlength="{{50}}" placeholder="请输入" placeholderStyle="font-size:28rpx;color: rgba(153, 153, 153, 1);" style="width: 100%;font-size:28rpx;" type="number" value="{{questionItem.select}}"></input>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==11&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="topic-line-inp" style="justify-content: space-between;">
+                        <view class="phone-line">
+                            <picker bindchange="prefixChange" data-index="{{questionIndex}}" mode="selector" range="{{prefixsList}}">
+                                <view>{{questionItem.prefix?questionItem.prefix:'+86'}}</view>
+                            </picker>
+                            <image src="./icon/2.png" style="width: 25rpx;height: 25rpx;position: relative;top: 3rpx;left: 10rpx;"></image>
+                        </view>
+                        <input bindinput="inputPhoneChange" data-index="{{questionIndex}}" placeholder="请输入手机号码" placeholderStyle="font-size:28rpx;color: rgba(153, 153, 153, 1);" style="width: calc(100% - 140rpx);font-size:28rpx;" type="number" value="{{questionItem.phone}}" wx:if="{{!pullData}}"></input>
+                    </view>
+                    <view class="topic-line-inp" style="justify-content: space-between;">
+                        <input bindinput="inputCodeChange" data-index="{{questionIndex}}" placeholder="请输入验证码" placeholderStyle="font-size:28rpx;color: rgba(153, 153, 153, 1);" style="width: calc(100% - 370rpx);font-size:28rpx;" type="number" value="{{questionItem.code}}" wx:if="{{!pullData}}"></input>
+                        <view bindtap="sendMsg" class="send-msg" data-index="{{questionIndex}}" data-item="{{questionItem}}" wx:if="{{!msgMap[questionIndex].miaoType}}">获取验证码</view>
+                        <view class="send-msg" style="width: 300rpx;" wx:if="{{msgMap[questionIndex].miaoType}}"> {{msgMap[questionIndex].miaoSize}}后重新获取 </view>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type===12&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <picker bindchange="majorChange" bindcolumnchange="majorColumnchange" data-qindex="{{questionIndex}}" mode="multiSelector" range="{{major}}" wx:if="{{questionItem.majors_type==1}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;">
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]&&questionItem.select[2]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]+'-'+questionItem.select[2]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]}}"> {{questionItem.select[0]}}</block>
+                                <block wx:if="{{!questionItem.select[0]}}">请选择</block>
+                            </view>
+                        </view>
+                    </picker>
+                    <picker bindchange="majorChange" bindcolumnchange="majorColumnchange" data-qindex="{{questionIndex}}" mode="multiSelector" range="{{[ major[0],major[1] ]}}" wx:if="{{questionItem.majors_type==2}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;">
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]&&questionItem.select[2]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]+'-'+questionItem.select[2]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]}}"> {{questionItem.select[0]}}</block>
+                                <block wx:if="{{!questionItem.select[0]}}">请选择</block>
+                            </view>
+                        </view>
+                    </picker>
+                    <picker bindchange="majorChange" bindcolumnchange="majorColumnchange" data-qindex="{{questionIndex}}" mode="multiSelector" range="{{[ major[0] ]}}" wx:if="{{questionItem.majors_type==3}}">
+                        <view class="topic-line-inp" style="justify-content: flex-start;">
+                            <view style="color: rgba(153, 153, 153, 1);font-size: 28rpx;">
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]&&questionItem.select[2]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]+'-'+questionItem.select[2]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]&&questionItem.select[1]}}"> {{questionItem.select?questionItem.select[0]+'-'+questionItem.select[1]:'请选择'}} </block>
+                                <block wx:if="{{questionItem.select[0]}}"> {{questionItem.select[0]}}</block>
+                                <block wx:if="{{!questionItem.select[0]}}">请选择</block>
+                            </view>
+                        </view>
+                    </picker>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==13&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="topic-line-inp" style="padding-top: 10px;">
+                        <textarea alwaysEmbed="{{true}}" bindinput="tiankongInputChange" data-index="{{questionIndex}}" maxlength="{{questionItem.is_length_limit==1?questionItem.max:-1}}" placeholder="请输入" style="width: 100%;font-size:28rpx;" value="{{questionItem.select}}" wx:if="{{!pullData}}"></textarea>
+                    </view>
+                </view>
+                <view class="topic-line" wx:if="{{questionItem.type==14&&questionItem.is_show==1}}">
+                    <view class="topic-line-title">{{tool.getSort(dataInfo,questionItem.id)}} {{questionItem.title}} {{questionItem.is_require==1?'*':''}} </view>
+                    <view class="topic-line-info-text" wx:if="{{questionItem.intro}}">{{questionItem.intro}}</view>
+                    <view class="ingo-img-box" wx:if="{{questionItem.imgs&&questionItem.imgs.length!=0}}">
+                        <view class="info-img-line" wx:for="{{questionItem.imgs}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                            <view style="margin-top: 24rpx;color: #333;">{{eItem.name}}</view>
+                        </view>
+                    </view>
+                    <view class="info-box" wx:if="{{questionItem.extra}}">
+                        <view class="info-box-line" wx:for="{{questionItem.extra}}" wx:for-index="eIndex" wx:for-item="eItem" wx:key="eIndex">
+                            <view bindtap="infoEvent" data-item="{{eItem}}">
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='link'}}">[链接]</text>
+                                <text style="margin-right: 10rpx;" wx:if="{{eItem.type==='file'}}">[附件]</text>
+                                <text wx:if="{{eItem.type!='img'}}">{{eItem.name}}</text>
+                            </view>
+                            <image bindtap="showImage" class="info-box-line-img" data-value="{{eItem.value_full}}" mode="aspectFill" src="{{eItem.value_full}}" wx:if="{{eItem.type=='img'}}"></image>
+                        </view>
+                    </view>
+                    <view class="topic-line-file" style="padding-top: 10px;">
+                        <view class="file-line-box" wx:for="{{questionItem.select}}">
+                            <view class="file-card">
+                                <view class="file-card-title">{{item.name}}</view>
+                                <view class="file-card-box">
+                                    <image class="file-card-icon" src="{{item.icon_full}}"></image>
+                                    <text style="color:#909399">{{item.size}}KB</text>
+                                </view>
+                            </view>
+                            <image bindtap="delUploadFile" class="file-guanbi" data-findex="{{index}}" data-index="{{questionIndex}}" src="./icon/4.png"></image>
+                        </view>
+                    </view>
+                    <view bindtap="uploadFile" data-index="{{questionIndex}}" wx:if="{{questionItem.is_length_limit>(questionItem.select?questionItem.select.length:0)}}">
+                        <view class="file-box">
+                            <image class="file-box-icon" src="./icon/3.png"></image>
+                            <span style="margin-left: 10rpx;font-size: 32rpx;">请上传附件</span>
+                        </view>
+                        <view class="file-box-info">支持格式 {{tool.getFileTypes(questionItem.file_type)}}；支持大小20M</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="topic-but">
+            <view class="button" style="background-color: #ddd;color: #999;box-shadow: none;" wx:if="{{dataInfo.is_stopped==1}}"> 已结束 </view>
+            <button bindtap="commit" class="button" wx:else> {{identify?'修改':'提交'}} </button>
+        </view>
+        <view style="width: 100%;height: 200rpx;"></view>
+    </view>
+    <view class="xia-container" wx:if="{{pullData}}">
+        <view bindtap="popupClose" class="xia-bj"></view>
+        <view class="xia-con">
+            <view class="xia-top" style="background-color: #f0f0f0;">
+                <view class="xia-top-line"> {{pullData.data.dropdown_first?pullData.data.dropdown_first:'标题'}} </view>
+                <view class="xia-top-line" vIf="data.dropdown_second" wx:if="{{pupupChildList.length!=0}}"> {{pullData.data.dropdown_second}} </view>
+            </view>
+            <view class="xia-content">
+                <view class="xia-content-item">
+                    <view bindtap="pupupSelect" class="xia-content-line" data-index="{{optIndex}}" data-item="{{optItem}}" style="background-color: {{optItem.check?'rgb(246, 247, 250)':''}};text-align:{{pupupChildList.length==0?'center':'left'}};" wx:for="{{pullData.data.option}}" wx:for-index="optIndex" wx:for-item="optItem" wx:key="{{optIndex}}"> {{optItem.content}} </view>
+                </view>
+                <view class="hr" style="height: 100%;"></view>
+                <view class="xia-content-item" wx:if="{{pupupChildList.length!=0}}">
+                    <view bindtap="pupupSelectTwo" class="xia-content-line" data-index="{{optIndex}}" style="background-color: {{optItem.check?'rgb(246, 247, 250)':''}};" wx:for="{{pupupChildList}}" wx:for-index="optIndex" wx:for-item="optItem" wx:key="{{optIndex}}"> {{optItem.content}} </view>
+                </view>
+            </view>
+            <view class="xia-but">
+                <view bindtap="popupClose" class="xia-top-line"> 取消 </view>
+                <view class="xia-hr"></view>
+                <view bindtap="popupClose" class="xia-top-line" data-type="{{1}}"> 确定 </view>
+            </view>
+        </view>
+    </view>
+    <view class="ad" wx:if="{{adShow}}">
+        <view class="ad-con">
+            <mp content="{{dataInfo.popup_content}}" copyLink="{{false}}"></mp>
+        </view>
+        <image bindtap="adClose" src="../../../assets/image/close.png" style="margin-top: 50rpx;width: 70rpx;height: 70rpx;"></image>
+    </view>
+    <view class="loading" wx:if="{{!show}}">表单数据加载中...</view>
+</view>
+<wxs module="tool">
+var getSort = (function(dataInfo, id) {
+    var arr = dataInfo.questions.filter((function(item) {
+        return (item.is_show == 1)
+    }));
+    var index = 0;
+    arr.forEach((function(item, i) {
+        if (id == item.id) {
+            index = i
+        }
+    }));
+    return (index + 1)
+});
+var getFileTypes = (function(types) {
+    if (types) {
+        if (types[(0)] != 0) {
+            var arr = ["word", "xls", "xlsx", "csv", "ppt", "pdf", "zip", "rar"];
+            var str = [];
+            types.forEach((function(item) {
+                str.push(arr[((nt_1 = (item - 1), null == nt_1 ? undefined : 'number' === typeof nt_1 ? nt_1 : "" + nt_1))])
+            }));
+            return (str.join(","))
+        }
+    };
+    return ("xls、word")
+});
+module.exports.getSort = getSort;
+module.exports.getFileTypes = getFileTypes;
+</wxs>

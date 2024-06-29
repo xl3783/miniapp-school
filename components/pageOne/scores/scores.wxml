@@ -1,0 +1,240 @@
+<scroll-view scrollTop="{{topNum}}" scrollY="true" showScrollbar="false" style="height:{{height}}px;background-color:{{pageColor}};">
+    <view>
+        <view id="top-search" style="background:#fff;height:120rpx;padding-top:32rpx;box-sizing:border-box;display:flex" wx:if="{{showSearch}}">
+            <view bindtap="goSearch" class="top-search">
+                <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+                <view class="search-text">输入想要查询的专业</view>
+            </view>
+            <view bindtap="openSearch" class="top-search-text">筛选</view>
+        </view>
+        <view class="{{showSearch?'relative-box':'fixed-box'}}">
+            <scroll-view class="search-box" id="search-box" scrollX="true">
+                <view class="view-box">
+                    <view class="x-item" wx:if="{{showArea}}">
+                        <view bindtap="tapNav" class="search-item" data-index="0" data-type="province" style="{{isClick&&areaId>0||activeIndex==0?'color: '+globalColor:''}}">
+                            <view class="elips">{{areaText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&areaId>0||activeIndex==0?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showDivition}}">
+                        <view bindtap="tapNav" class="search-item " data-index="1" data-type="divition" style="{{isClick&&divitionId>0||activeIndex==1?'color: '+globalColor:''}}">
+                            <view class="elips">{{divitionText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&divitionId>0||activeIndex==1?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showSubject&&divitionText=='新高考'}}">
+                        <view bindtap="tapNav" class="search-item " data-index="6" data-type="subject" style="{{isClick&&subjectId>0||activeIndex==6?'color: '+globalColor:''}}">
+                            <view class="elips">{{subjectText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&subjectId>0||activeIndex==6?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showYear}}">
+                        <view bindtap="tapNav" class="search-item " data-index="2" data-type="year" style="{{isClick&&yearId>0||activeIndex==2?'color: '+globalColor:''}}">
+                            <view class="elips">{{yearText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&yearId>0||activeIndex==2?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showCampus}}">
+                        <view bindtap="tapNav" class="search-item" data-index="3" data-type="campus" style="{{isClick&&campusId>0||activeIndex==3?'color: '+globalColor:''}}">
+                            <view class="elips">{{campusText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&campusId>0||activeIndex==3?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showEnrollType}}">
+                        <view bindtap="tapNav" class="search-item" data-index="4" data-type="enroll_type" style="{{isClick&&enroll_type>0||activeIndex==4?'color: '+globalColor:''}}">
+                            <view class="elips">{{enrollTypeText}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&enroll_type>0||activeIndex==4?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                    <view class="x-item" wx:if="{{showBatch}}">
+                        <view bindtap="tapNav" class="search-item" data-index="5" data-type="batch" style="{{isClick&&batch||activeIndex==5?'color: '+globalColor:''}}">
+                            <view class="elips">{{batch?batch:'批次'}}</view>
+                            <view class="iconfont icon-xiala3" style="{{isClick&&batch||activeIndex==5?'color: '+globalColor:''}}"></view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+            <view bindtap="closeSearch" class="search-container" style="height:{{height-110}}px" wx:if="{{activeIndex!=-1}}">
+                <scroll-view scrollY="true" style="background:#fff;max-height:624rpx">
+                    <block wx:if="{{activeIndex==0&&showArea}}">
+                        <view bindtap="reLocation" class="subject-top-item">
+                            <image showMenuByLongpress="true" src="../../../assets/image/map.png"></image>
+                            <view>{{currentPro}}</view>
+                        </view>
+                        <view wx:for="{{areaList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{areaId==item.provinceid?'active':''}}" data-id="{{item.provinceid}}" data-index="{{index}}" data-type="area">
+                                <view style="color:{{areaId==item.provinceid?globalColor:''}}">{{item.province}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{areaId==item.provinceid?globalColor:''}}" wx:if="{{areaId==item.provinceid}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==1&&showDivition}}">
+                        <view wx:for="{{divitionList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{divitionId==item.divition_id?'active':''}}" data-id="{{item.divition_id}}" data-index="{{index}}" data-type="divition">
+                                <view style="color:{{divitionId==item.divition_id?globalColor:''}}">{{item.name}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{divitionId==item.divition_id?globalColor:''}}" wx:if="{{divitionId==item.divition_id}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==6&&showSubject&&divitionText=='新高考'}}">
+                        <view wx:for="{{subjectList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{subjectId==item.id?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" data-type="subject">
+                                <view style="color:{{subjectId==item.id?globalColor:''}}">{{item.name}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{subjectId==item.id?globalColor:''}}" wx:if="{{subjectId==item.id}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==2&&showYear}}">
+                        <view wx:for="{{yearList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{yearId==item?'active':''}}" data-id="{{item}}" data-index="{{index}}" data-type="year">
+                                <view style="color:{{yearId==item?globalColor:''}}">{{item}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{yearId==item?globalColor:''}}" wx:if="{{yearId==item}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==3&&showCampus}}">
+                        <view wx:for="{{campusList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{campusId==item.campus_id?'active':''}}" data-id="{{item.campus_id}}" data-index="{{index}}" data-type="campus">
+                                <view style="color:{{campusId==item.campus_id?globalColor:''}}">{{item.name}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{campusId==item.campus_id?globalColor:''}}" wx:if="{{campusId==item.campus_id}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==4&&showEnrollType}}">
+                        <view wx:for="{{enrollTypeList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{enroll_type==item.id?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" data-type="enroll_type">
+                                <view style="color:{{enroll_type==item.id?globalColor:''}}">{{item.name}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{enroll_type==item.id?globalColor:''}}" wx:if="{{enroll_type==item.id}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:if="{{activeIndex==5&&showBatch}}">
+                        <view wx:for="{{batchList}}" wx:key="index">
+                            <view bindtap="chooseItem" class="subject-item {{batch==item?'active':''}}" data-id="{{item}}" data-index="{{index}}" data-type="batch">
+                                <view style="color:{{batch==item?globalColor:''}}">{{item}}</view>
+                                <view class="iconfont icon-xuanzhong" style="color:{{batch==item?globalColor:''}}" wx:if="{{batch==item}}"></view>
+                            </view>
+                        </view>
+                    </block>
+                </scroll-view>
+            </view>
+        </view>
+        <block wx:if="{{(admissionLineList.length>0||majorList.length>0)&&activeIndex==-1}}">
+            <view class="admission-line" style="padding-top:{{showSearch?'32rpx':'140rpx'}}" wx:if="{{admissionLineList&&admissionLineList.length>0&&activeIndex==-1}}">
+                <view class="name">{{entrance_line_alias}}</view>
+                <view class="score" wx:for="{{admissionLineList}}" wx:key="index">
+                    <view wx:if="{{item.name}}">校区：{{item.campus_name?item.campus_name:'——'}}</view>
+                    <view wx:if="{{item.batch}}">批次：{{item.batch?item.batch:'——'}}</view>
+                    <view wx:if="{{item.enroll_type_name}}">类型：{{item.enroll_type_name?item.enroll_type_name:'——'}}</view>
+                    <view wx:if="{{item.min}}">最低分：{{item.min?item.min:'——'}}</view>
+                    <view wx:if="{{item.max}}">最高分：{{item.max?item.max:'——'}}</view>
+                    <view wx:if="{{item.avg}}">平均分：{{item.avg?item.avg:'——'}}</view>
+                    <view wx:if="{{item.num}}">录取数：{{item.num?item.num:'——'}}</view>
+                    <view wx:if="{{value}}" wx:for="{{item.custom}}" wx:for-index="key" wx:for-item="value" wx:key="key"> {{key}}：{{value}} </view>
+                </view>
+            </view>
+            <view class="help" wx:for="{{majorList}}" wx:key="index">
+                <view class="help_item">
+                    <view catchtap="tapMajor" class="title" data-index="{{index}}">
+                        <view class="title_1">{{item.major_name}}</view>
+                        <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx" wx:if="{{showIndex==index}}"></image>
+                        <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx;transform:rotate(180deg)" wx:else></image>
+                    </view>
+                    <view class="score" style="padding:0 32rpx 32rpx;background: #F6F7F9;" wx:if="{{showIndex==index}}">
+                        <view wx:if="{{item.name}}">校区：{{item.campus_name?item.campus_name:'——'}}</view>
+                        <view wx:if="{{item.batch}}">批次：{{item.batch?item.batch:'——'}}</view>
+                        <view wx:if="{{item.enroll_type_name}}">类型：{{item.enroll_type_name?item.enroll_type_name:'——'}}</view>
+                        <view wx:if="{{item.min}}">最低分：{{item.min?item.min:'——'}}</view>
+                        <view wx:if="{{item.max}}">最高分：{{item.max?item.max:'——'}}</view>
+                        <view wx:if="{{item.avg}}">平均分：{{item.avg?item.avg:'——'}}</view>
+                        <view wx:if="{{item.num}}">录取数：{{item.num?item.num:'——'}}</view>
+                        <view wx:if="{{value}}" wx:for="{{item.custom}}" wx:for-index="key" wx:for-item="value" wx:key="key"> {{key}}：{{value}}</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <no-data-comp wx:if="{{admissionLineList.length==0&&majorList.length==0&&activeIndex==-1}}"></no-data-comp>
+        <view class="choose-mask" style="bottom:{{isFullScreen?'0rpx':isIphoneX?'178rpx':'110rpx'}}" wx:if="{{showModel}}">
+            <view class="choose-content" style="height:920rpx">
+                <view class="search-title">筛选</view>
+                <scroll-view scrollY="true" style="height:616rpx;">
+                    <view class="select-item" wx:if="{{showArea}}">
+                        <view>区域</view>
+                        <picker bindchange="bindAreaChange" range="{{areaList}}" rangeKey="province" value="{{index}}">
+                            <view class="picker">
+                                <view class="picker-text" style="color:{{areaId!=-1?'#333333':'#999999'}}">{{areaId!=-1?areaText:'请选择'}} </view>
+                                <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="select-item" wx:if="{{showYear}}">
+                        <view>年份</view>
+                        <view bindtap="openPickerMask" class="picker" data-type="year">
+                            <view class="picker-text" style="color:{{yearId>0?'#333333':'#999999'}}">{{yearId>0?yearText:'请选择'}} </view>
+                            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                        </view>
+                    </view>
+                    <view class="select-item" wx:if="{{showCampus}}">
+                        <view>校区</view>
+                        <view bindtap="openPickerMask" class="picker" data-type="campus">
+                            <view class="picker-text" style="color:{{campusId!=-1?'#333333':'#999999'}}"> {{campusId!=-1?campusText:'请选择'}}</view>
+                            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                        </view>
+                    </view>
+                    <view class="select-item" wx:if="{{showBatch}}">
+                        <view>批次</view>
+                        <view bindtap="openPickerMask" class="picker" data-type="batch">
+                            <view class="picker-text" style="color:{{batch?'#333333':'#999999'}}">{{batch?batch:'请选择'}}</view>
+                            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+                        </view>
+                    </view>
+                    <view class="subject" wx:if="{{showEnrollType&&enrollTypeList.length>0}}">
+                        <view style="margin:40rpx 0;">类型</view>
+                        <view class="subject-box">
+                            <view bindtap="handleEnroll" class="subject-item1 " data-item="{{item}}" style="background:{{enroll_type==item.id?globalColor:'#F6F7F9'}};color:{{enroll_type==item.id?'#fff':'#333'}}" wx:for="{{enrollTypeList}}" wx:key="index">{{item.name}} </view>
+                        </view>
+                    </view>
+                    <view class="subject" wx:if="{{showDivition&&divitionList.length>0}}">
+                        <view style="margin:40rpx 0;">科类</view>
+                        <view class="subject-box">
+                            <view bindtap="handleDivition" class="subject-item1 " data-item="{{item}}" style="background:{{divitionId==item.divition_id?globalColor:'#F6F7F9'}};color:{{divitionId==item.divition_id?'#fff':'#333'}}" wx:for="{{divitionList}}" wx:key="index">{{item.name}} </view>
+                        </view>
+                    </view>
+                    <view class="subject" wx:if="{{showSubject&&divitionText=='新高考'&&subjectList.length>0}}">
+                        <view style="margin:40rpx 0;">学科</view>
+                        <view class="subject-box">
+                            <view bindtap="handleSubject" class="subject-item1 " data-item="{{item}}" style="background:{{subjectId==item.id?globalColor:'#F6F7F9'}};color:{{subjectId==item.id?'#fff':'#333'}}" wx:for="{{subjectList}}" wx:key="index">{{item.name}} </view>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view style="display:flex;justify-content:{{score_list==2?'space-between':'center'}}">
+                    <view bindtap="handleReset" class="reset-btn" wx:if="{{score_list==2}}">重置</view>
+                    <view bindtap="handleSure" class="sure-btn" style="background:{{globalColor?globalColor:'#1487FF'}};width:{{score_list==2?'290rpx':'578rpx'}}">确定</view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="handlePickerCancel" class="picker-mask" wx:if="{{showPickerMask}}">
+            <view catchtap="ss" class="picker-content">
+                <view class="top-btn">
+                    <view bindtap="handlePickerCancel" class="cancel">取消</view>
+                    <view bindtap="handlePickerSure" class="sure">确定</view>
+                </view>
+                <picker-view bindchange="bindYearChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{yearVal}}" wx:if="{{pickerType=='year'}}">
+                    <picker-view-column>
+                        <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{yearList}}" wx:key="item">{{item}} </view>
+                    </picker-view-column>
+                </picker-view>
+                <picker-view bindchange="bindCampusChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{campusVal}}" wx:if="{{pickerType=='campus'}}">
+                    <picker-view-column>
+                        <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{campusList}}" wx:key="item"> {{item.name}} </view>
+                    </picker-view-column>
+                </picker-view>
+                <picker-view bindchange="bindBatchChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{batchVal}}" wx:if="{{pickerType=='batch'}}">
+                    <picker-view-column>
+                        <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{batchList}}" wx:key="item">{{item}} </view>
+                    </picker-view-column>
+                </picker-view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

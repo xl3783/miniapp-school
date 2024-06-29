@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "no-data-comp": "../../no-data-comp/no-data-comp",
+        "bottom-comp": "../../bottom-comp/bottom-comp",
+        "mp": "../../mp-weixin/index"
+    }
+}

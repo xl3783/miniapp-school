@@ -1,0 +1,22 @@
+<view style="padding-bottom:10rpx;" wx:if="{{isSwiper}}">
+    <swiper circular autoplay="{{autoplay}}" bindchange="changeSwiper" class="swiperContainer" duration="{{duration}}" id="test" indicatorDots="{{indicatorDots}}" interval="{{interval}}" style="height:{{line*200}}rpx">
+        <swiper-item class="nav-box" wx:for="{{navList.length/count*line}}" wx:key="index">
+            <view bindtap="goNav" class="nav-item" data-item="{{item}}" style="width:calc(100%/{{count}})" wx:for="{{tools.sliceArr(navList,count*line*index,count*line*index+count*line)}}" wx:key="*this">
+                <image class="img" lazyLoad="true" showMenuByLongpress="true" src="{{item.image_url}}" style="width:{{count===3?108:count===4?98:96}}rpx;height:{{count===3?108:count===4?98:96}}rpx;"></image>
+                <view class="text" style="font-size: {{fontSize/2}}px;">{{item.name}}</view>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view style="position: relative;">
+        <view class="indicator" wx:if="{{navList.length/count*line>1}}">
+            <view class="indicator-item {{active==index?'active':''}}" wx:for="{{navList.length/count*line}}" wx:key="*this"></view>
+        </view>
+    </view>
+</view>
+<view class="nav-box" wx:else>
+    <view bindtap="goNav" class="nav-item" data-item="{{item}}" style="width:calc(100%/{{count}})" wx:for="{{navList}}" wx:key="*this">
+        <image class="img" lazyLoad="true" showMenuByLongpress="true" src="{{item.image_url}}" style="width:{{count===3?108:count===4?98:96}}rpx;height:{{count===3?108:count===4?98:96}}rpx;margin-bottom: {{item.name?20:0}}rpx;"></image>
+        <view class="text" style="font-size: {{fontSize/2}}px;" wx:if="{{item.name}}">{{item.name}}</view>
+    </view>
+</view>
+<wxs module="tools" src="../../utils/tool.wxs" />

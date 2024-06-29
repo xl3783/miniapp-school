@@ -1,0 +1,145 @@
+.choose-content {
+    background: #fff;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    padding: 0 0 250rpx 32rpx;
+    width: 100%;
+}
+
+.choose-content .search-title {
+    color: #000;
+    font-size: 34rpx;
+    font-weight: 600;
+    line-height: 48rpx;
+    margin-bottom: 60rpx;
+    padding-top: 64rpx;
+    text-align: center;
+}
+
+.choose-content .select-item {
+    border-bottom: 1rpx solid #e7eef0;
+    height: 110rpx;
+    justify-content: space-between;
+    line-height: 110rpx;
+    margin-right: 32rpx;
+}
+
+.choose-content .select-item,.choose-content .select-item .picker {
+    display: flex;
+}
+
+.choose-content .select-item image {
+    height: 36rpx;
+    margin-top: 39rpx;
+    width: 36rpx;
+}
+
+.choose-content .campus {
+    margin-bottom: 200rpx;
+}
+
+.choose-content .subject-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.choose-content .subject-box .subject-item1 {
+    background: #f6f7f9;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    line-height: 45rpx;
+    margin-bottom: 20rpx;
+    margin-right: 22rpx;
+    padding: 30rpx 40rpx;
+    text-align: left;
+}
+
+.choose-content .subject-box .subject-item1:last-child {
+    margin-right: 0;
+}
+
+.reset-btn {
+    border: 1rpx solid #333;
+    border-radius: 48rpx;
+    box-sizing: border-box;
+    color: #333;
+    height: 96rpx;
+    line-height: 96rpx;
+    width: 320rpx;
+}
+
+.reset-btn,.sure-btn {
+    font-weight: 600;
+    text-align: center;
+}
+
+.sure-btn {
+    background-color: #1487ff;
+    border-radius: 48rpx;
+    bottom: 160rpx;
+    color: #fff;
+    height: 80rpx;
+    left: 50%;
+    line-height: 80rpx;
+    position: fixed;
+    transform: translate(-50%,0);
+    width: 280rpx;
+    z-index: 2;
+}
+
+.radio-item .radio-title {
+    color: #333;
+    font-size: 32rpx;
+    margin-bottom: 32rpx;
+    margin-top: 32rpx;
+}
+
+.radio-item .radio {
+    background-color: #f6f7f9;
+    border-radius: 20rpx;
+    color: #909399;
+    display: inline-block;
+    font-size: 32rpx;
+    margin: 0 28rpx 28rpx 0;
+    padding: 25rpx 63rpx;
+}
+
+.radio-item .active {
+    background: rgba(20,135,255,.1);
+    color: #3b7cff;
+}
+
+.picker-mask {
+    background-color: rgba(0,0,0,.3);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.picker-content {
+    background-color: #fff;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.top-btn {
+    display: flex;
+    font-size: 40rpx;
+    justify-content: space-between;
+    line-height: 50px;
+    padding: 0 30rpx;
+}
+
+.top-btn .cancel {
+    color: #999;
+}
+
+.top-btn .sure {
+    color: #07c160;
+}

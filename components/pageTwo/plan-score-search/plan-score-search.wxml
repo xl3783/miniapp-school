@@ -1,0 +1,108 @@
+<view class="choose-content">
+    <view class="select-item" wx:if="{{tools.idInStr(2,option)&&provinces.length>0}}">
+        <view>区域</view>
+        <view bindtap="openPicker" class="picker" data-type="province">
+            <view style="color:{{province_id?'#333333':'#999999'}}">{{province_id?province_name:'请选择'}}</view>
+            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+    <view class="select-item" wx:if="{{tools.idInStr(18,option)&&yzqyList.length>0&&searchType==2}}">
+        <view>研招区域</view>
+        <view bindtap="openPicker" class="picker" data-type="yzqy">
+            <view style="color:{{yzqy?'#333333':'#999999'}}">{{yzqy?yzqy:'请选择'}}</view>
+            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+    <view class="select-item" wx:if="{{tools.idInStr(3,option)&&yearList.length>0}}">
+        <view>年份</view>
+        <view bindtap="openPicker" class="picker" data-type="year">
+            <view style="color:{{year?'#333333':'#999999'}}">{{year?year:'请选择'}}</view>
+            <image showMenuByLongpress="true" src="../../../assets/image/icon_right.png"></image>
+        </view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(4,option)&&campusList.length>0}}">
+        <view class="radio-title">校区</view>
+        <view bindtap="chooseRadio" class="radio {{campus==item?'active':''}}" data-item="{{item}}" data-type="campus" wx:for="{{campusList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(5,option)&&batchList.length>0}}">
+        <view class="radio-title">批次</view>
+        <view bindtap="chooseRadio" class="radio {{batch==item?'active':''}}" data-item="{{item}}" data-type="batch" wx:for="{{batchList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(6,option)&&divitionList.length>0}}">
+        <view class="radio-title">科类</view>
+        <view bindtap="chooseRadio" class="radio {{divition_id==item.divition_id?'active':''}}" data-item="{{item}}" data-type="divition" wx:for="{{divitionList}}" wx:key="index"> {{item.name}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(7,option)&&subjectList.length>0}}">
+        <view class="radio-title">学科</view>
+        <view bindtap="chooseRadio" class="radio {{subject_id==item.id?'active':''}}" data-item="{{item}}" data-type="subject" wx:for="{{subjectList}}" wx:key="index"> {{item.name}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(8,option)&&bxdList.length>0}}">
+        <view class="radio-title">办学点</view>
+        <view bindtap="chooseRadio" class="radio {{bxd==item?'active':''}}" data-item="{{item}}" data-type="bxd" wx:for="{{bxdList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(9,option)&&xzList.length>0}}">
+        <view class="radio-title">学制</view>
+        <view bindtap="chooseRadio" class="radio {{xz==item?'active':''}}" data-item="{{item}}" data-type="xz" wx:for="{{xzList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(15,option)&&lxList.length>0}}">
+        <view class="radio-title">类型</view>
+        <view bindtap="chooseRadio" class="radio {{lx==item?'active':''}}" data-item="{{item}}" data-type="lx" wx:for="{{lxList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(10,option)&&majorList.length>0}}">
+        <view class="radio-title">专业</view>
+        <view bindtap="chooseRadio" class="radio {{major==item?'active':''}}" data-item="{{item}}" data-type="major" wx:for="{{majorList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(11,option)&&ccList.length>0}}">
+        <view class="radio-title">层次</view>
+        <view bindtap="chooseRadio" class="radio {{cc==item?'active':''}}" data-item="{{item}}" data-type="cc" wx:for="{{ccList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(12,option)&&zsdxList.length>0}}">
+        <view class="radio-title">招生对象</view>
+        <view bindtap="chooseRadio" class="radio {{zsdx==item?'active':''}}" data-item="{{item}}" data-type="zsdx" wx:for="{{zsdxList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(13,option)&&fzxxList.length>0}}">
+        <view class="radio-title">发证学校</view>
+        <view bindtap="chooseRadio" class="radio {{fzxx==item?'active':''}}" data-item="{{item}}" data-type="fzxx" wx:for="{{fzxxList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(14,option)&&pydList.length>0}}">
+        <view class="radio-title">培养点</view>
+        <view bindtap="chooseRadio" class="radio {{pyd==item?'active':''}}" data-item="{{item}}" data-type="pyd" wx:for="{{pydList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(16,option)&&xxfsList.length>0}}">
+        <view class="radio-title">学习方式</view>
+        <view bindtap="chooseRadio" class="radio {{xxfs==item?'active':''}}" data-item="{{item}}" data-type="xxfs" wx:for="{{xxfsList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(17,option)&&tdxlList.length>0&&searchType==1}}">
+        <view class="radio-title">同等学力</view>
+        <view bindtap="chooseRadio" class="radio {{tdxl==item?'active':''}}" data-item="{{item}}" data-type="tdxl" wx:for="{{tdxlList}}" wx:key="index"> {{item}}</view>
+    </view>
+    <view class="radio-item" wx:if="{{tools.idInStr(19,option)&&yzsubjectList.length>0}}">
+        <view class="radio-title">研招学科</view>
+        <view bindtap="chooseRadio" class="radio {{yzsubject==item?'active':''}}" data-item="{{item}}" data-type="yzsubject" wx:for="{{yzsubjectList}}" wx:key="index"> {{item}}</view>
+    </view>
+</view>
+<view bindtap="handleSure" class="sure-btn">确定</view>
+<view bindtap="handlePickerCancel" class="picker-mask" wx:if="{{showPickerMask}}">
+    <view catchtap="ss" class="picker-content">
+        <view class="top-btn">
+            <view bindtap="handlePickerCancel" class="cancel">取消</view>
+            <view bindtap="handlePickerSure" class="sure">确定</view>
+        </view>
+        <picker-view bindchange="bindYearChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{yearVal}}" wx:if="{{pickerType=='year'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{yearList}}" wx:key="item">{{item}} </view>
+            </picker-view-column>
+        </picker-view>
+        <picker-view bindchange="bindProvinceChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{provinceVal}}" wx:if="{{pickerType=='province'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{provinces}}" wx:key="item"> {{item.province}} </view>
+            </picker-view-column>
+        </picker-view>
+        <picker-view bindchange="bindYzqyChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{yzqyVal}}" wx:if="{{pickerType=='yzqy'}}">
+            <picker-view-column>
+                <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{yzqyList}}" wx:key="item"> {{item}} </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

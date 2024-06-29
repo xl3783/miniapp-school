@@ -1,0 +1,58 @@
+./app.wxss.bgGray {
+    background: #f6f7f8;
+}
+
+.flex-between {
+    justify-content: space-between;
+    padding: 52rpx 42rpx;
+}
+
+.flex,.flex-between {
+    display: flex;
+}
+
+.leftItem {
+    flex: 1;
+    overflow: hidden;
+}
+
+.bgfff {
+    background: #fff;
+    margin: 32rpx;
+}
+
+.iconfont {
+    color: #ccc;
+    font-size: 24rpx;
+    line-height: 45rpx;
+}
+
+.item-img {
+    height: 32rpx;
+    margin-right: 48rpx;
+    margin-top: 7rpx;
+    width: 32rpx;
+}
+
+.flex .name {
+    flex: 1;
+    font-size: 32rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sec-item {
+    display: flex;
+    padding: 24rpx 24rpx 24rpx 0;
+}
+
+.sec-item .dot {
+    background: #d8d8d8;
+    border-radius: 50%;
+    height: 8rpx;
+    margin-left: 60rpx;
+    margin-right: 65rpx;
+    margin-top: 20rpx;
+    width: 8rpx;
+}

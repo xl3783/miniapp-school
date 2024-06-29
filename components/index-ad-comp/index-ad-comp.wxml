@@ -1,0 +1,16 @@
+<view class="ad-box" wx:if="{{!hasBorder}}">
+    <view class="ad-title" wx:if="{{adData.title_show===1}}">{{adData.title}}</view>
+    <view class="item-box">
+        <view class="ad-box-item {{count}}" wx:for="{{adList}}" wx:key="*this">
+            <image bindtap="jump" class="image" data-item="{{item}}" lazyLoad="true" showMenuByLongpress="true" src="{{item.image_url?item.image_url:'../../assets/image/default.png'}}"></image>
+        </view>
+    </view>
+</view>
+<view class="ad-box border" wx:else>
+    <view class="ad-title" wx:if="{{adData.title_show===1}}">{{adData.title}}</view>
+    <view class="item-box">
+        <view class="ad-box-item border {{count}}" wx:for="{{adList}}" wx:key="*this">
+            <image bindtap="jump" class="image" data-item="{{item}}" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.image_url?item.image_url:'../../assets/image/default.png'}}"></image>
+        </view>
+    </view>
+</view>

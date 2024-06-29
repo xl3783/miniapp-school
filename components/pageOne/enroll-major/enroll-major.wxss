@@ -1,0 +1,30 @@
+./app.wxss.major-box {
+    margin: 0 32rpx;
+}
+
+.major-box .item {
+    background: #fff;
+    box-shadow: 0 16rpx 25rpx 0 rgba(179,196,212,.12);
+    display: flex;
+    font-size: 32rpx;
+    font-weight: 500;
+    height: 148rpx;
+    line-height: 148rpx;
+    margin-top: 32rpx;
+    width: 686rpx;
+}
+
+.major-box .item .name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.major-box .item .item-img {
+    height: 32rpx;
+    margin-left: 48rpx;
+    margin-right: 48rpx;
+    margin-top: 58rpx;
+    width: 32rpx;
+}

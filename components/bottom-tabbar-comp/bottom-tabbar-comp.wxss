@@ -1,0 +1,40 @@
+./app.wxss.tab-bar {
+    background: #fafafa!important;
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    padding-bottom: calc(5px + env(safe-area-inset-bottom))!important;
+    padding-top: 5px!important;
+    position: fixed;
+    right: 0;
+}
+
+.tab-bar,.tab-bar-item {
+    display: flex;
+}
+
+.tab-bar-item {
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.tab-bar-item .taber-img {
+    font-size: 63rpx;
+    height: 63rpx;
+    width: 63rpx;
+}
+
+.tab-bar-item .tabbar-no-img {
+    font-size: 53rpx;
+    height: 53rpx;
+    width: 53rpx;
+}
+
+.tab-bar-item .text {
+    font-size: 10px;
+    margin-top: 3px;
+}

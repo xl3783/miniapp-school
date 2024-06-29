@@ -1,0 +1,13 @@
+<scroll-view bindrefresherabort="refresherabort" bindrefresherpulling="refresherpulling" bindrefresherrefresh="refresherrefresh" bindrefresherrestore="refresherrestore" refresherEnabled="true" refresherTriggered="{{triggered}}" scrollTop="{{topNum}}" scrollY="true" showScrollbar="{{false}}" style="height:{{height}}px;background-color:{{pageColor}};">
+    <campus-header-comp logo="{{logo}}" name="{{name}}" position="{{position}}" showLogo="{{showLogo}}" tags="{{tags}}"></campus-header-comp>
+    <view class="sec-box" wx:if="{{content.length>0}}">
+        <campus-content-comp isGrid="{{style}}" navList="{{content}}"></campus-content-comp>
+    </view>
+    <view style="position:relative;min-height:70rpx;padding-bottom:100rpx" wx:if="{{paiType}}">
+        <view class="footer">
+            <image showMenuByLongpress="true" src="../../../assets/image/xiaopi.png"></image>
+            <view>校派提供技术支持</view>
+        </view>
+    </view>
+    <view style="width: 100%;height: 200rpx;"></view>
+</scroll-view>
