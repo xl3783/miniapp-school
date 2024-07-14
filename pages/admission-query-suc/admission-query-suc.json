@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "mp": "/components/mp-weixin/index"
+    }
+}

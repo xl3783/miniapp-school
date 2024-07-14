@@ -1,0 +1,41 @@
+.logo {
+    border-radius: 22rpx;
+    display: block;
+    height: 120rpx;
+    margin: 148rpx auto 36rpx;
+    width: 120rpx;
+}
+
+.name {
+    color: #333;
+    line-height: 45rpx;
+    text-align: center;
+}
+
+.btn,.name {
+    font-size: 32rpx;
+}
+
+.btn {
+    background: #1487ff;
+    border-radius: 48rpx;
+    color: #fff;
+    height: 96rpx;
+    line-height: 96rpx;
+    padding: 0;
+    width: 578rpx!important;
+}
+
+.btn-text {
+    color: #909399;
+    font-size: 32rpx;
+    margin-top: 60rpx;
+    text-align: center;
+}
+
+.bottom {
+    bottom: 120rpx;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+}

@@ -1,0 +1,11 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "新闻详情",
+    "usingComponents": {
+        "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "no-data-comp": "/components/no-data-comp/no-data-comp",
+        "mp": "/components/mp-weixin/index",
+        "campus-news-detail-comp": "/components/pageOne/campus-news-detail/campus-news-detail"
+    }
+}

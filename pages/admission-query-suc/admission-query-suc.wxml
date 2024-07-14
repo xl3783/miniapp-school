@@ -1,0 +1,41 @@
+<custom-topbar title="{{name}}"></custom-topbar>
+<view class="bg {{isIPad?'ipadBg':''}}" style="width: {{isIPad?'390px':'750rpx'}};">
+    <image class="result-img" mode="widthFix" src="{{bgUrl}}"></image>
+    <view class="result" style="top:{{resultTop}};" wx:if="{{intro}}">
+        <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}"></mp>
+    </view>
+    <view class="blessing {{isIPad?'ipadBlessing':''}}" wx:if="{{benedictionShare=='1'}}">
+        <view class="praise">
+            <image mode="widthFix" src="../../assets/image/praise.png"></image>
+            <text class="praise_text">已收到<text>{{message_count}}</text>个好友的祝福</text>
+            <image mode="widthFix" src="../../assets/image/praise.png"></image>
+        </view>
+        <view class="see_share">
+            <view bindtap="openMsg" class="see">查看祝福</view>
+            <button class="share" hoverClass="none" openType="share">分享给好友</button>
+        </view>
+    </view>
+    <view bindtap="acceptanceLetter" class="generate_picture" wx:if="{{extra.show_electric==1}}">查看录取通知书</view>
+    <view class="msg_mask" wx:if="{{msgShow}}">
+        <view class="msg_box">
+            <image bindtap="msgClose" class="msg_close" mode="widthFix" src="../../assets/image/ctc-close.png"></image>
+            <view class="msg_list_box" wx:if="{{messageList&&messageList.length>0}}">
+                <view class="msg_list" wx:for="{{messageList}}" wx:key="index">
+                    <image class="avatar" mode="widthFix" src="{{item.avatarUrl}}"></image>
+                    <view>
+                        <view>
+                            <text class="msg_name">{{item.name}}</text>
+                            <text class="msg_cnt">{{item.message?item.message:'送来一份祝福'}}</text>
+                        </view>
+                        <view class="msg_time">{{item.create_time}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="praise_none" wx:else>
+                <image class="praise_img" mode="widthFix" src="../../assets/image/praise_b.png"></image>
+                <text>暂无好友祝福</text>
+            </view>
+            <text class="load_all" wx:if="{{messageList&&messageList.length>0}}">已加载全部</text>
+        </view>
+    </view>
+</view>

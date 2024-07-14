@@ -1,0 +1,28 @@
+<view class="live-status" wx:if="{{status==1}}">
+    <view class="time-count">直播中</view>
+    <view class="number">{{livenum}}人 正在观看</view>
+</view>
+<view class="live-status live-back" style="text-align:center" wx:if="{{status==2}}">回放</view>
+<live-player autoplay="{{true}}" bindstatechange="stateChange" class="player {{isppt?'min-video':'max-video'}}" id="player" mode="live" objectFit="fillCrop" src="{{playUrl}}" style="position:absolute;top:0;right:0;" wx:if="{{status==1}}"></live-player>
+<video bindended="videoEnd" bindpause="videoPause" bindplay="videoPlay" bindtimeupdate="videoUpdate" class="player {{isppt?'min-video':'max-video'}}" enablePlayGesture="true" id="myVideo" objectFit="contain" pictureInPictureShowProgress="true" src="{{playback_url}}" style="position:absolute;top:0;right:0;" wx:if="{{status==2}}"></video>
+<image class="center-ppt" showMenuByLongpress="true" src="{{pptImg}}" wx:if="{{pptImg}}"></image>
+<image bindtap="handleRotate" class="rotate-icon" showMenuByLongpress="true" src="../../assets/image/rotate.png"></image>
+<scroll-view bindscrolltoupper="scrollTop" class="comment-box" scrollIntoView="{{toView}}" scrollY="true" style="max-height:calc(400vmin / 7.5);bottom:calc(120vmin / 7.5);">
+    <view id="row_{{index}}" wx:for="{{commentList}}" wx:key="*this">
+        <view class="comment-item">
+            <text style="color:{{item.num>0?'#FFD775':'#7BDDFF'}}">{{item.userName}}</text>
+            <text style="margin-left:12rpx">{{item.msg}}</text>
+        </view>
+    </view>
+</scroll-view>
+<view class="input-box" style="bottom:calc(40vmin / 7.5) ">
+    <view class="input-end" wx:if="{{status==2}}">直播结束，聊天室已关闭</view>
+    <input adjustPosition="{{false}}" bindblur="changeboardheight" bindconfirm="sendMsg" bindkeyboardheightchange="keyboardheightchange" confirmType="send" placeholder="说点什么......" placeholderStyle="color:#fff;font-size:calc(28vmin / 7.5);" type="text" value="{{inputValue}}" wx:else></input>
+</view>
+<view class="bootomplay-container" wx:if="{{status==2&&isppt}}">
+    <image bindtap="startPlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/startlive.png" wx:if="{{pause}}"></image>
+    <image bindtap="pausePlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/pauselive.png" wx:else></image>
+    <view>{{lefttime}}</view>
+    <slider bindchange="changeSlider" bindchanging="sliderChanging" blockSize="12" class="slider" max="{{durationtime}}" min="0" step="1000" value="{{currenttime}}"></slider>
+    <view>{{righttime}}</view>
+</view>

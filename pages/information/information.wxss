@@ -1,0 +1,56 @@
+page {
+    background: #fbfbfb;
+}
+
+.info_box {
+    padding: 32rpx 32rpx 100rpx;
+}
+
+.info_list {
+    background: #fff;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    margin-bottom: 32rpx;
+    padding: 34rpx 32rpx 32rpx;
+    width: 100%;
+}
+
+.info_title {
+    color: #333;
+    font-size: 34rpx;
+    font-weight: 600;
+    line-height: 48rpx;
+}
+
+.info_cnt {
+    color: #4a4b4e;
+    font-size: 30rpx;
+    line-height: 48rpx;
+    margin: 12rpx 0 16rpx;
+}
+
+.info_time {
+    color: #909399;
+    font-size: 26rpx;
+    line-height: 48rpx;
+}
+
+.no_info {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 306rpx auto 0;
+}
+
+.no_info image {
+    height: auto;
+    margin-bottom: 32rpx;
+    width: 136rpx;
+}
+
+.no_info text {
+    color: #cdcdcd;
+    font-size: 28rpx;
+    line-height: 40rpx;
+}

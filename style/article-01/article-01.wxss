@@ -1,0 +1,142 @@
+.article-item {
+    align-items: center;
+    display: flex;
+    margin: 0 32rpx;
+    padding: 20rpx 0;
+}
+
+.article-item:first-child {
+    padding-top: 0rpx;
+}
+
+.article-item .title {
+    box-sizing: border-box;
+    color: #333;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    font-size: 32rpx;
+    font-weight: 600;
+    height: 152rpx;
+    width: 100%;
+}
+
+.title_time {
+    color: #999;
+    font-size: 26rpx;
+    width: 100%;
+}
+
+.article-item .img {
+    border-radius: 20rpx;
+    height: 152rpx;
+    margin-left: 32rpx;
+    width: 252rpx;
+}
+
+.tab {
+    background-color: #fff;
+    border-bottom: 1rpx solid #e7eef0;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-bottom: 32rpx;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.tab .tab-item {
+    color: #999;
+    display: inline-block;
+    font-size: 28rpx;
+    margin-left: 48rpx;
+}
+
+.tab .tab-item:last-child {
+    margin-right: 48rpx;
+}
+
+.tab .tab-item.active {
+    color: #333;
+    font-size: 32rpx;
+    position: relative;
+}
+
+.tab .active .border {
+    height: 6rpx;
+    left: 50%;
+    position: absolute;
+    top: 94rpx;
+    transform: translate(-50%,0);
+    width: 36rpx;
+}
+
+.pic-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.pic-item {
+    margin-left: 32rpx;
+    width: 328rpx;
+}
+
+.pic-item .image-box {
+    background-color: #ccc;
+    margin-bottom: 24rpx;
+    position: relative;
+}
+
+.pic-item .image,.pic-item .image-box {
+    border-radius: 20rpx;
+    height: 328rpx;
+    width: 328rpx;
+}
+
+.title_con {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    width: 100%;
+}
+
+.pic-item-title {
+    font-size: 32rpx;
+    line-height: 45rpx;
+    margin-bottom: 40rpx;
+}
+
+.video {
+    border-radius: 20rpx;
+    height: 100%;
+    width: 100%;
+}
+
+.video_icon {
+    height: 80rpx;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 80rpx;
+}
+
+.load-more-btn {
+    border: 1rpx solid #979797;
+    border-radius: 35rpx;
+}
+
+.load-more-btn,.load-more-text {
+    color: #999;
+    font-size: 28rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin: 36rpx auto;
+    text-align: center;
+    width: 208rpx;
+}
+
+.min-view {
+    min-height: 800rpx;
+}

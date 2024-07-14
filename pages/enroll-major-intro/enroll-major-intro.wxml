@@ -1,0 +1,36 @@
+<custom-topbar title="{{name}}"></custom-topbar>
+<view class="top-nav" wx:if="{{navList.length>0}}">
+    <scroll-view class="scrool-view" scrollX="true">
+        <view bindtap="chooseNav" class="cate {{index==active?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{navList}}" wx:key="index">
+            <view>{{item.cate}}</view>
+            <view class="border" style="background-color:{{globalColor}}"></view>
+        </view>
+    </scroll-view>
+</view>
+<view class="intro1 mp-img-box" wx:if="{{active==0&&showIntro}}">
+    <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}" wx:if="{{intro}}"></mp>
+    <no-data-comp wx:else></no-data-comp>
+</view>
+<view class="intro" wx:if="{{active==0&&showMajor&&!showIntro||active==1&&showMajor}}">
+    <block wx:if="{{majorList.length>0&&dataIsLoad}}">
+        <view bindtap="lookDetail" class="re-item" data-item="{{item}}" wx:for="{{majorList}}" wx:key="index">
+            <view class="re-name">{{item.name}}</view>
+            <view class="re-right">
+                <view>查看详情</view>
+                <image class="right-img" showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </view>
+    </block>
+    <no-data-comp wx:else></no-data-comp>
+</view>
+<no-data-comp wx:if="{{navList.length==0&&!showIntro&&!showMajor}}"></no-data-comp>
+<view bindtap="close" class="mask" wx:if="{{showDetail&&dataIsLoad}}">
+    <view catchtap="ss" class="bgfff-content">
+        <view class="detail-name">{{detailName}} <image bindtap="close" class="close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
+        </view>
+        <scroll-view class="bgfff mp-img-box" scrollY="{{true}}">
+            <mp binderror="mediaError" bindlinktap="linktap" content="{{intro1}}" copyLink="{{false}}" wx:if="{{intro1}}"></mp>
+            <no-data-comp wx:else></no-data-comp>
+        </scroll-view>
+    </view>
+</view>

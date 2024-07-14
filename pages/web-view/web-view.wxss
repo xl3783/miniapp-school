@@ -1,0 +1,19 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.error-img {
+  height: 328rpx;
+  margin: 158rpx 0 8rpx;
+  width: 500rpx;
+}
+
+.error-title {
+  color: #cdcdcd;
+  font-size: 28rpx;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 40rpx;
+}

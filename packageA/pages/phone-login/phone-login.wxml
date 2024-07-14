@@ -1,0 +1,7 @@
+<custom-topbar title="登录"></custom-topbar>
+<image class="logo" src="{{schoollogo}}"></image>
+<view class="name">{{schoolname}}</view>
+<view class="bottom">
+    <button bindgetphonenumber="getPhone" class="btn" openType="getPhoneNumber">绑定手机号</button>
+    <view bindtap="handleCancel" class="btn-text">暂不绑定</view>
+</view>

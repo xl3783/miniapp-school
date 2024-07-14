@@ -1,0 +1,29 @@
+<view class="bg" style="background-color:{{pageColor}};"></view>
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="top-nav" wx:if="{{navList.length>0}}">
+    <scroll-view class="scrool-view" scrollIntoView="{{toView}}" scrollX="true" showScrollbar="{{false}}">
+        <view bindtap="chooseNav" class="cate {{item.id==child_id?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" id="row_{{item.id}}" wx:for="{{navList}}" wx:key="index">
+            <view>{{item.name}}</view>
+            <view class="border" style="background-color:{{globalColor}}"></view>
+        </view>
+    </scroll-view>
+</view>
+<block wx:if="{{isShowList}}">
+    <view class="character-box" wx:if="{{list&&list.length>0}}">
+        <view bindtap="goTeacherDetail" class="{{characterClass}}" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{list}}" wx:key="id">
+            <view class="img-box">
+                <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.photo_url}}" wx:if="{{isShowListImg}}"></image>
+            </view>
+            <view class="info-box">
+                <view class="title">
+                    <view class="name">{{item.name}}<text wx:if="{{isColon&&item.title}}">:</text>
+                    </view>
+                    <view class="occupation">{{item.title}}</view>
+                </view>
+                <view class="content" wx:if="{{isShowListInfo}}">{{item.intro}}</view>
+            </view>
+        </view>
+    </view>
+    <bottom-comp isBottom="{{list.length>0&&isBottom}}"></bottom-comp>
+</block>
+<no-data-comp wx:else></no-data-comp>

@@ -1,0 +1,16 @@
+<view class="container">
+    <view class="container_title">校派迎新人像核验系统</view>
+    <image class="container_school" src="{{schoolInfo.school_logo}}" style=" opacity: {{schoolInfo.school_logo?1:0}};"></image>
+    <view class="container_school_name">{{schoolInfo.school_name}}</view>
+    <view class="container_input">
+        <image class="container_input_icon" src="../../../assets/image/welcome_login_1.png"></image>
+        <view class="container_input_hr"></view>
+        <input bindinput="inputNameChange" maxlength="{{15}}" placeholder="姓名" value="{{name}}"></input>
+    </view>
+    <view class="container_input">
+        <image class="container_input_icon" src="../../../assets/image/welcome_login_2.png"></image>
+        <view class="container_input_hr"></view>
+        <input bindinput="inputIdCardChange" maxlength="{{20}}" placeholder="身份证号" type="idcard" value="{{idCard}}"></input>
+    </view>
+    <view bindtap="submit" class="button_submit">登录</view>
+</view>

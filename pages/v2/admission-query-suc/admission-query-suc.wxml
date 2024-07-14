@@ -1,0 +1,47 @@
+<view class="container" style="opacity: {{load?'0':'1'}};">
+    <canvas class="canvas" id="design" type="2d"></canvas>
+    <view class="blessing" wx:if="{{benedictionShare==1}}">
+        <view bindtap="openMsg" class="praise" wx:if="{{share==0}}">
+            <image mode="widthFix" src="../../../assets/image/praise.png"></image>
+            <text class="praise_text">已收到<text>{{message_count}}</text>个好友的祝福</text>
+            <image mode="widthFix" src="../../../assets/image/praise.png"></image>
+        </view>
+        <view class="see_share">
+            <button bindtap="openMsg" class="see" wx:if="{{share==0}}"> 查看好友祝福 </button>
+            <button bindtap="openPopup" class="see" wx:if="{{share==1}}"> {{message_status==0?'送TA祝福':'已送出祝福'}} </button>
+            <button class="share" hoverClass="none" openType="share"> {{share==0?'分享给好友':'帮TA分享'}} </button>
+        </view>
+    </view>
+    <view bindtap="acceptanceLetter" class="generate_picture" wx:if="{{extra.show_electric==1&&share==0}}">查看录取通知书</view>
+    <view class="msg_mask" wx:if="{{msgShow}}">
+        <view class="msg_box">
+            <image bindtap="msgClose" class="msg_close" mode="widthFix" src="../../../assets/image/ctc-close.png"></image>
+            <view class="msg_list_box" wx:if="{{messageList&&messageList.length>0}}">
+                <view class="msg_list" wx:for="{{messageList}}" wx:key="index">
+                    <image class="avatar" mode="widthFix" src="{{item.avatarUrl||'../../../assets/image/wode.png'}}"></image>
+                    <view>
+                        <view>
+                            <text class="msg_name">{{item.name}}</text>
+                            <text class="msg_cnt">{{item.message?item.message:'送来一份祝福'}}</text>
+                        </view>
+                        <view class="msg_time">{{item.create_time}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="praise_none" wx:else>
+                <image class="praise_img" mode="widthFix" src="../../../assets/image/praise_b.png"></image>
+                <text>暂无好友祝福</text>
+            </view>
+            <text class="load_all" wx:if="{{messageList&&messageList.length>0}}">已加载全部</text>
+        </view>
+    </view>
+    <view class="popup_mask" hidden="{{!popupShow}}">
+        <view class="popup">
+            <textarea adjustPosition="{{true}}" bindinput="getValue" cursorSpacing="260" disableDefaultPaddin="true" maxlength="200" placeholder="请输入祝福语（选填）" placeholderClass="textarea_text" value="{{value}}"></textarea>
+            <view class="popup_btn">
+                <view bindtap="toCancel" class="cancel">取消</view>
+                <view bindtap="toSure" class="sure">祝福</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<block wx:if="{{token}}">
+    <block wx:if="{{list.length>0}}">
+        <view bindtap="goFormDetail" class="form-item" data-content="{{item.content}}" data-endtime="{{item.end_time}}" data-fileList="{{item.attach_file}}" data-id="{{item.id}}" data-identify="{{item.identify}}" data-isexamine="{{item.is_examine}}" data-refill="{{item.is_refill}}" data-status="{{item.status}}" wx:for="{{list}}" wx:key="*this">
+            <view>
+                <view class="name">{{item.topic}}</view>
+                <view class="create_time">填写时间：{{item.create_time}}</view>
+            </view>
+            <view class="status {{item.status==0?'blue':item.status==1?'green':'red'}}" wx:if="{{item.is_examine==1}}"> {{item.status==0?'待审核':item.status==1?'通过审核':'未通过审核'}}</view>
+        </view>
+    </block>
+    <no-data-comp wx:else></no-data-comp>
+</block>
+<view class="model" wx:if="{{show}}">
+    <view class="model_con">
+        <view class="model_con_title">审核失败</view>
+        <view class="model_con_content"> {{content}} </view>
+        <view class="model_file" wx:if="{{filelist.length!==0}}">
+            <view bindtap="fileOpen" class="model_file_item" data-file="{{item}}" wx:for="{{filelist}}">【附件】 {{item.name}} 123213123123</view>
+        </view>
+        <view class="model_fotter">
+            <view bindtap="close" class="model_but" style="background-color: transparent;border: 1rpx solid #999;">关闭弹窗</view>
+            <view bindtap="toFromPage" class="model_but" style="color: #fff;">查看表单</view>
+        </view>
+    </view>
+</view>

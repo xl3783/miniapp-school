@@ -1,0 +1,100 @@
+.top-nav {
+    border-bottom: 1rpx solid #e7eef0;
+    height: 100rpx;
+}
+
+.top-nav .scrool-view {
+    height: 110rpx;
+    white-space: nowrap;
+}
+
+.top-nav .scrool-view .cate {
+    color: #777;
+    display: inline-block;
+    font-size: 34rpx;
+    font-weight: 400;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-left: 48rpx;
+}
+
+.top-nav .scrool-view .cate:last-child {
+    margin-right: 48rpx;
+}
+
+.top-nav .scrool-view .active {
+    color: #333;
+    font-size: 34rpx;
+    font-weight: 600;
+    position: relative;
+}
+
+.top-nav .scrool-view .active .border {
+    height: 6rpx;
+    left: 50%;
+    position: absolute;
+    top: 94rpx;
+    transform: translate(-50%,0);
+    width: 36rpx;
+}
+
+.teacher-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 32rpx;
+}
+
+.teacher-box .teacher-item {
+    background-color: #fff;
+    border-radius: 20rpx;
+    margin-bottom: 32rpx;
+    width: 328rpx;
+}
+
+.teacher-box .teacher-item image {
+    border-radius: 20rpx;
+    height: 328rpx;
+    width: 100%;
+}
+
+.teacher-box .teacher-item .teacher-item-name {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    margin: 24rpx 0 11rpx;
+}
+
+.teacher-box .teacher-item .teacher-item-title {
+    color: #333;
+    font-size: 32rpx;
+    line-height: 45rpx;
+}
+
+.teacher-box .teacher-item .teacher-item-intro {
+    color: #666;
+    font-size: 28rpx;
+    line-height: 48rpx;
+    margin: 12rpx 0 0;
+}
+
+.re-item {
+    border-bottom: 1rpx solid #e7eef0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 32rpx;
+    padding: 36rpx 0rpx;
+}
+
+.re-item .re-name {
+    color: #333;
+    flex: 1;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 600;
+    height: 44rpx;
+    line-height: 44rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "打卡记录",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+    }
+}

@@ -1,0 +1,82 @@
+.my-item {
+    border-bottom: 1rpx solid #f0f0f0;
+    justify-content: space-between;
+    margin: 0 40rpx;
+    padding: 32rpx 0;
+}
+
+.flex,.my-item {
+    display: flex;
+}
+
+.flex {
+    max-width: 560rpx;
+}
+
+.flex,.my-item .title {
+    flex-shrink: 0;
+}
+
+.my-item .title {
+    color: #999;
+    font-size: 32rpx;
+    line-height: 45rpx;
+}
+
+.my-item .lh140 {
+    line-height: 140rpx;
+}
+
+.my-item .lh72 {
+    height: 72rpx;
+    line-height: 72rpx;
+}
+
+.my-item input {
+    flex: 1;
+    text-align: right;
+}
+
+.my-item .avatar {
+    border-radius: 50%;
+    height: 140rpx;
+    width: 140rpx;
+}
+
+.my-item .right-icon {
+    height: 36rpx;
+    margin-left: 24rpx;
+    margin-top: 52rpx;
+    width: 36rpx;
+}
+
+.my-item .write-icon {
+    height: 48rpx;
+    margin-left: 24rpx;
+    width: 44rpx;
+}
+
+.my-item .change-btn {
+    background: #1487ff;
+    color: #fff;
+    margin-left: 16rpx;
+    text-align: center;
+    width: 124rpx;
+}
+
+.my-item .change-btn,.my-item .wexin-phone {
+    border-radius: 36rpx;
+    font-size: 32rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    padding: 0!important;
+}
+
+.my-item .wexin-phone {
+    background: rgba(20,135,255,.2);
+    border: 1rpx solid #1487ff;
+    color: #1487ff;
+    font-weight: 400;
+    margin: 0!important;
+    width: 284rpx!important;
+}

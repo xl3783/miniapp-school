@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "走进校园",
+    "onReachBottomDistance": 10,
+    "usingComponents": {
+        "campus-comp": "/components/pageOne/campus/campus",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+    }
+}

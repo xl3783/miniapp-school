@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "招生专业",
+    "usingComponents": {
+        "enroll-major-comp": "/components/pageOne/enroll-major/enroll-major",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+    }
+}

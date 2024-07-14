@@ -1,0 +1,13 @@
+<custom-topbar title="{{classifyType==0?'打卡':'签到'}}"></custom-topbar>
+<view class="container">
+    <image class="container_icon" src="../../assets/image/dk_icon1.png"></image>
+    <view class="container_title"> {{localInfo.formatted_addresses}} </view>
+    <view class="container_info"> {{localInfo.address}} </view>
+    <view bindtap="palyImg" class="container_ract">
+        <view class="contianer_rect_c">
+            <view class="contianer_rect_time">{{timeStr}}</view>
+            <view class="contianer_rect_title">拍照{{classifyType==1?'签到':'打卡'}}</view>
+        </view>
+    </view>
+    <view bindtap="toList" class="container_but" wx:if="{{classifyType!=1}}"> 签到记录 </view>
+</view>

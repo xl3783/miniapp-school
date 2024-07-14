@@ -1,0 +1,120 @@
+page {
+    background: linear-gradient(92deg,#ddf5df,#b7eee9);
+}
+
+.bg {
+    background: linear-gradient(180deg,#fff,hsla(0,0%,100%,.5));
+    left: 0;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.test-box {
+    box-sizing: border-box;
+    padding: 48rpx 40rpx;
+    width: 100%;
+}
+
+.title {
+    color: #303133;
+    font-size: 36rpx;
+    font-weight: 800;
+    line-height: 50rpx;
+}
+
+.info {
+    color: #909399;
+    font-size: 26rpx;
+    line-height: 52rpx;
+    margin: 10rpx 0 42rpx;
+}
+
+.introduce-box {
+    background: #fff;
+    border-radius: 24rpx;
+    box-shadow: 0 2rpx 40rpx 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    padding: 40rpx;
+    width: 100%;
+}
+
+.introduce-title {
+    align-items: center;
+    display: flex;
+    margin-bottom: 32rpx;
+}
+
+.introduce-title image {
+    margin-right: 20rpx;
+    width: 48rpx;
+}
+
+.introduce-title view {
+    color: #303133;
+    font-size: 32rpx;
+    font-weight: 700;
+    line-height: 46rpx;
+}
+
+.introduce-cnt {
+    overflow-y: auto;
+}
+
+.introduce-cnt text {
+    color: #616367;
+    display: block;
+    font-size: 28rpx;
+    line-height: 56rpx;
+}
+
+.btn {
+    background: #30384f;
+    border-radius: 56rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 700;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-bottom: 20rpx;
+    width: 528rpx;
+}
+
+.btn,.tips {
+    text-align: center;
+}
+
+.tips {
+    color: #909399;
+    font-size: 28rpx;
+    line-height: 70rpx;
+    margin: 0 auto;
+    width: 260rpx;
+}
+
+.btn-box {
+    bottom: calc(40px + env(safe-area-inset-bottom))!important;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%);
+}
+
+::-webkit-scrollbar {
+    color: #fff;
+    height: 4px;
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #59f0a6;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.01);
+}

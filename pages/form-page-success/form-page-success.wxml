@@ -1,0 +1,13 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="form-suc">
+    <image class="form-suc-img" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="../../assets/image/form-suc.png"></image>
+    <view class="suc-text">提交成功</view>
+    <view class="blue-text" wx:if="{{is_post_more==1}}">
+        <view bindtap="handleAgain" class="one-text">再填写一份</view>
+        <view class="border"></view>
+        <button class="share-text" openType="share">分享给好友</button>
+    </view>
+    <view class="blue-text" wx:else>
+        <button class="share-text" openType="share">分享给好友</button>
+    </view>
+</view>

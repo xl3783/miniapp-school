@@ -1,0 +1,2 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<plan-score-search-comp enrollType="{{enrollType}}" searchType="{{searchType}}"></plan-score-search-comp>

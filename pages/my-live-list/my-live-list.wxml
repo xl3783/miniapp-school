@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<my-live-list-comp bind:changeShare="changeShare" height="{{height}}"></my-live-list-comp>

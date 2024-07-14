@@ -1,0 +1,67 @@
+page {
+    background: #444;
+    color: #fff;
+}
+
+.end-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo {
+    height: 160rpx;
+    margin: 96rpx auto 30rpx;
+    width: 160rpx;
+}
+
+.title {
+    font-size: 36rpx;
+    font-weight: 600;
+    line-height: 50rpx;
+}
+
+.end {
+    font-size: 30rpx;
+    line-height: 42rpx;
+}
+
+.btn {
+    background: hsla(0,0%,100%,.9);
+    border-radius: 48rpx;
+    bottom: 76rpx;
+    color: #333;
+    font-size: 32rpx;
+    height: 96rpx;
+    left: 135rpx;
+    line-height: 96rpx;
+    margin: 0 auto;
+    position: fixed;
+    width: 480rpx;
+}
+
+.count-box {
+    background: rgba(0,0,0,.45);
+    border-radius: 32rpx;
+    display: flex;
+    height: 235rpx;
+    justify-content: space-around;
+    margin: 64rpx auto 0;
+    width: 686rpx;
+}
+
+.count-item .time {
+    color: #fff;
+    font-size: 42rpx;
+    font-weight: 500;
+    line-height: 59rpx;
+    margin-top: 54rpx;
+}
+
+.count-item .time-info {
+    color: #fff;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    margin-top: 16rpx;
+}

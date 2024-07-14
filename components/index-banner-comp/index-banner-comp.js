@@ -1,12 +1,10 @@
-var e = require("../../utils/util");
-
-getApp();
+import util from '../../utils/util';
 
 Component({
   properties: {
     indicatorDots: {
       type: Boolean,
-      value: !0
+      value: !1
     },
     autoplay: {
       type: Boolean,
@@ -46,7 +44,7 @@ Component({
     },
     logo: {
       type: String,
-      value: "/images/intro.png"
+      value: ""
     },
     schoolName: {
       type: String,
@@ -81,15 +79,18 @@ Component({
     active: 0
   },
   methods: {
-    changeSwiper: function (e) {
+    changeSwiper: function (event) {
       this.setData({
-        active: e.detail.current
+        active: event.detail.current
       });
     },
-    jump: function (t) {
-      (0, e.getPhoneLogin)().then(function () {
-        (0, e.jumpToDetail)(t);
-      });
+    jump: function (target) {
+      util.getPhoneLogin().then(function () {
+        util.jumpToDetail(target);
+      })
+      // (0, util.getPhoneLogin)().then(function () {
+      //   (0, util.jumpToDetail)(target);
+      // });
     }
   }
 });

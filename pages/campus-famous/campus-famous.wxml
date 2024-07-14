@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<person-comp height="{{height}}" tabname="{{tabName}}" typeName="mate"></person-comp>

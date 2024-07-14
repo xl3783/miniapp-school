@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<liveList-comp height="{{height}}" id="liveList-comp" type="{{type}}" typeId="{{typeId}}"></liveList-comp>

@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<plan-score-new-comp bind:changeName="changeName" height="{{height}}" searchId="{{searchId}}"></plan-score-new-comp>

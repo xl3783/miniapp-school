@@ -1,0 +1,51 @@
+<custom-topbar title="{{school.account}}"></custom-topbar>
+<image alt="" class="top-img" showMenuByLongpress="true" src="{{school.banner}}"></image>
+<view wx:for="{{list}}" wx:key="index">
+    <view bindtap="openItem" class="list-item" data-id="{{item.id}}">
+        <view class="name">{{item.name}}</view>
+        <image class="img" showMenuByLongpress="true" src="../../assets/image/icon_right.png" style=" transform:{{activeIndex==item.id?'rotate(90deg)':'rotate(0deg)'}} ; "></image>
+    </view>
+    <view class="contact" wx:if="{{activeIndex==item.id}}">
+        <block wx:if="{{item.member}}">
+            <view class="c_list" wx:for="{{item.member}}" wx:for-item="item1" wx:key="*this">
+                <button bindcontact="handleContact" class="c_list_but" data-item="{{item1.wechat_json}}" openType="contact" sessionFrom="{{item1.wechat_json}}"></button>
+                <view class="c_list_v">
+                    <view class="c_list_v_1">
+                        <image class="c_avatar" mode="widthFix" showMenuByLongpress="true" src="{{item1.avatar?item1.avatar:'../../assets/image/wode.png'}}"></image>
+                        <view class="c_name">{{item1.nickname}}</view>
+                        <view class="c_zx">咨询</view>
+                    </view>
+                    <view class="c_list_v_2">
+                        <view class="c_v_2" wx:for="{{item1.mArr}}" wx:for-item="m" wx:key="*this"> {{m}} </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <button class="contact-item" wx:else>
+            <view class="name">暂无数据</view>
+        </button>
+    </view>
+</view>
+<view class="mask" wx:if="{{showMask}}">
+    <view class="content">
+        <image class="kefu" showMenuByLongpress="true" src="../../assets/image/kefu.png"></image>
+        <view class="text">方便老师回复，请填写个人信息</view>
+        <view class="input-box" wx:if="{{userForm.name.display}}">
+            <input bindinput="handleInput" data-type="name" placeholder="请输入姓名" placeholderStyle="text-align:center" type="text" value="{{name}}"></input>
+        </view>
+        <view class="input-box" wx:if="{{userForm.phone.display}}">
+            <input bindinput="handleInput" data-type="mobile" placeholder="请输入联系方式" type="text" value="{{mobile}}"></input>
+        </view>
+        <view class="input-box" wx:if="{{userForm.graduateSchool.display}}">
+            <input bindinput="handleInput" data-type="school" placeholder="请输入毕业学校名称" type="text" value="{{graduate_school}}"></input>
+        </view>
+        <view class="input-box" wx:if="{{userForm.address.display}}">
+            <picker bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" class="picker" mode="multiSelector" range="{{multiArray}}" value="{{multiIndex}}">
+                <view class="picker"> {{multiArray[0][ multiIndex[0] ]}}-{{multiArray[1][ multiIndex[1] ]}} </view>
+            </picker>
+            <image class="img-bottom" showMenuByLongpress="true" src="../../assets/image/icon_right.png" style=" transform:rotate(90deg)  "></image>
+        </view>
+        <view bindtap="submit" class="submit-btn">提交</view>
+    </view>
+</view>
+<wxs module="tools" src="../../utils/tool.wxs" />

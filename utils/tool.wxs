@@ -1,65 +1,47 @@
-function pathInArr(path, arr) {
+module.exports = {
+  pathInArr: function (path, arr) {
     var index = -1;
     for (var i = 0; i < arr.length; i++) {
-        if (arr[((nt_0 = (i), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))].base_url == path) {
-            index = i;
-            break
-        }
-    };
-    if (index >= 0) {
-        return (true)
-    } else {
-        return (false)
+      if (arr[i] && arr[i].base_url === path) {
+        index = i;
+        break;
+      }
     }
-};
+    return index >= 0;
+  },
 
-function idInStr(id, str) {
+  idInArr: function (id, arr) {
+    var index = -1;
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] == id) {
+        index = i;
+        break;
+      }
+    }
+    return index >= 0;
+  },
+
+  idInStr: function (id, str) {
     var arr = str ? str.split(",") : [];
     var index = -1;
     for (var i = 0; i < arr.length; i++) {
-        if (arr[((nt_1 = (i), null == nt_1 ? undefined : 'number' === typeof nt_1 ? nt_1 : "" + nt_1))] == id) {
-            index = i;
-            break
-        }
-    };
-    if (index >= 0) {
-        return (true)
-    } else {
-        return (false)
+      if (arr[i] == id) {
+        index = i;
+        break;
+      }
     }
-};
+    return index >= 0;
+  },
 
-function idInArr(id, arr) {
-    var index = -1;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[((nt_2 = (i), null == nt_2 ? undefined : 'number' === typeof nt_2 ? nt_2 : "" + nt_2))] == id) {
-            index = i;
-            break
-        }
-    };
-    if (index >= 0) {
-        return (true)
-    } else {
-        return (false)
-    }
-};
+  splitToArr: function (str) {
+    return str ? str.split(",") : [];
+  },
 
-function splitToArr(str) {
-    return (str ? str.split(",") : [])
-};
+  JsonString: function (obj) {
+    return JSON.stringify(obj);
+  },
 
-function JsonString(obj) {
-    return (JSON.stringify(obj))
+  sliceArr: function (arr, i, j) {
+    return arr.slice(i, j);
+  }
 };
-
-function sliceArr(arr, i, j) {
-    return (arr.slice(i, j))
-};
-module.exports = ({
-    pathInArr: pathInArr,
-    idInArr: idInArr,
-    idInStr: idInStr,
-    splitToArr: splitToArr,
-    JsonString: JsonString,
-    sliceArr: sliceArr,
-});

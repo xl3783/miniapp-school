@@ -1,0 +1,3 @@
+<view>
+    <from-view data="{{info}}" height="{{height}}"></from-view>
+</view>

@@ -1,0 +1,48 @@
+.box {
+    margin: 0 40rpx;
+}
+
+.name {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 600;
+    height: 45rpx;
+    line-height: 45rpx;
+}
+
+.name:first-child {
+    margin-top: 36rpx;
+}
+
+.input-box {
+    background: #f0f3f7;
+    border-radius: 6rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    height: 112rpx;
+    margin: 32rpx 0;
+    padding: 0 28rpx;
+    width: 100%;
+}
+
+.textarea {
+    height: 380rpx;
+    padding: 28rpx;
+}
+
+.btn {
+    background: #1487ff;
+    border-radius: 20rpx;
+    color: #fff;
+    font-size: 32rpx;
+    margin: 56rpx auto;
+    text-align: center;
+    width: 578rpx;
+}
+
+button::after {
+    height: 96rpx!important;
+    line-height: 96rpx!important;
+    padding: 0;
+}

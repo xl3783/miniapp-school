@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<admission-query-one-comp bind:changeName="changeName" height="{{height}}" type="{{type}}"></admission-query-one-comp>

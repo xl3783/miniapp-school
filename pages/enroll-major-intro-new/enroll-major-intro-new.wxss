@@ -1,0 +1,162 @@
+.top-nav {
+    border-bottom: 1rpx solid #e7eef0;
+    height: 100rpx;
+}
+
+.top-nav .scrool-view {
+    white-space: nowrap;
+}
+
+.top-nav .scrool-view .cate {
+    color: #777;
+    display: inline-block;
+    font-size: 34rpx;
+    font-weight: 400;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-left: 48rpx;
+}
+
+.top-nav .scrool-view .cate:last-child {
+    margin-right: 48rpx;
+}
+
+.top-nav .scrool-view .active {
+    color: #333;
+    font-size: 34rpx;
+    font-weight: 600;
+    position: relative;
+}
+
+.top-nav .scrool-view .active .border {
+    height: 6rpx;
+    left: 50%;
+    position: absolute;
+    top: 94rpx;
+    transform: translate(-50%,0);
+    width: 36rpx;
+}
+
+.intro1 {
+    color: #333;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 400;
+    line-height: 50rpx;
+    margin: 32rpx;
+}
+
+.intro1 image {
+    width: 100%!important;
+}
+
+.intro {
+    color: #333;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 400;
+    line-height: 50rpx;
+    margin: 0 32rpx;
+}
+
+.re-item {
+    border-bottom: 1rpx solid #e7eef0;
+    display: flex;
+    justify-content: space-between;
+    padding: 54rpx 0;
+}
+
+.re-item .re-name {
+    color: #333;
+    flex: 1;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 600;
+    line-height: 44rpx;
+}
+
+.re-item .re-right {
+    align-items: center;
+    color: #999;
+    display: flex;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 26rpx;
+    font-weight: 400;
+    margin-left: 10rpx;
+}
+
+.re-item .re-right .right-img {
+    height: 36rpx;
+    margin-left: 6rpx;
+    width: 36rpx;
+}
+
+.mask {
+    background: rgba(0,0,0,.3);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0rpx;
+    z-index: 101;
+}
+
+.mask .bgfff-content {
+    background: #fff;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+}
+
+.mask .bgfff-content .detail-name {
+    font-size: 36rpx;
+    font-weight: 600;
+    line-height: 50rpx;
+    margin: 42rpx 0;
+    padding: 0 90rpx;
+    position: relative;
+    text-align: center;
+}
+
+.mask .bgfff {
+    box-sizing: border-box;
+    color: #333;
+    font-family: PingFangSC-Regular,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 900rpx;
+    line-height: 45rpx;
+    padding: 32rpx;
+    width: 100%;
+}
+
+.mask .bgfff .name {
+    font-weight: 600;
+    height: 50rpx;
+    text-align: center;
+}
+
+.mask .bgfff .info {
+    margin-bottom: 20rpx;
+}
+
+.bgfff image {
+    width: 100%!important;
+}
+
+.close {
+    display: block;
+    height: 63rpx;
+    position: absolute;
+    right: 32rpx;
+    top: 0rpx;
+    width: 63rpx;
+}
+
+.mp-img-box image {
+    width: 100%;
+}

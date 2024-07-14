@@ -1,0 +1,10 @@
+<custom-topbar title="问题详情"></custom-topbar>
+<view class="cate-item">
+    <view class="left">
+        <view class="text">{{questionData.title}}</view>
+    </view>
+</view>
+<view class="content mp-img-box" wx:if="{{questionData.answer}}">
+    <mp bindlinktap="linktap" content="{{answer}}" copyLink="{{false}}"></mp>
+</view>
+<no-data-comp wx:if="{{dataIsLoad&&!questionData.answer}}"></no-data-comp>

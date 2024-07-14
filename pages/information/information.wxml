@@ -1,0 +1,12 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="info_box" wx:if="{{infoList&&infoList.length>0}}">
+    <view class="info_list" wx:for="{{infoList}}" wx:key="index">
+        <view class="info_title">{{item.title}}</view>
+        <view class="info_cnt">{{item.content}}</view>
+        <view class="info_time">{{item.create_time}}</view>
+    </view>
+</view>
+<view class="no_info" wx:else>
+    <image mode="widthFix" src="../../assets/image/info_none.png"></image>
+    <text>暂无消息记录</text>
+</view>

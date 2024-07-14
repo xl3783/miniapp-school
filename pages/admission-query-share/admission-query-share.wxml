@@ -1,0 +1,22 @@
+<custom-topbar title="{{name}}"></custom-topbar>
+<view class="bg {{isIPad?'ipadBg':''}}" style="width: {{isIPad?'390px':'750rpx'}};">
+    <image class="result-img" mode="widthFix" src="{{bgUrl}}"></image>
+    <view class="result" style="top:{{resultTop}};" wx:if="{{intro}}">
+        <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}"></mp>
+    </view>
+    <view class="blessing {{isIPad?'ipadBlessing':''}}">
+        <view class="give_share">
+            <button bindtap="openPopup" class="give" data-status="{{message_status}}">{{message_status==0?'送TA祝福':'已送出祝福'}}</button>
+            <button class="share" hoverClass="none" openType="share">帮TA分享</button>
+        </view>
+    </view>
+    <view class="popup_mask" hidden="{{!popupShow}}">
+        <view class="popup">
+            <textarea adjustPosition="{{true}}" bindinput="getValue" cursorSpacing="260" disableDefaultPaddin="true" maxlength="200" placeholder="请输入祝福语（选填）" placeholderClass="textarea_text" value="{{value}}"></textarea>
+            <view class="popup_btn">
+                <view bindtap="toCancel" class="cancel">取消</view>
+                <view bindtap="toSure" class="sure">祝福</view>
+            </view>
+        </view>
+    </view>
+</view>

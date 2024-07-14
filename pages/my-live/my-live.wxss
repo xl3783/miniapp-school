@@ -1,0 +1,408 @@
+page {
+    background: #444;
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    width: 100vw;
+}
+
+.center-ppt-box {
+    margin-top: 450rpx;
+    position: relative;
+}
+
+.center-ppt,.center-ppt-box {
+    height: 487rpx;
+    width: 100%;
+}
+
+.center-ppt-box .icon {
+    height: 64rpx;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 64rpx;
+    z-index: 101;
+}
+
+.center-ppt-box .left {
+    left: 24rpx;
+}
+
+.center-ppt-box .right {
+    right: 24rpx;
+}
+
+.max-pusher {
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 100vw;
+}
+
+.max-pusher,.min-pusher {
+    position: absolute;
+    right: 0;
+}
+
+.min-pusher {
+    height: 188rpx;
+    top: 450rpx;
+    width: 132rpx;
+    z-index: 103;
+}
+
+.top-bar {
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    width: 70%;
+}
+
+.top-bar .left-arrow {
+    display: inline-block;
+    height: 64rpx;
+    margin-left: 20rpx;
+    width: 64rpx;
+}
+
+.top-bar .tabname {
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.live-top {
+    display: flex;
+    justify-content: space-between;
+    left: 32rpx;
+    margin-bottom: 22rpx;
+    position: absolute;
+    right: 32rpx;
+    top: 200rpx;
+}
+
+.live-top .exit,.live-top .switch-camera {
+    height: 80rpx;
+    width: 80rpx;
+}
+
+.live-status {
+    background: rgba(0,0,0,.25);
+    border-radius: 32rpx;
+    display: inline-block;
+    height: 54rpx;
+    margin-left: 32rpx;
+    padding-right: 16rpx;
+    position: absolute;
+    top: 304rpx;
+}
+
+.live-status .time-count {
+    background: #1cd894;
+    border-radius: 21rpx;
+    color: #fff;
+    float: left;
+    font-size: 24rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    margin-left: 6rpx;
+    margin-right: 14rpx;
+    margin-top: 6rpx;
+    padding: 0 10rpx;
+}
+
+.live-status .number {
+    color: #fff;
+    float: left;
+    font-size: 24rpx;
+    line-height: 54rpx;
+}
+
+.start-live {
+    background: #1487ff;
+    border-radius: 48rpx;
+    bottom: 70rpx;
+    font-size: 32rpx;
+    height: 96rpx;
+    left: 50%;
+    line-height: 96rpx;
+    text-align: center;
+    transform: translate(-50%);
+    width: 480rpx;
+}
+
+.enter-box,.start-live {
+    color: #fff;
+    position: absolute;
+}
+
+.enter-box {
+    background: rgba(0,0,0,.3);
+    border-radius: 4rpx;
+    bottom: 540rpx;
+    box-sizing: border-box;
+    display: flex;
+    display: inline-block;
+    font-size: 28rpx;
+    left: 32rpx;
+    line-height: 40rpx;
+    margin-bottom: 16rpx;
+    max-width: 520rpx;
+    padding: 12rpx 16rpx;
+}
+
+.comment-box {
+    bottom: 36rpx;
+    max-height: 500rpx;
+    padding-left: 32rpx;
+    position: absolute;
+}
+
+.comment-item {
+    background: rgba(0,0,0,.3);
+    border-radius: 32rpx;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    margin-bottom: 16rpx;
+    max-width: 520rpx;
+    padding: 12rpx 16rpx;
+}
+
+.mask {
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    z-index: 110;
+}
+
+.mask,.mask .sharefff {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mask .sharefff {
+    background: #fff;
+    border-radius: 30rpx 30rpx 0rpx 0rpx;
+    position: absolute;
+}
+
+.mask .sharefff .share-title {
+    padding: 54rpx 0 60rpx;
+    text-align: center;
+}
+
+.mask .sharefff .flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mask .sharefff .flex .share-item {
+    background: transparent;
+    font-size: 30rpx;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: auto;
+}
+
+.mask .sharefff .flex .share-item::after {
+    border: 0;
+}
+
+.mask .sharefff .flex .share-item .share-img {
+    height: 88rpx;
+    width: 88rpx;
+}
+
+.mask .sharefff .cancel-btn {
+    border-top: 1rpx solid #e5e5e5;
+    height: 120rpx;
+    line-height: 120rpx;
+    margin-top: 48rpx;
+    text-align: center;
+}
+
+.ppt-title {
+    border-bottom: 1rpx solid #e7eef0;
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    padding: 40rpx 0;
+    text-align: center;
+}
+
+.ppt-close {
+    height: 64rpx;
+    position: absolute;
+    right: 32rpx;
+    top: 32rpx;
+    width: 64rpx;
+}
+
+.ppt-box {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 9rpx;
+    padding: 32rpx 0;
+}
+
+.ppt-box .ppt-item {
+    border: 2rpx solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10rpx;
+}
+
+.ppt-box .ppt-item .text {
+    color: #333;
+    font-size: 32rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ppt-box .active {
+    border: 2rpx solid #1487ff;
+    position: relative;
+}
+
+.ppt-box .active .checked-icon {
+    height: 42rpx;
+    position: absolute;
+    right: 16rpx;
+    top: 16rpx;
+    width: 42rpx;
+}
+
+.ppt-box .ppt-item image {
+    display: block;
+    height: 156rpx;
+    width: 240rpx;
+}
+
+.ppt-box:after {
+    content: "";
+    flex: auto;
+}
+
+.ppt-box1 {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 32rpx 0;
+}
+
+.ppt-box1 .file-item {
+    margin-bottom: 36rpx;
+    width: 320rpx;
+}
+
+.ppt-box1 .file-item .ppt-item1 {
+    height: 207rpx;
+    margin-bottom: 33rpx;
+    width: 320rpx;
+}
+
+.ppt-box1 .file-item .active {
+    border: 3rpx solid #1487ff;
+    position: relative;
+}
+
+.ppt-box1 .active .checked-icon {
+    height: 42rpx;
+    position: absolute;
+    right: 16rpx;
+    top: 16rpx;
+    width: 42rpx;
+}
+
+.ppt-box1 .file-item .ppt-item1 .cover {
+    height: 207rpx;
+    width: 320rpx;
+}
+
+.flex-btn {
+    display: flex;
+    justify-content: space-around;
+    margin: 38rpx;
+}
+
+.flex-btn .btn {
+    border-radius: 86rpx;
+    font-size: 32rpx;
+    height: 86rpx;
+    line-height: 86rpx;
+    text-align: center;
+    width: 286rpx;
+}
+
+.cancel {
+    border: 2rpx solid #909399;
+}
+
+.sure {
+    background: #1487ff;
+    color: #fff;
+}
+
+.login-mask {
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 120rpx;
+    z-index: 10000;
+}
+
+.login-content {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 678rpx;
+}
+
+.login-content .login-img {
+    height: 240rpx;
+    margin-bottom: 42rpx;
+    margin-top: 48rpx;
+    width: 240rpx;
+}
+
+.login-content .login-text {
+    font-size: 32rpx;
+}
+
+button {
+    padding: 0!important;
+}
+
+.login-content .login-btn {
+    background: #1487ff;
+    border-radius: 48rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 96rpx;
+    line-height: 96rpx;
+    margin: 48rpx 0;
+    width: 368rpx;
+}

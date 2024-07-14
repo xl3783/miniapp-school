@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "index-banner-comp": "../index-banner-comp/index-banner-comp",
+    "index-notice-comp": "../index-notice-comp/index-notice-comp",
+    "index-nav-comp": "../index-nav-comp/index-nav-comp",
+    "index-column-comp": "../index-column-comp/index-column-comp",
+    "pic-column-comp": "../pic-column-comp/pic-column-comp",
+    "waterfall-comp": "../waterfall-comp/waterfall-comp",
+    "index-ad-comp": "../index-ad-comp/index-ad-comp",
+    "no-data-comp": "../no-data-comp/no-data-comp"
+  }
+}

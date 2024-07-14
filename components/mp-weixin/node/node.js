@@ -1,89 +1,151 @@
-function t(t, i, e) {
-    return i in t ? Object.defineProperty(t, i, {
-        value: e,
-        enumerable: !0,
-        configurable: !0,
-        writable: !0
-    }) : t[i] = e, t;
+// Utility function to define a property on an object
+function defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
 }
 
-require("../../../@babel/runtime/helpers/Arrayincludes"), Component({
-    data: {
-        ctrl: {}
+Component({
+  data: {
+    ctrl: {}
+  },
+  properties: {
+    childs: Array,
+    opts: Array
+  },
+  attached: function () {
+    this.triggerEvent("add", this, {
+      bubbles: true,
+      composed: true
+    });
+  },
+  methods: {
+    noop: function () {},
+
+    // Get a specific node from the child structure
+    getNode: function (nodePath) {
+      const indices = nodePath.split("_");
+      let node = this.data.childs[indices[0]];
+      for (let i = 1; i < indices.length; i++) {
+        node = node.children[indices[i]];
+      }
+      return node;
     },
-    properties: {
-        childs: Array,
-        opts: Array
-    },
-    attached: function() {
-        this.triggerEvent("add", this, {
-            bubbles: !0,
-            composed: !0
-        });
-    },
-    methods: {
-        noop: function() {},
-        getNode: function(t) {
-            for (var i = t.split("_"), e = this.data.childs[i[0]], r = 1; r < i.length; r++) e = e.children[i[r]];
-            return e;
-        },
-        play: function(t) {
-            if (this.root.data.pauseVideo) {
-                for (var i = !1, e = t.target.id, r = this.root._videos.length; r--; ) this.root._videos[r].id == e ? i = !0 : this.root._videos[r].pause();
-                if (!i) {
-                    var a = wx.createVideoContext(e, this);
-                    a.id = e, this.root._videos.push(a);
-                }
-            }
-        },
-        imgTap: function(t) {
-            var i = this.getNode(t.target.dataset.i);
-            if (i.a) return this.linkTap(i.a);
-            if (!i.attrs.ignore && (this.root.triggerEvent("imgtap", i.attrs), this.root.data.previewImg)) {
-                var e = this.root.imgList[i.i];
-                wx.previewImage({
-                    current: e,
-                    urls: this.root.imgList
-                });
-            }
-        },
-        imgLoad: function(i) {
-            var e, r = i.target.dataset.i;
-            this.getNode(r).w ? (this.data.opts[1] && !this.data.ctrl[r] || -1 == this.data.ctrl[r]) && (e = 1) : e = i.detail.width, 
-            e && this.setData(t({}, "ctrl." + r, e));
-        },
-        linkTap: function(t) {
-            var i = t.currentTarget ? this.getNode(t.currentTarget.dataset.i) : {}, e = i.attrs || t, r = e.href;
-            this.root.triggerEvent("linktap", Object.assign({
-                innerText: this.root.getText(i.children || [])
-            }, e)), r && ("#" == r[0] ? this.root.navigateTo(r.substring(1)).catch(function() {}) : r.includes("://") ? this.root.data.copyLink && wx.setClipboardData({
-                data: r,
-                success: function() {
-                    return wx.showToast({
-                        title: "链接已复制"
-                    });
-                }
-            }) : wx.navigateTo({
-                url: r,
-                fail: function() {
-                    wx.switchTab({
-                        url: r,
-                        fail: function() {}
-                    });
-                }
-            }));
-        },
-        mediaError: function(i) {
-            var e = i.target.dataset.i, r = this.getNode(e);
-            if ("video" == r.name || "audio" == r.name) {
-                var a = (this.data.ctrl[e] || 0) + 1;
-                if (a > r.src.length && (a = 0), a < r.src.length) return this.setData(t({}, "ctrl." + e, a));
-            } else "img" == r.name && this.data.opts[2] && this.setData(t({}, "ctrl." + e, -1));
-            this.root && this.root.triggerEvent("error", {
-                source: r.name,
-                attrs: r.attrs,
-                errMsg: i.detail.errMsg
-            });
+
+    // Handle video play event
+    play: function (event) {
+      if (this.root.data.pauseVideo) {
+        let isCurrentVideoPlaying = false;
+        const videoId = event.target.id;
+        for (let i = this.root._videos.length - 1; i >= 0; i--) {
+          if (this.root._videos[i].id === videoId) {
+            isCurrentVideoPlaying = true;
+          } else {
+            this.root._videos[i].pause();
+          }
         }
+        if (!isCurrentVideoPlaying) {
+          const videoContext = wx.createVideoContext(videoId, this);
+          videoContext.id = videoId;
+          this.root._videos.push(videoContext);
+        }
+      }
+    },
+
+    // Handle image tap event
+    imgTap: function (event) {
+      const imgNode = this.getNode(event.target.dataset.i);
+      if (imgNode.a) {
+        return this.linkTap(imgNode.a);
+      }
+      if (!imgNode.attrs.ignore && this.root.data.previewImg) {
+        const imgUrl = this.root.imgList[imgNode.i];
+        wx.previewImage({
+          current: imgUrl,
+          urls: this.root.imgList
+        });
+      }
+    },
+
+    // Handle image load event
+    imgLoad: function (event) {
+      const imgIndex = event.target.dataset.i;
+      const imgNode = this.getNode(imgIndex);
+      const imgWidth = imgNode.w ? (this.data.opts[1] && !this.data.ctrl[imgIndex] || this.data.ctrl[imgIndex] === -1 ? 1 : undefined) : event.detail.width;
+
+      if (imgWidth !== undefined) {
+        this.setData(defineProperty({}, `ctrl.${imgIndex}`, imgWidth));
+      }
+    },
+
+    // Handle link tap event
+    linkTap: function (event) {
+      const node = event.currentTarget ? this.getNode(event.currentTarget.dataset.i) : {};
+      const attrs = node.attrs || event;
+      const href = attrs.href;
+
+      this.root.triggerEvent("linktap", Object.assign({
+        innerText: this.root.getText(node.children || [])
+      }, attrs));
+
+      if (href) {
+        if (href.startsWith("#")) {
+          this.root.navigateTo(href.substring(1)).catch(() => {});
+        } else if (href.includes("://")) {
+          if (this.root.data.copyLink) {
+            wx.setClipboardData({
+              data: href,
+              success: function () {
+                wx.showToast({
+                  title: "链接已复制"
+                });
+              }
+            });
+          }
+        } else {
+          wx.navigateTo({
+            url: href,
+            fail: function () {
+              wx.switchTab({
+                url: href,
+                fail: function () {}
+              });
+            }
+          });
+        }
+      }
+    },
+
+    // Handle media error event
+    mediaError: function (event) {
+      const nodeIndex = event.target.dataset.i;
+      const node = this.getNode(nodeIndex);
+
+      if (["video", "audio"].includes(node.name)) {
+        let newSrcIndex = (this.data.ctrl[nodeIndex] || 0) + 1;
+        if (newSrcIndex > node.src.length) newSrcIndex = 0;
+        if (newSrcIndex < node.src.length) {
+          this.setData(defineProperty({}, `ctrl.${nodeIndex}`, newSrcIndex));
+        }
+      } else if (node.name === "img" && this.data.opts[2]) {
+        this.setData(defineProperty({}, `ctrl.${nodeIndex}`, -1));
+      }
+
+      if (this.root) {
+        this.root.triggerEvent("error", {
+          source: node.name,
+          attrs: node.attrs,
+          errMsg: event.detail.errMsg
+        });
+      }
     }
+  }
 });

@@ -1,0 +1,41 @@
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.container_user {
+    height: 160rpx;
+    position: absolute;
+    top: 150rpx;
+    width: 160rpx;
+}
+
+.container_user_title {
+    color: #fff;
+    font-size: 38rpx;
+    font-weight: 400;
+    position: absolute;
+    top: 360rpx;
+}
+
+.container_bj {
+    height: 600rpx;
+    width: 100%;
+}
+
+.but {
+    align-items: center;
+    background: linear-gradient(90deg,#39da9b,#20b9a2);
+    border-radius: 10rpx;
+    color: #fff;
+    display: flex;
+    height: 100rpx;
+    justify-content: center;
+    position: absolute;
+    top: 460px;
+    width: 480rpx;
+}

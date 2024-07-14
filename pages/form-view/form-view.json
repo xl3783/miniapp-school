@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "default",
+    "usingComponents": {
+        "from-view": "/components/pageOne/form-view/form-view",
+        "agreement": "/components/wx-agreement/wx-agreement"
+    }
+}

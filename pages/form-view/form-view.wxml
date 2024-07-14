@@ -1,0 +1,4 @@
+<view>
+    <from-view data="{{info}}" height="{{height}}"></from-view>
+    <agreement id="wx-agreement"></agreement>
+</view>

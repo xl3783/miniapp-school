@@ -1,0 +1,164 @@
+.bgColor {
+    background: linear-gradient(92deg,#ddf5df,#b7eee9);
+}
+
+.bg,.bgColor {
+    left: 0;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg {
+    background: linear-gradient(180deg,#fff,hsla(0,0%,100%,.5));
+}
+
+.res-box {
+    box-sizing: border-box;
+    padding: 36rpx 36rpx 200rpx;
+    width: 100%;
+}
+
+.res-content {
+    padding: 36rpx 40rpx 0;
+}
+
+.charts-box,.res-content {
+    background: #fff;
+    border-radius: 24rpx;
+    box-shadow: 0 2rpx 40rpx 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.charts-box {
+    height: 706rpx;
+    margin-bottom: 36rpx;
+    position: relative;
+}
+
+.ria {
+    background: #f6f9f8;
+    border-radius: 40px;
+    bottom: 40rpx;
+    color: #16b980;
+    font-size: 32rpx;
+    font-weight: 700;
+    height: 80rpx;
+    left: 50%;
+    line-height: 80rpx;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    width: 242rpx;
+}
+
+.resTab-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resTab {
+    color: silver;
+    font-size: 30rpx;
+    font-weight: 400;
+    height: 66rpx;
+    line-height: 42rpx;
+    position: relative;
+}
+
+.current {
+    color: #1d201e;
+    font-weight: 700;
+}
+
+.tabSlider {
+    border-radius: 6rpx;
+    content: "";
+    height: 8rpx;
+    left: 50%;
+    position: absolute;
+    top: 60rpx;
+    transform: translateX(-50%);
+    width: 48rpx;
+}
+
+.content-box {
+    border-top: 1rpx solid #f0f0f0;
+    padding: 36rpx 0;
+}
+
+.cnt-title {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 700;
+    line-height: 50rpx;
+    margin-bottom: 20rpx;
+}
+
+.cnt-info {
+    color: #616367;
+    font-size: 28rpx;
+    line-height: 56rpx;
+}
+
+.recommend {
+    border-bottom: 1rpx solid #f0f0f0;
+    display: flex;
+    height: 110rpx;
+    justify-content: space-between;
+    line-height: 110rpx;
+}
+
+.recommend:last-child {
+    border-bottom: none;
+}
+
+.recommend .title {
+    color: #333;
+    font-size: 28rpx;
+    line-height: 110rpx;
+}
+
+.recommend .details {
+    color: silver;
+    font-size: 26rpx;
+    line-height: 110rpx;
+}
+
+.recommend image {
+    height: 36rpx;
+    margin-left: 8rpx;
+    vertical-align: middle;
+    width: 36rpx;
+}
+
+.no-data-box {
+    border-top: 1rpx solid #f0f0f0;
+    height: 500rpx;
+    position: relative;
+}
+
+.analysis-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 360rpx;
+    transform: translateX(-50%);
+}
+
+.analysis-box image {
+    width: 96rpx;
+}
+
+.analysis-box text {
+    color: silver;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    margin-top: 36rpx;
+}

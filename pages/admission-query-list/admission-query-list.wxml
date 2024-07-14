@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<admission-query-list-comp height="{{height}}" name="{{tabName}}"></admission-query-list-comp>

@@ -1,0 +1,24 @@
+<view>
+  <view class="mask">
+    <view class="content">
+      <image class="kefu" showMenuByLongpress="true" src="/assets/image/kefu.png"></image>
+      <view class="input-box">
+        <input bindinput="handleInput" class="input" data-type="name" type="text" value="{{name}}"></input>
+      </view>
+      <view class="input-box">
+        <input bindinput="handleInput" class="input" data-type="mobile" type="text" value="{{mobile}}"></input>
+      </view>
+      <view class="input-box">
+        <input bindinput="handleInput" class="input" data-type="school" type="text" value="{{graduate_school}}"></input>
+      </view>
+      <view class="input-box">
+        <picker bindchange="bindPickerChange" class="picker" range="{{allProvinceList}}" rangeKey="{{'province'}}" value="{{province}}">
+          <view class="picker"> {{province}} </view>
+        </picker>
+        <image class="img-bottom" showMenuByLongpress="true" src="../../../assets/image/icon_right.png" style=" transform:rotate(90deg)  "></image>
+      </view>
+      <view bindtap="submit" class="submit-btn">提交</view>
+    </view>
+  </view>
+</view>
+<wxs module="tools" src="../../utils/tool.wxs" />

@@ -1,0 +1,6 @@
+<view class="container">
+    <image class="container_bj" src="./icon/bj.png"></image>
+    <image class="container_user" src="./icon/user.png"></image>
+    <view class="container_user_title"> {{opt.nickname?opt.nickname:'老师'}} </view>
+    <view bindtap="communication" class="but"> 立即沟通 </view>
+</view>

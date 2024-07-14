@@ -1,0 +1,10 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "互联网学院",
+    "usingComponents": {
+        "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "no-data-comp": "/components/no-data-comp/no-data-comp",
+        "mp": "/components/mp-weixin/index"
+    }
+}

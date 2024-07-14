@@ -1,0 +1,137 @@
+page {
+    background: #f6f7f8;
+}
+
+.live-detail {
+    background: #fff;
+    border-bottom: 1rpx solid #e7eef0;
+    padding-bottom: 57rpx;
+    text-align: center;
+}
+
+.live-detail .cover {
+    display: block;
+    height: 300rpx;
+    margin: 0 auto 50rpx;
+    width: 480rpx;
+}
+
+.live-detail .info {
+    color: #333;
+    font-size: 32rpx;
+}
+
+.live-detail .msg {
+    color: #999;
+    font-size: 26rpx;
+    margin-bottom: 20rpx;
+    margin-top: 12rpx;
+}
+
+.djs {
+    color: #303133;
+    font-size: 32rpx;
+}
+
+.live-detail .flex {
+    display: flex;
+    margin: 0 auto 0rpx;
+}
+
+.live-detail .flex .subscribe-img {
+    height: 38rpx;
+    width: 38rpx;
+}
+
+.live-detail .flex .subscribe {
+    color: #333;
+    font-size: 28rpx;
+}
+
+.share-box {
+    background: #fff;
+    margin-bottom: 25rpx;
+    padding-top: 32rpx;
+}
+
+.share-box .share-title {
+    color: #333;
+    font-size: 36rpx;
+    margin: 0rpx 0 16rpx 32rpx;
+}
+
+.share-box image {
+    display: block;
+    height: 88rpx;
+    margin: 0 auto;
+    width: 88rpx;
+}
+
+.share-box .flex {
+    display: flex;
+}
+
+.share-box .flex .flex-item {
+    margin: 0 44rpx;
+    text-align: center;
+}
+
+.share-box .flex .btn {
+    background: transparent;
+    font-weight: 400;
+    padding: 0;
+    width: auto;
+}
+
+.share-box .flex .flex-item .text {
+    color: #333;
+    font-size: 30rpx;
+    margin-top: 12rpx;
+    padding-bottom: 17rpx;
+}
+
+.top-column {
+    background: #fff;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.top-column .column {
+    display: inline-block;
+    margin-left: 48rpx;
+    position: relative;
+    text-align: center;
+}
+
+.top-column .column::after {
+    border-top: 6rpx solid #1487ff;
+    bottom: 0rpx;
+    content: "";
+    left: 32rpx;
+    position: absolute;
+    right: 32rpx;
+}
+
+.detail {
+    margin: 32rpx 32rpx 150rpx;
+}
+
+.count {
+    background: #1487ff;
+    border-radius: 48rpx;
+    bottom: 36rpx;
+    box-shadow: 0rpx 8rpx 18rpx 0rpx rgba(20,135,255,.1);
+    color: #fff;
+    font-size: 32rpx;
+    height: 96rpx;
+    left: 50%;
+    line-height: 96rpx;
+    position: fixed;
+    text-align: center;
+    transform: translate(-50%,0);
+    width: 578rpx;
+}
+
+.mp-img-box image {
+    width: 100%;
+}

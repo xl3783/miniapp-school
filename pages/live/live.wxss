@@ -1,0 +1,488 @@
+.flex,page {
+    display: flex;
+}
+
+page {
+    overflow: hidden;
+}
+
+.live-box {
+    background: #333;
+    height: 420rpx;
+    position: relative;
+    width: 100%;
+}
+
+.text-fff {
+    color: hsla(0,0%,100%,.5);
+    line-height: 420rpx;
+    text-align: center;
+}
+
+.ppt-img {
+    bottom: 0;
+    height: 420rpx;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.hf-text {
+    background: rgba(0,0,0,.5);
+    border-radius: 24rpx;
+    color: #fff;
+    font-size: 24rpx;
+    height: 48rpx;
+    left: 32rpx;
+    line-height: 48rpx;
+    position: absolute;
+    text-align: center;
+    top: 32rpx;
+    width: 96rpx;
+    z-index: 2;
+}
+
+.live_max {
+    height: 100vh;
+    position: fixed;
+    top: 0rpx;
+    width: 100%;
+    z-index: 1000;
+}
+
+.min-player {
+    height: 150rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200rpx;
+    z-index: 10;
+}
+
+.max-player {
+    height: 100%;
+    width: 100%;
+}
+
+.max-mask {
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    height: 72rpx;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.max-mask .max-icon {
+    float: right;
+    height: 44rpx;
+    margin-right: 14rpx;
+    margin-top: 14rpx;
+    width: 44rpx;
+}
+
+.flex-column {
+    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    height: 88rpx;
+    justify-content: space-between;
+    line-height: 88rpx;
+    padding-left: 32rpx;
+    padding-right: 32rpx;
+}
+
+.flex-column .column-item {
+    color: #333;
+    display: flex;
+    font-size: 28rpx;
+    width: 180rpx;
+}
+
+.flex-column .column-item .img {
+    height: 38rpx;
+    margin-right: 8rpx;
+    margin-top: 24rpx;
+    width: 38rpx;
+}
+
+.flex-column .column-item .text {
+    line-height: 88rpx;
+}
+
+.flex-func {
+    background: #fff;
+    border-bottom: 1rpx solid #e7eef0;
+    color: #999;
+    display: flex;
+    font-size: 28rpx;
+    height: 102rpx;
+    line-height: 102rpx;
+}
+
+.flex-func .item {
+    margin-left: 48rpx;
+    position: relative;
+}
+
+.flex-func .active {
+    color: #333;
+}
+
+.flex-func .active::after {
+    border-top: 6rpx solid #1487ff;
+    bottom: 0rpx;
+    content: "";
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 50rpx;
+}
+
+.nav-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0rpx 0;
+    padding-top: 32rpx;
+}
+
+.nav-box .nav-item {
+    margin-bottom: 32rpx;
+    text-align: center;
+    width: 25%;
+}
+
+.nav-item .img {
+    border-radius: 50%;
+    display: block;
+    height: 96rpx;
+    margin: 0 auto 20rpx;
+    width: 96rpx;
+}
+
+.nav-item .text {
+    color: #333;
+    font-size: 26rpx;
+    font-weight: 400;
+    height: 37rpx;
+    line-height: 37rpx;
+}
+
+.mask {
+    background: rgba(0,0,0,.7);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.mask,.mask .bgfff {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mask .bgfff {
+    background: #fff;
+    height: 820rpx;
+    position: absolute;
+}
+
+.func-name {
+    border-bottom: 1rpx solid #e7eef0;
+    color: #333;
+    font-size: 36rpx;
+    height: 124rpx;
+    line-height: 124rpx;
+    text-align: center;
+}
+
+.icon-close {
+    height: 64rpx;
+    position: absolute;
+    right: 24rpx;
+    top: 24rpx;
+    width: 64rpx;
+}
+
+.mask .sharefff {
+    background: #fff;
+    border-radius: 30rpx 30rpx 0rpx 0rpx;
+    bottom: 0;
+    height: 475rpx;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.mask .sharefff .share-title {
+    padding: 54rpx 0 60rpx;
+    text-align: center;
+}
+
+.mask .sharefff .flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mask .sharefff .flex .share-item {
+    background: transparent;
+    font-size: 30rpx;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: auto;
+}
+
+.mask .sharefff .flex .share-item::after {
+    border: 0;
+}
+
+.mask .sharefff .flex .share-item .share-img {
+    height: 88rpx;
+    width: 88rpx;
+}
+
+.mask .sharefff .cancel-btn {
+    border-top: 1rpx solid #e5e5e5;
+    height: 120rpx;
+    line-height: 120rpx;
+    margin-top: 48rpx;
+    text-align: center;
+}
+
+.scroll-view {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.question-item {
+    border-bottom: 20rpx solid #f6f7f8;
+    color: #333;
+    font-size: 32rpx;
+    line-height: 45rpx;
+}
+
+.question-item .answer,.question-item .question {
+    margin: 0 32rpx;
+    padding: 32rpx 0;
+}
+
+.question-item .question {
+    border-bottom: 1rpx solid #e7eef0;
+    color: #333;
+    font-size: 32rpx;
+    font-weight: 600;
+    line-height: 45rpx;
+}
+
+.input-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 32rpx;
+    padding-top: 32rpx;
+    position: absolute;
+    right: 0;
+}
+
+.input-container .input-box {
+    background: #f3f5f6;
+    border-radius: 36rpx;
+    box-sizing: border-box;
+    display: flex;
+    height: 72rpx;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 36rpx;
+    width: 686rpx;
+}
+
+.input-container .input-box input {
+    flex: 1;
+    height: 100%;
+}
+
+.tiwen {
+    color: #999;
+    font-size: 28rpx;
+    line-height: 72rpx;
+}
+
+.tiwen .iconfont {
+    margin-right: 10rpx;
+}
+
+.msg-item {
+    display: flex;
+    margin: 0 32rpx 25rpx;
+}
+
+.msg-item .name {
+    margin-right: 10rpx;
+}
+
+.msg-item .msg,.msg-item .name {
+    color: #666;
+    font-size: 30rpx;
+    line-height: 54rpx;
+}
+
+.msg-active {
+    background: #1487ff;
+    color: #fff;
+}
+
+.msg-active,.quote {
+    border-radius: 8rpx;
+    font-size: 30rpx;
+    line-height: 54rpx;
+    padding: 11rpx;
+}
+
+.quote {
+    background: #e3e5e8;
+    color: #999;
+    margin-top: 12rpx;
+}
+
+.msg-item .orange {
+    background: #ff8f00;
+    border-radius: 32rpx;
+    color: #fff;
+    font-size: 30rpx;
+    height: 54rpx;
+    line-height: 54rpx;
+    margin: 0 10rpx;
+    text-align: center;
+    width: 54rpx;
+}
+
+.landscape-container {
+    background: #464545;
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 10000;
+}
+
+.landscape-container .landscapeppt {
+    background: #fff;
+    height: 750rpx;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+
+.landscape-container .minicon {
+    bottom: 48rpx;
+    height: 48rpx;
+    left: 55rpx;
+    position: fixed;
+    transform: rotate(90deg);
+    width: 48rpx;
+    z-index: 33;
+}
+
+.bootomplay-container {
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    box-sizing: border-box;
+    color: #fff;
+    display: flex;
+    font-size: 20rpx;
+    height: 72rpx;
+    left: 0;
+    line-height: 72rpx;
+    padding: 0 0rpx 0 30rpx;
+    position: absolute;
+    right: 0;
+}
+
+.bootomplay-container .playicon {
+    height: 40rpx;
+    margin-right: 30rpx;
+    margin-top: 15rpx;
+    width: 40rpx;
+}
+
+.bootomplay-container .slider {
+    flex: 1;
+    margin: 20rpx;
+}
+
+.live_icon1 {
+    bottom: 48rpx;
+    height: 48rpx;
+    left: 55rpx;
+    position: fixed;
+    transform: rotate(90deg);
+    width: 48rpx;
+    z-index: 1002;
+}
+
+.login-mask {
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 200rpx;
+    z-index: 100;
+}
+
+.login-content {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 678rpx;
+}
+
+.login-content .login-img {
+    height: 240rpx;
+    margin-bottom: 42rpx;
+    margin-top: 48rpx;
+    width: 240rpx;
+}
+
+.login-content .login-text {
+    font-size: 32rpx;
+}
+
+button {
+    padding: 0!important;
+}
+
+.login-content .login-btn {
+    background: #1487ff;
+    border-radius: 48rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 96rpx;
+    line-height: 96rpx;
+    margin: 48rpx 0;
+    width: 368rpx;
+}
+
+.mp-img-box image {
+    width: 100%;
+}

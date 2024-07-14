@@ -1,0 +1,104 @@
+page {
+    background: #f6f7f8;
+}
+
+.word-item {
+    background: #fff;
+    margin-bottom: 32rpx;
+    padding: 34rpx 32rpx 0;
+}
+
+.word-box {
+    display: flex;
+    padding-bottom: 34rpx;
+}
+
+.word-box .word-title {
+    color: #333;
+    flex: 1;
+    font-size: 32rpx;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.word-btn {
+    font-size: 26rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    text-align: center;
+    width: 128rpx;
+}
+
+.gray {
+    border: 2rpx solid #cdcdcd;
+    color: #cdcdcd;
+}
+
+.blue {
+    background: #3b7cff;
+    color: #fff;
+}
+
+.word-answer {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: #333;
+    display: -webkit-box;
+    font-size: 32rpx;
+    line-height: 50rpx;
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    text-overflow: ellipsis;
+}
+
+.mask {
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.mask .mask-content {
+    background: #fff;
+    border-radius: 20rpx;
+    left: 32rpx;
+    padding-bottom: 54rpx;
+    position: absolute;
+    right: 32rpx;
+    top: 50%;
+    transform: translate(0,-45%);
+}
+
+.mask .mask-content .header {
+    padding: 50rpx 32rpx 42rpx;
+    position: relative;
+}
+
+.mask .mask-content .header .title {
+    text-align: center;
+}
+
+.mask .mask-content .header .word-btn {
+    position: absolute;
+    right: 32rpx;
+    top: 50rpx;
+}
+
+.mask .mask-content .word-title1 {
+    color: #333;
+    font-size: 32rpx;
+    font-weight: 600;
+    margin: 0 32rpx;
+}
+
+.mask .mask-content .word-answer1 {
+    border-top: 1rpx solid #e7eef0;
+    color: #333;
+    font-size: 32rpx;
+    margin: 32rpx 32rpx 0;
+    padding-top: 32rpx;
+}

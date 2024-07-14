@@ -1,0 +1,66 @@
+<scroll-view class="scroll" scrollY="true" style="height:{{height}}px">
+    <view class="{{!noShow?'bgColor':''}}"></view>
+    <view class="bg"></view>
+    <view class="res-box">
+        <view class="charts-box" wx:if="{{score}}">
+            <ec-canvas canvasId="mychart-bar" ec="{{ec}}" id="mychart-voc-test"></ec-canvas>
+            <view class="ria" style="color:{{radarColor?radarColor:'#16B980'}}" wx:if="{{test_result}}">{{test_result}}</view>
+        </view>
+        <view class="res-content" wx:if="{{tabShow}}">
+            <view class="resTab-box" wx:if="{{tabShow}}">
+                <view bindtap="currentTab" class="resTab {{currentTab==index?'current':''}}" data-idx="{{index}}" wx:for="{{resTab}}" wx:key="index">{{item}} <view class="tabSlider" style="background-Color:{{radarColor?radarColor:'#16B980'}}" wx:if="{{currentTab==index}}"></view>
+                </view>
+            </view>
+            <block wx:if="{{currentTab==0&&tabShow}}">
+                <view class="content-box" wx:if="{{basic}}">
+                    <view class="cnt-title">基本特征</view>
+                    <view class="cnt-info">{{basic}}</view>
+                </view>
+                <view class="content-box" wx:if="{{personality}}">
+                    <view class="cnt-title">人格倾向</view>
+                    <mp bindlinktap="linktap" class="cnt-info" content="{{personality}}" copyLink="{{false}}" wx:if="{{personality}}"></mp>
+                </view>
+                <view class="content-box" wx:if="{{common}}">
+                    <view class="cnt-title">共同特性</view>
+                    <view class="cnt-info">{{common}}</view>
+                </view>
+                <view class="content-box" wx:if="{{results}}">
+                    <view class="cnt-title">定性评判结果说明</view>
+                    <view class="cnt-info">{{results}}</view>
+                </view>
+                <view class="no-data-box" wx:if="{{!basic&&!personality&&!common&&!results}}">
+                    <no-data-comp></no-data-comp>
+                </view>
+            </block>
+            <block wx:if="{{currentTab==1&&tabShow}}">
+                <view class="content-box" wx:if="{{career}}">
+                    <mp bindlinktap="linktap" class="cnt-info" content="{{career}}" copyLink="{{false}}" wx:if="{{career}}"></mp>
+                </view>
+                <view class="no-data-box" wx:if="{{!career}}">
+                    <no-data-comp></no-data-comp>
+                </view>
+            </block>
+            <block wx:if="{{currentTab==2&&tabShow}}">
+                <view class="content-box" wx:if="{{major||typical}}">
+                    <mp bindlinktap="linktap" class="cnt-info" content="{{major}}" copyLink="{{false}}" wx:if="{{major}}"></mp>
+                    <block wx:if="{{typical}}">
+                        <view bindtap="jumpToEnroll" class="recommend" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{typical}}" wx:key="index">
+                            <view class="title">{{item.name}}</view>
+                            <view class="details">
+                                <text>查看详情</text>
+                                <image src="../../image/icon_right.png"></image>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+                <view class="no-data-box" wx:if="{{!major&&!typical}}">
+                    <no-data-comp></no-data-comp>
+                </view>
+            </block>
+        </view>
+        <view class="analysis-box" wx:if="{{!score&&!tabShow&&noShow}}">
+            <image mode="widthFix" src="../../image/calculation-results.png"></image>
+            <text>暂无测试记录</text>
+        </view>
+    </view>
+</scroll-view>

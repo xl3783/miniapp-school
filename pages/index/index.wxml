@@ -1,7 +1,244 @@
-<view class=".main-view">
-  <block wx:for="{{components}}" wx:key="index">
-    <index-banner-comp bannerList="{{item.content}}"></index-banner-comp>
-    <!-- <index-banner-comp align="{{item.align}}" bannerList="{{item.content}}" bannerRadius="{{item.style==1?'20rpx':'0rpx'}}" bannerWidth="{{item.style==1?'686rpx':'750rpx'}}" banner_style="{{item.style}}" height_type="{{item.height_type}}" imgTitle="{{item.img_title}}" indicatorDots="{{true}}" is_show_name="{{item.is_show_name}}" logo="{{schoollogo}}" marginTop="{{item.style==1?'32rpx':'0rpx'}}" schoolName="{{item.title}}" showLogo="{{item.is_show_logo}}" titleType="{{item.title_type}}" wx:if="{{item.type==1}}"></index-banner-comp> -->
-  </block>
+<view class="{{!mourn?'mourn-view':'main-view'}}" hidden="{{!dataLoad}}">
+  <!-- <agreement id="wx-agreement"></agreement> -->
+  <custom-topbar bgColor1="{{bgColor}}" bind:scrollToTop="scrollToTop" color1="{{fontColor}}" hasBack="{{false}}" id="top-bar" position="{{title_position}}" t_width="{{t_w}}" title="{{name}}"></custom-topbar>
+  <view>
+    <view hidden="{{path!='/pages/index/index'}}">
+      <view wx:if="{{tools.pathInArr('/pages/index/index',tabbarList)}}">
+        <index-comp bind:changeScoreType="changeScoreType" bind:showContactEvent="showContactEvent" class="scroll-comp" height="{{height}}" id="indexComp"></index-comp>
+        <!-- <index-comp></index-comp> -->
+      </view>
+    </view>
+    <view hidden="{{path!='/pages/enroll-major-new/enroll-major-new'}}">
+      <view wx:if="{{tools.pathInArr('/pages/enroll-major-new/enroll-major-new',tabbarList)&&path=='/pages/enroll-major-new/enroll-major-new'}}">
+        <enroll-major-new-comp class="scroll-comp" fmType="{{fmType}}" height="{{height}}"></enroll-major-new-comp>
+      </view>
+    </view>
+    <view hidden="{{path!='/pages/my/my'}}">
+      <view wx:if="{{tools.pathInArr('/pages/my/my',tabbarList)&&path=='/pages/my/my'}}">
+        <my-comp avatarUrl="{{avatarUrl}}" class="scroll-comp" height="{{height}}" id="myComp" nickName="{{nickName}}"></my-comp>
+      </view>
+    </view>
+    <!-- <view hidden="{{path!=='/pages/campus/campus'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus/campus',tabbarList)&&path=='/pages/campus/campus'}}">
+                <campus-comp class="scroll-comp" height="{{height}}" id="campusComp"></campus-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/enroll-major/enroll-major'}}">
+            <view wx:if="{{tools.pathInArr('/pages/enroll-major/enroll-major',tabbarList)&&path=='/pages/enroll-major/enroll-major'}}">
+                <enroll-major-comp class="scroll-comp" height="{{height}}" id="enrollMajorComp"></enroll-major-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/enroll-major-new/enroll-major-new'}}">
+            <view wx:if="{{tools.pathInArr('/pages/enroll-major-new/enroll-major-new',tabbarList)&&path=='/pages/enroll-major-new/enroll-major-new'}}">
+                <enroll-major-new-comp class="scroll-comp" fmType="{{fmType}}" height="{{height}}"></enroll-major-new-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/scores/scores'}}">
+            <block wx:if="{{tools.pathInArr('/pages/scores/scores',tabbarList)&&path=='/pages/scores/scores'}}">
+                <plan-score-type-comp searchType="2" wx:if="{{enroll_type==0}}"></plan-score-type-comp>
+                <plan-score-search-comp enrollType="{{enroll_type}}" searchType="2" wx:else></plan-score-search-comp>
+            </block>
+        </view>
+        <view hidden="{{path!='/packageA/pages/plan-score-new/plan-score-new'}}">
+            <plan-score-new-comp class="scroll-comp" height="{{height+80}}" searchId="{{searchId}}" wx:if="{{tools.pathInArr('/packageA/pages/plan-score-new/plan-score-new',tabbarList)&&path=='/packageA/pages/plan-score-new/plan-score-new'}}"></plan-score-new-comp>
+        </view>
+        <view hidden="{{path!='/pages/admission-query/admission-query'}}">
+            <view wx:if="{{tools.pathInArr('/pages/admission-query/admission-query',tabbarList)&&path=='/pages/admission-query/admission-query'}}">
+                <admission-query-one-comp class="scroll-comp" height="{{height}}" id="admissionQueryComp" type="{{typeId}}"></admission-query-one-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-news/campus-news'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-news/campus-news',tabbarList)&&path=='/pages/campus-news/campus-news'}}">
+                <campus-news-comp bind:chooseNav="chooseCampusNewsNav" category_id="{{category_ids}}" class="scroll-comp" currentId="{{currentCampuesNewsColumnId}}" height="{{height}}" id="campusNewsComp" jump_type="{{jump_type}}"></campus-news-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-intro/campus-intro'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-intro/campus-intro',tabbarList)&&path=='/pages/campus-intro/campus-intro'}}">
+                <campus-intro-comp class="scroll-comp" height="{{height}}" id="campusIntroComp"></campus-intro-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-address/campus-address'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-address/campus-address',tabbarList)&&path=='/pages/campus-address/campus-address'}}">
+                <campus-address-comp class="scroll-comp" height="{{height}}" id="campusAddressComp"></campus-address-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-faq/campus-faq'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-faq/campus-faq',tabbarList)&&path=='/pages/campus-faq/campus-faq'}}">
+                <campus-faq-comp class="scroll-comp" height="{{height}}" id="campusFaqComp"></campus-faq-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-promotion-video/campus-promotion-video'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-promotion-video/campus-promotion-video',tabbarList)&&path=='/pages/campus-promotion-video/campus-promotion-video'}}">
+                <campus-video-comp bind:chooseNav="chooseVideoNav" categoryIds="{{category_ids}}" class="scroll-comp" currentType="{{currentVideoType}}" height="{{height}}" id="campusVideoComp"></campus-video-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-scenery/campus-scenery'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-scenery/campus-scenery',tabbarList)&&path=='/pages/campus-scenery/campus-scenery'}}">
+                <campus-scenery-comp categoryIds="{{category_ids}}" class="scroll-comp" height="{{height}}" id="campusSceneryComp"></campus-scenery-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/characters/characters'}}">
+            <view wx:if="{{tools.pathInArr('/pages/characters/characters',tabbarList)&&path=='/pages/characters/characters'}}">
+                <personage-comp class="scroll-comp" columnid="{{columnId}}" height="{{height}}" id="charactersComp" typeName="characters"></personage-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/live-list/live-list'}}">
+            <block wx:if="{{live_list==1}}">
+                <view wx:if="{{tools.pathInArr('/pages/live-list/live-list',tabbarList)&&path=='/pages/live-list/live-list'}}">
+                    <live-list-comp class="scroll-comp" height="{{height}}" id="liveComp" type="all"></live-list-comp>
+                </view>
+            </block>
+            <block wx:else>
+                <view wx:if="{{tools.pathInArr('/pages/live-list/live-list',tabbarList)&&path=='/pages/live-list/live-list'}}">
+                    <live-column-list-comp class="scroll-comp" height="{{height}}" id="liveComp"></live-column-list-comp>
+                </view>
+            </block>
+        </view>
+        <view hidden="{{path!='/pages/my/my'}}">
+            <view wx:if="{{tools.pathInArr('/pages/my/my',tabbarList)&&path=='/pages/my/my'}}">
+                <my-comp avatarUrl="{{avatarUrl}}" class="scroll-comp" height="{{height}}" id="myComp" nickName="{{nickName}}"></my-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/enroll-plan/enroll-plan'}}">
+            <block wx:if="{{tools.pathInArr('/pages/enroll-plan/enroll-plan',tabbarList)&&path=='/pages/enroll-plan/enroll-plan'}}">
+                <plan-score-type-comp searchType="1" wx:if="{{enroll_type==0}}"></plan-score-type-comp>
+                <plan-score-search-comp enrollType="{{enroll_type}}" searchType="1" wx:else></plan-score-search-comp>
+            </block>
+        </view>
+        <view hidden="{{path!='/pages/admission-query-list/admission-query-list'}}">
+            <view wx:if="{{tools.pathInArr('/pages/admission-query-list/admission-query-list',tabbarList)&&path=='/pages/admission-query-list/admission-query-list'}}">
+                <admission-query-list-comp class="scroll-comp" height="{{height}}" id="admissionQueryList"></admission-query-list-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-news-detail/campus-news-detail'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-news-detail/campus-news-detail',tabbarList)&&path=='/pages/campus-news-detail/campus-news-detail'}}">
+                <campus-news-detail-comp detailId="{{detailId}}" height="{{height}}"></campus-news-detail-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/campus-promotion-video-detail/campus-promotion-video-detail'}}">
+            <view wx:if="{{tools.pathInArr('/pages/campus-promotion-video-detail/campus-promotion-video-detail',tabbarList)&&path=='/pages/campus-promotion-video-detail/campus-promotion-video-detail'}}">
+                <campus-promotion-video-detail-comp detailId="{{videoId}}" height="{{height}}"></campus-promotion-video-detail-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/prepare/mixture/mixture'}}">
+            <view>
+                <mixture-view data="{{mixtureData}}" height="{{height}}" top="{{top}}"></mixture-view>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/form-view/form-view'}}">
+            <view wx:if="{{tools.pathInArr('/pages/form-view/form-view',tabbarList)&&path=='/pages/form-view/form-view'}}">
+                <form-view data="{{formObj}}" height="{{height}}" id="formView" isNav="{{true}}"></form-view>
+            </view>
+        </view>
+        <view hidden="{{path!='/xpAlumni/index/index'}}">
+            <view wx:if="{{tools.pathInArr('/xpAlumni/index/index',tabbarList)&&path=='/xpAlumni/index/index'}}">
+                <xpAlumni-index-comp height="{{height}}" id="xpAlumni"></xpAlumni-index-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/form-page/form-page'}}">
+            <view wx:if="{{tools.pathInArr('/pages/form-page/form-page',tabbarList)&&path=='/pages/form-page/form-page'}}">
+                <form-page-comp formId="{{formId}}" height="{{height}}"></form-page-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/form-page-list/form-page-list'}}">
+            <view wx:if="{{tools.pathInArr('/pages/form-page-list/form-page-list',tabbarList)&&path=='/pages/form-page-list/form-page-list'}}">
+                <form-page-list-comp height="{{height}}"></form-page-list-comp>
+            </view>
+        </view>
+        <view hidden="{{path!='/pages/kefu/kefu'}}">
+            <view wx:if="{{tools.pathInArr('/pages/kefu/kefu',tabbarList)&&path=='/pages/kefu/kefu'}}">
+                <kefu-comp height="{{height}}"></kefu-comp>
+            </view>
+        </view>
+    </view>
+    <open-ad-comp></open-ad-comp>
+    <collect-remind-comp bind:closeCollect="closeCollect" wx:if="{{showCollect==1&&path=='/pages/index/index'}}"></collect-remind-comp>
+    <view bindtap="openContact" class="contact-icon" style="background:{{globalColor}};" wx:if="{{showContact&&path=='/pages/index/index'}}">
+        <image showMenuByLongpress="true" src="{{contactContent.icon_url}}"></image>
+    </view> -->
+    <bottom-tabbar-comp bind:chooseTab="chooseTab" id="bottom-bar" initId="{{initId}}" initPath="{{path}}" style="overflow:hidden"></bottom-tabbar-comp>
+    <!-- <view bindtap="hideContact" class="mask" wx:if="{{showContactMask}}"> -->
+    <!-- <view catchtap="ss" class="contact-content">
+      <view class="contactus">联系我们</view>
+      <view bindtap="hideContact" class="contact-cancel">
+        <image showMenuByLongpress="true" src="../../assets/image/ctc-close.png"></image>
+      </view>
+      <scroll-view scrollY="true" style="max-height: 930rpx;">
+        <view class="contact-top {{contactContent.is_msg&&contactContent.is_customer?'contact-flex':''}}">
+          <view class="contact-item contact-item" wx:if="{{contactContent.is_phone&&contactContent.phone}}">
+            <view class="contact-left" wx:if="{{contactContent.phone}}">
+              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+              <view class="contact-text">招生热线：{{contactContent.phone}}</view>
+            </view>
+            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
+          </view>
+          <view class="contact-item" wx:if="{{contactContent.is_phone2&&contactContent.phone2}}">
+            <view class="contact-left" wx:if="{{contactContent.phone2}}">
+              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+              <view class="contact-text">招生热线：{{contactContent.phone2}}</view>
+            </view>
+            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone2}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
+          </view>
+          <view class="contact-item" wx:if="{{contactContent.is_phone3&&contactContent.phone3}}">
+            <view class="contact-left" wx:if="{{contactContent.phone3}}">
+              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+              <view class="contact-text">招生热线：{{contactContent.phone3}}</view>
+            </view>
+            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone3}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
+          </view>
+          <view class="contact-item" wx:if="{{contactContent.is_vx}}">
+            <view class="contact-left">
+              <image showMenuByLongpress="true" src="../../assets/image/wx.png"></image>
+              <view class="contact-text">微信号：{{contactContent.vx}}</view>
+            </view>
+            <view bindtap="copyWx" class="contact-right" data-wx="{{contactContent.vx}}" style="border-color:{{globalColor}};color:{{globalColor}}">复制</view>
+          </view>
+          <view bindtap="goKefu" class="contact-item" wx:if="{{contactContent.is_customer}}">
+            <view class="contact-left">
+              <image showMenuByLongpress="true" src="../../assets/image/zx1.png"></image>
+              <view class="contact-text">在线咨询</view>
+            </view>
+            <view class="contact-right">
+              <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
+            </view>
+          </view>
+          <view bindtap="leaveWord" class="contact-item" wx:if="{{contactContent.is_msg}}">
+            <view class="contact-left">
+              <image showMenuByLongpress="true" src="../../assets/image/word1.png"></image>
+              <view class="contact-text">给我们留言</view>
+            </view>
+            <view class="contact-right">
+              <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class="contact-other" wx:if="{{contactContent.connectConfig}}">
+          <view wx:for="{{contactContent.connectConfig}}" wx:key="*this">
+            <view class="contact-item" wx:if="{{item.type==1}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+                <view class="contact-text">{{item.name}}：{{item.value}}</view>
+              </view>
+              <view bindtap="openPhone" class="contact-right" data-phone="{{item.value}}">拨打</view>
+            </view>
+            <view class="contact-item" wx:if="{{item.type==2}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/text-icon.png"></image>
+                <view class="contact-text">{{item.name}}：{{item.value}}</view>
+              </view>
+              <view bindtap="copyWx" class="contact-right" data-wx="{{item.value}}">复制</view>
+            </view>
+            <view class="contact-item" wx:if="{{item.type==3}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/link-icon.png"></image>
+                <view class="contact-text">{{item.name}}</view>
+              </view>
+              <view bindtap="goWebView" class="contact-right" data-url="{{item.value}}">前往</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view> -->
+  </view>
 </view>
 <wxs module="tools" src="../../utils/tool.wxs" />

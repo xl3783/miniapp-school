@@ -1,0 +1,98 @@
+<live-pusher bindstatechange="pusherStateChange" class="pusher {{isSharePPT?'min-pusher':'max-pusher'}}" id="pusher" mode="HD" url="{{pushUrl}}"></live-pusher>
+<view class="center-ppt-box" wx:if="{{isSharePPT}}">
+    <image class="center-ppt" showMenuByLongpress="true" src="{{pptList[pptIndex].image_url}}"></image>
+    <image bindtap="nextPPT" class="icon left" data-type="prev" showMenuByLongpress="true" src="../../assets/image/left-icon.png"></image>
+    <image bindtap="nextPPT" class="icon right" data-type="next" showMenuByLongpress="true" src="../../assets/image/right-icon.png"></image>
+</view>
+<view style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:100">
+    <view class="top-bar" style="top:{{statusBarHeight}}px;height:{{customBar}}px;line-height:{{customBar}}px">
+        <image bindtap="goBack" class="left-arrow" showMenuByLongpress="true" src="../../assets/image/10.png" style="margin-top:{{customBar/2-16}}px"></image>
+        <view class="tabname">{{tabName}}</view>
+    </view>
+    <view class="live-top">
+        <view style="display:flex">
+            <image bindtap="switchCamera" class="switch-camera" showMenuByLongpress="true" src="../../assets/image/reverse.png"></image>
+            <image bindtap="openShare" class="switch-camera" showMenuByLongpress="true" src="../../assets/image/share-live.png" style="margin-left:32rpx" wx:if="{{status==1}}"></image>
+            <image bindtap="openFile" class="switch-camera" showMenuByLongpress="true" src="../../assets/image/file.png" style="margin-left:32rpx" wx:if="{{status==1}}"></image>
+        </view>
+        <image bindtap="closeLive" class="exit" showMenuByLongpress="true" src="../../assets/image/guanji.png" wx:if="{{status==1}}"></image>
+    </view>
+    <view class="live-status" wx:if="{{status==1}}">
+        <view class="time-count">直播 {{longtime}}</view>
+        <view class="number">{{livenum}}人 正在观看</view>
+    </view>
+    <view bindtap="startLive" class="start-live" wx:if="{{status==0}}">开始直播</view>
+    <view class="enter-box" wx:if="{{enterObj.user_name}}">
+        <text style="color:#FFD775">{{enterObj.user_name}}</text>
+        <text>进入直播间</text>
+    </view>
+    <scroll-view bindscrolltoupper="scrollTop" class="comment-box" scrollIntoView="{{toView}}" scrollY="true" wx:if="{{status==1}}">
+        <view id="row_{{index}}" wx:for="{{commentList}}" wx:key="*this">
+            <view class="comment-item">
+                <text style="color:#7BDDFF">{{item.userName}}</text>
+                <text style="margin-left:12rpx">{{item.msg}}</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<view bindtap="handle" class="mask" wx:if="{{showShare}}">
+    <view catchtap="ss" class="sharefff" wx:if="{{showShare}}">
+        <view class="share-title">分享</view>
+        <view class="flex">
+            <button class="share-item" openType="share">
+                <image class="share-img" showMenuByLongpress="true" src="../../assets/image/weixin.png"></image>
+                <view class="share-text">微信好友</view>
+            </button>
+            <view bindtap="copyLink" class="share-item">
+                <image class="share-img" showMenuByLongpress="true" src="../../assets/image/link.png"></image>
+                <view class="share-text">复制链接</view>
+            </view>
+        </view>
+        <view bindtap="hideMask" class="cancel-btn">取消</view>
+    </view>
+</view>
+<view bindtap="handle" class="mask" wx:if="{{showFile}}">
+    <view catchtap="ss" class="sharefff" wx:if="{{showFile&&!canChooseFile}}">
+        <view class="ppt-title">选择图片</view>
+        <image bindtap="handle" class="ppt-close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
+        <scroll-view scrollY style="height:500rpx">
+            <view class="ppt-box">
+                <view bindtap="choosePPT" class="ppt-item {{prepptId==item.id?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{pptList}}" wx:key="{{index}}">
+                    <image class="checked-icon" showMenuByLongpress="true" src="../../assets/image/checked-icon.png" wx:if="{{prepptId==item.id}}"></image>
+                    <image showMenuByLongpress="true" src="{{item.image_url}}"></image>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="flex-btn">
+            <view bindtap="handleCancelPPT" class="cancel btn">取消分享</view>
+            <view bindtap="handleChoosePPT" class="sure btn">确定</view>
+        </view>
+    </view>
+    <view catchtap="ss" class="sharefff" wx:if="{{showFile&&canChooseFile}}">
+        <view class="ppt-title">选择PPT</view>
+        <image bindtap="handle" class="ppt-close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
+        <scroll-view scrollY style="height:500rpx">
+            <view class="ppt-box1">
+                <view bindtap="choosePPT" class="file-item" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{fileList}}" wx:key="{{index}}">
+                    <view class="ppt-item1 {{preFileId==item.id?'active':''}}">
+                        <image class="checked-icon" showMenuByLongpress="true" src="../../assets/image/checked-icon.png" wx:if="{{preFileId==item.id}}"></image>
+                        <image class="cover" showMenuByLongpress="true" src="{{item.cover_url}}"></image>
+                    </view>
+                    <view class="text">{{item.name}}</view>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="flex-btn">
+            <view bindtap="handleCancelPPT" class="cancel btn">取消</view>
+            <view bindtap="handleChoosePPT" class="sure btn">确定</view>
+        </view>
+    </view>
+</view>
+<view class="login-mask" wx:if="{{showLoginMask}}">
+    <view class="login-content">
+        <image class="login-img" showMenuByLongpress="true" src="../../assets/image/live-img.png"></image>
+        <view class="login-text">登陆可观看PPT直播和提交弹幕,体验更佳</view>
+        <button bindgetuserinfo="handleLogin" class="login-btn" openType="getUserInfo" wx:if="{{platform=='windows'}}">立即观看</button>
+        <button bindtap="handleLogin" class="login-btn" wx:else>立即观看</button>
+    </view>
+</view>

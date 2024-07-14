@@ -1,0 +1,34 @@
+.tips_title {
+    color: #303133;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 500;
+    height: 30rpx;
+    width: 100%;
+}
+
+.container {
+    box-sizing: border-box;
+    padding: 32rpx;
+    width: 100%;
+}
+
+.tips_info {
+    color: #909399;
+    font-size: 28rpx;
+    font-weight: 400;
+    margin-top: 24rpx;
+}
+
+.tip_icon {
+    height: 132rpx;
+    margin-top: 32rpx;
+    width: 100%;
+}
+
+.tips_but {
+    color: #303133;
+    font-size: 28rpx;
+    font-weight: 400;
+    margin-top: 32rpx;
+}

@@ -1,0 +1,20 @@
+<scroll-view class="scroll" scrollY="true" style="height:{{height}}px">
+    <view class="bg"></view>
+    <view class="test-box" id="test-box" wx:if="{{testShow}}">
+        <view class="title">{{title}}</view>
+        <view class="info">{{desc}}</view>
+        <view class="introduce-box" id="introduce-box">
+            <view class="introduce-title">
+                <image mode="widthFix" src="../../image/answer.png"></image>
+                <view>答题说明</view>
+            </view>
+            <view class="introduce-cnt" id="introduce-cnt" style="height:{{intrHeight}}">
+                <text>{{intro}}</text>
+            </view>
+        </view>
+        <view class="btn-box" id="btn-box">
+            <view bindtap="startTest" class="btn">开始测试</view>
+            <view bindtap="getReport" class="tips">我的报告</view>
+        </view>
+    </view>
+</scroll-view>

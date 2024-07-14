@@ -1,0 +1,98 @@
+.bgColor {
+    background: linear-gradient(92deg,#ddf5df,#b7eee9);
+}
+
+.bg,.bgColor {
+    left: 0;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg {
+    background: linear-gradient(180deg,#fff,hsla(0,0%,100%,.5));
+}
+
+.answer-sheet-box {
+    padding: 36rpx;
+}
+
+.answer-box {
+    background: #fff;
+    border-radius: 24rpx;
+    box-shadow: 0 2rpx 40rpx 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    height: 100%;
+    padding: 54rpx 40rpx;
+    width: 100%;
+}
+
+.progress-text {
+    color: silver;
+    font-size: 24rpx;
+    line-height: 50rpx;
+}
+
+.progress-text text {
+    color: #16b980;
+    font-size: 36rpx;
+    font-weight: 800;
+    line-height: 50rpx;
+}
+
+progress {
+    margin: 24rpx 0 48rpx;
+}
+
+.subject {
+    color: #303133;
+    font-size: 36rpx;
+    font-weight: 800;
+    line-height: 50rpx;
+}
+
+.yes {
+    background: #30384f;
+    color: #fff;
+    margin: 80rpx auto 40rpx;
+}
+
+.no,.yes {
+    border-radius: 56rpx;
+    font-size: 32rpx;
+    font-weight: 700;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    width: 528rpx;
+}
+
+.no {
+    background: #f6f7f9;
+    color: #6c6f75;
+    margin: 0 auto;
+}
+
+.analysis-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 300rpx;
+    transform: translateX(-50%);
+}
+
+.analysis-box image {
+    width: 90rpx;
+}
+
+.analysis-box text {
+    color: #909399;
+    font-size: 24rpx;
+    line-height: 34rpx;
+    margin-top: 36rpx;
+}

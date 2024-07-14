@@ -1,0 +1,25 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="top-nav" wx:if="{{navList.length>0}}">
+    <scroll-view class="scrool-view" scrollX="true">
+        <view bindtap="chooseNav" class="cate {{index==active?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{navList}}" wx:key="index">
+            <view>{{item.cate}}</view>
+            <view class="border" style="background-color:{{globalColor}}"></view>
+        </view>
+    </scroll-view>
+</view>
+<view class="intro mp-img-box" wx:if="{{active==0&&showIntro}}">
+    <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}" wx:if="{{intro}}"></mp>
+    <no-data-comp wx:else></no-data-comp>
+</view>
+<block wx:if="{{active==0&&showMajor&&!showIntro||active==1&&showMajor}}">
+    <view wx:if="{{xibuList.length>0}}">
+        <view bindtap="goMajor" class="major-box" data-item="{{item}}" wx:for="{{xibuList}}" wx:key="index">
+            <view class="item">
+                <image class="item-img" showMenuByLongpress="true" src="{{colorList[index]}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <no-data-comp wx:else></no-data-comp>
+</block>
+<no-data-comp wx:if="{{navList.length==0&&!showIntro&&!showMajor}}"></no-data-comp>

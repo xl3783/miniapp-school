@@ -1,0 +1,9 @@
+<view class="test-box" wx:if="{{testList}}">
+    <view bindtap="lookColumnDetail" class="test-list" data-item="{{item}}" wx:for="{{testList}}" wx:key="index">
+        <view class="text">
+            <view class="title">{{item.title}}</view>
+            <view class="intro">{{item.short_intro}}</view>
+        </view>
+        <image mode="widthFix" src="{{item.image_url}}"></image>
+    </view>
+</view>

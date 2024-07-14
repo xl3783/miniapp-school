@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<plan-score-new-list-comp height="{{height}}" type="{{type}}"></plan-score-new-list-comp>

@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<campus-faq-comp class="scroll-comp" height="{{height}}" id="campusFaqComp"></campus-faq-comp>

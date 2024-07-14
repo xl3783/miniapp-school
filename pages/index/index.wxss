@@ -4,7 +4,8 @@
 }
 
 .mourn-view {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1) !important;
+  overflow: hidden;
+  filter: grayscale(100%);
   height: 100vh;
   width: 100%;
 }

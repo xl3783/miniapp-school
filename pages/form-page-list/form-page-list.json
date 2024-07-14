@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "form-page-list": "/components/pageOne/form-page-list/form-page-list",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "no-data-comp": "/components/no-data-comp/no-data-comp",
+        "mp": "/components/mp-weixin/index"
+    }
+}

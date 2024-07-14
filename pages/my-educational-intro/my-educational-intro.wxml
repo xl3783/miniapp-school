@@ -1,0 +1,56 @@
+<custom-topbar title="{{classifyType==0?'打卡':'签到'}}"></custom-topbar>
+<view class="container">
+    <view class="container_top">
+        <image class="container_top_icon" src="../../assets/image/dk_icon2.png"></image>
+        <view class="container_top_title">{{classifyType==0?'打卡':'签到'}}成功</view>
+    </view>
+    <view class="container_line">
+        <view class="container_line_left">
+            <image src="../../assets/image/dk_icon3.png"></image>
+            <view>时间</view>
+        </view>
+        <view class="container_line_right">{{info.sign_time}}</view>
+    </view>
+    <view class="container_line">
+        <view class="container_line_left">
+            <image src="../../assets/image/dk_icon4.png"></image>
+            <view>位置</view>
+        </view>
+        <view class="container_line_right"></view>
+    </view>
+    <view class="container_site"> {{info.place}} </view>
+    <view class="container_line">
+        <view class="container_line_left">
+            <image src="../../assets/image/dk_icon5.png"></image>
+            <view>备注</view>
+        </view>
+        <view class="container_line_right"></view>
+    </view>
+    <view class="container_img">
+        <image bindtap="findImg" data-url="{{info.sign_image_url_full?info.sign_image_url_full:info.sign_image_url}}" mode="aspectFill" src="{{info.sign_image_url_full?info.sign_image_url_full:info.sign_image_url}}"></image>
+        <image bindtap="findImg" data-url="{{item}}" mode="aspectFill" src="{{item}}" wx:for="{{remark_image_url_full}}"></image>
+    </view>
+    <view class="text_content"> {{content?content:'文字备注信息'}} </view>
+    <view bindtap="add" class="add">添加备注</view>
+</view>
+<view class="alert" wx:if="{{show}}">
+    <view class="alert_con">
+        <view class="alert_content">
+            <view class="alert_user" wx:if="{{classifyType==1}}">
+                <input bindinput="inputNameChange" placeholder="请填写签到人" value="{{nameValue}}"></input>
+            </view>
+            <textarea bindinput="inputChange" class="alert_con_text" placeholder="请填写备注" value="{{alert_content}}"></textarea>
+            <view class="alert_con_img">
+                <image bindtap="addImg" class="defalut_icon_add" src="../../assets/image/dk_icon6.png" wx:if="{{alert_remark_image_url_full.length<=4}}"></image>
+                <view class="alert_line" wx:for="{{alert_remark_image_url_full}}">
+                    <image bindtap="delImg" class="alert_line_del" data-index="{{index}}" src="../../assets/image/dk_icon7.png"></image>
+                    <image class="defalut_icon_add" src="{{item}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="alert_but">
+            <view bindtap="closeAlert">取消</view>
+            <view bindtap="commit" style="border-left: 1rpx solid rgba(0, 0, 0, 0.1);color: #576B95;">确认</view>
+        </view>
+    </view>
+</view>

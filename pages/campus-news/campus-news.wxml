@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<campus-news-comp bind:chooseNav="chooseNav" category_id="{{all_column_id}}" class="scroll-comp" currentId="{{column_id}}" height="{{height}}" jump_type="{{jumpType}}"></campus-news-comp>

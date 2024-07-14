@@ -1,0 +1,25 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="live-detail">
+    <image class="cover" showMenuByLongpress="true" src="../../assets/image/wait.png"></image>
+    <view class="info">同学你来早了，直播还没有开始吆</view>
+    <view class="msg">（订阅后可在开播前收到微信推送的通知）</view>
+    <view class="djs" wx:if="{{intervaltime}}">{{intervaltime}}后开始</view>
+    <view class="djs" wx:else>倒计时结束</view>
+</view>
+<view class="share-box">
+    <view class="share-title">分享</view>
+    <view class="flex">
+        <button class="flex-item btn" openType="share">
+            <image showMenuByLongpress="true" src="../../assets/image/weixin.png"></image>
+            <view class="text">微信好友</view>
+        </button>
+    </view>
+</view>
+<view class="top-column">
+    <view class="column">直播介绍</view>
+</view>
+<view class="detail mp-img-box">
+    <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}"></mp>
+</view>
+<view bindtap="handleSubscribe" class="count" style="color:{{is_subscribe==1?'#999999':'#fff'}};background-color: {{is_subscribe==1?'#f0f0f0':'#1487FF'}};" wx:if="{{intervaltime&&is_subscribe!==null}}">{{is_subscribe===1?'已预约':'立即预约'}}</view>
+<view bindtap="goLive" class="count" wx:if="{{!intervaltime}}">进入直播</view>

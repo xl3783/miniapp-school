@@ -1,0 +1,145 @@
+<view class="bg" wx:if="{{!analysisShow}}"></view>
+<view class="box" wx:if="{{!analysisShow}}">
+    <view class="choose-content">
+        <view bindtap="openPicker" class="category-item" data-type="province">
+            <view class="category-title">
+                <image src="../../image/region.png"></image>
+                <view>考区</view>
+            </view>
+            <view class="category">
+                <view style="color:{{province_id?'#444658':'#999999'}};font-weight:{{province_id?'700':'400'}}"> {{province_id?province_name:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="batch">
+            <view class="category-title">
+                <image src="../../image/batch.png"></image>
+                <view>批次</view>
+            </view>
+            <view class="category">
+                <view style="color:{{batch?'#444658':'#999999'}};font-weight:{{batch?'700':'400'}}"> {{batch?batch:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="batch" wx:if="{{!isdvtShow&&!isSubShow}}">
+            <view class="category-title">
+                <image src="../../image/category1.png"></image>
+                <view>科类目</view>
+            </view>
+            <view class="category">
+                <view style="color:{{subject_id?'#444658':'#999999'}};font-weight:{{subject_id?'700':'400'}}"> {{subject_id?subject_name:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="batch" wx:if="{{isdvtShow}}">
+            <view class="category-title">
+                <image src="../../image/category1.png"></image>
+                <view>科类</view>
+            </view>
+            <view class="category">
+                <view style="color:{{sectionsDvt?'#444658':'#999999'}};font-weight:{{sectionsDvt?'700':'400'}}"> {{sectionsDvt?sectionsDvt:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="batch" wx:if="{{isSubShow}}">
+            <view class="category-title">
+                <image src="../../image/category2.png"></image>
+                <view>科目</view>
+            </view>
+            <view class="category">
+                <view style="color:{{sectionsStr?'#444658':'#999999'}};font-weight:{{sectionsStr?'700':'400'}}"> {{sectionsStr?sectionsStr:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="ranking" hidden="{{rank||score}}">
+            <view class="category-title">
+                <image src="../../image/ranking.png"></image>
+                <view>位次/分数</view>
+            </view>
+            <view class="category">
+                <view style="color:{{ranking_name?'#444658':'#999999'}};font-weight:{{ranking_name?'700':'400'}}"> {{ranking_name?ranking_name:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="ranking" wx:if="{{rank}}">
+            <view class="category-title">
+                <image src="../../image/ranking.png"></image>
+                <view>位次</view>
+            </view>
+            <view class="category">
+                <view style="color:{{rankingValue?'#444658':'#999999'}};font-weight:{{rankingValue?'700':'400'}}"> {{rankingValue?rankingValue:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+        <view bindtap="openPicker" class="category-item" data-type="ranking" wx:if="{{score}}">
+            <view class="category-title">
+                <image src="../../image/fraction.png"></image>
+                <view>分数</view>
+            </view>
+            <view class="category">
+                <view style="color:{{fractionValue?'#444658':'#999999'}};font-weight:{{fractionValue?'700':'400'}}"> {{fractionValue?fractionValue:'选择'}}</view>
+                <image src="../../image/icon_right.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="calculate-tips">测算的结果仅供参考</view>
+    <view bindtap="handleCalculate" class="calculate-btn">开始测算</view>
+    <view class="picker-mask" wx:if="{{showPickerMask}}">
+        <view catchtap="ss" class="picker-content" wx:if="{{pickerType=='province'}}">
+            <view class="top-btn">
+                <view bindtap="handlePickerCancel" class="cancel">取消</view>
+                <view bindtap="handlePickerSure" class="sure">确定</view>
+            </view>
+            <picker-view bindchange="bindProvinceChange" class="picker-view" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;" value="{{provinceVal}}">
+                <picker-view-column>
+                    <view style="line-height: 50px;width:100%;text-align:center" wx:for="{{provinces}}" wx:key="item"> {{item.name}} </view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+        <view class="select-fill">
+            <view class="radio-content" wx:if="{{pickerType=='batch'}}">
+                <image bindtap="handleCancel" data-type="{{pickerType}}" src="../../image/icon_close2.png"></image>
+                <view class="radio-item">
+                    <view class="radio-title">批次</view>
+                    <view bindtap="chooseRadio" class="radio batch-radio {{batch_name==item?'active':''}}" data-idx="{{index}}" data-item="{{item}}" data-type="batch" wx:for="{{batchList}}" wx:key="index"> {{item}}</view>
+                </view>
+                <view class="radio-item" wx:if="{{divitionList&&divitionList.length>0}}">
+                    <view class="radio-title">科类</view>
+                    <view bindtap="chooseRadio" class="radio {{divition==item?'active':''}}" data-idx="{{index}}" data-item="{{item}}" data-type="divition" wx:for="{{divitionList}}" wx:key="index"> {{item}}</view>
+                </view>
+                <view class="radio-item" wx:if="{{secCheckList&&secCheckList.length>0}}">
+                    <view class="radio-title">科目</view>
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="{{item.checked?'checked':''}}" wx:for="{{secCheckList}}" wx:key="index">
+                            <checkbox checked="{{item.checked}}" value="{{item.name}}"></checkbox>
+                            <view class="">{{item.name}}</view>
+                        </label>
+                    </checkbox-group>
+                </view>
+            </view>
+            <view class="input-content" wx:if="{{pickerType=='ranking'}}">
+                <image bindtap="handleCancel" class="close" data-type="{{pickerType}}" src="../../image/icon_close2.png"></image>
+                <view bindtap="chooseRadio" class="radio {{ranking_id==item.id?'active':''}}" data-item="{{item}}" data-type="{{item.id}}" wx:for="{{rankingtList}}" wx:key="index"> {{item.name}}</view>
+                <view class="input-box" hidden="{{!isRanking}}">
+                    <image alt="" src="../../image/ranking_ipt.png"></image>
+                    <input bindinput="bindInput" cursorSpacing="100" data-type="ranking" placeholder="输入位次" placeholderStyle="color: #C0C0C0;" type="number" value="{{rankingValue}}"></input>
+                    <text>名</text>
+                </view>
+                <view class="input-box" hidden="{{isRanking}}">
+                    <image alt="" src="../../image/fraction_ipt.png"></image>
+                    <input bindinput="bindInput" cursorSpacing="100" data-type="fraction" placeholder="输入分数" placeholderStyle="color: #C0C0C0;" type="digit" value="{{fractionValue}}"></input>
+                    <text>分</text>
+                </view>
+            </view>
+            <view class="bottom-btn" wx:if="{{pickerType!='province'}}">
+                <view bindtap="handleReset" class="reset" data-type="{{pickerType}}">重置</view>
+                <view bindtap="handleSure" class="complete" data-type="{{pickerType}}">完成</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="analysis-box" wx:if="{{analysisShow}}">
+    <image mode="widthFix" src="../../image/analysis.gif"></image>
+    <text>结果分析中</text>
+</view>
+<wxs module="tools" src="../../../utils/tool.wxs" />

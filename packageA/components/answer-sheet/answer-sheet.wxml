@@ -1,0 +1,25 @@
+<scroll-view class="scroll" scrollY="true" style="height:{{height}}px">
+    <view class="{{!analysisShow?'bgColor':''}}"></view>
+    <view class="bg"></view>
+    <block wx:if="{{!noShow&&!analysisShow}}">
+        <view class="answer-sheet-box" style="height:{{height-100}}px" wx:if="{{problemList&&problemList.length>0}}">
+            <view class="answer-box">
+                <view class="progress-box">
+                    <view class="progress-text">
+                        <text>答题{{progressNum}}</text>/{{total}}</view>
+                    <progress activeColor="#16B980" borderRadius="3" percent="{{percentNum}}" strokeWidth="6"></progress>
+                </view>
+                <view class="subject-box">
+                    <view class="subject">{{problemList[index].title}}</view>
+                    <view bindtap="toChoose" class="yes" data-id="{{problemList[index].sort}}" data-type="{{1}}">是</view>
+                    <view bindtap="toChoose" class="no" data-id="{{problemList[index].sort}}" data-type="{{0}}">否</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <no-data-comp wx:if="{{noShow}}"></no-data-comp>
+    <view class="analysis-box" wx:if="{{analysisShow}}">
+        <image mode="widthFix" src="../../image/analysis.gif"></image>
+        <text>结果分析中</text>
+    </view>
+</scroll-view>

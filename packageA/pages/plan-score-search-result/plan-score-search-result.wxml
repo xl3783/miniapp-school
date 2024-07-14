@@ -1,0 +1,24 @@
+<custom-topbar title="搜索结果"></custom-topbar>
+<view class="top-search-box">
+    <view class="top-search">
+        <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+        <input bindconfirm="getList" bindinput="handleInput" class="search-text" confirmType="search" placeholder="输入想要查询的专业" value="{{inputText}}"></input>
+    </view>
+</view>
+<view class="result-num">共{{length}}条搜索结果</view>
+<block wx:if="{{majorList.length>0}}">
+    <view class="help" wx:for="{{majorList}}" wx:key="index">
+        <view class="help_item" wx:if="{{value}}" wx:for="{{item}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+            <view catchtap="tapMajor" class="title" data-id="{{index}}" wx:if="{{key=='专业'}}">
+                <view class="title_1">{{value}}</view>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx" wx:if="{{tools.idInArr(index,activeIds)}}"></image>
+                <image showMenuByLongpress="true" src="../../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx;transform:rotate(180deg)" wx:else></image>
+            </view>
+        </view>
+        <view class="score" style="padding:0 32rpx 32rpx;background: #F6F7F9;" wx:if="{{tools.idInArr(index,activeIds)}}">
+            <view wx:if="{{value&&key!='专业'}}" wx:for="{{majorList[index]}}" wx:for-index="key" wx:for-item="value" wx:key="key">{{key}}：{{value}}</view>
+        </view>
+    </view>
+</block>
+<no-data-comp wx:else></no-data-comp>
+<wxs module="tools" src="../../../utils/tool.wxs" />

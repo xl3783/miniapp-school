@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "录取查询成功",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "mp": "/components/mp-weixin/index"
+    }
+}

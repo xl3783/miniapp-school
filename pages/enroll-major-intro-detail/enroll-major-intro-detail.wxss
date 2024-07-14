@@ -1,0 +1,3 @@
+.mp-img-box image {
+    width: 100%;
+}

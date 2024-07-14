@@ -1,0 +1,21 @@
+<scroll-view class="scroll" scrollY="true" style="height:{{height}}px">
+    <view class="bg"></view>
+    <view class="test-box" id="test-box" wx:if="{{testShow}}">
+        <view class="title">职业兴趣测试</view>
+        <view class="info">通过对兴趣、性格、能力、学科强弱、职业倾向进行综合分析和权衡，帮助学生定位职业和专业，进而规划职业发展路径</view>
+        <view class="introduce-box" id="introduce-box">
+            <view class="introduce-title">
+                <image mode="widthFix" src="../../image/answer.png"></image>
+                <view>答题说明</view>
+            </view>
+            <view class="introduce-cnt" id="introduce-cnt" style="height:{{intrHeight}}">
+                <text>人的个性与职业有着密切的关系，不同职业对从业者的人格特征的要求是有差距的，如果通过科学的测试，可以预知自己的个性特征，这有助于选择适合于个人发展的职业。您将要阅读的这个《职业价格自测问卷》，可以帮助您作个性自评，从而获自己的个性特征更适合从事哪方面的工作。</text>
+                <text>请根据对每一题目的第一印象作答，不必仔细推敲，答案没有好坏、对错之分。具体填写方法是，根据自己的情况，如果选择“是”，请打“√” ，否则请打“×”</text>
+            </view>
+        </view>
+        <view class="btn-box" id="btn-box">
+            <view bindtap="startTest" class="btn">开始测试</view>
+            <view bindtap="getReport" class="tips">我的报告</view>
+        </view>
+    </view>
+</scroll-view>

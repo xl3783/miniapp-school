@@ -1,0 +1,35 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="saas-admin">
+    <view wx:if="{{topList.length>0}}" wx:for="{{topList}}" wx:key="index">
+        <view bindtap="goDetail" class="news-item" data-item="{{item}}">
+            <view class="red-tag">置顶</view>
+            <view class="tag-text">{{item.title}}</view>
+        </view>
+    </view>
+    <block wx:if="{{currentList.length>0}}">
+        <view wx:for="{{currentList}}" wx:key="index">
+            <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==1}}">
+                <view class="left">
+                    <text class="title">
+                        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text>{{item.title}}</text>
+                    <view class="time">{{item.create_time}}</view>
+                </view>
+                <view class="right" wx:if="{{item.thumb_url}}">
+                    <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                </view>
+            </view>
+            <view bindtap="goDetail" class="news-item" data-item="{{item}}" wx:if="{{position==2}}">
+                <view class="left1" wx:if="{{item.thumb_url}}">
+                    <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.thumb_url}}"></image>
+                </view>
+                <view class="right1">
+                    <text class="title">
+                        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text>{{item.title}}</text>
+                    <view class="time">{{item.create_time}}</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <no-data-comp wx:else></no-data-comp>
+    <bottom-comp isBottom="{{isBottom}}"></bottom-comp>
+</view>

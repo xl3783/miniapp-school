@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<personage-comp columnid="{{columnId}}" height="{{height}}" tabname="{{tabName}}" typeName="character"></personage-comp>

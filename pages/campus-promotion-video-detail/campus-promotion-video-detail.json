@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "mp": "/components/mp-weixin/index",
+        "no-data-comp": "/components/no-data-comp/no-data-comp"
+    }
+}

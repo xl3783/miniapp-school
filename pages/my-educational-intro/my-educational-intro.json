@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "打卡签到",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+    }
+}

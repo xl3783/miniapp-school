@@ -1,0 +1,30 @@
+.sucImg {
+    display: block;
+    height: 220rpx;
+    margin: 150rpx auto 20rpx;
+    width: 220rpx;
+}
+
+.sucText {
+    color: #333;
+    font-size: 36rpx;
+    font-weight: 600;
+    text-align: center;
+}
+
+.backBtn {
+    background: #1487ff;
+    border-radius: 96rpx;
+    bottom: 200rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 400;
+    height: 96rpx;
+    left: 50%;
+    line-height: 96rpx;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%,0);
+    width: 500rpx;
+}

@@ -1,0 +1,5 @@
+<custom-topbar title="{{name}}"></custom-topbar>
+<view class="box mp-img-box" wx:if="{{intro}}">
+    <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}"></mp>
+</view>
+<no-data-comp wx:else></no-data-comp>

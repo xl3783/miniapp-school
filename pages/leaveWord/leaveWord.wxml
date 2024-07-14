@@ -1,0 +1,10 @@
+<custom-topbar title="在线留言"></custom-topbar>
+<view class="box">
+    <view class="name">姓名</view>
+    <input bindinput="getName" class="input-box" placeholder="点击填写" value="{{name}}"></input>
+    <view class="name">联系电话</view>
+    <input bindinput="getPhone" class="input-box" placeholder="点击填写" value="{{phone}}"></input>
+    <view class="name">留言内容</view>
+    <textarea bindinput="getWord" class="input-box textarea" placeholder="点击填写" value="{{word}}"></textarea>
+    <button bindtap="submit" class="btn" style="background:{{globalColor}}">提交</button>
+</view>

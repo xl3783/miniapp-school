@@ -1,0 +1,19 @@
+<view class="container">
+    <image class="container_img" mode="aspectFill" src="{{userInfo.enrollImg}}"></image>
+    <view class="container_line">
+        <view class="container_line_key">
+            <text>姓</text>
+            <text style="margin-left: 53rpx;">名</text>
+        </view>
+        <view class="container_line_value">{{userInfo.name}}</view>
+    </view>
+    <view class="container_line">
+        <view class="container_line_key">身 份 证</view>
+        <view class="container_line_value">{{userInfo.idCard}}</view>
+    </view>
+    <view class="container_line">
+        <view class="container_line_key">录取专业</view>
+        <view class="container_line_value">{{userInfo.major}}</view>
+    </view>
+    <view bindtap="submitVerify" class="button_submit">{{userInfo.verifyType!=2?'身份验证':'下一步'}}</view>
+</view>

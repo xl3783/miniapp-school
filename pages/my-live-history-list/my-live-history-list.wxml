@@ -1,0 +1,2 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<my-live-history-list-comp height="{{height}}"></my-live-history-list-comp>

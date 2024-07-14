@@ -1,0 +1,4 @@
+<custom-topbar class="top-bar" id="top-bar" title="{{tabName}}"></custom-topbar>
+<view style="overflow:hidden;">
+    <live-column-comp height="{{height}}"></live-column-comp>
+</view>

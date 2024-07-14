@@ -1,0 +1,21 @@
+<custom-topbar title="用户信息"></custom-topbar>
+<button bind:chooseavatar="onChooseAvatar" class="avatar-wrapper" openType="chooseAvatar">
+    <view class="avatar_box" wx:if="{{avatarUrl}}">
+        <image class="avatar" mode="aspectFill" src="{{avatarUrl}}" wx:if="{{avatarUrl}}"></image>
+        <view class="perfect">修改头像</view>
+    </view>
+    <view class="set-avatar" wx:else>设置<br></br>头像</view>
+</button>
+<view class="nickname-wrapper">
+    <view class="nickname-title">昵称<text style="color: tomato;margin-left: 6rpx;">*</text>
+    </view>
+    <input bindinput="nicknameInput" class="weui-input" placeholder="请填写昵称" placeholderStyle="color: #C0C0C0;font-weight: 400;" type="nickname" value="{{nickName}}"></input>
+</view>
+<view class="phone-wrapper">
+    <view class="nickname-title">手机号</view>
+    <input bindinput="phoneInput" class="weui-input" placeholder="请填写手机号" placeholderStyle="color: #C0C0C0;font-weight: 400;" type="number" value="{{phone}}"></input>
+    <button bindgetphonenumber="getPhone" class="phone-btn" openType="getPhoneNumber">获取手机号</button>
+</view>
+<view class="bottom">
+    <view bindtap="preserveUserInfo" class="submit-btn">保存</view>
+</view>

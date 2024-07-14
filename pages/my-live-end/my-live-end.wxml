@@ -1,0 +1,21 @@
+<custom-topbar hasBack="{{hasBack}}" title="直播结束"></custom-topbar>
+<view class="end-flex">
+    <image class="logo" mode="scaleToFill" showMenuByLongpress="true" src="{{logo}}"></image>
+    <view class="title">{{name}}</view>
+    <view class="end">直播已结束</view>
+    <view class="count-box" wx:if="{{isTeacher}}">
+        <view class="count-item">
+            <view class="time">{{durationText}}</view>
+            <view class="time-info">直播时长</view>
+        </view>
+        <view class="count-item">
+            <view class="time">{{view_num}}人</view>
+            <view class="time-info">累计观看</view>
+        </view>
+        <view class="count-item">
+            <view class="time">{{msg_num}}条</view>
+            <view class="time-info">累计聊天</view>
+        </view>
+    </view>
+    <view bindtap="goBack" class="btn">{{isTeacher==1?'完成':'返回'}}</view>
+</view>

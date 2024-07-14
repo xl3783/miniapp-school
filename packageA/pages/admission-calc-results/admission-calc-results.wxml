@@ -1,0 +1,2 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<admission-calculation-results-comp height="{{height}}" proData="{{proData}}"></admission-calculation-results-comp>

@@ -1,0 +1,2 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<admission-probability-comp></admission-probability-comp>

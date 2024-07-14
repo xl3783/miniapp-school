@@ -1,138 +1,158 @@
-var e = require("../@babel/runtime/helpers/regeneratorRuntime"), t = require("../@babel/runtime/helpers/asyncToGenerator"), o = require("../@babel/runtime/helpers/objectSpread2"), n = "https://oe.schoolpi.net/miniapp", r = function(e) {
+const baseUrl = "https://oe.schoolpi.net/miniapp";
+
+const showError = (message) => {
+  wx.showToast({
+    title: message,
+    icon: "none"
+  });
+};
+
+const handleResponse = (response, resolve, reject) => {
+  if (response.data.errcode === 0) {
+    if (response.data.data === undefined) {
+      resolve(response.data);
+    } else {
+      resolve(response.data.data);
+    }
+  } else {
+    console.error(response.data);
     wx.showToast({
-        title: e,
-        icon: "none"
+      title: response.data.errmsg,
+      icon: "none"
     });
-}, i = function() {
-    var o = t(e().mark(function t(o, n, r) {
-        return e().wrap(function(e) {
-            for (;;) switch (e.prev = e.next) {
-              case 0:
-                0 === o.data.errcode ? void 0 === o.data.data ? n(o.data) : n(o.data.data) : (console.error(o.data), 
-                wx.showToast({
-                    title: o.data.errmsg,
-                    icon: "none"
-                }), r(o.data.errmsg));
+    reject(response.data.errmsg);
+  }
+};
 
-              case 1:
-              case "end":
-                return e.stop();
-            }
-        }, t);
-    }));
-    return function(e, t, n) {
-        return o.apply(this, arguments);
+const api = {
+  get: function (url, data = {}) {
+    const configData = wx.getStorageSync("WelcomeConfigData");
+    if (url || configData) {
+      const headers = {
+        "App-Type": 1,
+        Version: "v1"
+      };
+      if (configData.schoolid) headers.schoolid = configData.schoolid;
+      if (configData.token) headers["Face-Token"] = configData.token;
+
+      return new Promise((resolve, reject) => {
+        wx.request({
+          url: `${baseUrl}${url}`,
+          data,
+          method: "GET",
+          header: headers,
+          success: (response) => handleResponse(response, resolve, reject),
+          fail: () => {
+            showError("网络异常 ~");
+            reject(null);
+          }
+        });
+      });
+    }
+    console.error("请求出错");
+  },
+  post: function (url, data = {}) {
+    const configData = wx.getStorageSync("WelcomeConfigData");
+    if (url || configData) {
+      const headers = {
+        "content-type": "application/json",
+        "App-Type": 1,
+        Version: "v1"
+      };
+      if (configData.schoolid) headers.schoolid = configData.schoolid;
+      if (configData.token) headers["Face-Token"] = configData.token;
+
+      return new Promise((resolve, reject) => {
+        wx.request({
+          url: `${baseUrl}${url}`,
+          data,
+          header: headers,
+          method: "POST",
+          success: (response) => handleResponse(response, resolve, reject),
+          fail: () => {
+            showError("网络异常 ~");
+            reject(null);
+          }
+        });
+      });
+    }
+    console.error("请求出错");
+  },
+  log: function (message, level = 1) {
+    if (level === 1) console.log(`[welcome] => ${message}`);
+    if (level === 2) console.error(`[welcome] => ${message}`);
+  },
+  getConfigData: function () {
+    const configData = wx.getStorageSync("WelcomeConfigData");
+    return {
+      token: null,
+      schoolid: 1,
+      configId: null,
+      ...configData
     };
-}();
-
-module.exports = {
-    get: function(e) {
-        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, o = wx.getStorageSync("WelcomeConfigData");
-        if (e || o) {
-            var a = {
-                "App-Type": 1,
-                Version: "v1"
-            };
-            o.schoolid && (a.schoolid = o.schoolid), o.token && (a["Face-Token"] = o.token);
-            var c = new Promise(function(o, c) {
-                wx.request({
-                    url: "".concat(n).concat(e),
-                    data: t,
-                    method: "GET",
-                    header: a,
-                    success: function(e) {
-                        i(e, o, c);
-                    },
-                    fail: function() {
-                        r("网络异常 ~"), c(null);
-                    }
-                });
-            });
-            return c;
-        }
-        console.error("请求出错");
-    },
-    post: function(e) {
-        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, o = wx.getStorageSync("WelcomeConfigData");
-        if (e || o) {
-            var a = {
-                "content-type": "application/json",
-                "App-Type": 1,
-                Version: "v1"
-            };
-            o.schoolid && (a.schoolid = o.schoolid), o.token && (a["Face-Token"] = o.token);
-            var c = new Promise(function(o, c) {
-                wx.request({
-                    url: "".concat(n).concat(e),
-                    data: t,
-                    header: a,
-                    method: "POST",
-                    success: function(e) {
-                        i(e, o, c);
-                    },
-                    fail: function() {
-                        r("网络异常 ~"), c(null);
-                    }
-                });
-            });
-            return c;
-        }
-        console.error("请求出错");
-    },
-    log: function(e) {
-        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1;
-        1 == t && console.log("[welcome] => " + e), 2 == t && console.error("[welcome] => " + e);
-    },
-    getConfigData: function() {
-        var e = wx.getStorageSync("WelcomeConfigData");
-        return o(o({}, {
-            token: null,
-            schoolid: 1,
-            configId: null
-        }), e);
-    },
-    initWelcome: function(e) {
-        if (e) {
-            var t = wx.getStorageSync("WelcomeConfigData");
-            t || (t = {
-                token: null,
-                schoolid: 1,
-                configId: null
-            }), wx.setStorageSync("WelcomeConfigData", o(o({}, t), e));
-        } else console.error("initWelcome 失败");
-    },
-    getNextConfig: function(e) {
-        if (1 == e) return {
-            url: "/welcome/image/image",
+  },
+  initWelcome: function (config) {
+    if (config) {
+      let configData = wx.getStorageSync("WelcomeConfigData");
+      if (!configData) {
+        configData = {
+          token: null,
+          schoolid: 1,
+          configId: null
+        };
+      }
+      wx.setStorageSync("WelcomeConfigData", {
+        ...configData,
+        ...config
+      });
+    } else {
+      console.error("initWelcome 失败");
+    }
+  },
+  getNextConfig: function (type) {
+    switch (type) {
+      case 1:
+        return {
+          url: "/welcome/image/image",
             title: "自传人像照片",
-            type: e
+            type
         };
-        if (2 == e) return {
-            url: "/welcome/identity/identity",
+      case 2:
+        return {
+          url: "/welcome/identity/identity",
             title: "上传身份证照片",
-            type: e
+            type
         };
-        if (3 == e) return {
-            url: "/welcome/living/index/index",
+      case 3:
+        return {
+          url: "/welcome/living/index/index",
             title: "活体核验",
-            type: e
+            type
         };
-        if (4 == e) return {
-            url: "/welcome/loading/loading",
+      case 4:
+        return {
+          url: "/welcome/loading/loading",
             title: "人像核验",
-            type: e
+            type
         };
-        if (5 == e) return {
-            url: "/welcome/signature/signature",
+      case 5:
+        return {
+          url: "/welcome/signature/signature",
             title: "核验签名",
-            type: e
+            type
         };
-        if (9 == e) return {
-            url: "/welcome/result/result?type=0",
+      case 9:
+        return {
+          url: "/welcome/result/result?type=0",
             title: "核验结果",
-            type: e
+            type
         };
-        if (0 == e) throw new Error("type 为 0");
+      case 0:
+        throw new Error("type 为 0");
+      default:
         throw new Error("错误类型");
     }
+  }
 };
+
+module.exports = api;

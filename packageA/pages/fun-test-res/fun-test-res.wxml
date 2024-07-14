@@ -1,0 +1,2 @@
+<custom-topbar class="top-bar" id="top-bar" title="{{tabName}}"></custom-topbar>
+<fun-test-res-comp height="{{height}}" id="fun-test-res" tabname="{{tabName}}" testId="{{testId}}" type="{{type}}"></fun-test-res-comp>

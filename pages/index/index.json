@@ -1,6 +1,12 @@
 {
-  "navigationBarTitleText": "栅格布局",
+  "navigationStyle": "custom",
   "usingComponents": {
+    "index-comp": "/components/pageOne/index/index",
+    "kefu-comp": "/components/my-kefu-comp/index",
+    "custom-topbar": "/components/custom-topbar/index",
+    "my-comp": "/components/pageOne/my/my",
+    "enroll-major-new-comp": "/components/pageOne/enroll-major-new/enroll-major-new",
+    "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
     "index-banner-comp": "/components/index-banner-comp/index-banner-comp"
   }
 }

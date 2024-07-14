@@ -1,0 +1,60 @@
+<custom-topbar title="筛选"></custom-topbar>
+<view class="choose-content">
+    <view class="select-item" wx:if="{{showArea}}">
+        <view>区域</view>
+        <picker bindchange="bindAreaChange" range="{{areaList}}" rangeKey="province" value="{{index}}">
+            <view class="picker">
+                <view style="color:{{areaId!=-1?'#333333':'#999999'}}">{{areaId!=-1?areaText:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="select-item" wx:if="{{showYear}}">
+        <view>年份</view>
+        <picker bindchange="bindYearChange" range="{{yearList}}" value="{{index}}">
+            <view class="picker">
+                <view style="color:{{yearId>0?'#333333':'#999999'}}">{{yearId>0?yearText:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="select-item" wx:if="{{showCampus}}">
+        <view>校区</view>
+        <picker bindchange="bindCampusChange" range="{{campusList}}" rangeKey="name" value="{{index}}">
+            <view class="picker">
+                <view style="color:{{campusId!=-1?'#333333':'#999999'}}">{{campusId!=-1?campusText:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="select-item" wx:if="{{showBatch}}">
+        <view>批次</view>
+        <picker bindchange="bindBatchChange" range="{{batchList}}" value="{{index}}">
+            <view class="picker">
+                <view style="color:{{batch?'#333333':'#999999'}}">{{batch?batch:'请选择'}}</view>
+                <image showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="subject" wx:if="{{showEnrollType&&enrollTypeList.length>0}}">
+        <view style="margin:40rpx 0;">类型</view>
+        <view class="subject-box">
+            <view bindtap="handleEnroll" class="subject-item1" data-item="{{item}}" style="background:{{enroll_type==item.id?globalColor:'#F6F7F9'}};color:{{enroll_type==item.id?'#fff':'#333'}}" wx:for="{{enrollTypeList}}" wx:key="index">{{item.name}} </view>
+        </view>
+    </view>
+    <view class="subject" wx:if="{{showDivition&&divitionList.length>0}}">
+        <view style="margin:40rpx 0;">科类</view>
+        <view class="subject-box">
+            <view bindtap="handleDivition" class="subject-item1 " data-item="{{item}}" style="background:{{divitionId==item.divition_id?globalColor:'#F6F7F9'}};color:{{divitionId==item.divition_id?'#fff':'#333'}}" wx:for="{{divitionList}}" wx:key="index">{{item.name}}</view>
+        </view>
+    </view>
+    <view class="subject" wx:if="{{divitionText=='新高考'&&showSubject&&subjectList.length>0}}">
+        <view style="margin:40rpx 0;">学科</view>
+        <view class="subject-box">
+            <view bindtap="handleSubject" class="subject-item1 " data-item="{{item}}" style="background:{{subjectId==item.id?globalColor:'#F6F7F9'}};color:{{subjectId==item.id?'#fff':'#333'}}" wx:for="{{subjectList}}" wx:key="index">{{item.name}}</view>
+        </view>
+    </view>
+</view>
+<view style="display:flex;justify-content:center">
+    <view bindtap="handleSure" class="sure-btn" style="background:{{globalColor}}">确定</view>
+</view>

@@ -1,0 +1,19 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view class="top-nav" wx:if="{{navList.length>0}}">
+    <scroll-view class="scrool-view" scrollIntoView="{{toView}}" scrollX="true" showScrollbar="{{false}}">
+        <view bindtap="chooseNav" class="cate {{item.id==column_id?'active':''}}" data-id="{{item.id}}" data-index="{{index}}" id="row_{{item.id}}" wx:for="{{navList}}" wx:key="index">
+            <view>{{item.name}}</view>
+            <view class="border" style="background-color:{{globalColor}}"></view>
+        </view>
+    </scroll-view>
+</view>
+<view class="teacher-box" wx:if="{{list.length!==0}}">
+    <view bindtap="goTeacherDetail" class="teacher-item" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{list}}" wx:key="*this">
+        <image lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.photo_url}}"></image>
+        <view style="padding:0 24rpx 24rpx;">
+            <view class="teacher-item-name">{{item.name}}</view>
+            <view class="teacher-item-title">{{item.title}}</view>
+        </view>
+    </view>
+</view>
+<no-data-comp wx:else></no-data-comp>

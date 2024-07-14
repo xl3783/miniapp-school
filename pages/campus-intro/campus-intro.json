@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "学校简介",
+  "usingComponents": {
+    "campus-intro-comp": "/components/pageOne/campus-intro/campus-intro",
+    "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+  }
+}

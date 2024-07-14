@@ -1,0 +1,14 @@
+<custom-topbar title="问题列表"></custom-topbar>
+<block wx:if="{{questionList.length>0}}">
+    <view wx:for="{{questionList}}" wx:key="index">
+        <navigator class="cate-item" hoverClass="none" url="/pages/campus-faq-cate-detail/campus-faq-cate-detail?id={{item.id}}">
+            <view class="left">
+                <view class="text">{{item.title}}</view>
+            </view>
+            <view class="right">
+                <image showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+            </view>
+        </navigator>
+    </view>
+</block>
+<no-data-comp wx:if="{{questionList.length===0&&dataIsLoad}}"></no-data-comp>

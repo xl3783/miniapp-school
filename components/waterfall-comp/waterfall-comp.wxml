@@ -1,38 +1,38 @@
 <view class="waterfall-box">
-    <scroll-view class="tab" scrollX="true" showScrollbar="{{false}}">
-        <view bindtap="chooseTab" class="tab-item {{activeIndex==index?'active':''}}" data-index="{{index}}" data-item="{{item}}" wx:for="{{list}}" wx:key="*this">
-            <view>{{item.name}}</view>
-            <view class="border" style="background-color:{{globalColor}}"></view>
-        </view>
-    </scroll-view>
-    <view class="animate">
-        <view class="min-view" wx:if="{{dataList.length==0}}"></view>
-        <block wx:if="{{list[activeIndex].type==1}}">
-            <block wx:if="{{props_data.style_code===1}}">
-                <aritcle-001 bindtap="goDetail" data-item="{{item}}" data-type="1" item="{{item}}" props_data="{{props_data}}" wx:for="{{dataList}}" wx:key="index"></aritcle-001>
-            </block>
-            <block wx:if="{{props_data.style_code===2}}">
-                <aritcle-002 bindtap="goDetail" data-item="{{item}}" data-type="1" item="{{item}}" props_data="{{props_data}}" wx:for="{{dataList}}" wx:key="index"></aritcle-002>
-            </block>
-        </block>
-        <view class="pic-container" wx:if="{{list[activeIndex].type==2}}">
-            <view bindtap="goDetail" class="pic-item" data-item="{{item}}" data-type="2" wx:for="{{dataList}}" wx:key="*this">
-                <view class="image-box">
-                    <image class="image" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
-                </view>
-                <view class="pic-item-title">{{item.title}}</view>
-            </view>
-        </view>
-        <view class="pic-container" wx:if="{{list[activeIndex].type==3}}">
-            <view class="pic-item" style="width:686rpx;" wx:for="{{dataList}}" wx:key="*this">
-                <view bindtap="goDetail" class="image-box" data-item="{{item}}" data-type="3" style="width:100%">
-                    <image class="image" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.cover_url}}" style="width:100%"></image>
-                    <image class="video_icon" showMenuByLongpress="true" src="../../assets/image/video_icon.png"></image>
-                </view>
-                <view class="pic-item-title" style="width:100%">{{item.title}}</view>
-            </view>
-        </view>
+  <scroll-view class="tab" scrollX="true" showScrollbar="{{false}}">
+    <view bindtap="chooseTab" class="tab-item {{activeIndex==index?'active':''}}" data-index="{{index}}" data-item="{{item}}" wx:for="{{list}}" wx:key="*this">
+      <view>{{item.name}}</view>
+      <view class="border" style="background-color:{{globalColor}}"></view>
     </view>
+  </scroll-view>
+  <view class="animate">
+    <view class="min-view" wx:if="{{dataList.length==0}}"></view>
+    <block wx:if="{{list[activeIndex].type==1}}">
+      <block wx:if="{{props_data.style_code===1}}">
+        <aritcle-001 bindtap="goDetail" data-item="{{item}}" data-type="1" item="{{item}}" props_data="{{props_data}}" wx:for="{{dataList}}" wx:key="index"></aritcle-001>
+      </block>
+      <block wx:if="{{props_data.style_code===2}}">
+        <aritcle-002 bindtap="goDetail" data-item="{{item}}" data-type="1" item="{{item}}" props_data="{{props_data}}" wx:for="{{dataList}}" wx:key="index"></aritcle-002>
+      </block>
+    </block>
+    <view class="pic-container" wx:if="{{list[activeIndex].type==2}}">
+      <view bindtap="goDetail" class="pic-item" data-item="{{item}}" data-type="2" wx:for="{{dataList}}" wx:key="*this">
+        <view class="image-box">
+          <image class="image" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+        </view>
+        <view class="pic-item-title">{{item.title}}</view>
+      </view>
+    </view>
+    <view class="pic-container" wx:if="{{list[activeIndex].type==3}}">
+      <view class="pic-item" style="width:686rpx;" wx:for="{{dataList}}" wx:key="*this">
+        <view bindtap="goDetail" class="image-box" data-item="{{item}}" data-type="3" style="width:100%">
+          <image class="image" lazyLoad="true" mode="aspectFill" showMenuByLongpress="true" src="{{item.cover_url}}" style="width:100%"></image>
+          <image class="video_icon" showMenuByLongpress="true" src="../../assets/image/video_icon.png"></image>
+        </view>
+        <view class="pic-item-title" style="width:100%">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
 </view>
 <view bindtap="getListById" class="load-more-text" wx:if="{{hasMore&&load_type===1}}">上拉查看更多</view>
 <view bindtap="getListById" class="load-more-btn" wx:if="{{hasMore&&load_type===2}}">加载更多</view>

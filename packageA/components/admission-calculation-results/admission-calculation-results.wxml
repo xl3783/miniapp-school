@@ -1,0 +1,60 @@
+<scroll-view class="scroll" scrollY="true" style="height:{{height}}px">
+    <view class="bg"></view>
+    <view class="container">
+        <view class="progress_exhibition">
+            <view class="progress_box">
+                <ec-canvas canvasId="mychart-bar" class="calc-canvas" ec="{{ec}}" id="mychart-adm-calc"></ec-canvas>
+            </view>
+            <view class="progress_info">
+                <view class="info_title">{{schoolName}}</view>
+                <view class="info_content">{{tips}}</view>
+            </view>
+        </view>
+        <view class="calculation-list" wx:if="{{calculationList&&calculationList.length>0}}">
+            <view class="calculation-item {{isOpen&&calculationList.length>1?'calculation-open':''}}" wx:for="{{calculationList}}" wx:key="index">
+                <view>
+                    <text>录取位次:</text>
+                    <text>最低{{item.minimum_admission_position}}</text>
+                    <text>平均{{item.average_admission_position}}</text>
+                    <text>最高{{item.highest_admission_position}}</text>
+                </view>
+                <view>
+                    <text>录取分数:</text>
+                    <text>最低{{item.minimum_admission_score}}</text>
+                    <text>平均{{item.average_admission_score}}</text>
+                    <text>最高{{item.highest_admission_score}}</text>
+                </view>
+                <view>
+                    <text>招生人数:</text>
+                    <text>计划{{item.num_plans}}</text>
+                    <text>录取{{item.num_admissions}}</text>
+                </view>
+            </view>
+        </view>
+        <view bindtap="open" class="open" wx:if="{{openShow&&calculationList.length>1}}">
+            <view wx:if="{{isOpen}}">展开<image mode="aspectFill" src="../../image/open.png"></image>
+            </view>
+            <view wx:if="{{!isOpen}}">收起<image mode="aspectFill" src="../../image/fold.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="container container-bottom">
+        <view class="ranking-list">
+            <view class="ranking-title">
+                <text>专业名</text>
+                <text>录取概率</text>
+            </view>
+            <view wx:if="{{majorList&&majorList.length>0}}">
+                <view class="ranking-item" wx:for="{{majorList}}" wx:key="index">
+                    <text>{{item.major}}</text>
+                    <text>{{item.proportion}}</text>
+                </view>
+            </view>
+            <view class="calculation-failed" wx:if="{{!majorList||majorList.length==0}}">
+                <image mode="aspectFill" src="../../image/calculation-results.png"></image>
+                <view>很抱歉，我们没能测算出结果，可能是因为数据不足</view>
+            </view>
+        </view>
+    </view>
+    <view class="scroll-height"></view>
+</scroll-view>

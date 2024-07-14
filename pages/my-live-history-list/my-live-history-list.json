@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "my-live-history-list-comp": "/components/pageOne/my-live-history-list/my-live-history-list"
+    }
+}

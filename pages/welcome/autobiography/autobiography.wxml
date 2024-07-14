@@ -1,0 +1,5 @@
+<view class="container">
+    <view class="container_title">请拍摄上传本人正脸照片</view>
+    <image bindtap="upimg" class="container_img" mode="aspectFill" src="{{showImg?showImg:'../../../assets/image/welcome_user.png'}}"></image>
+    <view bindtap="toPage" class="container_but"> 提交 </view>
+</view>

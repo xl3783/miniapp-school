@@ -1,0 +1,2 @@
+<custom-topbar class="top-bar" id="top-bar" title="{{tabName}}"></custom-topbar>
+<answering-comp height="{{height}}" type="{{type}}"></answering-comp>

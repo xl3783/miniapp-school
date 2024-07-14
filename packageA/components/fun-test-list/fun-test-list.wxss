@@ -1,0 +1,51 @@
+.test-box {
+    padding: 40rpx 32rpx 80rpx;
+}
+
+.test-list {
+    background: #fff;
+    border-radius: 20rpx;
+    box-shadow: 0 8rpx 24rpx 0 rgba(0,0,0,.03);
+    display: flex;
+    height: 214rpx;
+    justify-content: space-between;
+    margin-bottom: 40rpx;
+    width: 100%;
+}
+
+.text {
+    padding: 32rpx 6rpx 36rpx 32rpx;
+    width: 350rpx;
+}
+
+.title {
+    color: #303133;
+    font-size: 36rpx;
+    line-height: 50rpx;
+    margin-bottom: 12rpx;
+}
+
+.intro,.title {
+    font-weight: 600;
+}
+
+.intro {
+    color: #909399;
+    font-size: 26rpx;
+    line-height: 42rpx;
+}
+
+image {
+    flex-shrink: 0;
+    height: auto;
+    width: 304rpx;
+}
+
+.test-list:nth-child(2n+2) {
+    flex-flow: row-reverse;
+}
+
+.test-list:nth-child(2n+2) .text {
+    padding: 32rpx 32rpx 36rpx 6rpx;
+    text-align: right;
+}

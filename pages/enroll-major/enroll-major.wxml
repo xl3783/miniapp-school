@@ -1,0 +1,2 @@
+<custom-topbar hasBack="{{true}}" id="top-bar" title="{{tabName}}"></custom-topbar>
+<enroll-major-comp height="{{height}}"></enroll-major-comp>

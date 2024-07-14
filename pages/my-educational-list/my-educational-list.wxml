@@ -1,0 +1,13 @@
+<custom-topbar title="签到"></custom-topbar>
+<view class="container">
+    <view class="container_lines" wx:for="{{list}}" wx:key="index">
+        <view class="container_title"> {{item.title}} </view>
+        <view bindtap="toIntro" class="container_info" data-id="{{child.id}}" wx:for="{{item.children}}" wx:for-item="child">
+            <view class="info_left">
+                <view class="info_left_time">{{child.day}}号 {{child.times}}</view>
+                <view class="info_left_text">{{child.address}}</view>
+            </view>
+            <image class="info_right" mode="aspectFill" src="{{child.sign_image_url}}"></image>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,28 @@
+<custom-topbar title="个人资料"></custom-topbar>
+<view bindtap="uploadAvatar" class="my-item">
+    <view class="title lh140">头像</view>
+    <view class="flex">
+        <image class="avatar" showMenuByLongpress="true" src="{{avatar_url}}"></image>
+        <image class="right-icon" showMenuByLongpress="true" src="../../assets/image/icon_right.png"></image>
+    </view>
+</view>
+<view class="my-item">
+    <view class="title">姓名</view>
+    <view class="flex">
+        <input bindinput="changeName" type="text" value="{{name}}"></input>
+        <image class="write-icon" showMenuByLongpress="true" src="../../assets/image/write.png"></image>
+    </view>
+</view>
+<view class="my-item" wx:if="{{phone}}">
+    <view class="title lh72">电话</view>
+    <view class="flex">
+        <input disabled bindblur="changePhone" class="lh72" type="text" value="{{phone}}"></input>
+        <button bindgetphonenumber="getPhoneNumber" class="change-btn" openType="getPhoneNumber">变更</button>
+    </view>
+</view>
+<view class="my-item" wx:else>
+    <view class="title lh72">电话</view>
+    <view>
+        <button bindgetphonenumber="getPhoneNumber" class="wexin-phone" openType="getPhoneNumber">获取微信手机号</button>
+    </view>
+</view>

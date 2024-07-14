@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "在线留言",
+    "usingComponents": {
+        "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar"
+    }
+}

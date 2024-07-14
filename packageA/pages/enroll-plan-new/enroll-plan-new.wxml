@@ -1,0 +1,2 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<enroll-plan-new-comp></enroll-plan-new-comp>

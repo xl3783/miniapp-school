@@ -1,0 +1,14 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "scores-comp": "/components/pageOne/scores/scores",
+        "campus-intro-comp": "/components/pageOne/campus-intro/campus-intro",
+        "form-page-comp": "/components/pageOne/form-page/form-page",
+        "live-enroll-major-comp": "/components/pageOne/live-enroll-major/live-enroll-major",
+        "mp": "/components/mp-weixin/index",
+        "enroll-plan-new-comp": "/components/pageOne/enroll-plan-new/enroll-plan-new",
+        "plan-score-two-style-comp": "/components/pageTwo/plan-score-two-style/plan-score-two-style",
+        "plan-score-new-comp": "/components/pageTwo/plan-score-new/plan-score-new"
+    }
+}

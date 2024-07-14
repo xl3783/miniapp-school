@@ -1,0 +1,15 @@
+<view class="" style="background:#333;height: 100vh;overflow: hidden;">
+    <custom-topbar title="{{title}}"></custom-topbar>
+    <video controls autoplay="true" class="new_video" id="myVideo" objectFit="contain" poster="{{content.cover_url}}" showCenterPlayBtn="{{false}}" showPlayBtn="{{true}}" src="{{content.video_url}}"></video>
+    <view class="black" wx:if="{{intro}}">
+        <view style="display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;"> {{tools.sliceArr(intro,0,35)}}......</view>
+        <text bindtap="openIntro" class="open-text">展开全文</text>
+    </view>
+</view>
+<page-container bindclickoverlay="openIntro" closeOnSlideDown="{{false}}" customStyle="{{customStyle}}" overlay="true" overlayStyle="{{overlayStyle}}" position="bottom" round="{{false}}" show="{{show}}">
+    <scroll-view class="detail-page" scrollY="true" style="max-height: 700rpx;">
+        <mp content="{{intro}}"></mp>
+        <text bindtap="openIntro" class="detail-text">收起</text>
+    </scroll-view>
+</page-container>
+<wxs module="tools" src="../../utils/tool.wxs" />

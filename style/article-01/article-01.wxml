@@ -1,0 +1,20 @@
+<view class="article-item" style="border-bottom:{{item.thumb_url?'':'1rpx solid #E7EEF0'}}">
+  <block wx:if="{{props_data.img_position==undefined||props_data.img_position==2}}">
+    <view class="title" style="justify-content: {{props_data.show_create_time===1?'space-between':'center'}}">
+      <view class="title_con">
+        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text> {{item.title}}
+      </view>
+      <view class="title_time" wx:if="{{props_data.show_create_time===1}}"> {{props_data.show_create_time===1?item.create_time:''}} </view>
+    </view>
+    <image class="img" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.thumb_url}}" wx:if="{{item.thumb_url}}"></image>
+  </block>
+  <block wx:if="{{props_data.img_position==1}}">
+    <image class="img" lazyLoad="true" mode="scaleToFill" showMenuByLongpress="true" src="{{item.thumb_url}}" style="margin-left:10rpx" wx:if="{{item.thumb_url}}"></image>
+    <view class="title" style="padding-left: 15rpx;justify-content: {{props_data.show_create_time===1?'space-between':'center'}}">
+      <view class="title_con">
+        <text style="color:#fff;background:#EC5C51;border-radius: 6rpx;font-size: 30rpx;padding:0rpx 10rpx;margin-right:10rpx" wx:if="{{item.is_top==1}}">置顶</text> {{item.title}}
+      </view>
+      <view class="title_time" wx:if="{{props_data.show_create_time===1}}"> {{props_data.show_create_time===1?item.create_time:''}} </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,3 @@
+<image alt="" class="sucImg" src="../../assets/image/success.png"></image>
+<view class="sucText">留言成功</view>
+<view bindtap="goIndex" class="backBtn">返回首页</view>

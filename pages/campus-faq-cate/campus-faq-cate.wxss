@@ -1,0 +1,32 @@
+.cate-item {
+    border-bottom: 1rpx solid #e7eef0;
+    justify-content: space-between;
+    margin: 0 32rpx;
+    padding: 34rpx 0;
+}
+
+.cate-item,.cate-item .left {
+    display: flex;
+}
+
+.cate-item .left .circle {
+    border-radius: 50%;
+    height: 20rpx;
+    margin-right: 34rpx;
+    margin-top: 13rpx;
+    width: 20rpx;
+}
+
+.cate-item .left .text {
+    color: #333;
+    font-family: PingFangSC-Medium,PingFang SC;
+    font-size: 32rpx;
+    font-weight: 600;
+    line-height: 45rpx;
+}
+
+.cate-item .right image {
+    height: 36rpx;
+    margin-top: 3rpx;
+    width: 36rpx;
+}

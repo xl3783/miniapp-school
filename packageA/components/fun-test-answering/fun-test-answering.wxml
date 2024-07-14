@@ -1,0 +1,39 @@
+<scroll-view class="scroll" scrollY="true" style="min-height:{{height}}px">
+    <view class="answer-sheet-box" style="min-height:{{height-80}}px" wx:if="{{optionsList&&optionsList.length>0&&!analysisShow}}">
+        <view class="{{!analysisShow?'bgColor':''}}"></view>
+        <view class="bg"></view>
+        <view class="answer-box" style="min-height:{{height-80}}px">
+            <view class="progress-box">
+                <view class="progress-text">
+                    <text>答题{{progressNum}}</text>/{{total}}</view>
+                <progress activeColor="#16B980" backgroundColor="#F6F9F8" borderRadius="3" percent="{{percentNum}}" strokeWidth="6"></progress>
+            </view>
+            <view>
+                <view class="subject-box">
+                    <view class="subject-title">{{optionsList[listIndex].title}}</view>
+                    <view class="judge" wx:if="{{type=='1'}}">
+                        <view bindtap="chooseClick" class="judge-list" data-idx="{{listIndex}}" data-item="{{item}}" data-score="{{item.score}}" wx:for="{{optionsList[listIndex].options}}" wx:key="index">{{item.content}}</view>
+                    </view>
+                    <view class="choose-frame" wx:if="{{type=='2'||type=='3'||type=='5'}}">
+                        <view bindtap="chooseClick" class="frame-list" data-idx="{{listIndex}}" data-item="{{item}}" data-score="{{item.score}}" style="border:1px solid {{item.checked?border:'#E9E9E9'}}" wx:for="{{optionsList[listIndex].options}}" wx:key="index">
+                            <view class="frame-text {{type=='2'?'frame-title':''}}">{{item.content}}</view>
+                            <view class="frame-text {{type=='2'?'frame-desc':''}}">{{item.desc}}</view>
+                            <view class="{{item.checked?'checked':''}}"></view>
+                        </view>
+                    </view>
+                    <view class="choose-radio" wx:if="{{type=='4'}}">
+                        <label bindtap="chooseClick" class="radio-list" data-idx="{{listIndex}}" data-item="{{item}}" data-score="{{item.score}}" wx:for="{{optionsList[listIndex].options}}" wx:key="index">
+                            <view class="radio-circle {{item.checked?'radio-active':''}}"></view>
+                            <view class="radio-name">{{item.content}}</view>
+                        </label>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <no-data-comp wx:if="{{!optionsList&&optionsList.length==0&&!analysisShow}}"></no-data-comp>
+    <view class="analysis-box" wx:if="{{analysisShow}}">
+        <image mode="widthFix" src="../../image/analysis.gif"></image>
+        <text>结果分析中</text>
+    </view>
+</scroll-view>

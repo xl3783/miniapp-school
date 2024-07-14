@@ -1,0 +1,86 @@
+<live-player autoplay="{{true}}" bindstatechange="stateChange" class="player {{isppt?'min-player':'max-player'}}" id="player" mode="live" objectFit="fillCrop" src="{{playUrl}}" wx:if="{{status==1}}"></live-player>
+<view class="center-ppt-box" wx:if="{{status==1&&isppt}}">
+    <image class="center-ppt" showMenuByLongpress="true" src="{{pptImg}}"></image>
+    <image bindtap="handleRotate" class="icon" showMenuByLongpress="true" src="../../assets/image/rotate.png"></image>
+</view>
+<view style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:10">
+    <video bindended="videoEnd" bindpause="videoPause" bindplay="videoPlay" bindtimeupdate="videoUpdate" class="{{isppt?'min-video':'max-video'}}" controls="{{isppt?false:true}}" enablePlayGesture="true" id="myVideo" objectFit="fill" pictureInPictureShowProgress="true" src="{{playback_url}}" wx:if="{{status==2&&playback_url}}"></video>
+    <view class="{{isppt?'min-video':'max-video'}}" wx:if="{{status==2&&!playback_url}}">回放地址暂未生成,请稍后重试 </view>
+    <view class="center-ppt-box" wx:if="{{isppt}}">
+        <image class="center-ppt" showMenuByLongpress="true" src="{{pptImg}}"></image>
+        <image bindtap="handleRotate" class="icon" showMenuByLongpress="true" src="../../assets/image/rotate.png"></image>
+    </view>
+    <view class="top-bar" style="top:{{statusBarHeight}}px;height:{{customBar}}px;line-height:{{customBar}}px">
+        <image bindtap="goBack" class="left-arrow" showMenuByLongpress="true" src="../../assets/image/10.png" style="margin-top:{{customBar/2-16}}px"></image>
+        <view class="tabname">{{tabName}}</view>
+    </view>
+    <view class="live-status" wx:if="{{status==1}}">
+        <view class="time-count">直播中</view>
+        <view class="number">{{livenum}}人 正在观看</view>
+    </view>
+    <view class="live-status live-back" style="text-align:center" wx:if="{{status==2}}">回放</view>
+    <scroll-view bindscrolltoupper="scrollTop" class="comment-box" enhanced="true" pagingEnabled="true" scrollIntoView="{{toView}}" scrollY="true" style="max-height:{{scrollHeight-73}}px;bottom:{{isIphoneX?status==2?'250rpx':'200rpx':status==2?'200rpx':'140rpx'}}">
+        <view id="row_{{index}}" wx:for="{{commentList}}" wx:key="*this">
+            <view class="comment-item">
+                <text style="color:{{item.num>0?'#FFD775':'#7BDDFF'}}">{{item.userName}}</text>
+                <text style="margin-left:12rpx">{{item.msg}}</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="bootomplay-container" wx:if="{{status==2&&isppt}}">
+        <image bindtap="startPlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/startlive.png" wx:if="{{pause}}"></image>
+        <image bindtap="pausePlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/pauselive.png" wx:else></image>
+        <view>{{lefttime}}</view>
+        <slider bindchange="changeSlider" bindchanging="sliderChanging" blockSize="12" class="slider" max="{{durationtime}}" min="0" step="1000" value="{{currenttime}}"></slider>
+        <view>{{righttime}}</view>
+    </view>
+    <view class="input-box" style="bottom:{{isIphoneX?status==2?'180rpx':boardHeight+'px':status==2?'100rpx':boardHeight+'px'}}">
+        <view class="input-end" wx:if="{{status==2}}">直播结束，聊天室已关闭</view>
+        <input adjustPosition="{{false}}" bindblur="changeboardheight" bindconfirm="sendMsg" bindkeyboardheightchange="keyboardheightchange" confirmType="send" placeholder="说点什么......" placeholderStyle="color:#fff;font-size:28rpx" type="text" value="{{inputValue}}" wx:else></input>
+    </view>
+    <view class="right-operation" style="bottom:{{isIphoneX?status==2?'156rpx':'92rpx':status==2?'76rpx':'12rpx'}}">
+        <image bindtap="openNav" class="img" showMenuByLongpress="true" src="../../assets/image/list.png"></image>
+        <image bindtap="openShare" class="img share" showMenuByLongpress="true" src="../../assets/image/share-live.png"></image>
+    </view>
+</view>
+<view bindtap="hideMask" class="mask" wx:if="{{showNav||showShare||showNavDetail}}">
+    <view class="bgfff1" style="bottom:{{isIphoneX?status==2?'284rpx':'220rpx':status==2?'204rpx':'140rpx'}}" wx:if="{{showNav}}">
+        <view catchtap="goNav" class="content-item" data-item="{{item}}" wx:if="{{item.show}}" wx:for="{{tabList}}" wx:key="*this">
+            <image showMenuByLongpress="true" src="{{item.image_url}}"></image>
+            <view>{{item.name}}</view>
+        </view>
+    </view>
+    <view catchtap="handle" class="bgfff" wx:if="{{showNavDetail}}">
+        <view class="func-name">{{funcName}}</view>
+        <image bindtap="hideMask" class="icon-close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
+        <campus-intro-comp height="{{height+20}}" id="campusIntroComp" wx:if="{{funcPath=='/pages/campus-intro/campus-intro'&&tab_list.school_intro==1}}"></campus-intro-comp>
+        <live-enroll-major-comp height="{{height+20}}" wx:if="{{funcPath=='/pages/enroll-major-new/enroll-major-new'&&tab_list.major==1}}"></live-enroll-major-comp>
+        <view wx:if="{{tab_list.taap==1&&funcPath=='/pages/enroll-plan/enroll-plan'&&enroll_plan_style==1}}">
+            <enroll-plan-new-comp height="{{height}}" id="enrollPlanNewComp" isFullScreen="{{false}}" showSearch="{{false}}"></enroll-plan-new-comp>
+        </view>
+        <plan-score-two-style-comp height="{{height+80}}" searchType="{{1}}" showSearch="{{false}}" wx:if="{{tab_list.taap==1&&funcPath=='/pages/enroll-plan/enroll-plan'&&enroll_plan_style==2}}"></plan-score-two-style-comp>
+        <view wx:if="{{tab_list.score==1&&funcPath=='/pages/scores/scores'&&score_style==1}}">
+            <scores-comp bind:changeScoreModel="changeScoreModel" class="scroll-comp" height="{{height}}" id="scoresComp" isFullScreen="{{false}}" scoreHeight="{{height}}" showModel="{{scoreModel}}" showSearch="{{false}}"></scores-comp>
+        </view>
+        <plan-score-two-style-comp height="{{height+80}}" searchType="{{2}}" showSearch="{{false}}" wx:if="{{tab_list.score==1&&funcPath=='/pages/scores/scores'&&score_style==2}}"></plan-score-two-style-comp>
+        <form-page-comp bind:hideMask="hideMask" formId="{{tab_list.form_id}}" height="{{height+20}}" id="formPage" wx:if="{{tab_list.form==1&&tab_list.form_id&&showForm}}"></form-page-comp>
+    </view>
+    <view catchtap="handle" class="sharefff" wx:if="{{showShare}}">
+        <view class="share-title">分享</view>
+        <view class="flex">
+            <button class="share-item" openType="share">
+                <image class="share-img" showMenuByLongpress="true" src="../../assets/image/weixin.png"></image>
+                <view class="share-text">微信好友</view>
+            </button>
+        </view>
+        <view bindtap="hideMask" class="cancel-btn">取消</view>
+    </view>
+</view>
+<view class="login-mask" wx:if="{{showLoginMask}}">
+    <view class="login-content">
+        <image class="login-img" showMenuByLongpress="true" src="../../assets/image/live-img.png"></image>
+        <view class="login-text">登陆可观看PPT直播和提交弹幕,体验更佳</view>
+        <button bindgetuserinfo="handleLogin" class="login-btn" disabled="{{!canClickLogin}}" openType="getUserInfo" wx:if="{{platform=='windows'}}">立即观看</button>
+        <button bindtap="handleLogin" class="login-btn" disabled="{{!canClickLogin}}" wx:else>立即观看</button>
+    </view>
+</view>

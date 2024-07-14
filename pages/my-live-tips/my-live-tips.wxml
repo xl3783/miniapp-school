@@ -1,0 +1,9 @@
+<custom-topbar title="提示"></custom-topbar>
+<view class="container">
+    <view class="tips_title">小程序接口权限不足</view>
+    <view class="tips_info"> 请使用管理员账号登录微信小程序管理后台（地址：https://mp.weixin.qq.com），找到“开发-开发管理-接口设置”，开启下图中两个音视频组件 </view>
+    <image class="tip_icon" src="./icon/1.png"></image>
+    <image class="tip_icon" src="./icon/2.png"></image>
+    <view bindtap="backPage" class="tips_but"> 已开启组件， <text style="color: #3B7CFF;">重试</text>
+    </view>
+</view>

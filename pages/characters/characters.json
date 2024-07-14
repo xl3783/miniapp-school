@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "custom-topbar": "/components/custom-top-bar/custom-top-bar",
+        "no-data-comp": "/components/no-data-comp/no-data-comp",
+        "personage-comp": "/components/pageOne/personage/personage"
+    }
+}

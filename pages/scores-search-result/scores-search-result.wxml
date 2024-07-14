@@ -1,0 +1,44 @@
+<custom-topbar title="搜索结果"></custom-topbar>
+<view class="top-search-box">
+    <view class="top-search">
+        <image class="img-search" showMenuByLongpress="true" src="../../assets/image/search.png"></image>
+        <input bindconfirm="getList" bindinput="handleInput" class="search-text" confirmType="search" placeholder="输入想要查询的专业" value="{{inputText}}"></input>
+    </view>
+</view>
+<view class="result-num">共{{length}}条搜索结果</view>
+<block wx:if="{{majorList.length>0}}">
+    <block wx:if="{{search_cate=='scores'}}">
+        <view class="help" wx:for="{{majorList}}" wx:key="index">
+            <view class="help_item">
+                <view catchtap="tapMajor" class="title" data-index="{{index}}">
+                    <view class="title_1">{{item.major_name}}（{{item.year}}）</view>
+                    <image showMenuByLongpress="true" src="../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx" wx:if="{{showIndex==index}}"></image>
+                    <image showMenuByLongpress="true" src="../../assets/image/icon_top.png" style="width:36rpx;height:36rpx;margin-top:38rpx;transform:rotate(180deg)" wx:else></image>
+                </view>
+                <view class="score" style="padding:0 32rpx 32rpx;background: #F6F7F9;" wx:if="{{showIndex==index}}">
+                    <view wx:if="{{item.campus_name}}">校区：{{item.campus_name?item.campus_name:'——'}}</view>
+                    <view wx:if="{{item.batch}}">批次：{{item.batch?item.batch:'——'}}</view>
+                    <view wx:if="{{item.enroll_type_name}}">类型：{{item.enroll_type_name?item.enroll_type_name:'——'}}</view>
+                    <view wx:if="{{item.min}}">最低分：{{item.min?item.min:'——'}}</view>
+                    <view wx:if="{{item.max}}">最高分：{{item.max?item.max:'——'}}</view>
+                    <view wx:if="{{item.num}}">平均分：{{item.avg?item.avg:'——'}}</view>
+                    <view wx:if="{{item.campus_name}}">录取数：{{item.num?item.num:'——'}}</view>
+                    <view wx:if="{{value}}" wx:for="{{item.custom}}" wx:for-index="key" wx:for-item="value" wx:key="key"> {{key}}：{{value}} </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{search_cate=='enroll-plan'}}">
+        <view class="plan-list" wx:for="{{majorList}}" wx:key="*this">
+            <view bindtap="tapItem" class="plan-item" data-index="{{index}}">
+                <view class="plan-item-text">{{item.major_name}}</view>
+                <image class="top-icon" showMenuByLongpress="true" src="../../assets/image/icon_top.png" style=" transform:{{activeIndex==index?'rotate(0deg)':'rotate(180deg)'}} ; "></image>
+            </view>
+            <view class="plan-item-detail" wx:if="{{activeIndex==index}}">
+                <view class="batch-num">批次：{{item.batch}}</view>
+                <view class="plan-num">计划人数：{{item.num}}</view>
+            </view>
+        </view>
+    </block>
+</block>
+<no-data-comp wx:else></no-data-comp>

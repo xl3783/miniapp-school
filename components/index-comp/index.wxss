@@ -1,0 +1,108 @@
+.transition-class {
+  animation: animation 1s;
+}
+
+@-webkit-keyframes animation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.contact-icon {
+  border-radius: 50%;
+  bottom: 55px;
+  height: 104rpx;
+  line-height: 104rpx;
+  position: fixed;
+  right: 32rpx;
+  text-align: center;
+  width: 104rpx;
+  z-index: 100;
+}
+
+.contact-icon image {
+  height: 54rpx;
+  vertical-align: middle;
+  width: 54rpx;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, .5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 101;
+}
+
+.mask .contact-content {
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.mask .contact-content .contactus {
+  color: #000;
+  font-size: 34rpx;
+  font-weight: 600;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-top: 64rpx;
+  text-align: center;
+}
+
+.mask .contact-content .contact-item {
+  display: flex;
+  height: 56rpx;
+  justify-content: space-between;
+  line-height: 56rpx;
+  margin-top: 60rpx;
+  padding: 0 40rpx 0 32rpx;
+}
+
+.mask .contact-content .contact-item .contact-left {
+  display: flex;
+}
+
+.mask .contact-content .contact-item .contact-left image {
+  height: 56rpx;
+  margin-right: 32rpx;
+  width: 56rpx;
+}
+
+.mask .contact-content .contact-item .contact-right {
+  border: 2rpx solid #1487ff;
+  border-radius: 32rpx;
+  color: #1487ff;
+  font-size: 28rpx;
+  height: 56rpx;
+  text-align: center;
+  width: 120rpx;
+}
+
+.contact-cancel {
+  border-top: 1rpx solid #e5e5e5;
+  font-size: 34rpx;
+  height: 118rpx;
+  letter-spacing: 2rpx;
+  line-height: 118rpx;
+  margin-top: 78rpx;
+  text-align: center;
+}

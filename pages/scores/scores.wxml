@@ -1,0 +1,2 @@
+<custom-topbar class="top-bar" id="top-bar" title="{{tabName}}"></custom-topbar>
+<scores-comp height="{{height}}" isFullScreen="{{isFullScreen}}"></scores-comp>

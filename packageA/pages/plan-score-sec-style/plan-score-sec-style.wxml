@@ -1,0 +1,2 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<plan-score-sec-style-comp enrollType="{{enrollType}}" height="{{height}}" searchType="{{searchType}}"></plan-score-sec-style-comp>

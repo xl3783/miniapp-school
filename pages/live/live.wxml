@@ -1,0 +1,134 @@
+<custom-topbar title="{{tabName}}"></custom-topbar>
+<view bindtap="handleShowMax" class="live-box">
+    <block wx:if="{{type==1||type==5}}">
+        <live-player autoplay class="{{isppt?'min-player':'max-player'}} {{liveClass}}" id="livePlayer" objectFit="contain" orientation="{{orientation}}" src="{{playUrl}}" style="opacity:{{showLiveVideo?1:0}}" wx:if="{{isplayback==0}}"></live-player>
+    </block>
+    <block wx:if="{{type==3}}">
+        <live-player autoplay class="{{isppt?'min-player':'max-player'}} {{liveClass}}" id="livePlayer" objectFit="contain" orientation="{{orientation}}" src="{{play_url}}" style="opacity:{{showLiveVideo?1:0}}" wx:if="{{isplayback==0}}"></live-player>
+    </block>
+    <video class="max-player" src="{{play_url}}" wx:if="{{type==4}}"></video>
+    <image class="ppt-img" mode="aspectFit" showMenuByLongpress="true" src="{{pptImg}}" style="width:100%;height:100%;" wx:if="{{isplayback==0&&isppt}}"></image>
+    <image class="ppt-img" mode="aspectFit" showMenuByLongpress="true" src="{{pptImg}}" style="width:100%;height:100%;" wx:if="{{isplayback==1&&playback_url&&isppt}}"></image>
+    <view class="max-mask" wx:if="{{showMax&&isplayback==0}}">
+        <image catchtap="reverse" class="max-icon" showMenuByLongpress="true" src="../../assets/image/max.png"></image>
+    </view>
+    <block wx:if="{{isplayback==1&&playback_url}}">
+        <view class="hf-text" wx:if="{{isplayback==1}}">回放</view>
+        <video bindended="videoEnd" bindpause="videoPause" bindplay="videoPlay" bindtimeupdate="videoUpdate" class="{{isppt?'min-player':'max-player'}}" enablePlayGesture="true" id="myVideo" showPlayBtn="true" src="{{playback_url}}" wx:if="{{isplayback==1}}"></video>
+        <view class="max-mask" wx:if="{{showMax&&isplayback==0}}">
+            <image catchtap="reverse" class="max-icon" showMenuByLongpress="true" src="../../assets/image/max.png"></image>
+        </view>
+        <view class="bootomplay-container" wx:if="{{showMax&&isppt&&isplayback==1}}">
+            <image bindtap="startPlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/startlive.png" wx:if="{{pause}}"></image>
+            <image bindtap="pausePlay" class="playicon" showMenuByLongpress="true" src="../../assets/image/pauselive.png" wx:else></image>
+            <view>{{lefttime}}</view>
+            <slider bindchanging="changeSlider" blockSize="12" class="slider" max="{{durationtime}}" min="0" step="1000" value="{{currenttime}}"></slider>
+            <view>{{righttime}}</view>
+            <image catchtap="reverse" class="playicon" showMenuByLongpress="true" src="../../assets/image/max.png" style="margin-left:30rpx"></image>
+        </view>
+    </block>
+    <view class="text-fff" wx:if="{{isplayback==1&&!playback_url}}">回放地址暂未生成,请稍后重试</view>
+</view>
+<view class="flex-column">
+    <view style="display:flex;flex:1">
+        <view bindtap="handleUp" class="column-item">
+            <image class="img" showMenuByLongpress="true" src="../../assets/image/zan.png" wx:if="{{!isZan}}"></image>
+            <image class="img" showMenuByLongpress="true" src="../../assets/image/zan_on.png" wx:else></image>
+            <view class="text" style="color:{{isZan?'#1487FF':'#333'}}">{{up_num}}</view>
+        </view>
+        <view bindtap="handleShare" class="column-item">
+            <image class="img" showMenuByLongpress="true" src="../../assets/image/share-icon.png"></image>
+            <view class="text">分享</view>
+        </view>
+    </view>
+    <view style="text-align:center;color: #333333;font-size: 28rpx;" wx:if="{{isplayback!=1}}">{{livenum}}人观看</view>
+</view>
+<view class="flex-func">
+    <view bindtap="chooseFunc" class="item {{funcIndex==0?'active':''}}" data-index="0">聊天</view>
+    <view bindtap="chooseFunc" class="item {{funcIndex==1?'active':''}}" data-index="1">直播介绍</view>
+    <view bindtap="chooseFunc" class="item {{funcIndex==3?'active':''}}" data-index="3">问答记录</view>
+</view>
+<view class="scroll-view" style="overflow:hidden;background:#F6F7F8;padding-top:10rpx" wx:if="{{funcIndex==0}}">
+    <scroll-view bindscrolltoupper="scrollTop" class="danmu-scroll" scrollIntoView="{{toView}}" scrollY="true" style="height:{{isplayback==0?isIphoneX?scrollH-140:scrollH-130:scrollH-60}}px">
+        <view class="msg-item" id="row_{{index}}" wx:for="{{commentList}}" wx:key="*this">
+            <view class="name" style="color:{{item.from==userId?'#333333':'#666666'}};font-weight:{{item.from==userId?700:400}}"> {{item.userName}}:</view>
+            <view class="orange" wx:if="{{item.contentType==2}}">问</view>
+            <view style="flex:1">
+                <view class="{{item.question?'msg-active':'msg'}}" style="color:{{item.question?'#fff':item.from==userId?'#333333':'#666666'}};font-weight:{{item.from==userId?700:400}}" wx:if="{{item.type=='text'}}">{{item.msg}}</view>
+                <view class="{{item.question?'msg-active':'msg'}}" wx:if="{{item.type=='image'}}">
+                    <image mode="widthFix" showMenuByLongpress="true" src="{{item.msg}}" style="width:60%;"></image>
+                </view>
+                <view class="quote" wx:if="{{item.question}}">{{item.question.userName}}：{{item.question.title}}</view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="input-container" style="padding-bottom:{{cursorSpace+16}}px" wx:if="{{funcIndex==0&&isplayback==0}}">
+        <view class="input-box">
+            <input adjustPosition="{{adjustPosition}}" bindblur="inputBlur" bindconfirm="submitMsg" bindfocus="inputFocus" bindkeyboardheightchange="keyboardheightchange" confirmType="send" cursorSpacing="16" placeholder="请输入信息" placeholderStyle="font-size:30rpx;color:#999" type="text" value="{{inputValue}}"></input>
+            <view bindtap="chooseIsQuestion" class="flex tiwen">
+                <view class="iconfont icon-danxuan1" style="color:#CCCCCC" wx:if="{{!isQuestion}}"></view>
+                <view class="iconfont icon-danxuan" style="color:{{globalColor}}" wx:else></view>
+                <view>提问</view>
+            </view>
+        </view>
+    </view>
+</view>
+<scroll-view class="scroll-view" scrollY="true" style="height:{{scrollH-120}}px;" wx:if="{{funcIndex!=0}}">
+    <view class="mp-img-box" style="margin:32rpx;" wx:if="{{funcIndex==1}}">
+        <mp bindlinktap="linktap" content="{{intro}}" copyLink="{{false}}"></mp>
+    </view>
+    <view class="nav-box" wx:if="{{funcIndex==2}}">
+        <view bindtap="goNav" class="nav-item" data-item="{{item}}" wx:if="{{item.show==1}}" wx:for="{{tab_list1}}" wx:key="*this">
+            <image class="img" lazyLoad="true" showMenuByLongpress="true" src="{{item.image_url}}"></image>
+            <view class="text">{{item.name}}</view>
+        </view>
+    </view>
+    <block wx:if="{{funcIndex==3}}">
+        <view class="question-item" wx:for="{{recordList}}" wx:key="*this">
+            <view class="question">问：{{item.title}}</view>
+            <view class="answer">答：{{item.answer}}</view>
+        </view>
+    </block>
+</scroll-view>
+<view bindtap="hideMask" class="mask" wx:if="{{showMask}}">
+    <view catchtap="handle" class="bgfff" wx:if="{{!showShare}}">
+        <view class="func-name">{{funcName}}</view>
+        <image bindtap="hideMask" class="icon-close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
+        <campus-intro-comp height="{{height+20}}" id="campusIntroComp" wx:if="{{funcPath=='/pages/campus-intro/campus-intro'&&tab_list.school_intro==1}}"></campus-intro-comp>
+        <live-enroll-major-comp height="{{height+20}}" wx:if="{{funcPath=='/pages/enroll-major-new/enroll-major-new'&&tab_list.major==1}}"></live-enroll-major-comp>
+        <view wx:if="{{tab_list.taap==1&&funcPath=='/pages/enroll-plan/enroll-plan'&&enroll_plan_style==1}}">
+            <enroll-plan-new-comp height="{{height}}" id="enrollPlanNewComp" isFullScreen="{{false}}" showSearch="{{false}}"></enroll-plan-new-comp>
+        </view>
+        <plan-score-two-style-comp height="{{height+80}}" searchType="{{1}}" showSearch="{{false}}" wx:if="{{tab_list.taap==1&&funcPath=='/pages/enroll-plan/enroll-plan'&&enroll_plan_style==2}}"></plan-score-two-style-comp>
+        <view wx:if="{{tab_list.score==1&&funcPath=='/pages/scores/scores'&&score_style==1}}">
+            <scores-comp bind:changeScoreModel="changeScoreModel" class="scroll-comp" height="{{height}}" id="scoresComp" isFullScreen="{{false}}" scoreHeight="{{height}}" showModel="{{scoreModel}}" showSearch="{{false}}"></scores-comp>
+        </view>
+        <plan-score-two-style-comp height="{{height+80}}" searchType="{{2}}" showSearch="{{false}}" wx:if="{{tab_list.score==1&&funcPath=='/pages/scores/scores'&&score_style==2}}"></plan-score-two-style-comp>
+        <form-page-comp bind:hideMask="hideMask" formId="{{tab_list.form_id}}" height="{{height+20}}" id="formPage" wx:if="{{tab_list.form==1&&tab_list.form_id&&showForm}}"></form-page-comp>
+    </view>
+    <view catchtap="handle" class="sharefff" wx:if="{{showShare}}">
+        <view class="share-title">分享</view>
+        <view class="flex">
+            <button class="share-item" openType="share">
+                <image class="share-img" showMenuByLongpress="true" src="../../assets/image/weixin.png"></image>
+                <view class="share-text">微信好友</view>
+            </button>
+        </view>
+        <view bindtap="hideMask" class="cancel-btn">取消</view>
+    </view>
+</view>
+<view class="landscape-container" wx:if="{{isLandscape}}">
+    <view class="landscapeppt" style="width:{{pptHeight}}px;">
+        <image showMenuByLongpress="true" src="{{pptImg}}" style="width:100%;height:100%" wx:if="{{pptImg}}"></image>
+    </view>
+    <image bindtap="reverse" class="minicon" showMenuByLongpress="true" src="../../assets/image/max.png"></image>
+</view>
+<cover-image bindtap="reverseScreen" class="live_icon1" src="../../assets/image/max.png" wx:if="{{isPlayerReverse}}"></cover-image>
+<view class="login-mask" wx:if="{{showLoginMask}}">
+    <view class="login-content">
+        <image class="login-img" showMenuByLongpress="true" src="../../assets/image/live-img.png"></image>
+        <view class="login-text">完善用户信息可提交弹幕,体验更佳</view>
+        <button bindgetuserinfo="handleLogin" class="login-btn" openType="getUserInfo" wx:if="{{platform=='windows'}}">立即完善</button>
+        <button bindtap="handleLogin" class="login-btn" wx:else>立即完善</button>
+    </view>
+</view>

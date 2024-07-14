@@ -1,0 +1,5 @@
+<web-view binderror="viewError" bindmessage="viewMsg" src="{{url}}" wx:if="{{!errorShow}}"></web-view>
+<view class="container" wx:if="{{errorShow}}">
+  <image class="error-img" src="../../assets/image/error.png"></image>
+  <view class="error-title">外部页面访问错误</view>
+</view>

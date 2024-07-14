@@ -1,0 +1,2 @@
+<custom-topbar class="top-bar" id="top-bar" title="{{tabName}}"></custom-topbar>
+<answer-sheet-comp height="{{height}}"></answer-sheet-comp>

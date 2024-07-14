@@ -1,0 +1,9 @@
+<view>
+    <view class="is_null" wx:if="{{type===0}}"> 加载中... </view>
+    <view class="result" wx:if="{{type===2||type===3}}">
+        <image class="result_img" src="{{type===2?'../../../assets/image/welcome_true.png':'../../../assets/image/welcome_false.png'}}"></image>
+        <view class="result_title">{{msg}}</view>
+        <view bindtap="verify" class="rest_but" style="opacity: {{type==2?'0':'1'}};"> 重新验证 </view>
+        <view bindtap="outLogin" class="rest_out">退出登录</view>
+    </view>
+</view>

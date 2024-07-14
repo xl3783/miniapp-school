@@ -1,0 +1,4 @@
+.wx-progress-inner-bar {
+    background: linear-gradient(270deg,#37e3b4,#59f0a6)!important;
+    border-radius: 6rpx!important;
+}

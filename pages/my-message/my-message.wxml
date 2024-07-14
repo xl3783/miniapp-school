@@ -1,0 +1,27 @@
+<custom-topbar id="top-bar" title="{{tabName}}"></custom-topbar>
+<scroll-view bindscrolltolower="onBottom" scrollY="true" style="background:#F6F7F8;height:{{height}}px">
+    <block wx:if="{{list.length>0}}">
+        <view bindtap="lookDetail" class="word-item" data-id="{{item.id}}" data-item="{{item}}" wx:for="{{list}}" wx:key="*this">
+            <view class="word-box">
+                <view class="word-title">提问：{{item.content}}</view>
+                <view class="word-btn {{item.status==1?'gray':'blue'}}">{{item.status==1?'已回复':'待回复'}}</view>
+            </view>
+            <view style="padding:34rpx 0;border-top: 1rpx solid #E7EEF0;" wx:if="{{item.reply}}">
+                <view class="word-answer"> 答：{{item.reply}} </view>
+            </view>
+        </view>
+    </block>
+    <no-data-comp wx:else></no-data-comp>
+</scroll-view>
+<view bindtap="closeMask" class="mask" wx:if="{{showMask}}">
+    <view catchtap="ss" class="mask-content">
+        <view class="header">
+            <view class="title">留言详情</view>
+            <view class="word-btn {{currentWord.status==1?'gray':'blue'}}">{{currentWord.status==1?'已回复':'待回复'}}</view>
+        </view>
+        <view>
+            <view class="word-title1">提问：{{currentWord.content}}</view>
+            <view class="word-answer1" wx:if="{{currentWord.reply}}"> 答：{{currentWord.reply}} </view>
+        </view>
+    </view>
+</view>

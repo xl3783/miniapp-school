@@ -1,123 +1,183 @@
-var e = require("./parser"), t = [];
+const Parser = require('./parser');
+const plugins = [];
 
 Component({
-    data: {
-        nodes: []
+  data: {
+    nodes: []
+  },
+  properties: {
+    containerStyle: String,
+    content: {
+      type: String,
+      value: "",
+      observer: function (newContent) {
+        this.setContent(newContent);
+      }
     },
-    properties: {
-        containerStyle: String,
-        content: {
-            type: String,
-            value: "",
-            observer: function(e) {
-                this.setContent(e);
-            }
-        },
-        copyLink: {
-            type: Boolean,
-            value: !0
-        },
-        domain: String,
-        errorImg: String,
-        lazyLoad: Boolean,
-        loadingImg: String,
-        pauseVideo: {
-            type: Boolean,
-            value: !0
-        },
-        previewImg: {
-            type: Boolean,
-            value: !0
-        },
-        scrollTable: Boolean,
-        selectable: null,
-        setTitle: {
-            type: Boolean,
-            value: !0
-        },
-        showImgMenu: {
-            type: Boolean,
-            value: !0
-        },
-        tagStyle: Object,
-        useAnchor: null
+    copyLink: {
+      type: Boolean,
+      value: true
     },
-    created: function() {
-        this.plugins = [];
-        for (var e = t.length; e--; ) this.plugins.push(new t[e](this));
+    domain: String,
+    errorImg: String,
+    lazyLoad: Boolean,
+    loadingImg: String,
+    pauseVideo: {
+      type: Boolean,
+      value: true
     },
-    detached: function() {
-        clearInterval(this._timer), this._hook("onDetached");
+    previewImg: {
+      type: Boolean,
+      value: true
     },
-    methods: {
-        in: function(e, t, n) {
-            e && t && n && (this._in = {
-                page: e,
-                selector: t,
-                scrollTop: n
-            });
-        },
-        navigateTo: function(e, t) {
-            var n = this;
-            return new Promise(function(o, i) {
-                if (!n.data.useAnchor) return i("Anchor is disabled");
-                var r = wx.createSelectorQuery().in(n._in ? n._in.page : n).select((n._in ? n._in.selector : "._root") + (e ? "".concat(">>>", "#").concat(e) : "")).boundingClientRect();
-                n._in ? r.select(n._in.selector).scrollOffset().select(n._in.selector).boundingClientRect() : r.selectViewport().scrollOffset(), 
-                r.exec(function(e) {
-                    if (!e[0]) return i("Label not found");
-                    var r = e[1].scrollTop + e[0].top - (e[2] ? e[2].top : 0) + (t || parseInt(n.data.useAnchor) || 0);
-                    n._in ? n._in.page.setData(function(e, t, n) {
-                        return t in e ? Object.defineProperty(e, t, {
-                            value: n,
-                            enumerable: !0,
-                            configurable: !0,
-                            writable: !0
-                        }) : e[t] = n, e;
-                    }({}, n._in.scrollTop, r)) : wx.pageScrollTo({
-                        scrollTop: r,
-                        duration: 300
-                    }), o();
-                });
-            });
-        },
-        getText: function(e) {
-            var t = "";
-            return function e(n) {
-                for (var o = 0; o < n.length; o++) {
-                    var i = n[o];
-                    if ("text" == i.type) t += i.text.replace(/&amp;/g, "&"); else if ("br" == i.name) t += "\n"; else {
-                        var r = "p" == i.name || "div" == i.name || "tr" == i.name || "li" == i.name || "h" == i.name[0] && i.name[1] > "0" && i.name[1] < "7";
-                        r && t && "\n" != t[t.length - 1] && (t += "\n"), i.children && e(i.children), r && "\n" != t[t.length - 1] ? t += "\n" : "td" != i.name && "th" != i.name || (t += "\t");
-                    }
-                }
-            }(e || this.data.nodes), t;
-        },
-        getRect: function() {
-            var e = this;
-            return new Promise(function(t, n) {
-                wx.createSelectorQuery().in(e).select("._root").boundingClientRect().exec(function(e) {
-                    return e[0] ? t(e[0]) : n("Root label not found");
-                });
-            });
-        },
-        setContent: function(t, n) {
-            var o = this;
-            this.imgList && n || (this.imgList = []), this._videos = [];
-            var i, r = {}, a = new e(this).parse(t);
-            if (n) for (var l = this.data.nodes.length, s = a.length; s--; ) r["nodes[".concat(l + s, "]")] = a[s]; else r.nodes = a;
-            this.setData(r, function() {
-                o._hook("onLoad"), o.triggerEvent("load");
-            }), clearInterval(this._timer), this._timer = setInterval(function() {
-                o.getRect().then(function(e) {
-                    e.height == i && (o.triggerEvent("ready", e), clearInterval(o._timer)), i = e.height;
-                }).catch(function() {});
-            }, 350);
-        },
-        _hook: function(e) {
-            for (var n = t.length; n--; ) this.plugins[n][e] && this.plugins[n][e]();
-        },
-        _add: function(e) {
-            e.detail.root = this;
-        }
+    scrollTable: Boolean,
+    selectable: null,
+    setTitle: {
+      type: Boolean,
+      value: true
+    },
+    showImgMenu: {
+      type: Boolean,
+      value: true
+    },
+    tagStyle: Object,
+    useAnchor: null
+  },
+  created: function () {
+    this.plugins = [];
+    for (let i = plugins.length - 1; i >= 0; i--) {
+      this.plugins.push(new plugins[i](this));
     }
+  },
+  detached: function () {
+    clearInterval(this._timer);
+    this._hook('onDetached');
+  },
+  methods: {
+    init: function (page, selector, scrollTop) {
+      if (page && selector && scrollTop) {
+        this._in = {
+          page,
+          selector,
+          scrollTop
+        };
+      }
+    },
+    navigateTo: function (id, offset) {
+      const component = this;
+      return new Promise((resolve, reject) => {
+        if (!component.data.useAnchor) {
+          return reject("Anchor is disabled");
+        }
+        const query = wx.createSelectorQuery().in(component._in ? component._in.page : component)
+          .select((component._in ? component._in.selector : "._root") + (id ? `>>>#${id}` : ""))
+          .boundingClientRect();
+
+        if (component._in) {
+          query.select(component._in.selector).scrollOffset()
+            .select(component._in.selector).boundingClientRect();
+        } else {
+          query.selectViewport().scrollOffset();
+        }
+
+        query.exec(function (res) {
+          if (!res[0]) {
+            return reject("Label not found");
+          }
+          const scrollTop = res[1].scrollTop + res[0].top - (res[2] ? res[2].top : 0) + (offset || parseInt(component.data.useAnchor) || 0);
+          if (component._in) {
+            component._in.page.setData({
+              [component._in.scrollTop]: scrollTop
+            });
+          } else {
+            wx.pageScrollTo({
+              scrollTop: scrollTop,
+              duration: 300
+            });
+          }
+          resolve();
+        });
+      });
+    },
+    getText: function (nodes) {
+      let text = "";
+
+      function extractText(nodeList) {
+        nodeList.forEach(node => {
+          if (node.type === "text") {
+            text += node.text.replace(/&amp;/g, "&");
+          } else if (node.name === "br") {
+            text += "\n";
+          } else {
+            const blockElements = ["p", "div", "tr", "li"].includes(node.name) || (node.name.startsWith("h") && node.name[1] > "0" && node.name[1] < "7");
+            if (blockElements && text && text[text.length - 1] !== "\n") {
+              text += "\n";
+            }
+            if (node.children) {
+              extractText(node.children);
+            }
+            if (blockElements && text[text.length - 1] !== "\n") {
+              text += "\n";
+            } else if (["td", "th"].includes(node.name)) {
+              text += "\t";
+            }
+          }
+        });
+      }
+      extractText(nodes || this.data.nodes);
+      return text;
+    },
+    getRect: function () {
+      const component = this;
+      return new Promise((resolve, reject) => {
+        wx.createSelectorQuery().in(component).select("._root").boundingClientRect().exec(res => {
+          return res[0] ? resolve(res[0]) : reject("Root label not found");
+        });
+      });
+    },
+    setContent: function (content, append) {
+      const component = this;
+      if (!component.imgList || !append) {
+        component.imgList = [];
+      }
+      component._videos = [];
+      const parsedContent = new Parser(component).parse(content);
+      const newData = {};
+
+      if (append) {
+        const currentNodesLength = component.data.nodes.length;
+        for (let i = parsedContent.length - 1; i >= 0; i--) {
+          newData[`nodes[${currentNodesLength + i}]`] = parsedContent[i];
+        }
+      } else {
+        newData.nodes = parsedContent;
+      }
+
+      component.setData(newData, () => {
+        component._hook("onLoad");
+        component.triggerEvent("load");
+      });
+
+      clearInterval(component._timer);
+      component._timer = setInterval(() => {
+        component.getRect().then(rect => {
+          if (rect.height === component._previousHeight) {
+            component.triggerEvent("ready", rect);
+            clearInterval(component._timer);
+          }
+          component._previousHeight = rect.height;
+        }).catch(() => {});
+      }, 350);
+    },
+    _hook: function (hookName) {
+      for (let i = plugins.length - 1; i >= 0; i--) {
+        if (this.plugins[i][hookName]) {
+          this.plugins[i][hookName]();
+        }
+      }
+    },
+    _add: function (event) {
+      event.detail.root = this;
+    }
+  }
 });

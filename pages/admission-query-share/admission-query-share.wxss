@@ -1,0 +1,241 @@
+.bg {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 750rpx;
+}
+
+.bg .result-img {
+    display: block;
+    width: 100%;
+}
+
+.result {
+    left: 50%;
+    position: absolute;
+    top: 100rpx;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 2;
+}
+
+.result view {
+    font-family: PingFangSC-Medium,PingFang SC;
+}
+
+.close {
+    bottom: 0;
+    display: block;
+    height: 63rpx;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 63rpx;
+}
+
+.scroll-view {
+    height: 500rpx;
+    padding-right: 100rpx;
+    width: 650rpx;
+}
+
+.scroll-view view {
+    width: 520rpx;
+}
+
+.blessing {
+    bottom: 118rpx;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 670rpx;
+    z-index: 2;
+}
+
+.give_share {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.give {
+    background: #ffc447;
+    border: 2rpx solid hsla(0,0%,100%,.5);
+    border-radius: 8rpx;
+    margin-right: 54rpx!important;
+}
+
+.give,.share {
+    color: #fff;
+    flex: 1;
+    font-size: 32rpx;
+    font-weight: 600;
+    height: 84rpx;
+    line-height: 84rpx;
+    padding: 0;
+    text-align: center;
+    width: 308rpx!important;
+}
+
+.share {
+    background: #30384f;
+    border: 2rpx solid hsla(223,9%,46%,.5);
+    border-radius: 8rpx;
+    box-sizing: border-box;
+}
+
+@-webkit-keyframes boxAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes boxAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup_mask {
+    animation: boxAnimation .5s ease;
+    background: rgba(0,0,0,.5);
+    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.popup,.popup_mask {
+    position: fixed;
+    z-index: 3;
+}
+
+.popup {
+    background: #fff;
+    border-radius: 16rpx;
+    height: 544rpx;
+    left: 50%;
+    top: 480rpx;
+    transform: translateX(-50%);
+    width: 640rpx;
+}
+
+textarea {
+    box-sizing: border-box;
+    color: #000;
+    height: 432rpx;
+    padding: 60rpx 48rpx;
+    width: 100%;
+}
+
+.textarea_text,textarea {
+    font-size: 34rpx;
+    line-height: 48rpx;
+}
+
+.textarea_text {
+    color: rgba(0,0,0,.3);
+}
+
+.popup_btn {
+    border-top: 2rpx solid rgba(0,0,0,.1);
+    display: flex;
+    height: 110rpx;
+}
+
+.popup_btn view {
+    flex: 1;
+    font-size: 34rpx;
+    font-weight: 600;
+    letter-spacing: 2rpx;
+    line-height: 110rpx;
+    text-align: center;
+}
+
+.cancel {
+    color: #000;
+}
+
+.cancel,.sure {
+    border-right: 2rpx solid rgba(0,0,0,.1);
+}
+
+.sure {
+    color: #576b95;
+}
+
+.ipadBlessing {
+    bottom: 54px!important;
+    width: 320px!important;
+}
+
+.ipadBlessing .give {
+    border: 1px solid hsla(0,0%,100%,.5);
+    border-radius: 4px;
+    margin-right: 20px!important;
+}
+
+.ipadBlessing .give,.ipadBlessing .share {
+    font-size: 16px;
+    height: 42px;
+    line-height: 42px;
+    width: 154px!important;
+}
+
+.ipadBlessing .share {
+    border: 1px solid hsla(223,9%,46%,.5);
+    border-radius: 4px;
+}
+
+.ipadBg .popup_mask {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.ipadBg .popup {
+    border-radius: 8px;
+    height: 272px;
+    left: 50%;
+    position: fixed;
+    top: 130px;
+    transform: translateX(-50%);
+    width: 320px;
+    z-index: 3;
+}
+
+.ipadBg .popup textarea {
+    height: 216px;
+    padding: 30px 24px;
+}
+
+.ipadBg .popup textarea,.ipadBg .textarea_text {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.ipadBg .popup_btn {
+    border-top: 1px solid rgba(0,0,0,.1);
+    height: 55px;
+}
+
+.ipadBg .popup_btn view {
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 55px;
+}
+
+.ipadBg .cancel,.ipadBg .sure {
+    border-right: 1px solid rgba(0,0,0,.1);
+}

@@ -1,0 +1,46 @@
+.container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 0rpx 66rpx;
+    width: 100%;
+}
+
+.container_img {
+    background-color: #eee;
+    height: 214rpx;
+    margin-bottom: 104rpx;
+    margin-top: 56rpx;
+    width: 164rpx;
+}
+
+.container_line {
+    display: flex;
+    letter-spacing: 2rpx;
+    margin-bottom: 40rpx;
+    width: 100%;
+}
+
+.container_line_key {
+    font-weight: 700;
+    width: 197rpx;
+}
+
+.container_line_key,.container_line_value {
+    color: #192548;
+    font-size: 30rpx;
+}
+
+.button_submit {
+    align-items: center;
+    background: #3d3cee;
+    border-radius: 56rpx;
+    color: #fff;
+    display: flex;
+    font-size: 36rpx;
+    height: 112rpx;
+    justify-content: center;
+    margin-top: 325rpx;
+    width: 578rpx;
+}

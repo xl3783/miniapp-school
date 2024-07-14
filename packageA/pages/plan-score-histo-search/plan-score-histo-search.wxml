@@ -1,0 +1,13 @@
+<custom-topbar title="搜索"></custom-topbar>
+<view class="top-search-box">
+    <view class="top-search">
+        <image class="img-search" showMenuByLongpress="true" src="../../../assets/image/search.png"></image>
+        <input bindconfirm="goResult" class="search-text" placeholder="输入想要查询的专业" value="{{inputText}}"></input>
+    </view>
+</view>
+<view class="bg">
+    <view class="name">历史记录</view>
+    <view class="tag-box">
+        <view bindtap="goResultPage" class="tag" data-text="{{item}}" wx:for="{{recordList}}" wx:key="index">{{item}} </view>
+    </view>
+</view>
