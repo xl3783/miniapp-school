@@ -110,7 +110,6 @@ const utils = {
 
     const handleInternalJump = (jumpUrl, name) => {
       // url: `${jumpUrl}${jumpUrl.includes("?") ? "&" : "?"}title=${name}`
-      debugger
 
       wx.navigateTo({
         url: `${jumpUrl}${jumpUrl.includes("?") ? "&" : "?"}title=${name}`

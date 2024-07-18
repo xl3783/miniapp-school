@@ -47,7 +47,7 @@ Component({
           wx.hideLoading();
         });
     },
-    handleLinkTap: function (event) {
+    linktap: function (event) {
       const url = event.detail.href;
       const fileType = url.substring(url.lastIndexOf(".") + 1);
 

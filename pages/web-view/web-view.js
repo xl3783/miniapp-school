@@ -7,17 +7,11 @@ Page({
     errorShow: false,
   },
 
-  onHide() {
-    app.reporting.page("hide", getCurrentPages());
-  },
+  onHide() {},
 
-  onShow() {
-    app.reporting.page("show", getCurrentPages());
-  },
+  onShow() {},
 
-  onUnload() {
-    app.reporting.page("hide", getCurrentPages());
-  },
+  onUnload() {},
 
   handleerror(event) {
     console.log(event);
@@ -114,24 +108,24 @@ Page({
   },
 
   onShareAppMessage() {
-    app.reporting.share({
-      type: 1,
-      value: ""
-    }, getCurrentPages());
-    return {
-      title: this.data.title || app.globalData.schoolname,
-      path: `/pages/web-view/web-view?url=${encodeURIComponent(this.data.url)}`
-    };
+    // app.reporting.share({
+    //   type: 1,
+    //   value: ""
+    // }, getCurrentPages());
+    // return {
+    //   title: this.data.title || app.globalData.schoolname,
+    //   path: `/pages/web-view/web-view?url=${encodeURIComponent(this.data.url)}`
+    // };
   },
 
   onShareTimeline() {
-    app.reporting.share({
-      type: 2,
-      value: ""
-    }, getCurrentPages());
-    return {
-      title: this.data.title || app.globalData.schoolname,
-      query: `url=${encodeURIComponent(this.data.url)}`
-    };
+    // app.reporting.share({
+    //   type: 2,
+    //   value: ""
+    // }, getCurrentPages());
+    // return {
+    //   title: this.data.title || app.globalData.schoolname,
+    //   query: `url=${encodeURIComponent(this.data.url)}`
+    // };
   }
 });

@@ -12,6 +12,7 @@
     "no-data-comp": "../../no-data-comp/no-data-comp",
     "collect-remind-comp": "../../collect-remind-comp/collect-remind-comp",
     "pic-column-comp": "../../pic-column-comp/pic-column-comp",
+    "waterfall-comp": "../../waterfall-comp/waterfall-comp",
     "index-tag-comp": "../../index-tag-comp/index-tag-comp"
   }
 }

@@ -4,12 +4,21 @@
     "pages/index copy/index copy",
     "pages/web-view/web-view",
     "pages/campus-intro/campus-intro",
-    "pages/logs/logs"
+    "pages/enroll-major-intro-new/enroll-major-intro-new",
+    "pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new",
+    "pages/campus-news-detail/campus-news-detail",
+    "pages/enroll-major-new/enroll-major-new"
+
   ],
   "subPackages": [{
     "root": "packageA/",
     "pages": [
       "pages/phone-login/phone-login"
+    ]
+  }, {
+    "root": "prepare/",
+    "pages": [
+      "mixture/mixture"
     ]
   }],
   "usingComponents": {},

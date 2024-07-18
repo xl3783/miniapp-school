@@ -1,709 +1,440 @@
-// Utility function to create an object with keys from comma-separated string
-function createObjectFromCommaString(str) {
-  var obj = {};
-  var items = str.split(",");
-  for (var i = items.length - 1; i >= 0; i--) {
-    obj[items[i]] = true;
-  }
-  return obj;
+function t(t) {
+  for (var i = Object.create(null), s = t.split(","), e = s.length; e--;) i[s[e]] = !0;
+  return i;
 }
 
-// Utility function to decode HTML entities in a string
-function decodeHTMLEntities(str, entities) {
-  var start = str.indexOf("&");
-  while (start !== -1) {
-    var end = str.indexOf(";", start + 3);
-    if (end === -1) break;
+function i(t, i) {
+  for (var s = t.indexOf("&"); - 1 != s;) {
+    var e = t.indexOf(";", s + 3),
+      n = void 0;
+    if (-1 == e) break;
+    "#" == t[s + 1] ? (n = parseInt(("x" == t[s + 2] ? "0" : "") + t.substring(s + 2, e)),
+        isNaN(n) || (t = t.substr(0, s) + String.fromCharCode(n) + t.substr(e + 1))) : (n = t.substring(s + 1, e),
+        (a.entities[n] || "amp" == n && i) && (t = t.substr(0, s) + (a.entities[n] || "&") + t.substr(e + 1))),
+      s = t.indexOf("&", s + 1);
+  }
+  return t;
+}
 
-    var entity = str[start + 1] === "#" ?
-      parseInt(str[start + 2] === "x" ? "0" + str.substring(start + 2, end) : str.substring(start + 1, end)) :
-      str.substring(start + 1, end);
+function s(t) {
+  this.options = t.data || {}, this.tagStyle = Object.assign(a.tagStyle, this.options.tagStyle),
+    this.imgList = t.imgList || [], this.plugins = t.plugins || [], this.attrs = Object.create(null),
+    this.stack = [], this.nodes = [];
+}
 
-    if (!isNaN(entity) && entities[entity] || entity === "amp" && entities[entity] && i) {
-      str = str.substr(0, start) + (entities[entity] || "&") + str.substr(end + 1);
+function e(t) {
+  this.handler = t;
+}
+
+require("../../@babel/runtime/helpers/Arrayincludes");
+
+var a = {
+    trustTags: t("a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,ruby,rt,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video"),
+    blockTags: t("address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section"),
+    ignoreTags: t("area,base,canvas,embed,frame,head,iframe,input,link,map,meta,param,rp,script,source,style,textarea,title,track,wbr"),
+    voidTags: t("area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr"),
+    entities: {
+      lt: "<",
+      gt: ">",
+      quot: '"',
+      apos: "'",
+      ensp: " ",
+      emsp: " ",
+      nbsp: " ",
+      semi: ";",
+      ndash: "–",
+      mdash: "—",
+      middot: "·",
+      lsquo: "‘",
+      rsquo: "’",
+      ldquo: "“",
+      rdquo: "”",
+      bull: "•",
+      hellip: "…"
+    },
+    tagStyle: {
+      address: "font-style:italic",
+      big: "display:inline;font-size:1.2em",
+      caption: "display:table-caption;text-align:center",
+      center: "text-align:center",
+      cite: "font-style:italic",
+      dd: "margin-left:40px",
+      mark: "background-color:yellow",
+      pre: "font-family:monospace;white-space:pre",
+      s: "text-decoration:line-through",
+      small: "display:inline;font-size:0.8em",
+      strike: "text-decoration:line-through",
+      u: "text-decoration:underline"
     }
-    start = str.indexOf("&", start + 1);
-  }
-  return str;
-}
+  },
+  n = {},
+  r = wx.getSystemInfoSync(),
+  h = r.windowWidth,
+  o = r.system,
+  l = t(" ,\r,\n,\t,\f"),
+  c = 0;
 
-// Class to parse HTML-like content
-function HTMLParser(options) {
-  this.options = options.data || {};
-  this.tagStyle = Object.assign({}, a.tagStyle, this.options.tagStyle);
-  this.imgList = options.imgList || [];
-  this.plugins = options.plugins || [];
-  this.attrs = Object.create(null);
-  this.stack = [];
-  this.nodes = [];
-}
-
-// Class method to parse HTML content
-HTMLParser.prototype.parse = function (content) {
-  for (var i = this.plugins.length - 1; i >= 0; i--) {
-    if (this.plugins[i].onUpdate) {
-      content = this.plugins[i].onUpdate(content, a) || content;
-    }
-  }
-  new HTMLParserHandler(this).parse(content);
-  while (this.stack.length) {
-    this.popNode();
-  }
+s.prototype.parse = function (t) {
+  for (var i = this.plugins.length; i--;) this.plugins[i].onUpdate && (t = this.plugins[i].onUpdate(t, a) || t);
+  for (new e(this).parse(t); this.stack.length;) this.popNode();
   return this.nodes;
-};
-
-// Class method to handle HTML parsing
-HTMLParser.prototype.expose = function () {
-  for (var i = this.stack.length - 1; i >= 0; i--) {
-    var node = this.stack[i];
-    if (node.name === "a" || node.c) return;
-    node.c = true;
+}, s.prototype.expose = function () {
+  for (var t = this.stack.length; t--;) {
+    var i = this.stack[t];
+    if ("a" == i.name || i.c) return;
+    i.c = 1;
   }
-};
-
-// Class method to handle parsing hooks
-HTMLParser.prototype.hook = function (tag) {
-  for (var i = this.plugins.length - 1; i >= 0; i--) {
-    if (this.plugins[i].onParse && !this.plugins[i].onParse(tag, this)) {
-      return false;
-    }
-  }
-  return true;
-};
-
-// Class method to get URL based on domain and source
-HTMLParser.prototype.getUrl = function (src) {
-  var domain = this.options.domain;
-  if (src[0] === "/") {
-    if (src[1] === "/") {
-      src = (domain ? domain.split("://")[0] : "http") + ":" + src;
-    } else if (domain) {
-      src = domain + src;
-    }
-  }
-  return src;
-};
-
-// Class method to parse and apply styles from HTML attributes
-HTMLParser.prototype.parseStyle = function (tag) {
-  var style = tag.attrs.style || "";
-  var tagStyle = (this.tagStyle[tag.name] || "").split(";").concat(style.split(";"));
-  var parsedStyle = {};
-  var additionalStyle = "";
-
-  if (tag.attrs.id) {
-    if (this.options.useAnchor) {
-      this.expose();
-    } else if (tag.name !== "img" && tag.name !== "a" && tag.name !== "video" && tag.name !== "audio") {
-      tag.attrs.id = undefined;
-    }
-  }
-
-  // Parse width and height attributes
-  if (tag.attrs.width) {
-    parsedStyle.width = parseFloat(tag.attrs.width) + (tag.attrs.width.includes("%") ? "%" : "px");
-    tag.attrs.width = undefined;
-  }
-  if (tag.attrs.height) {
-    parsedStyle.height = parseFloat(tag.attrs.height) + (tag.attrs.height.includes("%") ? "%" : "px");
-    tag.attrs.height = undefined;
-  }
-
-  // Iterate through styles and apply them
-  for (var i = 0; i < tagStyle.length; i++) {
-    var styleItem = tagStyle[i].split(":");
-    if (styleItem.length >= 2) {
-      var property = styleItem.shift().trim().toLowerCase();
-      var value = styleItem.join(":").trim();
-
-      if (value[0] === "-" && value.lastIndexOf("-") > 0 || value.includes("safe")) {
-        additionalStyle += ";" + property + ":" + value;
-      } else {
-        if (!parsedStyle[property] || value.includes("import") || !parsedStyle[property].includes("import")) {
-          // Handle URL in style
-          if (value.includes("url")) {
-            var index = value.indexOf("(") + 1;
-            if (index) {
-              while (value[index] === '"' || value[index] === "'" || l[value[index]]) index++;
-              value = value.substr(0, index) + this.getUrl(value.substr(index));
-            }
-          } else if (value.includes("rpx")) {
-            value = value.replace(/[0-9.]+\s*rpx/g, function (px) {
-              return parseFloat(px) * h / 750 + "px";
-            });
+}, s.prototype.hook = function (t) {
+  for (var i = this.plugins.length; i--;)
+    if (this.plugins[i].onParse && 0 == this.plugins[i].onParse(t, this)) return !1;
+  return !0;
+}, s.prototype.getUrl = function (t) {
+  var i = this.options.domain;
+  return "/" == t[0] ? "/" == t[1] ? t = (i ? i.split("://")[0] : "http") + ":" + t : i && (t = i + t) : !i || t.includes("data:") || t.includes("://") || (t = i + "/" + t),
+    t;
+}, s.prototype.parseStyle = function (t) {
+  var i = t.attrs,
+    s = (this.tagStyle[t.name] || "").split(";").concat((i.style || "").split(";")),
+    e = {},
+    a = "";
+  i.id && (this.options.useAnchor ? this.expose() : "img" != t.name && "a" != t.name && "video" != t.name && "audio" != t.name && (i.id = void 0)),
+    i.width && (e.width = parseFloat(i.width) + (i.width.includes("%") ? "%" : "px"),
+      i.width = void 0), i.height && (e.height = parseFloat(i.height) + (i.height.includes("%") ? "%" : "px"),
+      i.height = void 0);
+  for (var n = 0, r = s.length; n < r; n++) {
+    var o = s[n].split(":");
+    if (!(o.length < 2)) {
+      var c = o.shift().trim().toLowerCase(),
+        d = o.join(":").trim();
+      if ("-" == d[0] && d.lastIndexOf("-") > 0 || d.includes("safe")) a += ";".concat(c, ":").concat(d);
+      else if (!e[c] || d.includes("import") || !e[c].includes("import")) {
+        if (d.includes("url")) {
+          var p = d.indexOf("(") + 1;
+          if (p) {
+            for (;
+              '"' == d[p] || "'" == d[p] || l[d[p]];) p++;
+            d = d.substr(0, p) + this.getUrl(d.substr(p));
           }
-          parsedStyle[property] = value;
-        }
+        } else d.includes("rpx") && (d = d.replace(/[0-9.]+\s*rpx/g, function (t) {
+          return parseFloat(t) * h / 750 + "px";
+        }));
+        e[c] = d;
       }
     }
   }
-
-  tag.attrs.style = additionalStyle;
-  return parsedStyle;
-};
-
-// Class method to handle parsing of tag names
-HTMLParser.prototype.onTagName = function (tag) {
-  this.tagName = this.xml ? tag : tag.toLowerCase();
-  if (this.tagName === "svg") {
-    this.xml = true;
+  return t.attrs.style = a, e;
+}, s.prototype.onTagName = function (t) {
+  this.tagName = this.xml ? t : t.toLowerCase(), "svg" == this.tagName && (this.xml = !0);
+}, s.prototype.onAttrName = function (t) {
+  "data-" == (t = this.xml ? t : t.toLowerCase()).substr(0, 5) ? "data-src" != t || this.attrs.src ? "img" == this.tagName || "a" == this.tagName ? this.attrName = t : this.attrName = void 0 : this.attrName = "src" : (this.attrName = t,
+    this.attrs[t] = "T");
+}, s.prototype.onAttrVal = function (t) {
+  var s = this.attrName || "";
+  "style" == s || "href" == s ? this.attrs[s] = i(t, !0) : s.includes("src") ? this.attrs[s] = this.getUrl(i(t, !0)) : s && (this.attrs[s] = t);
+}, s.prototype.onOpenTag = function (t) {
+  var i = Object.create(null);
+  i.name = this.tagName, i.attrs = this.attrs, this.attrs = Object.create(null);
+  var s = i.attrs,
+    e = this.stack[this.stack.length - 1],
+    r = e ? e.children : this.nodes,
+    o = this.xml ? t : a.voidTags[i.name];
+  if (n[i.name] && (s.class = n[i.name] + (s.class ? " " + s.class : "")), "embed" == i.name) {
+    var l = s.src || "";
+    l.includes(".mp4") || l.includes(".3gp") || l.includes(".m3u8") || (s.type || "").includes("video") ? i.name = "video" : (l.includes(".mp3") || l.includes(".wav") || l.includes(".aac") || l.includes(".m4a") || (s.type || "").includes("audio")) && (i.name = "audio"),
+      s.autostart && (s.autoplay = "T"), s.controls = "T";
   }
-};
-
-// Class method to handle parsing of attribute names
-HTMLParser.prototype.onAttrName = function (attr) {
-  attr = this.xml ? attr : attr.toLowerCase();
-  if (attr.substring(0, 5) === "data-") {
-    if (attr === "data-src" && !this.attrs.src) {
-      if (this.tagName === "img" || this.tagName === "a") {
-        this.attrName = attr;
-      } else {
-        this.attrName = undefined;
-      }
-    } else {
-      this.attrName = "src";
-    }
-  } else {
-    this.attrName = attr;
-    this.attrs[attr] = "T";
-  }
-};
-
-// Class method to handle parsing of attribute values
-HTMLParser.prototype.onAttrVal = function (val) {
-  var attr = this.attrName || "";
-  if (attr === "style" || attr === "href") {
-    this.attrs[attr] = decodeHTMLEntities(val, true);
-  } else if (attr.includes("src")) {
-    this.attrs[attr] = this.getUrl(decodeHTMLEntities(val, true));
-  } else if (attr) {
-    this.attrs[attr] = val;
-  }
-};
-
-// Class method to handle opening tag
-HTMLParser.prototype.onOpenTag = function (tag) {
-  var node = Object.create(null);
-  node.name = this.tagName;
-  node.attrs = this.attrs;
-  this.attrs = Object.create(null);
-  var attrs = node.attrs;
-  var parent = this.stack[this.stack.length - 1];
-  var children = parent ? parent.children : this.nodes;
-  var isVoidTag = this.xml ? tag : a.voidTags[node.name];
-
-  if (n[node.name]) {
-    attrs.class = n[node.name] + (attrs.class ? " " + attrs.class : "");
-  }
-
-  if (node.name === "embed") {
-    var src = attrs.src || "";
-    if (src.includes(".mp4") || src.includes(".3gp") || src.includes(".m3u8")) {
-      node.name = "video";
-    } else if (src.includes(".mp3") || src.includes(".wav") || src.includes(".aac") || src.includes(".m4a") || (attrs.type || "").includes("audio")) {
-      node.name = "audio";
-    }
-    if (attrs.autostart) {
-      attrs.autoplay = "T";
-    }
-    attrs.controls = "T";
-  }
-
-  // Handle exposing links and sources
-  if (node.name === "video" || node.name === "audio") {
-    if (node.name === "video" && !attrs.id) {
-      attrs.id = "v" + c++;
-    }
-    if (!attrs.controls && !attrs.autoplay) {
-      attrs.controls = "T";
-    }
-    node.src = [];
-    if (attrs.src) {
-      node.src.push(attrs.src);
-      attrs.src = undefined;
-    }
-    this.expose();
-  }
-
-  // Handle void tags and parsing styles
-  if (isVoidTag) {
-    if (!this.hook(node) || a.ignoreTags[node.name]) return;
-
-    var parsedStyle = this.parseStyle(node);
-
-    if (node.name === "img") {
-      if (attrs.src) {
-        if (attrs.src.includes("webp")) {
-          node.webp = "T";
-        }
-        if (attrs.src.includes("data:") && !attrs["original-src"] && !attrs.ignore) {
-          attrs.ignore = "T";
-        }
-        if (!attrs.ignore || node.webp || attrs.src.includes("cloud://")) {
-          for (var i = this.stack.length - 1; i >= 0; i--) {
-            var ancestor = this.stack[i];
-            if (ancestor.name === "a") {
-              node.a = ancestor.attrs;
-              break;
-            }
-            var ancestorStyle = ancestor.attrs.style || "";
-            if (!ancestorStyle.includes("flex:") || ancestorStyle.includes("flex:0") || ancestorStyle.includes("flex: 0") || parsedStyle.width && parsedStyle.width.includes("%")) {
-              if (ancestorStyle.includes("flex") && parsedStyle.width === "100%") {
-                for (var j = i + 1; j < this.stack.length; j++) {
-                  var siblingStyle = this.stack[j].attrs.style || "";
-                  if (!siblingStyle.includes(";width") && !siblingStyle.includes(" width") && siblingStyle.indexOf("width") !== 0) {
-                    parsedStyle.width = "";
-                    break;
-                  }
+  if ("video" != i.name && "audio" != i.name || ("video" != i.name || s.id || (s.id = "v" + c++),
+      s.controls || s.autoplay || (s.controls = "T"), i.src = [], s.src && (i.src.push(s.src),
+        s.src = void 0), this.expose()), o) {
+    if (!this.hook(i) || a.ignoreTags[i.name]) return void("base" != i.name || this.options.domain ? "source" == i.name && e && ("video" == e.name || "audio" == e.name) && s.src && e.src.push(s.src) : this.options.domain = s.href);
+    var d = this.parseStyle(i);
+    if ("img" == i.name) {
+      if (s.src && (s.src.includes("webp") && (i.webp = "T"), s.src.includes("data:") && !s["original-src"] && (s.ignore = "T"),
+          !s.ignore || i.webp || s.src.includes("cloud://"))) {
+        for (var p = this.stack.length; p--;) {
+          var u = this.stack[p];
+          if ("a" == u.name) {
+            i.a = u.attrs;
+            break;
+          }
+          var g = u.attrs.style || "";
+          if (!g.includes("flex:") || g.includes("flex:0") || g.includes("flex: 0") || d.width && d.width.includes("%"))
+            if (g.includes("flex") && "100%" == d.width)
+              for (var f = p + 1; f < this.stack.length; f++) {
+                var m = this.stack[f].attrs.style || "";
+                if (!m.includes(";width") && !m.includes(" width") && 0 != m.indexOf("width")) {
+                  d.width = "";
+                  break;
                 }
-              } else if (ancestorStyle.includes("inline-block")) {
-                if (parsedStyle.width && parsedStyle.width.endsWith("%")) {
-                  ancestor.attrs.style += ";max-width:" + parsedStyle.width;
-                  parsedStyle.width = "";
-                } else {
-                  ancestor.attrs.style += ";max-width:100%";
-                }
-              }
-            } else {
-              parsedStyle.width = "100% !important";
-              parsedStyle.height = "";
-              for (var j = i + 1; j < this.stack.length; j++) {
-                this.stack[j].attrs.style = (this.stack[j].attrs.style || "").replace("inline-", "");
-              }
+              } else g.includes("inline-block") && (d.width && "%" == d.width[d.width.length - 1] ? (u.attrs.style += ";max-width:" + d.width,
+                d.width = "") : u.attrs.style += ";max-width:100%");
+            else {
+              d.width = "100% !important", d.height = "";
+              for (var v = p + 1; v < this.stack.length; v++) this.stack[v].attrs.style = (this.stack[v].attrs.style || "").replace("inline-", "");
             }
-            ancestor.c = 1;
-          }
-          node.i = this.imgList.length;
-          var originalSrc = attrs["original-src"] || attrs.src;
-          if (this.imgList.includes(originalSrc)) {
-            var index = originalSrc.indexOf("://");
-            if (index !== -1) {
-              index += 3;
-              var randomizedSrc = originalSrc.substr(0, index);
-              for (; index < originalSrc.length && originalSrc[index] !== "/"; index++) {
-                randomizedSrc += Math.random() > 0.5 ? originalSrc[index].toUpperCase() : originalSrc[index];
-              }
-              randomizedSrc += originalSrc.substr(index);
-              originalSrc = randomizedSrc;
-            }
-          }
-          this.imgList.push(originalSrc);
+          u.c = 1;
         }
-        if (parsedStyle.display === "inline") {
-          parsedStyle.display = "";
-        }
-        if (attrs.ignore) {
-          parsedStyle["max-width"] = parsedStyle["max-width"] || "100%";
-          attrs.style += ";-webkit-touch-callout:none";
-        }
-        if (parseInt(parsedStyle.width) > h) {
-          parsedStyle.height = undefined;
-        }
-        if (parsedStyle.width) {
-          if (parsedStyle.width.includes("auto")) {
-            parsedStyle.width = "";
-          } else {
-            node.w = "T";
-            if (parsedStyle.height && !parsedStyle.height.includes("auto")) {
-              node.h = "T";
-            }
+        i.i = this.imgList.length;
+        var y = s["original-src"] || s.src;
+        if (this.imgList.includes(y)) {
+          var x = y.indexOf("://");
+          if (-1 != x) {
+            x += 3;
+            for (var b = y.substr(0, x); x < y.length && "/" != y[x]; x++) b += Math.random() > .5 ? y[x].toUpperCase() : y[x];
+            b += y.substr(x), y = b;
           }
         }
+        this.imgList.push(y);
       }
-    } else if (node.name === "svg") {
-      children.push(node);
-      this.stack.push(node);
-      this.popNode();
-      return;
-    }
-
-    for (var key in parsedStyle) {
-      if (parsedStyle[key]) {
-        attrs.style += ";" + key + ":" + parsedStyle[key].replace(" !important", "");
-      }
-    }
-    attrs.style = attrs.style.substr(1) || undefined;
-  } else {
-    if (node.name === "pre" || (attrs.style || "").includes("white-space") && attrs.style.includes("pre")) {
-      this.pre = node.pre = true;
-    }
-    node.children = [];
-    this.stack.push(node);
-  }
-  children.push(node);
-};
-
-// Class method to handle closing tags
-HTMLParser.prototype.onCloseTag = function (tag) {
-  tag = this.xml ? tag : tag.toLowerCase();
-  var stackLength = this.stack.length;
-
-  for (var i = stackLength - 1; i >= 0 && this.stack[i].name !== tag; i--);
-  if (i !== -1) {
-    while (this.stack.length > i) {
-      this.popNode();
-    }
-  } else if (tag === "p" || tag === "br") {
+      "inline" == d.display && (d.display = ""), s.ignore && (d["max-width"] = d["max-width"] || "100%",
+          s.style += ";-webkit-touch-callout:none"), parseInt(d.width) > h && (d.height = void 0),
+        d.width && (d.width.includes("auto") ? d.width = "" : (i.w = "T", d.height && !d.height.includes("auto") && (i.h = "T")));
+    } else if ("svg" == i.name) return r.push(i), this.stack.push(i), void this.popNode();
+    for (var w in d) d[w] && (s.style += ";".concat(w, ":").concat(d[w].replace(" !important", "")));
+    s.style = s.style.substr(1) || void 0;
+  } else("pre" == i.name || (s.style || "").includes("white-space") && s.style.includes("pre")) && (this.pre = i.pre = !0),
+    i.children = [], this.stack.push(i);
+  r.push(i);
+}, s.prototype.onCloseTag = function (t) {
+  var i;
+  for (t = this.xml ? t : t.toLowerCase(), i = this.stack.length; i-- && this.stack[i].name != t;);
+  if (-1 != i)
+    for (; this.stack.length > i;) this.popNode();
+  else if ("p" == t || "br" == t) {
     (this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes).push({
-      name: tag,
+      name: t,
       attrs: {
-        class: n[tag],
-        style: this.tagStyle[tag]
+        class: n[t],
+        style: this.tagStyle[t]
       }
     });
   }
-};
-
-// Class method to handle popping nodes
-HTMLParser.prototype.popNode = function () {
-  var node = this.stack.pop();
-  var attrs = node.attrs;
-  var children = node.children;
-  var parent = this.stack[this.stack.length - 1];
-  var parentChildren = parent ? parent.children : this.nodes;
-
-  if (!this.hook(node) || a.ignoreTags[node.name]) {
-    if (node.name === "title" && children.length && children[0].type === "text" && this.options.setTitle) {
-      wx.setNavigationBarTitle({
-        title: children[0].text
-      });
-    }
-    parentChildren.pop();
-    return;
+}, s.prototype.popNode = function () {
+  var t = this.stack.pop(),
+    i = t.attrs,
+    s = t.children,
+    e = this.stack[this.stack.length - 1],
+    n = e ? e.children : this.nodes;
+  if (!this.hook(t) || a.ignoreTags[t.name]) return "title" == t.name && s.length && "text" == s[0].type && this.options.setTitle && wx.setNavigationBarTitle({
+    title: s[0].text
+  }), void n.pop();
+  if (t.pre) {
+    t.pre = this.pre = void 0;
+    for (var r = this.stack.length; r--;) this.stack[r].pre && (this.pre = !0);
   }
-
-  if (node.pre) {
-    node.pre = this.pre = undefined;
-    for (var i = this.stack.length - 1; i >= 0; i--) {
-      if (this.stack[i].pre) {
-        this.pre = true;
-      }
-    }
+  if ("svg" == t.name) {
+    var o = "",
+      l = i.style;
+    return i.style = "", i.viewbox && (i.viewBox = i.viewbox), i.xmlns = "http://www.w3.org/2000/svg",
+      function t(i) {
+        if ("text" == i.type) return o += i.text;
+        for (var s in o += "<" + i.name, i.attrs) {
+          var e = i.attrs[s];
+          e && (o += " ".concat(s, '="').concat(e, '"'));
+        }
+        if (i.children) {
+          o += ">";
+          for (var a = 0; a < i.children.length; a++) t(i.children[a]);
+          o += "</" + i.name + ">";
+        } else o += "/>";
+      }(t), t.name = "img", t.attrs = {
+        src: "data:image/svg+xml;utf8," + o.replace(/#/g, "%23"),
+        style: l,
+        ignore: "T"
+      }, t.children = void 0, void(this.xml = !1);
   }
-
-  if (node.name === "svg") {
-    var svgContent = "";
-    var svgStyle = attrs.style;
-    attrs.style = "";
-    if (attrs.viewbox) {
-      attrs.viewBox = attrs.viewbox;
-    }
-    attrs.xmlns = "http://www.w3.org/2000/svg";
-
-    function processSvg(child) {
-      if (child.type === "text") {
-        svgContent += child.text;
-      } else {
-        svgContent += "<" + child.name;
-        for (var attr in child.attrs) {
-          var value = child.attrs[attr];
-          if (value) {
-            svgContent += " " + attr + '="' + value + '"';
+  var c = {};
+  if (i.align && ("table" == t.name ? "center" == i.align ? c["margin-inline-start"] = c["margin-inline-end"] = "auto" : c.float = i.align : c["text-align"] = i.align,
+      i.align = void 0), "font" == t.name && (i.color && (c.color = i.color, i.color = void 0),
+      i.face && (c["font-family"] = i.face, i.face = void 0), i.size)) {
+    var d = parseInt(i.size);
+    isNaN(d) || (d < 1 ? d = 1 : d > 7 && (d = 7), c["font-size"] = ["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"][d - 1]),
+      i.size = void 0;
+  }
+  if ((i.class || "").includes("align-center") && (c["text-align"] = "center"), Object.assign(c, this.parseStyle(t)),
+    parseInt(c.width) > h && (c["max-width"] = "100%", c["box-sizing"] = "border-box"),
+    a.blockTags[t.name]) t.name = "div";
+  else if (a.trustTags[t.name] || this.xml)
+    if ("a" == t.name || "ad" == t.name) this.expose();
+    else if ("video" == t.name || "audio" == t.name) t.children = void 0;
+  else if ("ul" != t.name && "ol" != t.name || !t.c) {
+    if ("table" == t.name) {
+      var p = parseFloat(i.cellpadding),
+        u = parseFloat(i.cellspacing),
+        g = parseFloat(i.border);
+      if (t.c && (isNaN(p) && (p = 2), isNaN(u) && (u = 2)), g && (i.style += ";border:" + g + "px solid gray"),
+        t.flag && t.c) {
+        t.flag = void 0, c.display = "grid", u ? (c["grid-gap"] = u + "px", c.padding = u + "px") : g && (i.style += ";border-left:0;border-top:0");
+        var f = [],
+          m = [],
+          v = [],
+          y = {};
+        ! function t(i) {
+          for (var s = 0; s < i.length; s++) "tr" == i[s].name ? m.push(i[s]) : t(i[s].children || []);
+        }(s);
+        for (var x = 1; x <= m.length; x++) {
+          for (var b = 1, w = 0; w < m[x - 1].children.length; w++, b++) {
+            var k = m[x - 1].children[w];
+            if ("td" == k.name || "th" == k.name) {
+              for (; y[x + "." + b];) b++;
+              k.c = 1;
+              var N = k.attrs.style || "",
+                T = N.indexOf("width") ? N.indexOf(";width") : 0;
+              if (-1 != T) {
+                var O = N.indexOf(";", T + 6); -
+                1 == O && (O = N.length), k.attrs.colspan || (f[b] = N.substring(T ? T + 7 : 6, O)),
+                  N = N.substr(0, T) + N.substr(O);
+              }
+              if (N += (g ? ";border:".concat(g, "px solid gray") + (u ? "" : ";border-right:0;border-bottom:0") : "") + (p ? ";padding:".concat(p, "px") : ""),
+                k.attrs.colspan && (N += ";grid-column-start:".concat(b, ";grid-column-end:").concat(b + parseInt(k.attrs.colspan)),
+                  k.attrs.rowspan || (N += ";grid-row-start:".concat(x, ";grid-row-end:").concat(x + 1)),
+                  b += parseInt(k.attrs.colspan) - 1), k.attrs.rowspan) {
+                N += ";grid-row-start:".concat(x, ";grid-row-end:").concat(x + parseInt(k.attrs.rowspan)),
+                  k.attrs.colspan || (N += ";grid-column-start:".concat(b, ";grid-column-end:").concat(b + 1));
+                for (var C = 1; C < k.attrs.rowspan; C++) y[x + C + "." + b] = 1;
+              }
+              N && (k.attrs.style = N), v.push(k);
+            }
+          }
+          if (1 == x) {
+            for (var S = "", A = 1; A < b; A++) S += (f[A] ? f[A] : "auto") + " ";
+            c["grid-template-columns"] = S;
           }
         }
-        if (child.children) {
-          svgContent += ">";
-          for (var j = 0; j < child.children.length; j++) {
-            processSvg(child.children[j]);
+        t.children = v;
+      } else t.c && (c.display = "table"), isNaN(u) || (c["border-spacing"] = u + "px"),
+        (g || p || t.c) && function i(s) {
+          for (var e = 0; e < s.length; e++) {
+            var a = s[e];
+            t.c && (a.c = 1), "th" == a.name || "td" == a.name ? (g && (a.attrs.style = "border:".concat(g, "px solid gray;").concat(a.attrs.style || "")),
+              p && (a.attrs.style = "padding:".concat(p, "px;").concat(a.attrs.style || ""))) : a.children && i(a.children);
           }
-          svgContent += "</" + child.name + ">";
-        } else {
-          svgContent += "/>";
-        }
+        }(s);
+      if (this.options.scrollTable && !(i.style || "").includes("inline")) {
+        var z = Object.assign({}, t);
+        t.name = "div", t.attrs = {
+          style: "overflow-x:auto;padding:1px"
+        }, t.children = [z], i = z.attrs;
       }
-    }
-
-    processSvg(node);
-    node.name = "img";
-    node.attrs = {
-      src: "data:image/svg+xml;utf8," + svgContent.replace(/#/g, "%23"),
-      style: svgStyle,
-      ignore: "T"
+    } else if ("td" != t.name && "th" != t.name || !i.colspan && !i.rowspan) {
+      if ("ruby" == t.name) {
+        t.name = "span";
+        for (var I = 0; I < s.length - 1; I++) "text" == s[I].type && "rt" == s[I + 1].name && (s[I] = {
+          name: "span",
+          attrs: {
+            style: "display:inline-block"
+          },
+          children: [{
+            name: "div",
+            attrs: {
+              style: "font-size:50%;text-align:start"
+            },
+            children: s[I + 1].children
+          }, s[I]]
+        }, s.splice(I + 1, 1));
+      }
+    } else
+      for (var j = this.stack.length; j--;)
+        if ("table" == this.stack[j].name) {
+          this.stack[j].flag = 1;
+          break;
+        }
+  } else {
+    var L = {
+      a: "lower-alpha",
+      A: "upper-alpha",
+      i: "lower-roman",
+      I: "upper-roman"
     };
-    node.children = undefined;
-    this.xml = false;
-    return;
-  }
-
-  var parsedStyle = {};
-  if (attrs.align) {
-    if (node.name === "table") {
-      if (attrs.align === "center") {
-        parsedStyle["margin-inline-start"] = parsedStyle["margin-inline-end"] = "auto";
-      } else {
-        parsedStyle.float = attrs.align;
-      }
-    } else {
-      parsedStyle["text-align"] = attrs.align;
+    L[i.type] && (i.style += ";list-style-type:" + L[i.type], i.type = void 0), t.c = 1;
+    for (var q = s.length; q--;) "li" == s[q].name && (s[q].c = 1);
+  } else t.name = "span";
+  if ((c.display || "").includes("flex") && !t.c)
+    for (var F = s.length; F--;) {
+      var U = s[F];
+      U.f && (U.attrs.style = (U.attrs.style || "") + U.f, U.f = void 0);
     }
-    attrs.align = undefined;
-  }
-
-  if (node.name === "font") {
-    if (attrs.color) {
-      parsedStyle.color = attrs.color;
-      attrs.color = undefined;
+  var V = e && (e.attrs.style || "").includes("flex") && !t.c && !(c.display || "").includes("inline");
+  for (var B in V && (t.f = ";max-width:100%"), c)
+    if (c[B]) {
+      var P = ";".concat(B, ":").concat(c[B].replace(" !important", ""));
+      V && (B.includes("flex") && "flex-direction" != B || "align-self" == B || "-" == c[B][0] || "width" == B && P.includes("%")) ? (t.f += P,
+        "width" == B && (i.style += ";width:100%")) : i.style += P;
     }
-    if (attrs.face) {
-      parsedStyle["font-family"] = attrs.face;
-      attrs.face = undefined;
-    }
-    if (attrs.size) {
-      var size = parseInt(attrs.size);
-      if (!isNaN(size)) {
-        size = Math.min(Math.max(size, 1), 7);
-        parsedStyle["font-size"] = ["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"][size - 1];
-      }
-      attrs.size = undefined;
-    }
-  }
-
-  if ((attrs.class || "").includes("align-center")) {
-    parsedStyle["text-align"] = "center";
-  }
-
-  Object.assign(parsedStyle, this.parseStyle(node));
-  if (parseInt(parsedStyle.width) > h) {
-    parsedStyle["max-width"] = "100%";
-    parsedStyle["box-sizing"] = "border-box";
-  }
-
-  if (a.blockTags[node.name]) {
-    node.name = "div";
-  } else if (a.trustTags[node.name] || this.xml) {
-    if (node.name === "a" || node.name === "ad") {
-      this.expose();
-    } else if (node.name === "video" || node.name === "audio") {
-      node.children = undefined;
-    } else if ((node.name === "ul" || node.name === "ol") && !node.c) {
-      var listStyles = {
-        a: "lower-alpha",
-        A: "upper-alpha",
-        i: "lower-roman",
-        I: "upper-roman"
-      };
-      if (listStyles[attrs.type]) {
-        attrs.style += ";list-style-type:" + listStyles[attrs.type];
-        attrs.type = undefined;
-      }
-      node.c = 1;
-      for (var j = children.length - 1; j >= 0; j--) {
-        if (children[j].name === "li") {
-          children[j].c = 1;
-        }
-      }
-    } else {
-      node.name = "span";
-    }
-  } else {
-    node.name = "span";
-  }
-
-  if ((parsedStyle.display || "").includes("flex") && !node.c) {
-    for (var j = children.length - 1; j >= 0; j--) {
-      var childNode = children[j];
-      if (childNode.f) {
-        childNode.attrs.style = (childNode.attrs.style || "") + childNode.f;
-        childNode.f = undefined;
-      }
-    }
-  }
-
-  var isParentFlex = parent && (parent.attrs.style || "").includes("flex") && !node.c && !(parsedStyle.display || "").includes("inline");
-  for (var styleKey in parsedStyle) {
-    if (parsedStyle[styleKey]) {
-      var styleValue = ";" + styleKey + ":" + parsedStyle[styleKey].replace(" !important", "");
-      if (isParentFlex && (styleKey.includes("flex") && styleKey !== "flex-direction" || styleKey === "align-self" || styleKey === "-" || styleKey === "width" && styleValue.includes("%"))) {
-        node.f += styleValue;
-        if (styleKey === "width") {
-          attrs.style += ";width:100%";
-        }
-      } else {
-        attrs.style += styleValue;
-      }
-    }
-  }
-  attrs.style = attrs.style.substr(1) || undefined;
-};
-
-// Class method to handle text nodes
-HTMLParser.prototype.onText = function (text) {
+  i.style = i.style.substr(1) || void 0;
+}, s.prototype.onText = function (t) {
   if (!this.pre) {
-    var cleanedText = "";
-    var isWhitespace = false;
-    for (var i = 0; i < text.length; i++) {
-      if (l[text[i]]) {
-        if (cleanedText[cleanedText.length - 1] !== " ") {
-          cleanedText += " ";
-        }
-        if (text[i] === "\n") {
-          isWhitespace = true;
-        }
-      } else {
-        cleanedText += text[i];
-      }
-    }
-    if (cleanedText === " " && isWhitespace) return;
-    text = cleanedText;
+    for (var s, e = "", a = 0, n = t.length; a < n; a++) l[t[a]] ? (" " != e[e.length - 1] && (e += " "),
+      "\n" != t[a] || s || (s = !0)) : e += t[a];
+    if (" " == e && s) return;
+    t = e;
   }
-
-  var textNode = {
-    type: "text",
-    text: decodeHTMLEntities(text)
-  };
-
-  if (this.hook(textNode)) {
-    if (this.options.selectable === "force" && o.includes("iOS")) {
-      this.expose();
-      textNode.us = "T";
-    }
-    (this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes).push(textNode);
-  }
-};
-
-// Class to handle HTML parsing process
-function HTMLParserHandler(handler) {
-  this.handler = handler;
-}
-
-// Parsing process methods
-HTMLParserHandler.prototype.parse = function (content) {
-  this.content = content || "";
-  this.index = 0;
-  this.start = 0;
-  this.state = this.text;
-  while (this.index !== -1 && this.index < this.content.length) {
-    this.state();
-  }
-};
-
-HTMLParserHandler.prototype.checkClose = function (callback) {
-  var isSelfClosing = this.content[this.index] === "/";
-  if (this.content[this.index] === ">" || isSelfClosing && this.content[this.index + 1] === ">") {
-    if (callback) {
-      this.handler[callback](this.content.substring(this.start, this.index));
-    }
-    this.index += isSelfClosing ? 2 : 1;
-    this.start = this.index;
-    this.handler.onOpenTag(isSelfClosing);
-    if (this.handler.tagName === "script") {
-      this.index = this.content.indexOf("</", this.index);
-      if (this.index !== -1) {
-        this.index += 2;
-        this.start = this.index;
-      }
-      this.state = this.endTag;
-    } else {
-      this.state = this.text;
-    }
-    return true;
-  }
-  return false;
-};
-
-HTMLParserHandler.prototype.text = function () {
-  this.index = this.content.indexOf("<", this.index);
-  if (this.index !== -1) {
-    var charAfterLt = this.content[this.index + 1];
-    if ((charAfterLt >= "a" && charAfterLt <= "z") || (charAfterLt >= "A" && charAfterLt <= "Z")) {
-      if (this.start !== this.index) {
-        this.handler.onText(this.content.substring(this.start, this.index));
-      }
-      this.start = ++this.index;
-      this.state = this.tagName;
-    } else if (charAfterLt === "/" || charAfterLt === "!" || charAfterLt === "?") {
-      if (this.start !== this.index) {
-        this.handler.onText(this.content.substring(this.start, this.index));
-      }
-      var closeSequence = charAfterLt === "!" && this.content.substr(this.index + 2, 2) === "--" ? "-->" : ">";
-      this.index = this.content.indexOf(closeSequence, this.index);
-      if (this.index !== -1) {
-        this.index += closeSequence.length;
-        this.start = this.index;
-      }
-    } else {
-      this.index++;
-    }
-  } else if (this.start < this.content.length) {
-    this.handler.onText(this.content.substring(this.start, this.content.length));
-  }
-};
-
-HTMLParserHandler.prototype.tagName = function () {
-  if (l[this.content[this.index]]) {
-    this.handler.onTagName(this.content.substring(this.start, this.index));
-    while (l[this.content[++this.index]]);
-    if (this.index < this.content.length && !this.checkClose("onTagName")) {
-      this.start = this.index;
-      this.state = this.attrName;
-    }
-  } else if (!this.checkClose("onTagName")) {
-    this.index++;
-  }
-};
-
-HTMLParserHandler.prototype.attrName = function () {
-  var char = this.content[this.index];
-  if (l[char] || char === "=") {
-    this.handler.onAttrName(this.content.substring(this.start, this.index));
-    var isEqualSign = char === "=";
-    while (++this.index < this.content.length) {
-      char = this.content[this.index];
-      if (!l[char]) {
+  var r = Object.create(null);
+  r.type = "text", r.text = i(t), this.hook(r) && ("force" == this.options.selectable && o.includes("iOS") && (this.expose(),
+    r.us = "T"), (this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes).push(r));
+}, e.prototype.parse = function (t) {
+  this.content = t || "", this.i = 0, this.start = 0, this.state = this.text;
+  for (var i = this.content.length; - 1 != this.i && this.i < i;) this.state();
+}, e.prototype.checkClose = function (t) {
+  var i = "/" == this.content[this.i];
+  return !!(">" == this.content[this.i] || i && ">" == this.content[this.i + 1]) && (t && this.handler[t](this.content.substring(this.start, this.i)),
+    this.i += i ? 2 : 1, this.start = this.i, this.handler.onOpenTag(i), "script" == this.handler.tagName ? (this.i = this.content.indexOf("</", this.i),
+      -1 != this.i && (this.i += 2, this.start = this.i), this.state = this.endTag) : this.state = this.text,
+    !0);
+}, e.prototype.text = function () {
+  if (this.i = this.content.indexOf("<", this.i), -1 != this.i) {
+    var t = this.content[this.i + 1];
+    if (t >= "a" && t <= "z" || t >= "A" && t <= "Z") this.start != this.i && this.handler.onText(this.content.substring(this.start, this.i)),
+      this.start = ++this.i, this.state = this.tagName;
+    else if ("/" == t || "!" == t || "?" == t) {
+      this.start != this.i && this.handler.onText(this.content.substring(this.start, this.i));
+      var i = this.content[this.i + 2];
+      if ("/" == t && (i >= "a" && i <= "z" || i >= "A" && i <= "Z")) return this.i += 2,
+        this.start = this.i, this.state = this.endTag;
+      var s = "--\x3e";
+      "!" == t && "-" == this.content[this.i + 2] && "-" == this.content[this.i + 3] || (s = ">"),
+        this.i = this.content.indexOf(s, this.i), -1 != this.i && (this.i += s.length, this.start = this.i);
+    } else this.i++;
+  } else this.start < this.content.length && this.handler.onText(this.content.substring(this.start, this.content.length));
+}, e.prototype.tagName = function () {
+  if (l[this.content[this.i]]) {
+    for (this.handler.onTagName(this.content.substring(this.start, this.i)); l[this.content[++this.i]];);
+    this.i < this.content.length && !this.checkClose() && (this.start = this.i, this.state = this.attrName);
+  } else this.checkClose("onTagName") || this.i++;
+}, e.prototype.attrName = function () {
+  var t = this.content[this.i];
+  if (l[t] || "=" == t) {
+    this.handler.onAttrName(this.content.substring(this.start, this.i));
+    for (var i = "=" == t, s = this.content.length; ++this.i < s;)
+      if (t = this.content[this.i],
+        !l[t]) {
         if (this.checkClose()) return;
-        if (isEqualSign) {
-          this.start = this.index;
-          this.state = this.attrVal;
-        } else if (this.content[this.index] !== "=") {
-          this.start = this.index;
-          this.state = this.attrName;
-        }
-        isEqualSign = true;
+        if (i) return this.start = this.i, this.state = this.attrVal;
+        if ("=" != this.content[this.i]) return this.start = this.i, this.state = this.attrName;
+        i = !0;
       }
-    }
-  } else if (!this.checkClose("onAttrName")) {
-    this.index++;
-  }
-};
-
-HTMLParserHandler.prototype.attrVal = function () {
-  var char = this.content[this.index];
-  var length = this.content.length;
-  if (char === '"' || char === "'") {
-    this.start = ++this.index;
-    this.index = this.content.indexOf(char, this.index);
-    if (this.index === -1) return;
-    this.handler.onAttrVal(this.content.substring(this.start, this.index));
-  } else {
-    while (this.index < length) {
-      if (l[this.content[this.index]]) {
-        this.handler.onAttrVal(this.content.substring(this.start, this.index));
+  } else this.checkClose("onAttrName") || this.i++;
+}, e.prototype.attrVal = function () {
+  var t = this.content[this.i],
+    i = this.content.length;
+  if ('"' == t || "'" == t) {
+    if (this.start = ++this.i, this.i = this.content.indexOf(t, this.i), -1 == this.i) return;
+    this.handler.onAttrVal(this.content.substring(this.start, this.i));
+  } else
+    for (; this.i < i; this.i++) {
+      if (l[this.content[this.i]]) {
+        this.handler.onAttrVal(this.content.substring(this.start, this.i));
         break;
       }
       if (this.checkClose("onAttrVal")) return;
-      this.index++;
     }
-  }
-  while (l[this.content[++this.index]]);
-  if (this.index < length && !this.checkClose()) {
-    this.start = this.index;
-    this.state = this.attrName;
-  }
-};
-
-HTMLParserHandler.prototype.endTag = function () {
-  var char = this.content[this.index];
-  if (l[char] || char === ">" || char === "/") {
-    this.handler.onCloseTag(this.content.substring(this.start, this.index));
-    if (char !== ">") {
-      this.index = this.content.indexOf(">", this.index);
-      if (this.index === -1) return;
-    }
-    this.start = ++this.index;
-    this.state = this.text;
-  } else {
-    this.index++;
-  }
-};
-
-module.exports = HTMLParser;
+  for (; l[this.content[++this.i]];);
+  this.i < i && !this.checkClose() && (this.start = this.i, this.state = this.attrName);
+}, e.prototype.endTag = function () {
+  var t = this.content[this.i];
+  if (l[t] || ">" == t || "/" == t) {
+    if (this.handler.onCloseTag(this.content.substring(this.start, this.i)), ">" != t && (this.i = this.content.indexOf(">", this.i),
+        -1 == this.i)) return;
+    this.start = ++this.i, this.state = this.text;
+  } else this.i++;
+}, module.exports = s;

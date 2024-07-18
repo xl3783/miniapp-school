@@ -1,60 +1,80 @@
-var t = (0, require("../../../@babel/runtime/helpers/interopRequireDefault").default)(require("../../../utils/http")), e = getApp(), a = new t.default.Http();
+const Http = require("../../../utils/http");
+const app = getApp();
+const http = new Http();
 
 Component({
-    properties: {
-        height: {
-            type: Number,
-            value: 550
-        },
-        pageColor: {
-            type: String,
-            value: "#fff"
-        },
-        detailId: {
-            type: Number,
-            observer: function(t, e) {
-                0 != t && this.getData();
-            }
-        }
+  properties: {
+    height: {
+      type: Number,
+      value: 550
     },
-    data: {
-        title: "",
-        thumb_url: "",
-        content: "",
-        create_time: "",
-        tabName: "新闻",
-        dataInitLoad: !1
+    pageColor: {
+      type: String,
+      value: "#fff"
     },
-    methods: {
-        linktap: function(t) {
-            console.log(t);
-            var e = t.detail.href, a = e.substring(e.lastIndexOf(".") + 1, e.length);
-            "pdf" == a || "doc" == a || "docx" == a || "xls" == a || "xlsx" == a || "ppt" == a || "pptx" == a ? wx.downloadFile({
-                url: e,
-                success: function(t) {
-                    var e = t.tempFilePath;
-                    wx.openDocument({
-                        filePath: e
-                    });
-                }
-            }) : wx.navigateTo({
-                url: "/pages/web-view/web-view?url=" + encodeURIComponent(e)
-            });
-        },
-        getData: function() {
-            var t = this;
-            wx.showLoading({
-                title: "加载中"
-            }), a.get(e.globalData.baseUrl + "/miniapp/article/" + this.data.detailId).then(function(e) {
-                var a = e.title, i = e.content, n = e.thumb_url, l = e.create_time;
-                wx.hideLoading(), t.setData({
-                    title: a,
-                    thumb_url: n,
-                    content: i,
-                    create_time: l,
-                    dataInitLoad: !0
-                }), t.triggerEvent("changeName", a);
-            });
+    detailId: {
+      type: Number,
+      observer: function (newVal) {
+        if (newVal != 0) {
+          this.fetchData();
         }
+      }
     }
+  },
+  data: {
+    title: "",
+    thumb_url: "",
+    content: "",
+    create_time: "",
+    tabName: "新闻",
+    dataInitLoad: false
+  },
+  methods: {
+    handleLinkTap: function (event) {
+      console.log(event);
+      const url = event.detail.href;
+      const fileExtension = url.substring(url.lastIndexOf(".") + 1);
+
+      if (["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"].includes(fileExtension)) {
+        wx.downloadFile({
+          url: url,
+          success: function (res) {
+            const tempFilePath = res.tempFilePath;
+            wx.openDocument({
+              filePath: tempFilePath
+            });
+          }
+        });
+      } else {
+        wx.navigateTo({
+          url: "/pages/web-view/web-view?url=" + encodeURIComponent(url)
+        });
+      }
+    },
+    fetchData: function () {
+      const component = this;
+      wx.showLoading({
+        title: "加载中"
+      });
+
+      http.get(app.globalData.baseUrl + "/miniapp/article/" + this.data.detailId)
+        .then(function (response) {
+          const {
+            title,
+            content,
+            thumb_url,
+            create_time
+          } = response;
+          wx.hideLoading();
+          component.setData({
+            title: title,
+            thumb_url: thumb_url,
+            content: content,
+            create_time: create_time,
+            dataInitLoad: true
+          });
+          component.triggerEvent("changeName", title);
+        });
+    }
+  }
 });
