@@ -68,29 +68,34 @@ class Http {
 
   handleSuccess(res, resolve, reject, customError) {
     if (res.statusCode === 200) {
-      if (res.data.errcode === 1) {
-        if (customError) {
-          this.showError(res.data.errmsg);
-        }
-        resolve(res.data);
-      } else if (res.data.errcode === 2001) {
-        resolve(res.data);
-      } else if (res.data.errcode === 5005) {
-        wx.showModal({
-          content: "您还不是校友，请先完成校友认证再进行此操作",
-          showCancel: false,
-          confirmText: "去认证",
-          success: (modalRes) => {
-            if (modalRes.confirm) {
-              wx.navigateTo({
-                url: "/xpAlumni/xpalumni-certification/xpalumni-certification"
-              });
-            }
-          }
-        });
+      if (res.data.err) {
+        reject(res.data.err)
       } else {
-        resolve(res.data);
+        resolve(res.data)
       }
+      // if (res.data.errcode === 1) {
+      //   if (customError) {
+      //     this.showError(res.data.errmsg);
+      //   }
+      //   resolve(res.data);
+      // } else if (res.data.errcode === 2001) {
+      //   resolve(res.data);
+      // } else if (res.data.errcode === 5005) {
+      //   wx.showModal({
+      //     content: "您还不是校友，请先完成校友认证再进行此操作",
+      //     showCancel: false,
+      //     confirmText: "去认证",
+      //     success: (modalRes) => {
+      //       if (modalRes.confirm) {
+      //         wx.navigateTo({
+      //           url: "/xpAlumni/xpalumni-certification/xpalumni-certification"
+      //         });
+      //       }
+      //     }
+      //   });
+      // } else {
+      //   resolve(res.data);
+      // }
     } else {
       this.showError("网络繁忙 ~");
       reject();

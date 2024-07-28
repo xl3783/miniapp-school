@@ -1,6 +1,10 @@
 <view class="tab-bar" style="overflow:hidden">
-  <view bindtap="switchTab" class="tab-bar-item" data-index="{{index}}" data-item="{{item}}" wx:for="{{list}}" wx:key="index">
-    <view class="{{item.name?'tabbar-no-img':'taber-img'}} iconfont  {{selected===index?item.icon_name+'_focus':item.icon_name+'_normal'}}" style="color: {{selected===index?selectedColor:color}}" wx:if="{{style!=3}}"></view>
-    <view class="text" style="color: {{selected===index?selectedColor:color}};font-size:{{fontsize/2}}px" wx:if="{{style!=2}}"> {{item.name}} </view>
-  </view>
+    <view bindtap="switchTab" class="tab-bar-item" data-index="{{index}}" data-item="{{item}}" wx:for="{{list}}"
+          wx:key="index">
+        <view class="{{item.name?'tabbar-no-img':'taber-img'}} iconfont  {{selected===index?item.icon_name+'_focus':item.icon_name+'_normal'}}"
+              style="color: {{selected===index?selectedColor:color}}" wx:if="{{style!=3}}"></view>
+        <view class="text" style="color: {{selected===index?selectedColor:color}};font-size:{{fontsize/2}}px"
+              wx:if="{{style!=2}}">{{item.name}}
+        </view>
+    </view>
 </view>

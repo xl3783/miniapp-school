@@ -11,13 +11,13 @@ App({
     no_mourn: 1,
     inviter_phone: "",
     appId: "",
-    welcomeUrl: "http://localhost:3000/api",
-    welcomeUrl2: "http://localhost:3000/",
-    baseUrl: "http://localhost:3000",
-    baseUrl2: "http://localhost:3000",
-    baseUrl3: "http://localhost:3000",
-    baseUrl4: "http://localhost:3000",
-    shareLiveH5: "http://localhost:3000/h5/#/",
+    welcomeUrl: "http://localhost:1337/api",
+    welcomeUrl2: "http://localhost:1337/",
+    baseUrl: "http://localhost:1337",
+    baseUrl2: "http://localhost:1337",
+    baseUrl3: "http://localhost:1337",
+    baseUrl4: "http://localhost:1337",
+    shareLiveH5: "http://localhost:1337/h5/#/",
     tempId: "8u2hSIe511GNoXfjiwHfm5HaRTlosiHZUTK6gp6QyNI",
     isIphoneX: wx.getSystemInfoSync().model.indexOf("iPhone") === 0 &&
       (wx.getSystemInfoSync().model.indexOf("X") >= 0 ||
@@ -66,13 +66,14 @@ App({
     appService.initNetwork(this);
 
     try {
-      // const data = await appService.initToken(this);
-      // this.network.setToken(data.token.access_token);
-      // this.network.setHeader("Open-Id", data.openid);
-      // this.globalData.openid = data.openid;
-      // this.globalData.token = data.token.access_token;
-      // this.globalData.userInfo.id = data.id;
-      // this.globalData.userInfo.token = data.token;
+      const data = await appService.initToken(this);
+      const token = "Bearer " + data.token;
+      this.network.setToken(token);
+      this.network.setBaseHeader("Open-Id", data.openid);
+      this.globalData.openid = data.openid;
+      this.globalData.token = token;
+      this.globalData.userInfo.id = data.id;
+      this.globalData.userInfo.token = data.token;
 
       await this.initHomeData();
 

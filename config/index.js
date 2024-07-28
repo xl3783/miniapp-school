@@ -1,4 +1,4 @@
 export const networkList = [{
   key: "OE",
-  url: "http://localhost:3000/miniapp"
+  url: "http://localhost:1337"
 }];

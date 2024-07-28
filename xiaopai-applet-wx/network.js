@@ -64,7 +64,7 @@ class Network {
     }
     key = key || this.option.configs[0].key;
     this.config = this.option.configs.find((config) => config.key === key);
-
+    console.log("getContext this.config", this.config)
     return {
       get: (url, data) => this._request("GET", url, data, skipToken),
       post: (url, data) => this._request("POST", url, data, skipToken),
@@ -76,7 +76,13 @@ class Network {
   }
 
   setHeader(key, value) {
-    this.config.header[key] = value;
+    console.log("this.config", this.config)
+    if (this.config.header) {
+      this.config.header[key] = value;
+    } else {
+      this.config.header = {};
+      this.config.header[key] = value;
+    }
   }
 
   setTokenPromise(tokenPromise) {

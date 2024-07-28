@@ -76,7 +76,7 @@ Component({
     }
   },
   data: {
-    active: 0
+    active: 0,
   },
   methods: {
     changeSwiper: function (event) {
@@ -85,9 +85,9 @@ Component({
       });
     },
     jump: function (target) {
-      util.getPhoneLogin().then(function () {
-        util.jumpToDetail(target);
-      })
+      // util.getPhoneLogin().then(function () {
+      //   util.jumpToDetail(target);
+      // })
       // (0, util.getPhoneLogin)().then(function () {
       //   (0, util.jumpToDetail)(target);
       // });

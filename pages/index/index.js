@@ -306,16 +306,16 @@ Page({
       dataLoad: true
     })
 
-    app.globalData.home.finally(() => {
-      this.setData({
-        dataLoad: true
-      });
-    });
+    // app.globalData.home.finally(() => {
+    //   this.setData({
+    //     dataLoad: true
+    //   });
+    // });
 
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    //   menus: ["shareAppMessage", "shareTimeline"]
+    // });
 
     const scene = e.scene ? decodeURIComponent(e.scene) : "";
     // if (scene) {
@@ -372,7 +372,7 @@ Page({
   },
   handleShow() {
     console.log("handleShow")
-    app.globalData.home = Promise.resolve({});
+    // app.globalData.home = Promise.resolve({});
     app.globalData.home.then(() => {
       console.log("app.globalData.home")
       console.log(app.globalData)
@@ -403,7 +403,6 @@ Page({
 
       const indexComp = this.selectComponent("#indexComp");
       const bottomBar = this.selectComponent("#bottom-bar");
-      console.log(indexComp)
       if (indexComp) {
         indexComp.data.components = [];
         indexComp.getHomeData();
