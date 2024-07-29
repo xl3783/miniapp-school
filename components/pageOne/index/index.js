@@ -21,6 +21,36 @@ const banner = {
     "content": []
 }
 
+const notice = {
+    "id": 1378,
+    "type": 2,
+    "position": 2,
+    "is_float": 0,
+    "extend": null,
+    "style_code": 1,
+    "style": 1,
+    "num": 2,
+    "icon_url_full": "",
+    "icon_type": 0,
+    "image_url_full": "",
+    "icon_url": "",
+    "content": []
+}
+
+const nav = {
+    "id": 1379,
+    "type": 3,
+    "position": 3,
+    "is_float": 0,
+    "extend": null,
+    "style_code": 1,
+    "line_show_style": 1,
+    "style": 1,
+    "line_num": 4,
+    "font_size": 26,
+    "content": []
+}
+
 const homeRequestRes = {
     "errcode": 0,
     "errmsg": "ok",
@@ -56,141 +86,7 @@ const homeRequestRes = {
         "phone3": "",
         "vx": "",
         "icon_url": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20201116\/42ec1c2ffaabdcfe3dad9b1b8706bbca.png"
-    }, banner, {
-        "id": 1378,
-        "type": 2,
-        "position": 2,
-        "is_float": 0,
-        "extend": null,
-        "style_code": 1,
-        "style": 1,
-        "num": 2,
-        "icon_url_full": "https:\/\/xiaopai-saas.oss-cn-hangzhou.aliyuncs.com\/uploads\/icon\/20201113\/960026828109cf3390282f7fee0fc474.png?OSSAccessKeyId=LTAIJbbx6rjek23Z&Expires=1610447865&Signature=kKEQ3Wxk8jdDEn09J3VifXtXGJI%3D",
-        "icon_type": 0,
-        "image_url_full": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20220318\/abcdfghijkuwxyBCDGHKLNRTWZ013579.jpeg",
-        "icon_url": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20220318\/abcdfghijkuwxyBCDGHKLNRTWZ013579.jpeg",
-        "content": [{
-            "id": 460,
-            "title": "被国家一流研究院录取，荆州一高职生实现人生逆袭！",
-            "column_id": "3",
-            "type": 1,
-            "is_jump": 0,
-            "jump_url": "https:\/\/mp.weixin.qq.com\/s\/SKS3Ws10INURp06tIpAqIg",
-            "is_top": 1,
-            "show_app": "[1, 8]",
-            "create_time": "2024-06-15 17:15:24"
-        }, {
-            "id": 459,
-            "title": "荆州职业技术学院 2024年高职单招考试成绩查询",
-            "column_id": "3",
-            "type": 1,
-            "is_jump": 0,
-            "jump_url": "",
-            "is_top": 1,
-            "show_app": "[1, 2, 3, 4, 5, 8, 9]",
-            "create_time": "2024-04-04 15:07:49"
-        }]
-    }, {
-        "id": 1379,
-        "type": 3,
-        "position": 3,
-        "is_float": 0,
-        "extend": null,
-        "style_code": 1,
-        "line_show_style": 1,
-        "style": 1,
-        "line_num": 4,
-        "font_size": 26,
-        "content": [{
-            "id": 3506,
-            "component_id": 1379,
-            "name": "学院简介",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/rbZ1Ld1oizKmkuD66AiBLAhLDORfuhcYFeltPWze.jpg",
-            "source_type": 0,
-            "jump_url": "..\/..\/pages\/campus-intro\/campus-intro",
-            "jump_type": 1,
-            "type": 0,
-            "category_ids": "7",
-            "base_url": "\/pages\/campus-intro\/campus-intro"
-        }, {
-            "id": 3507,
-            "component_id": 1379,
-            "name": "招生简章",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/JwS5FNW5FcVEJaW9XKKybfZgKt7kj0p0PTrEeDpy.jpg",
-            "source_type": 0,
-            "jump_url": "\/prepare\/mixture\/mixture?aid=11",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "1,1",
-            "base_url": "\/prepare\/mixture\/mixture?aid=11"
-        }, {
-            "id": 3508,
-            "component_id": 1379,
-            "name": "招生计划",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/yY7rXwtqXRgS0oZzGw66k0RiRaQx1A08WPPHqog5.jpg",
-            "source_type": 0,
-            "jump_url": "\/prepare\/mixture\/mixture?aid=10",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "1",
-            "base_url": "\/prepare\/mixture\/mixture?aid=10"
-        }, {
-            "id": 3509,
-            "component_id": 1379,
-            "name": "院系专业",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/kWe2uz0e7baS5ctMYSK7gfI7807sTD2qUKRjXgTp.jpg",
-            "source_type": 0,
-            "jump_url": "\/pages\/enroll-major-new\/enroll-major-new?fmType=1",
-            "jump_type": 1,
-            "type": 0,
-            "category_ids": "",
-            "base_url": "\/pages\/enroll-major-new\/enroll-major-new?fmType=1"
-        }, {
-            "id": 3510,
-            "component_id": 1379,
-            "name": "多彩校园",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/EYJfr75NAHmuEdxIvkKT2tFMJk8SaMEFMSH2IcV0.jpg",
-            "source_type": 0,
-            "jump_url": "\/prepare\/mixture\/mixture?vid=3",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "3",
-            "base_url": "\/prepare\/mixture\/mixture?vid=3"
-        }, {
-            "id": 3511,
-            "component_id": 1379,
-            "name": " 问卷调查",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/DGqIMgdXxnMu6dslOh2IA76rbyY2zHzr0mbsm13U.jpg",
-            "source_type": 0,
-            "jump_url": "\/pages\/form-view\/form-view?id=40&v=1668741487fjtzFR",
-            "jump_type": 4,
-            "type": 0,
-            "category_ids": "40",
-            "base_url": "\/pages\/form-view\/form-view?id=40&v=1668741487fjtzFR"
-        }, {
-            "id": 3512,
-            "component_id": 1379,
-            "name": "单招成绩查询",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/OrKF5jsHLyGopl4AEtzcfWNlsfX8bYPjEfpFnLhm.jpg",
-            "source_type": 0,
-            "jump_url": "\/pages\/admission-query\/admission-query?type=6",
-            "jump_type": 2,
-            "type": 0,
-            "category_ids": "6",
-            "base_url": "\/pages\/admission-query\/admission-query?type=6"
-        }, {
-            "id": 3513,
-            "component_id": 1379,
-            "name": "联系我们",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/3VHMyGOg0dBxzChRQpELFR1ntUCLqVaFd9J879zP.jpg",
-            "source_type": 0,
-            "jump_url": "\/prepare\/mixture\/mixture?aid=13",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "0",
-            "base_url": "\/prepare\/mixture\/mixture?aid=13"
-        }]
-    }, {
+    }, banner, notice, nav, {
         "id": 1380,
         "type": 4,
         "position": 4,
@@ -705,8 +601,12 @@ Component({
                 page,
                 components
             } = that.data;
-            httpInstance.get(appInstance.globalData.baseUrl
-                + "/api/home-page?populate[banner][populate][banner_items][populate]=*&populate[banner][populate][school_logo][populate]=*")
+            const homeUrlPath = "/api/home-page"
+                + "?populate[banner][populate][banner_items][populate]=*"
+                + "&populate[banner][populate][school_logo][populate]=*"
+                + "&populate[notices][populate]=*"
+                + "&populate[navs][populate]=*"
+            httpInstance.get(appInstance.globalData.baseUrl + homeUrlPath)
                 .then(res => {
                     res = flattenApiData(res);
                     console.log("res", res)
@@ -725,6 +625,26 @@ Component({
                             "base_url": "\/pages\/campus-intro\/campus-intro"
                         }
                     });
+                    notice.content = res.notices.map(item => {
+                        return {
+                            "id": item.id,
+                            "title": item.title,
+                            "column_id": "3",
+                            "type": 1,
+                            "is_jump": 0,
+                            "jump_url": item.jump_url,
+                            "is_top": 1,
+                            "show_app": "[1, 8]",
+                            "create_time": item.createdAt
+                        }
+                    })
+                    nav.content = res.navs.map(item => {
+                        return {
+                            ...item,
+                            image_url: appInstance.globalData.baseUrl + item.image.url
+                        }
+                    })
+                    nav.content = nav.content.sort((a, b) => a.sort_index - b.sort_index);
                     this.setData({
                         schoolname: res.banner.school_name,
                         schoollogo: appInstance.globalData.baseUrl + res.banner.school_logo.url
