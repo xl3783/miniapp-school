@@ -51,6 +51,36 @@ const nav = {
     "content": []
 }
 
+const vr = {
+    "id": 1380,
+    "type": 4,
+    "position": 4,
+    "is_float": 0,
+    "extend": null,
+    "style_code": 1,
+    "line_num": 1,
+    "line_show_style": 0,
+    "style": 1,
+    "title": "",
+    "title_show": 2,
+    "content": []
+}
+
+const vedios = {
+    "id": 1381,
+    "type": 4,
+    "position": 5,
+    "is_float": 0,
+    "extend": null,
+    "style_code": 1,
+    "line_num": 2,
+    "line_show_style": 0,
+    "style": 1,
+    "title": "",
+    "title_show": 2,
+    "content": []
+}
+
 const homeRequestRes = {
     "errcode": 0,
     "errmsg": "ok",
@@ -86,66 +116,7 @@ const homeRequestRes = {
         "phone3": "",
         "vx": "",
         "icon_url": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20201116\/42ec1c2ffaabdcfe3dad9b1b8706bbca.png"
-    }, banner, notice, nav, {
-        "id": 1380,
-        "type": 4,
-        "position": 4,
-        "is_float": 0,
-        "extend": null,
-        "style_code": 1,
-        "line_num": 1,
-        "line_show_style": 0,
-        "style": 1,
-        "title": "",
-        "title_show": 2,
-        "content": [{
-            "id": 3514,
-            "component_id": 1380,
-            "name": "校园VR",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/rF1QFEIJsOkL4g3ZuVqmCLHudnulnvMDpa7PByyb.gif?x-oss-process=image\/resize,h_400,w_700\/auto-orient,1\/quality,Q_80",
-            "source_type": 0,
-            "jump_url": "https:\/\/www.720pai.net\/tour\/089536f29055c489",
-            "jump_type": 5,
-            "type": 0,
-            "category_ids": "0",
-            "base_url": "https:\/\/www.720pai.net\/tour\/089536f29055c489"
-        }]
-    }, {
-        "id": 1381,
-        "type": 4,
-        "position": 5,
-        "is_float": 0,
-        "extend": null,
-        "style_code": 1,
-        "line_num": 2,
-        "line_show_style": 0,
-        "style": 1,
-        "title": "",
-        "title_show": 2,
-        "content": [{
-            "id": 3515,
-            "component_id": 1381,
-            "name": "校园风光",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/8lO3eA6FVaPSZGjTf3BZZ6SWmUH4aKhARe5mjj2w.jpg?x-oss-process=image\/resize,h_400,w_700\/auto-orient,1\/quality,Q_80",
-            "source_type": 0,
-            "jump_url": "\/pages\/campus-scenery\/campus-scenery",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "0",
-            "base_url": "\/pages\/campus-scenery\/campus-scenery"
-        }, {
-            "id": 3516,
-            "component_id": 1381,
-            "name": "宣传视频",
-            "image_url": "https:\/\/cos.schoolpi.net\/uploads\/27\/20221208\/xUDJB2WwvCw24tTFL68S4jPVhqCzQSjBOxjvj77P.jpg?x-oss-process=image\/resize,h_400,w_700\/auto-orient,1\/quality,Q_80",
-            "source_type": 0,
-            "jump_url": "\/prepare\/mixture\/mixture?vid=1,2,4,5",
-            "jump_type": 3,
-            "type": 0,
-            "category_ids": "3,3,3,0,0,0,0",
-            "base_url": "\/prepare\/mixture\/mixture?vid=1,2,4,5"
-        }]
-    }, {
+    }, banner, notice, nav, vr, vedios, {
         "id": 1382,
         "type": 9,
         "position": 6,
@@ -601,6 +572,24 @@ Component({
                 page,
                 components
             } = that.data;
+            const componentsPath = "/api/ui-components"
+            + "?populate[media_resources][populate]=*";
+            httpInstance.get(appInstance.globalData.baseUrl + componentsPath)
+                .then(res => {
+                    res = flattenApiData(res);
+                    debugger
+                    res.forEach(component => {
+                        component.media_resources.forEach(item => {
+                            item.image_url = appInstance.globalData.baseUrl + item.image[0].url
+                        })
+                    })
+                    console.log("res1", res)
+                    const resVR = res.filter(item => item.type === 4 && item.position === 4)[0]
+                    const resVedio = res.filter(item => item.type === 4 && item.position === 5)[0]
+                    vr.content = resVR.media_resources;
+                    vedios.content = resVedio.media_resources;
+
+                })
             const homeUrlPath = "/api/home-page"
                 + "?populate[banner][populate][banner_items][populate]=*"
                 + "&populate[banner][populate][school_logo][populate]=*"
