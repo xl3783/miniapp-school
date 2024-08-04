@@ -30,7 +30,7 @@
         <view class="detail-name">{{detailName}} <image bindtap="close" class="close" showMenuByLongpress="true" src="../../assets/image/icon_close.png"></image>
         </view>
         <scroll-view class="bgfff mp-img-box" scrollY="{{true}}">
-            <mp binderror="mediaError" bindlinktap="linktap" content="{{intro1}}" copyLink="{{false}}" wx:if="{{intro1}}"></mp>
+            <mp binderror="mediaError" bindlinktap="linktap" content="{{detailIntro}}" copyLink="{{false}}" wx:if="{{detailIntro}}"></mp>
             <no-data-comp wx:else></no-data-comp>
         </scroll-view>
     </view>

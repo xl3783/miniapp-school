@@ -55,7 +55,46 @@ const getArticles = async (tagId) => {
     return await httpInstance.get(`${baseUrl}/api/articles?${query}`);
 }
 
+const getFaculties = async ({page, pageSize}) => {
+    const query = qs.stringify(
+        {
+            pagination: {
+                page: page,
+                pageSize: pageSize,
+            },
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/api/faculties?${query}`);
+}
+
+const getFaculty = async ({id}) => {
+    console.log(`${baseUrl}/api/faculties/${id}`)
+    const query = qs.stringify(
+        {
+            populate: {
+                faculty_majors: {
+                    fields: ['name', 'intro_type', 'intro_text'],
+                    filter: {
+                        is_del: {
+                            $eq: 0,
+                        }
+                    }
+                },
+            },
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/api/faculties/${id}?${query}`);
+}
+
 module.exports = {
     getTags,
-    getArticles
+    getArticles,
+    getFaculties,
+    getFaculty
 }

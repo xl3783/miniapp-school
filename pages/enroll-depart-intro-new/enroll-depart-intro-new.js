@@ -116,33 +116,15 @@ Page({
     },
     onReady: function() {},
     onShow: function() {
-        getApp().reporting.page("show", getCurrentPages());
     },
     onHide: function() {
-        getApp().reporting.page("hide");
     },
     onUnload: function() {
-        getApp().reporting.page("hide");
     },
     onPullDownRefresh: function() {},
     onReachBottom: function() {},
     onShareAppMessage: function() {
-        return getApp().reporting.share({
-            type: 1,
-            value: ""
-        }, getCurrentPages()), {
-            title: this.data.tabName,
-            path: "/pages/enroll-depart-intro-new/enroll-depart-intro-new?id=" + this.data.id + "&name=" + this.data.tabName
-        };
     },
     onShareTimeline: function() {
-        return getApp().reporting.share({
-            type: 2,
-            value: ""
-        }, getCurrentPages()), {
-            title: this.data.tabName,
-            query: "id=" + this.data.id + "&name=" + this.data.tabName,
-            imageUrl: o.globalData.schoollogo
-        };
     }
 });

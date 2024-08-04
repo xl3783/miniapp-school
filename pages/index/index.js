@@ -155,6 +155,11 @@ Page({
           };
           path = "/prepare/mixture/mixture";
         }
+        let fmType = null;
+        if (base_url === "/pages/enroll-major-new/enroll-major-new") {
+          let searchParam = jump_url.split('?')[1];
+          fmType = searchParam.split('=')[1];
+        }
         this.setData({
           path,
           mixtureData,
@@ -165,7 +170,7 @@ Page({
           formId: (base_url === "/pages/form-page/form-page" || base_url === "/pages/form-view/form-view") ? detail_id : 0,
           videoId: base_url === "/pages/campus-promotion-video-detail/campus-promotion-video-detail" ? detail_id : 0,
           columnId: base_url === "/pages/characters/characters" ? detail_id : "",
-          fmType: base_url === "/pages/enroll-major-new/enroll-major-new" ? detail_id : "",
+          fmType: fmType,
           searchId: base_url === "/packageA/pages/plan-score-new/plan-score-new" ? detail_id : "",
           topNum: 0,
           category_ids,

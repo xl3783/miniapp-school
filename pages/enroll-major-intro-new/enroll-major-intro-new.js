@@ -1,4 +1,5 @@
 const Http = require("../../utils/http");
+const {getFaculty} = require("../../apis/index");
 const appInstance = getApp();
 const httpInstance = new Http();
 
@@ -50,29 +51,44 @@ Page({
     });
     if (introType === 1) {
       if (introText) {
-        if (appInstance.globalData.major_intro_style === 1) {
-          httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/specialty/${id}`).then(response => {
-            if (response.errcode === 0 && response.data) {
-              this.setData({
-                detailName: response.data.name,
-                showDetail: true,
-                detailIntro: response.data.intro_text
-              });
-            }
-          });
-        } else {
-          wx.navigateTo({
-            url: `/pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new?id=${id}`
-          });
-        }
+        wx.navigateTo({
+          url: `/pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new?id=${id}&intro=${encodeURIComponent(introText)}`
+        });
       }
-    } else {
-      wx.navigateTo({
-        url: `/pages/web-view/web-view?url=${encodeURIComponent(introUrl)}`
-      });
     }
+
+    // if (introType === 1) {
+    //   if (introText) {
+        // wx.navigateTo({
+        //   url: `/pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new?id=${id}&intro=${introText}`
+        // });
+      //   if (appInstance.globalData.major_intro_style === 1) {
+      //     // httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/specialty/${id}`).then(response => {
+      //     //   if (response.errcode === 0 && response.data) {
+      //     //     this.setData({
+      //     //       detailName: response.data.name,
+      //     //       showDetail: true,
+      //     //       detailIntro: response.data.intro_text
+      //     //     });
+      //     //   }
+      //     // });
+      //     this.setData({
+      //       showDetail: true,
+      //       detailIntro: introText
+      //     });
+      //   } else {
+      //     wx.navigateTo({
+      //       url: `/pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new?id=${id}`
+      //     });
+      //   }
+      // }
+    // } else {
+    //   wx.navigateTo({
+    //     url: `/pages/web-view/web-view?url=${encodeURIComponent(introUrl)}`
+    //   });
+    // }
   },
-  onLoad: function (options) {
+  onLoad: async function (options) {
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
@@ -95,7 +111,7 @@ Page({
       globalColor: appInstance.globalData.globalColor
     });
 
-    this.getList();
+    await this.getList();
   },
   linktap: function (event) {
     const url = event.detail.href;
@@ -112,7 +128,7 @@ Page({
       });
     }
   },
-  getList: function () {
+  getList: async function () {
     const {
       page,
       pageSize,
@@ -124,6 +140,15 @@ Page({
     wx.showLoading({
       title: "加载中"
     });
+    const faculty = await getFaculty({id: id});
+
+    this.setData({
+      majorList: faculty.data.faculty_majors,
+      intro: faculty.data.intro_text,
+      showIntro: true,
+      showMajor: true
+    });
+    wx.hideLoading();
 
     // if (showAll !== "1") {
     //   this.setData({
@@ -153,47 +178,43 @@ Page({
     //   });
     // }
 
-    return httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/${id}`).then(response => {
-      const {
-        intro_text,
-        specialties
-      } = response.data;
-      const updatedNavList = navList.slice(1);
-
-      if (!intro_text && specialties.length > 0) {
-        this.setData({
-          navList: updatedNavList,
-          showIntro: false,
-          showMajor: true
-        });
-      } else if (intro_text && specialties.length === 0) {
-        this.setData({
-          navList: [{
-            cate: "概况"
-          }],
-          showIntro: true,
-          showMajor: false
-        });
-      } else if (intro_text && specialties.length > 0) {
-        this.setData({
-          navList,
-          showIntro: true,
-          showMajor: true
-        });
-      } else {
-        this.setData({
-          navList: [],
-          showIntro: false,
-          showMajor: false
-        });
-      }
-
-      this.setData({
-        majorList: specialties,
-        intro: intro_text
-      });
-      wx.hideLoading();
-    });
+    // return httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/${id}`).then(response => {
+    //   const {
+    //     intro_text,
+    //     specialties
+    //   } = response.data;
+    //   const updatedNavList = navList.slice(1);
+    //
+    //   if (!intro_text && specialties.length > 0) {
+    //     this.setData({
+    //       navList: updatedNavList,
+    //       showIntro: false,
+    //       showMajor: true
+    //     });
+    //   } else if (intro_text && specialties.length === 0) {
+    //     this.setData({
+    //       navList: [{
+    //         cate: "概况"
+    //       }],
+    //       showIntro: true,
+    //       showMajor: false
+    //     });
+    //   } else if (intro_text && specialties.length > 0) {
+    //     this.setData({
+    //       navList,
+    //       showIntro: true,
+    //       showMajor: true
+    //     });
+    //   } else {
+    //     this.setData({
+    //       navList: [],
+    //       showIntro: false,
+    //       showMajor: false
+    //     });
+    //   }
+    //
+    //
+    // });
   },
   onReady: function () {},
   onShow: function () {},

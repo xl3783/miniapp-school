@@ -1,6 +1,7 @@
 import Http from '../../../utils/http';
 const app = getApp();
 const httpClient = new Http();
+import {getFaculties} from "../../../apis/index";
 
 Component({
   properties: {
@@ -56,22 +57,16 @@ Component({
     goDetail: function (event) {
       const item = event.currentTarget.dataset.item;
       if (item.intro_type == 1) {
-        if (item.child && item.child.length > 0) {
-          wx.navigateTo({
-            url: "/pages/enroll-depart-intro-new/enroll-depart-intro-new?id=" + item.id + "&name=" + item.name
-          });
-        } else {
-          wx.navigateTo({
-            url: "/pages/enroll-major-intro-new/enroll-major-intro-new?id=" + item.id + "&name=" + item.name
-          });
-        }
+        wx.navigateTo({
+          url: "/pages/enroll-major-intro-new/enroll-major-intro-new?id=" + item.id + "&name=" + item.name
+        });
       } else {
         wx.redirectTo({
           url: "/pages/web-view/web-view?url=" + encodeURIComponent(item.intro_url)
         });
       }
     },
-    getList: function (type) {
+    getList: async function (type) {
       const that = this;
       wx.showLoading({
         title: "加载中"
@@ -90,27 +85,26 @@ Component({
       if (type) {
         params.type = type;
       }
+      let faculityes = await getFaculties(page, page_size);
+      const newList = list.concat(faculityes.data);
+      const colorListLength = colorList.length;
+      const totalItems = newList.length;
+      const repeatCount = Math.ceil(totalItems / colorListLength);
+      let repeatedColors = [];
 
-      httpClient.get(app.globalData.baseUrl + "/miniapp/faculty", params).then(response => {
-        const newList = list.concat(response.list);
-        const colorListLength = colorList.length;
-        const totalItems = newList.length;
-        const repeatCount = Math.ceil(totalItems / colorListLength);
-        let repeatedColors = [];
+      for (let i = 0; i < repeatCount; i++) {
+        repeatedColors = repeatedColors.concat(colorList);
+      }
 
-        for (let i = 0; i < repeatCount; i++) {
-          repeatedColors = repeatedColors.concat(colorList);
-        }
-
-        wx.hideLoading();
-        that.setData({
-          colorList: repeatedColors,
-          list: newList,
-          total: response.count,
-          globalColor: app.globalData.globalColor,
-          isBottom: !(newList.length < response.count),
-          show: true
-        });
+      const total = faculityes.meta.pagination.total;
+      wx.hideLoading();
+      that.setData({
+        colorList: repeatedColors,
+        list: newList,
+        total: total,
+        globalColor: app.globalData.globalColor,
+        isBottom: !(newList.length < total),
+        show: true
       });
     },
     getMore: function () {

@@ -1,7 +1,3 @@
-const Http = require("../../utils/http");
-const appInstance = getApp();
-const httpInstance = new Http();
-
 Page({
   data: {
     intro: "",
@@ -11,24 +7,26 @@ Page({
   },
   onLoad: function (options) {
     const {
-      id
+      id,
+        intro
     } = options;
     this.setData({
-      id: id
+      id: id,
+      intro: decodeURIComponent(intro)
     });
-    this.getIntro();
+    // this.getIntro();
   },
-  getIntro: function () {
-    httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/specialty/${this.data.id}`).then(response => {
-      if (response.errcode === 0 && response.data) {
-        this.setData({
-          tabName: response.data.name,
-          showDetail: true,
-          intro: response.data.intro_text
-        });
-      }
-    });
-  },
+  // getIntro: function () {
+  //   httpInstance.get(`${appInstance.globalData.baseUrl}/miniapp/faculty/specialty/${this.data.id}`).then(response => {
+  //     if (response.errcode === 0 && response.data) {
+  //       this.setData({
+  //         tabName: response.data.name,
+  //         showDetail: true,
+  //         intro: response.data.intro_text
+  //       });
+  //     }
+  //   });
+  // },
   linktap: function (event) {
     const url = event.detail.href;
     const fileType = url.substring(url.lastIndexOf(".") + 1);
