@@ -8,6 +8,7 @@
     "@vant/weapp": "^1.6.8",
     "apifm-wxapi": "^3.36.0",
     "mp-html": "^2.5.0",
+    "qs": "^5.2.1",
     "wxa-plugin-canvas": "^1.1.12",
     "wxbarcode": "^1.0.2"
   },

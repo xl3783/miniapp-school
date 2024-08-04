@@ -67,11 +67,10 @@ App({
 
     try {
       const data = await appService.initToken(this);
-      const token = "Bearer " + data.token;
-      this.network.setToken(token);
+      this.network.setToken("Bearer " + data.token);
       this.network.setBaseHeader("Open-Id", data.openid);
       this.globalData.openid = data.openid;
-      this.globalData.token = token;
+      this.globalData.token = data.token;
       this.globalData.userInfo.id = data.id;
       this.globalData.userInfo.token = data.token;
 

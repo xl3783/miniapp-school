@@ -9,7 +9,7 @@
 <!--        <index-column-comp columnId="{{item.column_id}}" columnList="{{item.content}}" jumpType="{{item.jump_type}}" name="{{item.name}}" position="{{item.image_align}}" wx:if="{{item.type==5}}"></index-column-comp>-->
 <!--        <space-comp bgColor="{{item.color}}" height="{{item.height}}" wx:if="{{item.type==7}}"></space-comp>-->
 <!--        <line-comp color="{{item.color}}" hasBorder="{{item.style}}" height="{{item.height}}" lineStyle="{{item.line_style}}" lineheight="{{item.line_height}}" wx:if="{{item.type==8}}"></line-comp>-->
-<!--        <waterfall-comp id="waterfall{{item.id}}" list="{{item.data}}" load_type="{{item.load_type}}" num="{{item.num}}" props_data="{{item}}" wx:if="{{item.type==9}}"></waterfall-comp>-->
+        <waterfall-comp id="waterfall{{item.id}}" list="{{item.data}}" load_type="{{item.load_type}}" num="{{item.num}}" props_data="{{item}}" wx:if="{{item.type==9}}"></waterfall-comp>
 <!--        <pic-column-comp componentid="{{item.id}}" list="{{item.content}}" name="{{item.name}}" num="{{item.num}}" wx:if="{{item.type==10}}"></pic-column-comp>-->
         <!-- <view style="width:680rpx;height:168rpx;margin: 20rpx auto;" wx:if="{{item.type==11&&showOfficial}}">
           <official-account :hidden="{{item.type!=11}}" binderror="officialError" bindload="loadOfficial"></official-account>
