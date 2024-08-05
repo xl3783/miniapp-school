@@ -76,25 +76,26 @@ Component({
       });
     },
     goNav: function (event) {
-      var self = this;
-      var item = event.currentTarget.dataset.item;
-      var baseUrl = item.base_url;
-
-      if (this.data.isAlumni) {
-        if (baseUrl.includes("xpalumni-certification") && this.data.verifyStatus) {
-          wx.navigateTo({
-            url: "/xpAlumni/certification-details/certification-details?verifyStatus=true"
-          });
-        } else {
-          util.getUserLogin().then(function () {
-            self.getVerifyStatus(baseUrl, event);
-          });
-        }
-      } else {
-        util.getPhoneLogin().then(function () {
-          util.jumpToDetail(event);
-        });
-      }
+      util.jumpToDetail(event);
+      // var self = this;
+      // var item = event.currentTarget.dataset.item;
+      // var baseUrl = item.base_url;
+      //
+      // if (this.data.isAlumni) {
+      //   if (baseUrl.includes("xpalumni-certification") && this.data.verifyStatus) {
+      //     wx.navigateTo({
+      //       url: "/xpAlumni/certification-details/certification-details?verifyStatus=true"
+      //     });
+      //   } else {
+      //     util.getUserLogin().then(function () {
+      //       self.getVerifyStatus(baseUrl, event);
+      //     });
+      //   }
+      // } else {
+      //   util.getPhoneLogin().then(function () {
+      //     util.jumpToDetail(event);
+      //   });
+      // }
     },
     getVerifyStatus: function (baseUrl, event) {
       var self = this;

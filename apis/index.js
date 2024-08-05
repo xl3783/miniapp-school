@@ -71,7 +71,6 @@ const getFaculties = async ({page, pageSize}) => {
 }
 
 const getFaculty = async ({id}) => {
-    console.log(`${baseUrl}/api/faculties/${id}`)
     const query = qs.stringify(
         {
             populate: {
@@ -92,9 +91,14 @@ const getFaculty = async ({id}) => {
     return await httpInstance.get(`${baseUrl}/api/faculties/${id}?${query}`);
 }
 
+const getCollegeIntroduction = async () => {
+    return await httpInstance.get(`${baseUrl}/api/college-introduction`);
+}
+
 module.exports = {
     getTags,
     getArticles,
     getFaculties,
-    getFaculty
+    getFaculty,
+    getCollegeIntroduction
 }
