@@ -1,6 +1,6 @@
 import Http from '../../../utils/http';
 import {flattenApiData, flattenAttributes} from "../../../utils/customutil";
-import {getArticles, getTags} from "../../../apis/index";
+import {getTags} from "../../../apis/index";
 
 const appInstance = getApp();
 const httpInstance = new Http();
@@ -576,18 +576,19 @@ Component({
                 page,
                 components
             } = that.data;
-            let tags = await getTags(true);
-            articles.data = tags.data.map(item => {
-                item.articles.forEach(article => {
-                    if (article.cover) {
-                        article.thumb_url = appInstance.globalData.baseUrl + article.cover.url;
-                    }
-                })
-                return {
-                    ...item,
-                    content: item.articles
-                }
-            })
+            let tags = await getTags(false);
+            articles.data = tags.data;
+            //     .map(item => {
+            //     item.articles.forEach(article => {
+            //         if (article.cover) {
+            //             article.thumb_url = appInstance.globalData.baseUrl + article.cover.url;
+            //         }
+            //     })
+            //     return {
+            //         ...item,
+            //         content: item.articles
+            //     }
+            // })
             // let articles = await getArticles();
             console.log(articles);
             console.log(tags);

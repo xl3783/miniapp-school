@@ -1,4 +1,5 @@
 import Http from "../utils/http";
+
 const qs = require("qs")
 
 const httpInstance = new Http();
@@ -13,7 +14,7 @@ const getTags = async (withArticles) => {
         {
             populate: {
                 articles: {
-                    fields: ['title', 'is_top', 'type'],
+                    fields: ['title', 'is_top', 'type', 'is_jump'],
                     populate: {
                         cover: {
                             fields: ['url']
@@ -29,7 +30,7 @@ const getTags = async (withArticles) => {
     return await httpInstance.get(`${baseUrl}/api/tags?${query}`);
 }
 
-const getArticles = async (tagId) => {
+const getArticles = async ({tagId, page, pageSize}) => {
     if (!tagId) {
         return await httpInstance.get(`${baseUrl}/api/articles`);
     }
@@ -47,12 +48,41 @@ const getArticles = async (tagId) => {
                     fields: ['id'],
                 },
             },
+            pagination: {
+                page: page ? page : 0,
+                pageSize: pageSize ? pageSize : 10,
+            },
         },
         {
             encodeValuesOnly: true, // prettify URL
         }
     );
     return await httpInstance.get(`${baseUrl}/api/articles?${query}`);
+}
+
+const getArticle = async (id) => {
+    return await httpInstance.get(`${baseUrl}/api/articles/${id}`);
+    // if (!tagId) {
+    //     return await httpInstance.get(`${baseUrl}/api/articles`);
+    // }
+    // const query = qs.stringify(
+    //     {
+    //         filters: {
+    //             id: {
+    //                 $eq: tagId,
+    //             },
+    //         },
+    //         populate: {
+    //             tag: {
+    //                 fields: ['id'],
+    //             },
+    //         },
+    //     },
+    //     {
+    //         encodeValuesOnly: true, // prettify URL
+    //     }
+    // );
+    // return await httpInstance.get(`${baseUrl}/api/articles?${query}`);
 }
 
 const getFaculties = async ({page, pageSize}) => {
@@ -100,5 +130,6 @@ module.exports = {
     getArticles,
     getFaculties,
     getFaculty,
-    getCollegeIntroduction
+    getCollegeIntroduction,
+    getArticle
 }

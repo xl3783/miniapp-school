@@ -1,6 +1,4 @@
-const Http = require("../../../utils/http");
-const app = getApp();
-const http = new Http();
+const {getArticle} = require("../../../apis/index");
 
 Component({
   properties: {
@@ -51,30 +49,40 @@ Component({
         });
       }
     },
-    fetchData: function () {
+    fetchData: async function () {
       const component = this;
       wx.showLoading({
         title: "加载中"
       });
-
-      http.get(app.globalData.baseUrl + "/miniapp/article/" + this.data.detailId)
-        .then(function (response) {
-          const {
-            title,
-            content,
-            thumb_url,
-            create_time
-          } = response;
-          wx.hideLoading();
-          component.setData({
-            title: title,
-            thumb_url: thumb_url,
-            content: content,
-            create_time: create_time,
-            dataInitLoad: true
-          });
-          component.triggerEvent("changeName", title);
-        });
+      const res = await getArticle(this.data.detailId);
+      let title = res.data.title;
+      component.setData({
+        title: title,
+        thumb_url: res.data.thumb_url,
+        content: res.data.content,
+        create_time: res.data.updatedAt,
+        dataInitLoad: true
+      });
+      component.triggerEvent("changeName", title);
+      wx.hideLoading();
+      // http.get(app.globalData.baseUrl + "/miniapp/article/" + this.data.detailId)
+      //   .then(function (response) {
+      //     const {
+      //       title,
+      //       content,
+      //       thumb_url,
+      //       create_time
+      //     } = response;
+      //     wx.hideLoading();
+      //     component.setData({
+      //       title: title,
+      //       thumb_url: thumb_url,
+      //       content: content,
+      //       create_time: create_time,
+      //       dataInitLoad: true
+      //     });
+      //     component.triggerEvent("changeName", title);
+      //   });
     }
   }
 });

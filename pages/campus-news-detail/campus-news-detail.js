@@ -40,13 +40,13 @@ Page({
   onPullDownRefresh: function () {},
   onReachBottom: function () {},
   onShareAppMessage: function () {
-    return getApp().reporting.share({
-      type: 1,
-      value: ""
-    }, getCurrentPages()), {
-      title: this.data.title,
-      path: "/pages/campus-news-detail/campus-news-detail?name=".concat(this.data.tabName, "&id=").concat(this.data.id)
-    };
+    // return getApp().reporting.share({
+    //   type: 1,
+    //   value: ""
+    // }, getCurrentPages()), {
+    //   title: this.data.title,
+    //   path: "/pages/campus-news-detail/campus-news-detail?name=".concat(this.data.tabName, "&id=").concat(this.data.id)
+    // };
   },
   // onShareTimeline: function () {
   //   return getApp().reporting.share({

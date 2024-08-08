@@ -7,7 +7,7 @@
             <view class="time-text">{{create_time}}</view>
         </view>
         <view class="mp-img-box">
-            <mp bindlinktap="linktap" content="{{content}}" copyLink="{{false}}"></mp>
+            <mp bindlinktap="handleLinkTap" content="{{content}}" copyLink="{{false}}"></mp>
         </view>
     </view>
     <no-data-comp wx:if="{{!title&&!content&&dataInitLoad}}"></no-data-comp>
