@@ -79,6 +79,10 @@ const utils = {
     });
   },
 
+  getResTotal: (res) => {
+    return res.meta.pagination.total;
+  },
+
   jumpToDetail: (event) => {
     const item = event.currentTarget.dataset.item;
     const {

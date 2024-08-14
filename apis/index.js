@@ -125,11 +125,34 @@ const getCollegeIntroduction = async () => {
     return await httpInstance.get(`${baseUrl}/api/college-introduction`);
 }
 
+const getSceneries = async ({page, pageSize}) => {
+    const query = qs.stringify(
+        {
+            pagination: {
+                page: page,
+                pageSize: pageSize,
+            },
+            sort: ['sort:asc'],
+            populate: {
+                image: {
+                    fields: ['url']
+                },
+            },
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/api/sceneries?${query}`);
+}
+
 module.exports = {
+    baseUrl,
     getTags,
     getArticles,
     getFaculties,
     getFaculty,
     getCollegeIntroduction,
-    getArticle
+    getArticle,
+    getSceneries
 }

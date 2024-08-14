@@ -1,6 +1,7 @@
 // var e = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("../../utils/http")), t = require("../../utils/util");
 
 // getApp(), new e.default.Http();
+var util = require("../../utils/util");
 
 Component({
   properties: {
@@ -31,7 +32,10 @@ Component({
   },
   data: {},
   methods: {
-    jump: function (e) {
+    jump: function (event) {
+      // t.jumpToDetail(e);
+      util.jumpToDetail(event);
+      // (0, t.jumpToDetail)(e);
       // (0, t.getPhoneLogin)().then(function () {
       //   (0, t.jumpToDetail)(e);
       // });

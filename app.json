@@ -7,7 +7,8 @@
     "pages/enroll-major-intro-new/enroll-major-intro-new",
     "pages/enroll-major-intro-detail-new/enroll-major-intro-detail-new",
     "pages/campus-news-detail/campus-news-detail",
-    "pages/enroll-major-new/enroll-major-new"
+    "pages/enroll-major-new/enroll-major-new",
+    "pages/campus-scenery/campus-scenery"
 
   ],
   "subPackages": [{

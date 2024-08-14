@@ -31,33 +31,15 @@ Page({
     },
     onReady: function() {},
     onShow: function() {
-        getApp().reporting.page("show", getCurrentPages());
     },
     onHide: function() {
-        getApp().reporting.page("hide");
     },
     onUnload: function() {
-        getApp().reporting.page("hide");
     },
     onPullDownRefresh: function() {},
     onReachBottom: function() {},
     onShareAppMessage: function() {
-        return getApp().reporting.share({
-            type: 1,
-            value: ""
-        }, getCurrentPages()), {
-            title: this.data.tabName,
-            path: "/pages/campus-scenery/campus-scenery?name=" + this.data.tabName
-        };
     },
     onShareTimeline: function() {
-        return getApp().reporting.share({
-            type: 2,
-            value: ""
-        }, getCurrentPages()), {
-            title: this.data.tabName,
-            query: "name=".concat(this.data.tabName),
-            imageUrl: e.globalData.schoollogo
-        };
     }
 });
