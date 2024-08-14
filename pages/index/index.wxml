@@ -1,6 +1,7 @@
 <view class="{{!mourn?'mourn-view':'main-view'}}" hidden="{{!dataLoad}}">
   <!-- <agreement id="wx-agreement"></agreement> -->
-  <custom-topbar bgColor1="{{bgColor}}" bind:scrollToTop="scrollToTop" color1="{{fontColor}}" hasBack="{{false}}" id="top-bar" position="{{title_position}}" t_width="{{t_w}}" title="{{name}}"></custom-topbar>
+<!--  <custom-topbar bgColor1="{{bgColor}}" bind:scrollToTop="scrollToTop" color1="{{fontColor}}" hasBack="{{false}}" id="top-bar" position="{{title_position}}" t_width="{{t_w}}" title="{{name}}"></custom-topbar>-->
+  <custom-topbar bind:scrollToTop="scrollToTop" id="top-bar" hasBack="{{false}}" title="{{name}}"></custom-topbar>
   <view>
     <view hidden="{{path!='/pages/index/index'}}">
       <view wx:if="{{tools.pathInArr('/pages/index/index',tabbarList)}}">

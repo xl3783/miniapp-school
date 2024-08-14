@@ -3,7 +3,7 @@
   "usingComponents": {
     "index-comp": "/components/pageOne/index/index",
     "kefu-comp": "/components/my-kefu-comp/index",
-    "custom-topbar": "/components/custom-topbar/index",
+    "custom-topbar": "/components/custom-top-bar/custom-top-bar",
     "my-comp": "/components/pageOne/my/my",
     "enroll-major-new-comp": "/components/pageOne/enroll-major-new/enroll-major-new",
     "bottom-tabbar-comp": "/components/bottom-tabbar-comp/bottom-tabbar-comp",
