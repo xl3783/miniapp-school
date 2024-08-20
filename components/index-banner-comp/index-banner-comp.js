@@ -85,6 +85,7 @@ Component({
       });
     },
     jump: function (target) {
+      util.jumpToDetail(target);
       // util.getPhoneLogin().then(function () {
       //   util.jumpToDetail(target);
       // })

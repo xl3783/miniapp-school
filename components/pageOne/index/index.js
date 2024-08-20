@@ -1,6 +1,6 @@
 import Http from '../../../utils/http';
 import {flattenApiData, flattenAttributes} from "../../../utils/customutil";
-import {getTags} from "../../../apis/index";
+import {getTags, getHome} from "../../../apis/index";
 
 const appInstance = getApp();
 const httpInstance = new Http();
@@ -578,20 +578,6 @@ Component({
             } = that.data;
             let tags = await getTags(false);
             articles.data = tags.data;
-            //     .map(item => {
-            //     item.articles.forEach(article => {
-            //         if (article.cover) {
-            //             article.thumb_url = appInstance.globalData.baseUrl + article.cover.url;
-            //         }
-            //     })
-            //     return {
-            //         ...item,
-            //         content: item.articles
-            //     }
-            // })
-            // let articles = await getArticles();
-            console.log(articles);
-            console.log(tags);
             const componentsPath = "/api/ui-components"
             + "?populate[media_resources][populate]=*";
             httpInstance.get(appInstance.globalData.baseUrl + componentsPath)
@@ -609,85 +595,70 @@ Component({
                     vedios.content = resVedio.media_resources;
 
                 })
-            const homeUrlPath = "/api/home-page"
-                + "?populate[banner][populate][banner_items][populate]=*"
-                + "&populate[banner][populate][school_logo][populate]=*"
-                + "&populate[notices][populate]=*"
-                + "&populate[navs][populate]=*"
-            httpInstance.get(appInstance.globalData.baseUrl + homeUrlPath)
-                .then(res => {
-                    res = flattenApiData(res);
-                    console.log("res", res)
-                    banner.title = res.banner.school_name;
-                    banner.content = res.banner.banner_items.map(item => {
-                        return {
-                            "id": 3502,
-                            "component_id": 1377,
-                            "name": "",
-                            "image_url": appInstance.globalData.baseUrl + item.image.url,
-                            "source_type": 0,
-                            "jump_url": "\/pages\/campus-intro\/campus-intro",
-                            "jump_type": 1,
-                            "type": 0,
-                            "category_ids": "0",
-                            "base_url": "\/pages\/campus-intro\/campus-intro"
-                        }
-                    });
-                    notice.content = res.notices.map(item => {
-                        return {
-                            "id": item.id,
-                            "title": item.title,
-                            "column_id": "3",
-                            "type": 1,
-                            "is_jump": 0,
-                            "jump_url": item.jump_url,
-                            "is_top": 1,
-                            "show_app": "[1, 8]",
-                            "create_time": item.createdAt
-                        }
-                    })
-                    nav.content = res.navs.map(item => {
-                        return {
-                            ...item,
-                            image_url: appInstance.globalData.baseUrl + item.image.url
-                        }
-                    })
-                    nav.content = nav.content.sort((a, b) => a.sort_index - b.sort_index);
-                    this.setData({
-                        schoolname: res.banner.school_name,
-                        schoollogo: appInstance.globalData.baseUrl + res.banner.school_logo.url
-                    })
-                })
-            // httpInstance.get(appInstance.globalData.baseUrl + "/miniapp/home", {
-            //   page,
-            //   page_size
-            // })
-            Promise.resolve(homeRequestRes)
-                .then(function (res) {
-                    const newComponents = components.concat(res.components);
-                    that.setData({
-                        components: newComponents,
-                        total: res.total,
-                        schoolname: res.name
-                    });
-                    const eventDetail = {
-                        showCollect: res.is_collect,
-                        showContact: false,
-                        contactContent: {},
-                        globalColor: res.color
-                    };
-                    if (newComponents && newComponents.length > 0) {
-                        const firstComponent = newComponents[0];
-                        if (firstComponent.type === 6) {
-                            eventDetail.showContact = true;
-                            eventDetail.contactContent = firstComponent;
-                        }
-                    }
-                    that.triggerEvent("showContactEvent", eventDetail);
-                    that.setData({
-                        dataIsLoad: true
-                    });
-                });
+            let homeData = await getHome();
+            homeData = homeData.data;
+            banner.title = homeData.banner.school_name;
+            banner.content = homeData.banner.banner_items.map(item => {
+                return {
+                    "id": 3502,
+                    "component_id": 1377,
+                    "name": "",
+                    "image_url": appInstance.globalData.baseUrl + item.image.url,
+                    "source_type": 0,
+                    "jump_url": "\/pages\/campus-intro\/campus-intro",
+                    "jump_type": 1,
+                    "type": 0,
+                    "category_ids": "0",
+                    "base_url": "\/pages\/campus-intro\/campus-intro"
+                }
+            });
+            notice.content = homeData.notices.map(item => {
+                return {
+                    "id": item.id,
+                    "title": item.title,
+                    "column_id": "3",
+                    "type": 1,
+                    "is_jump": 0,
+                    "jump_url": item.jump_url,
+                    "is_top": 1,
+                    "show_app": "[1, 8]",
+                    "create_time": item.createdAt
+                }
+            });
+            nav.content = homeData.navs.map(item => {
+                return {
+                    ...item,
+                    image_url: appInstance.globalData.baseUrl + item.image.url
+                }
+            })
+            this.setData({
+                schoolname: homeData.banner.school_name,
+                schoollogo: appInstance.globalData.baseUrl + homeData.banner.school_logo.url
+            });
+
+            const newComponents = components.concat(homeRequestRes.components);
+            that.setData({
+                components: newComponents,
+                total: homeRequestRes.total,
+                schoolname: homeRequestRes.name
+            });
+            const eventDetail = {
+                showCollect: homeRequestRes.is_collect,
+                showContact: false,
+                contactContent: {},
+                globalColor: homeRequestRes.color
+            };
+            if (newComponents && newComponents.length > 0) {
+                const firstComponent = newComponents[0];
+                if (firstComponent.type === 6) {
+                    eventDetail.showContact = true;
+                    eventDetail.contactContent = firstComponent;
+                }
+            }
+            that.triggerEvent("showContactEvent", eventDetail);
+            that.setData({
+                dataIsLoad: true
+            });
         },
         onReachBottom: function () {
             console.log("加载了");

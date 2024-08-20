@@ -6,6 +6,42 @@ const httpInstance = new Http();
 
 const baseUrl = "http://localhost:1337";
 
+const getHome = async () => {
+    const query = qs.stringify(
+        {
+            populate: {
+                banner: {
+                    populate: {
+                        banner_items: {
+                            populate: {
+                                image: {
+                                    fields: ["url"],
+                                }
+                            }
+                        },
+                        school_logo: {
+                            fields: ["url"]
+                        }
+                    }
+                },
+                navs: {
+                    populate: {
+                        image: {
+                            fields: ["url"],
+                        }
+                    },
+                    sort: ['sort_index:asc'],
+                },
+                notices: '*'
+            },
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/api/home-page?${query}`);
+}
+
 const getTags = async (withArticles) => {
     if (!withArticles) {
         return await httpInstance.get(`${baseUrl}/api/tags`);
@@ -154,5 +190,6 @@ module.exports = {
     getFaculty,
     getCollegeIntroduction,
     getArticle,
-    getSceneries
+    getSceneries,
+    getHome
 }
