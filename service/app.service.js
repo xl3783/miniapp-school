@@ -8,6 +8,7 @@ const {
     Subscriber
 } = require("../utils/reporting");
 const {flattenApiData} = require("../utils/customutil");
+const qs = require("qs");
 
 const initExtConfig = (app) => {
     const extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
@@ -292,7 +293,25 @@ const getUserInfo = (networkContext) => {
 };
 
 const getBottom = (networkContext) => {
-    return networkContext.get("/api/bottom?populate=*");
+    const query = qs.stringify(
+        {
+            populate: {
+                bottom_items : {
+                    populate: {
+                        icon_url: {
+                            fields: ["url"],
+                        }
+                    },
+                    sort: ['sort:asc'],
+                }
+            },
+
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return networkContext.get(`/api/bottom?${query}`);
 };
 
 const getHomeConfig = (networkContext) => {

@@ -194,6 +194,18 @@ const getContactConfigs = async () => {
     return await httpInstance.get(`${baseUrl}/api/contact-configs?${query}`);
 }
 
+const getBottoms = async () => {
+    const query = qs.stringify(
+        {
+            sort: ['sort:asc'],
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/miniapp/bottom?${query}`);
+}
+
 module.exports = {
     baseUrl,
     getTags,
@@ -204,5 +216,6 @@ module.exports = {
     getArticle,
     getSceneries,
     getHome,
-    getContactConfigs
+    getContactConfigs,
+    getBottoms
 }

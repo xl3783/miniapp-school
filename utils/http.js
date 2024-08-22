@@ -9,7 +9,8 @@ const defaultHeaders = {
   'Open-Id': globalData.openid,
   'Inviter-Phone': globalData.inviter_phone,
   'Channel-Id': globalData.channel_id,
-  'Inviter-Id': globalData.inviter_id
+  'Inviter-Id': globalData.inviter_id,
+  'Authorization': "Bearer " + globalData.token
 };
 
 class Http {

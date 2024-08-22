@@ -1,7 +1,6 @@
-import Http from '../../utils/http';
 import * as util from '../../utils/util';
+import {getBottoms} from "../../apis/index";
 const app = getApp();
-const http = new Http();
 
 Page({
   onHide() {
@@ -263,40 +262,39 @@ Page({
       showCollect: false
     });
   },
-  getBottom() {
+  async getBottom() {
     console.log("getBottom")
     // Promise.resolve(tabbarRes).then(t => {
     //   console.log("getBottom then")
-    http.get(`${app.globalData.baseUrl}/miniapp/bottom`).then(t => {
-      if (t.errcode === 1) {
-        wx.showToast({
-          title: t.errmsg,
-          icon: "none"
-        });
-      } else {
-        app.globalData.tabbar = t;
-        this.setData({
-          tabbarList: t.content
-        });
-        try {
-          let currentPath = wx.getStorageSync("currentPath");
-          if (currentPath.includes("../../")) {
-            currentPath = currentPath.substring(5);
-          }
-          if (currentPath) {
-            const index = t.content.findIndex(item => item.base_url === currentPath.path && item.id === currentPath.id);
-            this.setData({
-              initId: index > -1 ? currentPath.id : t.content[0].id,
-              path: index > -1 ? currentPath.path : "/pages/index/index",
-              category_ids: currentPath.category_ids || "",
-              jump_type: currentPath.jump_type || ""
-            });
-          }
-        } catch (e) {
-          console.error("Error setting initial tab:", e);
+    const t = await getBottoms();
+    if (t.errcode === 1) {
+      wx.showToast({
+        title: t.errmsg,
+        icon: "none"
+      });
+    } else {
+      app.globalData.tabbar = t;
+      this.setData({
+        tabbarList: t.content
+      });
+      try {
+        let currentPath = wx.getStorageSync("currentPath");
+        if (currentPath.includes("../../")) {
+          currentPath = currentPath.substring(5);
         }
+        if (currentPath) {
+          const index = t.content.findIndex(item => item.base_url === currentPath.path && item.id === currentPath.id);
+          this.setData({
+            initId: index > -1 ? currentPath.id : t.content[0].id,
+            path: index > -1 ? currentPath.path : "/pages/index/index",
+            category_ids: currentPath.category_ids || "",
+            jump_type: currentPath.jump_type || ""
+          });
+        }
+      } catch (e) {
+        console.error("Error setting initial tab:", e);
       }
-    });
+    }
   },
   onLoad(e) {
     console.log("onload")
@@ -375,9 +373,8 @@ Page({
     const match = url.match(reg);
     return match ? unescape(match[2]) : null;
   },
-  handleShow() {
+  async handleShow() {
     console.log("handleShow")
-    // app.globalData.home = Promise.resolve({});
     app.globalData.home.then(() => {
       console.log("app.globalData.home")
       console.log(app.globalData)
