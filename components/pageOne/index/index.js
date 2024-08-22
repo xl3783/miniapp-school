@@ -1,9 +1,10 @@
 import Http from '../../../utils/http';
-import {flattenApiData, flattenAttributes} from "../../../utils/customutil";
-import {getTags, getHome} from "../../../apis/index";
+import {flattenApiData} from "../../../utils/customutil";
+import {getTags, getHome, getContactConfigs} from "../../../apis/index";
 
 const appInstance = getApp();
 const httpInstance = new Http();
+const baseUrl = appInstance.globalData.baseUrl;
 
 const banner = {
     "id": 1377,
@@ -441,42 +442,44 @@ const articles = {
     }]
 }
 
+const contactUs = {
+    "id": 1383,
+    "type": 6,
+    "position": 7,
+    "is_float": 0,
+    "extend": "null",
+    "style_code": 1,
+    "connectConfig": [{
+        "name": "招生电话",
+        "value": "0716-8022266",
+        "type": 1
+    }, {
+        "name": "",
+        "value": "",
+        "type": 4
+    }, {
+        "name": "咨询QQ",
+        "value": "https:\/\/webpage.qidian.qq.com\/2\/chat\/h5\/index.html?linkType=1&env=ol&kfuin=3009112113&fid=806&key=44fd2a4ca4e14d53989bcb1e1cebe225&cate=7&source=0&isLBS=0&isCustomEntry=0&type=10&ftype=1&_type=wpa&qidian=true&translateSwitch=0&isSsc=0&roleValue=1&roleData=13469",
+        "type": 3
+    }],
+    "image_url_full": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20201116\/42ec1c2ffaabdcfe3dad9b1b8706bbca.png",
+    "is_customer": 0,
+    "is_msg": 0,
+    "is_phone": 0,
+    "is_phone2": 0,
+    "is_phone3": 0,
+    "is_vx": 0,
+    "phone": "",
+    "phone2": "",
+    "phone3": "",
+    "vx": "",
+    "icon_url": baseUrl + "/uploads/42ec1c2ffaabdcfe3dad9b1b8706bbca_07a5dbf60f.png"
+}
+
 const homeRequestRes = {
     "errcode": 0,
     "errmsg": "ok",
-    "components": [{
-        "id": 1383,
-        "type": 6,
-        "position": 7,
-        "is_float": 0,
-        "extend": "null",
-        "style_code": 1,
-        "connectConfig": [{
-            "name": "招生电话",
-            "value": "0716-8022266",
-            "type": 1
-        }, {
-            "name": "",
-            "value": "",
-            "type": 4
-        }, {
-            "name": "咨询QQ",
-            "value": "https:\/\/webpage.qidian.qq.com\/2\/chat\/h5\/index.html?linkType=1&env=ol&kfuin=3009112113&fid=806&key=44fd2a4ca4e14d53989bcb1e1cebe225&cate=7&source=0&isLBS=0&isCustomEntry=0&type=10&ftype=1&_type=wpa&qidian=true&translateSwitch=0&isSsc=0&roleValue=1&roleData=13469",
-            "type": 3
-        }],
-        "image_url_full": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20201116\/42ec1c2ffaabdcfe3dad9b1b8706bbca.png",
-        "is_customer": 0,
-        "is_msg": 0,
-        "is_phone": 0,
-        "is_phone2": 0,
-        "is_phone3": 0,
-        "is_vx": 0,
-        "phone": "",
-        "phone2": "",
-        "phone3": "",
-        "vx": "",
-        "icon_url": "https:\/\/cos.schoolpi.net\/uploads\/icon\/20201116\/42ec1c2ffaabdcfe3dad9b1b8706bbca.png"
-    }, banner, notice, nav, vr, vedios,
+    "components": [contactUs, banner, notice, nav, vr, vedios,
         articles],
     "total": 7,
     "score_list": 2,
@@ -578,14 +581,18 @@ Component({
             } = that.data;
             let tags = await getTags(false);
             articles.data = tags.data;
+
+            let contactConfigs = await getContactConfigs();
+            contactConfigs = contactConfigs.data;
+            contactUs.connectConfig = contactConfigs;
             const componentsPath = "/api/ui-components"
             + "?populate[media_resources][populate]=*";
-            httpInstance.get(appInstance.globalData.baseUrl + componentsPath)
+            httpInstance.get(baseUrl + componentsPath)
                 .then(res => {
                     res = flattenApiData(res);
                     res.forEach(component => {
                         component.media_resources.forEach(item => {
-                            item.image_url = appInstance.globalData.baseUrl + item.image[0].url
+                            item.image_url = baseUrl + item.image[0].url
                         })
                     })
                     console.log("res1", res)
@@ -603,7 +610,7 @@ Component({
                     "id": 3502,
                     "component_id": 1377,
                     "name": "",
-                    "image_url": appInstance.globalData.baseUrl + item.image.url,
+                    "image_url": baseUrl + item.image.url,
                     "source_type": 0,
                     "jump_url": "\/pages\/campus-intro\/campus-intro",
                     "jump_type": 1,
@@ -628,12 +635,12 @@ Component({
             nav.content = homeData.navs.map(item => {
                 return {
                     ...item,
-                    image_url: appInstance.globalData.baseUrl + item.image.url
+                    image_url: baseUrl + item.image.url
                 }
             })
             this.setData({
                 schoolname: homeData.banner.school_name,
-                schoollogo: appInstance.globalData.baseUrl + homeData.banner.school_logo.url
+                schoollogo: baseUrl + homeData.banner.school_logo.url
             });
 
             const newComponents = components.concat(homeRequestRes.components);

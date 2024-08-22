@@ -157,89 +157,93 @@
     <view bindtap="openContact" class="contact-icon" style="background:{{globalColor}};" wx:if="{{showContact&&path=='/pages/index/index'}}">
         <image showMenuByLongpress="true" src="{{contactContent.icon_url}}"></image>
     </view> -->
-    <bottom-tabbar-comp bind:chooseTab="chooseTab" id="bottom-bar" initId="{{initId}}" initPath="{{path}}" style="overflow:hidden"></bottom-tabbar-comp>
-    <!-- <view bindtap="hideContact" class="mask" wx:if="{{showContactMask}}"> -->
-    <!-- <view catchtap="ss" class="contact-content">
-      <view class="contactus">联系我们</view>
-      <view bindtap="hideContact" class="contact-cancel">
-        <image showMenuByLongpress="true" src="../../assets/image/ctc-close.png"></image>
-      </view>
-      <scroll-view scrollY="true" style="max-height: 930rpx;">
-        <view class="contact-top {{contactContent.is_msg&&contactContent.is_customer?'contact-flex':''}}">
-          <view class="contact-item contact-item" wx:if="{{contactContent.is_phone&&contactContent.phone}}">
-            <view class="contact-left" wx:if="{{contactContent.phone}}">
-              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
-              <view class="contact-text">招生热线：{{contactContent.phone}}</view>
-            </view>
-            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
-          </view>
-          <view class="contact-item" wx:if="{{contactContent.is_phone2&&contactContent.phone2}}">
-            <view class="contact-left" wx:if="{{contactContent.phone2}}">
-              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
-              <view class="contact-text">招生热线：{{contactContent.phone2}}</view>
-            </view>
-            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone2}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
-          </view>
-          <view class="contact-item" wx:if="{{contactContent.is_phone3&&contactContent.phone3}}">
-            <view class="contact-left" wx:if="{{contactContent.phone3}}">
-              <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
-              <view class="contact-text">招生热线：{{contactContent.phone3}}</view>
-            </view>
-            <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone3}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
-          </view>
-          <view class="contact-item" wx:if="{{contactContent.is_vx}}">
-            <view class="contact-left">
-              <image showMenuByLongpress="true" src="../../assets/image/wx.png"></image>
-              <view class="contact-text">微信号：{{contactContent.vx}}</view>
-            </view>
-            <view bindtap="copyWx" class="contact-right" data-wx="{{contactContent.vx}}" style="border-color:{{globalColor}};color:{{globalColor}}">复制</view>
-          </view>
-          <view bindtap="goKefu" class="contact-item" wx:if="{{contactContent.is_customer}}">
-            <view class="contact-left">
-              <image showMenuByLongpress="true" src="../../assets/image/zx1.png"></image>
-              <view class="contact-text">在线咨询</view>
-            </view>
-            <view class="contact-right">
-              <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
-            </view>
-          </view>
-          <view bindtap="leaveWord" class="contact-item" wx:if="{{contactContent.is_msg}}">
-            <view class="contact-left">
-              <image showMenuByLongpress="true" src="../../assets/image/word1.png"></image>
-              <view class="contact-text">给我们留言</view>
-            </view>
-            <view class="contact-right">
-              <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
-            </view>
-          </view>
+    <view bindtap="openContact" class="contact-icon" style="background:{{globalColor}};" wx:if="{{showContact&&path=='/pages/index/index'}}">
+      <image showMenuByLongpress="true" src="{{contactContent.icon_url}}"></image>
+    </view>
+    <view bindtap="hideContact" class="mask" wx:if="{{showContactMask}}">
+      <view catchtap="ss" class="contact-content">
+        <view class="contactus">联系我们</view>
+        <view bindtap="hideContact" class="contact-cancel">
+          <image showMenuByLongpress="true" src="../../assets/image/ctc-close.png"></image>
         </view>
-        <view class="contact-other" wx:if="{{contactContent.connectConfig}}">
-          <view wx:for="{{contactContent.connectConfig}}" wx:key="*this">
-            <view class="contact-item" wx:if="{{item.type==1}}">
-              <view class="contact-left">
+        <scroll-view scrollY="true" style="max-height: 930rpx;">
+          <view class="contact-top {{contactContent.is_msg&&contactContent.is_customer?'contact-flex':''}}">
+            <view class="contact-item contact-item" wx:if="{{contactContent.is_phone&&contactContent.phone}}">
+              <view class="contact-left" wx:if="{{contactContent.phone}}">
                 <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
-                <view class="contact-text">{{item.name}}：{{item.value}}</view>
+                <view class="contact-text">招生热线：{{contactContent.phone}}</view>
               </view>
-              <view bindtap="openPhone" class="contact-right" data-phone="{{item.value}}">拨打</view>
+              <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
             </view>
-            <view class="contact-item" wx:if="{{item.type==2}}">
-              <view class="contact-left">
-                <image showMenuByLongpress="true" src="../../assets/image/text-icon.png"></image>
-                <view class="contact-text">{{item.name}}：{{item.value}}</view>
+            <view class="contact-item" wx:if="{{contactContent.is_phone2&&contactContent.phone2}}">
+              <view class="contact-left" wx:if="{{contactContent.phone2}}">
+                <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+                <view class="contact-text">招生热线：{{contactContent.phone2}}</view>
               </view>
-              <view bindtap="copyWx" class="contact-right" data-wx="{{item.value}}">复制</view>
+              <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone2}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
             </view>
-            <view class="contact-item" wx:if="{{item.type==3}}">
-              <view class="contact-left">
-                <image showMenuByLongpress="true" src="../../assets/image/link-icon.png"></image>
-                <view class="contact-text">{{item.name}}</view>
+            <view class="contact-item" wx:if="{{contactContent.is_phone3&&contactContent.phone3}}">
+              <view class="contact-left" wx:if="{{contactContent.phone3}}">
+                <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+                <view class="contact-text">招生热线：{{contactContent.phone3}}</view>
               </view>
-              <view bindtap="goWebView" class="contact-right" data-url="{{item.value}}">前往</view>
+              <view bindtap="openPhone" class="contact-right" data-phone="{{contactContent.phone3}}" style="border-color:{{globalColor}};color:{{globalColor}}">拨打</view>
+            </view>
+            <view class="contact-item" wx:if="{{contactContent.is_vx}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/wx.png"></image>
+                <view class="contact-text">微信号：{{contactContent.vx}}</view>
+              </view>
+              <view bindtap="copyWx" class="contact-right" data-wx="{{contactContent.vx}}" style="border-color:{{globalColor}};color:{{globalColor}}">复制</view>
+            </view>
+            <view bindtap="goKefu" class="contact-item" wx:if="{{contactContent.is_customer}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/zx1.png"></image>
+                <view class="contact-text">在线咨询</view>
+              </view>
+              <view class="contact-right">
+                <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
+              </view>
+            </view>
+            <view bindtap="leaveWord" class="contact-item" wx:if="{{contactContent.is_msg}}">
+              <view class="contact-left">
+                <image showMenuByLongpress="true" src="../../assets/image/word1.png"></image>
+                <view class="contact-text">给我们留言</view>
+              </view>
+              <view class="contact-right">
+                <image showMenuByLongpress="true" src="../../assets/image/ctc-r.png"></image>
+              </view>
             </view>
           </view>
-        </view>
-      </scroll-view>
-    </view> -->
+          <view class="contact-other" wx:if="{{contactContent.connectConfig}}">
+            <view wx:for="{{contactContent.connectConfig}}" wx:key="*this">
+              <view class="contact-item" wx:if="{{item.type==1}}">
+                <view class="contact-left">
+                  <image showMenuByLongpress="true" src="../../assets/image/phone.png"></image>
+                  <view class="contact-text">{{item.name}}：{{item.value}}</view>
+                </view>
+                <view bindtap="openPhone" class="contact-right" data-phone="{{item.value}}">拨打</view>
+              </view>
+              <view class="contact-item" wx:if="{{item.type==2}}">
+                <view class="contact-left">
+                  <image showMenuByLongpress="true" src="../../assets/image/text-icon.png"></image>
+                  <view class="contact-text">{{item.name}}：{{item.value}}</view>
+                </view>
+                <view bindtap="copyWx" class="contact-right" data-wx="{{item.value}}">复制</view>
+              </view>
+              <view class="contact-item" wx:if="{{item.type==3}}">
+                <view class="contact-left">
+                  <image showMenuByLongpress="true" src="../../assets/image/link-icon.png"></image>
+                  <view class="contact-text">{{item.name}}</view>
+                </view>
+                <view bindtap="goWebView" class="contact-right" data-url="{{item.value}}">前往</view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <bottom-tabbar-comp bind:chooseTab="chooseTab" id="bottom-bar" initId="{{initId}}" initPath="{{path}}" style="overflow:hidden"></bottom-tabbar-comp>
   </view>
 </view>
 <wxs module="tools" src="../../utils/tool.wxs" />

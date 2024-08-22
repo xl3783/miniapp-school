@@ -182,6 +182,18 @@ const getSceneries = async ({page, pageSize}) => {
     return await httpInstance.get(`${baseUrl}/api/sceneries?${query}`);
 }
 
+const getContactConfigs = async () => {
+    const query = qs.stringify(
+        {
+
+        },
+        {
+            encodeValuesOnly: true, // prettify URL
+        }
+    );
+    return await httpInstance.get(`${baseUrl}/api/contact-configs?${query}`);
+}
+
 module.exports = {
     baseUrl,
     getTags,
@@ -191,5 +203,6 @@ module.exports = {
     getCollegeIntroduction,
     getArticle,
     getSceneries,
-    getHome
+    getHome,
+    getContactConfigs
 }
