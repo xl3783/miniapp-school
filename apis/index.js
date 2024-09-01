@@ -83,7 +83,11 @@ const getArticles = async ({tagId, page, pageSize}) => {
                 tag: {
                     fields: ['id'],
                 },
+                cover: {
+                    fields: ['url']
+                }
             },
+            sort: ['is_top:desc'],
             pagination: {
                 page: page ? page : 0,
                 pageSize: pageSize ? pageSize : 10,
