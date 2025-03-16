@@ -23,6 +23,7 @@ class Network {
       }
 
       const requestPromise = new Promise((resolve, reject) => {
+        debugger
         wx.request({
           method,
           data,
